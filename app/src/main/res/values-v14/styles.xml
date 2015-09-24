@@ -1,0 +1,40 @@
+<resources>
+
+    <!--
+        Base application theme for API 14+. This theme completely replaces
+        AppBaseTheme from BOTH res/values/styles.xml and
+        res/values-v11/styles.xml on API 14+ devices.
+    -->
+    <style name="AppBaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimaryDark">@color/toolbarColor2</item>
+        <item name="colorPrimary">@color/toolbarColor</item>
+        <item name="colorAccent">@color/toolbarColor</item>
+
+        <item name="actionMenuTextColor">#ffffff</item>
+
+        <item name="android:dropDownListViewStyle">@style/MyActionBarMenu</item>
+        <item name="dropDownListViewStyle">@style/MyActionBarMenu</item>
+
+        <item name="android:textColorPrimary">@color/textColor</item>
+        <item name="android:textColorPrimaryInverse">@color/textColor</item>
+        <item name="android:textColorSecondary">@color/textColor</item>
+        <item name="colorControlNormal">@color/textColor</item>
+
+    </style>
+
+    <style name="MyActionBarMenu" parent="@style/Widget.AppCompat.Light.ListView.DropDown">
+        <item name="android:textColorPrimary">@color/Schwarz</item>
+        <item name="android:background">@color/Weiss</item>
+
+    </style>
+
+
+    <style name="PreferencesTheme" parent="AppBaseTheme">
+        <item name="android:textColorPrimary">@color/textColor</item>
+        <item name="android:textColorPrimaryInverse">@color/textColor</item>
+        <item name="android:textColor">@drawable/two_value_colors_2</item>
+        <item name="android:textColorSecondary">@drawable/two_value_colors</item>
+    </style>
+    
+   
+</resources>

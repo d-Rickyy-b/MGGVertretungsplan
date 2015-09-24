@@ -1,0 +1,43 @@
+<resources>
+
+    <!--
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    -->
+    <style name="AppBaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimaryDark">@color/toolbarColor2</item>
+        <item name="colorPrimary">@color/toolbarColor</item>
+        <item name="colorAccent">@color/toolbarColor</item>
+
+        <item name="android:dropDownListViewStyle">@style/MyActionBarMenu</item>
+        <item name="dropDownListViewStyle">@style/MyActionBarMenu</item>
+
+        <item name="android:textColorPrimary">@color/textColor</item>
+        <item name="android:textColorPrimaryInverse">@color/textColor</item>
+        <item name="android:textColorSecondary">@color/textColor</item>
+        <item name="colorControlNormal">@color/textColor</item>
+
+    </style>
+
+
+    <style name="MyActionBarMenu" parent="@style/Widget.AppCompat.Light.ListView.DropDown">
+        <item name="android:textColorPrimary">@color/Schwarz</item>
+        <item name="android:background">@color/Weiss</item>
+
+    </style>
+
+    <style name="MenuStyle">
+        <item name="android:entries">@array/Klassenstufe_List</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+
+    <style name="PreferencesTheme" parent="AppBaseTheme">
+        <item name="android:textColorPrimary">@color/textColor</item>
+        <item name="android:textColorPrimaryInverse">@color/textColor</item>
+        <item name="android:textColor">@drawable/two_value_colors_2</item>
+        <item name="android:textColorSecondary">@drawable/two_value_colors</item>
+    </style>
+
+  
+</resources>

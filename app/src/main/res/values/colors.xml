@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="refresh_progress_1">#03A9F4</color>
+	<color name="refresh_progress_2">#CDDC39</color>
+	<color name="refresh_progress_3">#4CAF50</color>
+    <color name="toolbarColor2">#353535</color>
+    <color name="toolbarColor">#424242</color>
+    <color name="primaryDark">#004D40</color>
+    <color name="accentColor">#00897B</color>
+    <color name="tertiary">#999999</color>
+    <color name="acc2">#000000</color>
+    <color name="textColor">#FAFAFA</color>
+    <color name="MenuColor">#424242</color>
+    <color name="ListViewItemColor">#ff303030</color>
+    <color name="ListViewItemBlau">#0099CC</color>
+
+    <color name="Schrift1">#424242</color>
+    <color name="Schrift2">#5c5c5c</color>
+
+    <color name="Weiss">#ffffff</color>
+    <color name="Schwarz">#000000</color>
+
+    <color name="disabled">#a0a0a0</color>
+    <color name="disabled2">#bababa</color>
+
+
+
+</resources>

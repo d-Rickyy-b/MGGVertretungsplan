@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+    <PreferenceCategory 
+        android:title="Klasse">
+	        <SwitchPreference 
+	            android:key="benachrichtigung"
+	            android:title="Benachrichtigung"/>
+	       	<ListPreference 
+	       	    android:key="KlasseGesamt"
+	       	    android:entries="@array/Klassen_List" 
+	       	    android:negativeButtonText="neg" 
+	       	    android:positiveButtonText="pos" 
+	       	    android:dialogMessage="message" 
+	       	    android:dialogTitle="titel"/>
+    </PreferenceCategory>
+    
+
+</PreferenceScreen>
+<!-- From: file:/C:/Users/Rico/AndroidStudioProjects/MGGVertretungsplan/app/src/main/res/xml/preferences.xml -->

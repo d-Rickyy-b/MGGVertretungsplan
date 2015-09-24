@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Vertretungsplan</string>
+    <string name="bar_title">Vertretungsplan</string>
+    <string name="action_settings">Einstellungen</string>
+    <string name="action_webview">Webseite</string>
+    <string name="Button_2">Abrufen!</string>
+    <string name="Url1">http://www.mgg.karlsruhe.de/index.php/vertretungsplan</string>
+    <string name="ur2">http://rickyy.lima-city.de/html/vertretungsplan.html</string>
+    <string name="pref">pref</string>
+    <string name="zusammenfassen">Gleiche Zeilen zusammenfassen?</string>
+    <string name="Einstellung1">Jahrgangsstufe</string>
+    <string name="Einstellung1.1">Bitte Jahrgangsstufe eingeben!</string>
+    <string name="Einstellung2">Klasse</string>
+    <string name="Einstellung2.1">Bitte Klasse eingeben!</string>
+    <string name="Einstellung3">Abrufintervall</string>
+    <string name="Einstellung4">Verschiedenes</string>
+    <string name="Einstellung4.1">Benachrichtigungen</string>
+    <string name="Einstellung4.2">Zusammenfassen</string>
+    <string name="Einstellung3.1">Bitte Intervall eingeben! (Stunden)</string>
+    <string name="Text">Bitte Klasse auswählen</string>
+    <string name="speichern">Speichern</string>
+    <string name="abbrechen">Zurück</string>
+    <string name="rico">Made by <i>Rico Jambor</i></string>
+    <string name="zuletztAbger">Zuletzt abgerufen am: </string>
+    <string name="bemerkung">bemerkung</string>
+    <string name="fach">fach</string>
+    <string name="neuraum">neuraum</string>
+    <string name="raum">raum</string>
+    <string name="stunde">stunde</string>
+    <string name="version">1.5.0</string>
+    <integer name="versionNumber">6</integer>
+    <string name="notifications">Benachrichtigungen</string>
+    <string name="miscellaneous">Verschiedenes</string>
+    <string name="showToday">Akt. Tag zeigen</string>
+    
+    <string name="infoTitle">Info</string>
+   <string name="refreshTitle">Aktualisieren</string>
+    
+    <string-array name="Klassenstufe_List">
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>K1</item>
+        <item>K2</item>
+    </string-array>
+    
+
+    <string-array name="Intervall_neu">
+        <item name="15 min">15 min</item>
+        <item name="30 min">30 min</item>
+        <item name="60 min">1 std</item>
+        <item name="4 std">4 std</item>
+        <item name="6 std">6 std</item>
+    </string-array>
+    
+    <string-array name="Intervall_neu_values">
+        <item name="15 min">900000</item>
+        <item name="30 min">1800000</item>
+        <item name="60 min">3600000</item>
+        <item name="4 std">14400000</item>
+        <item name="6 std">21600000</item>
+    </string-array>
+    
+    <string-array name="Klassen_List">
+        <item>a</item>
+        <item>b</item>
+        <item>c</item>
+        <item>d</item>
+        <item>e</item>
+        <item>f</item>
+	</string-array>
+
+
+</resources>
