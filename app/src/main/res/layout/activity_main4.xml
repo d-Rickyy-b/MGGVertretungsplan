@@ -83,7 +83,7 @@
      android:layout_alignParentBottom="true"
      android:background="@android:color/transparent"
      ads:adSize="SMART_BANNER"
-     ads:adUnitId="ca-app-pub-3045756617316977/8788207447" />
+     ads:adUnitId="yourAppTokenHere" />
 
 
 
