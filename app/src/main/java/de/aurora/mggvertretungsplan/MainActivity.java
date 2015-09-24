@@ -94,10 +94,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 		sp = PreferenceManager.getDefaultSharedPreferences(this);
 		
 		adBanner1();
-			
-//		intentsOpen = new Intent(this, VertretungsplanService.class);
-//		pendingIntent = PendingIntent.getService(this,0, intentsOpen, 0);
-//		alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+		
 		//Zeigt die gespeicherten Daten in der Mitte an
 		System.out.println("------ onCreate ------");
 		//sp = getSharedPreferences(PREFS_NAME,0);
@@ -437,8 +434,6 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
     	
     	TextView aktualisiertAmTextView = (TextView) findViewById(R.id.listText);
     	
-    	//tagStr = hm.getCurrentDayByName();
-    		
     	//Markante Stellen im HTML code werden definiert
     	final String 	startPunkt = "___-1\"></a><h2 class=\"tabber_title\">", 
     					stoppPunkt = "</table><div style=\"clear:both;\"></div></div><div style=\"clear:both;\"></div>",	// geändert am 02.02.14 von </tbody></table><div style=\"clear:both;\"></div></div><div style || </table><div style=\"clear:both;\"></div>
@@ -530,7 +525,6 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 	  public void onDestroy(){
 		  super.onDestroy();
 		  if (adView != null) {
-		      // Destroy the AdView.
 		      adView.destroy();
 		    }
 	  }
