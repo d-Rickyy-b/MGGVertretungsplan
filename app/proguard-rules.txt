@@ -38,3 +38,5 @@
 # platform version. We know about them, and they are safe.
 -dontwarn android.support.**
 -dontwarn com.google.ads.**
+-keep class org.brickred.** { *; }
+-dontwarn org.brickred.**
