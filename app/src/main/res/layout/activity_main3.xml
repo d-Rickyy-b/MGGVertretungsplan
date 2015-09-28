@@ -26,7 +26,7 @@
      android:layout_alignParentBottom="true"
      android:background="@android:color/transparent"
      ads:adSize="SMART_BANNER"
-     ads:adUnitId="ca-app-pub-3045756617316977/8788207447" />
+     ads:adUnitId="YourAPITokenHere" />
 
 <ListView
     android:id="@+id/listView"
@@ -36,8 +36,7 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-     >
+    android:paddingTop="@dimen/activity_vertical_margin">
 
 </ListView>
 

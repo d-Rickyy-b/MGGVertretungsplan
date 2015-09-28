@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "de.aurora.mggvertretungsplan"
-        minSdkVersion 10
+        minSdkVersion 11
         targetSdkVersion 21
     }
 
@@ -22,9 +22,7 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:21.0.3'
-    compile 'com.android.support:support-v4:21.0.3'
+    compile 'com.android.support:support-v4:22.2.0'
     compile 'com.android.support:appcompat-v7:22.2.0'
-    compile 'com.google.android.gms:play-services:7.5.0'
-    compile files('libs/android-support-v7-recyclerview.jar')
+    compile 'com.google.android.gms:play-services-ads:7.5.0'
 }
