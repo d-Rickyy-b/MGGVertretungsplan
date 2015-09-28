@@ -1,13 +1,13 @@
 package de.aurora.mggvertretungsplan;
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.text.format.DateFormat;
+
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Comparator;
 import java.util.GregorianCalendar;
-
-import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.text.format.DateFormat;
 
 
 public class hilfsMethoden extends Activity {

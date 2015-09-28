@@ -4,12 +4,10 @@ import android.annotation.SuppressLint;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
-import android.preference.PreferenceManager;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 public class PreferenceBenachrichtigungen extends PreferenceActivity{
 
@@ -22,8 +20,6 @@ public class PreferenceBenachrichtigungen extends PreferenceActivity{
         setContentView(R.layout.settings);
         
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-//		setSupportActionBar(toolbar);
-		//toolbar.setAlpha(20);
 		toolbar.setTitle("Benachrichtigungen");
 		if(Build.VERSION.SDK_INT >= 21){
 			toolbar.setElevation(25);
@@ -32,7 +28,6 @@ public class PreferenceBenachrichtigungen extends PreferenceActivity{
 		toolbar.setNavigationOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				//Bildschirm verlassen
 				finish();
 			}
 		});
@@ -45,7 +40,6 @@ public class PreferenceBenachrichtigungen extends PreferenceActivity{
     public boolean onOptionsItemSelected(MenuItem item) {
 	    switch (item.getItemId()) {
 	case android.R.id.home:
-    	Log.v("Vertretungsplan","ActionBar zurück!");
     	finish();
     break;
     
@@ -54,7 +48,6 @@ public class PreferenceBenachrichtigungen extends PreferenceActivity{
     }
     return true;
 	}
-    
     
     @Override
     protected void onResume() {
