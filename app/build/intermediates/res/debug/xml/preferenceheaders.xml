@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    >
   
-    <PreferenceCategory
-        android:title="Klasse">
+    <PreferenceCategory android:title="Klasse">
         
         <ListPreference android:entries="@array/Klassenstufe_List"
             android:entryValues="@array/Klassenstufe_List"
@@ -18,20 +18,26 @@
             android:title="Klasse"
             android:summary="Bitte wähle deine Klasse aus"
             android:key="Klasse"/>
-
+       
+        
     </PreferenceCategory>
     
     <PreferenceCategory android:title="@string/miscellaneous">
           <PreferenceScreen android:title="@string/notifications">
             <intent android:action="de.aurora.MggVertretungsplan.EINSTELLUNGEN"/>  
           </PreferenceScreen>
-
+        
+       
         <SwitchPreference android:title="Akt. Tag zeigen"
             android:defaultValue="true"
             android:key="AktTagAnzeigen"
             android:summary="Akt. Tag nach Schulschluss zeigen"/>
-
-    </PreferenceCategory>
-
+        </PreferenceCategory>
+        
+    	
+        
+        
+    
+    
 </PreferenceScreen>
 <!-- From: file:/C:/Users/Rico/AndroidStudioProjects/MGGVertretungsplan/app/src/main/res/xml/preferenceheaders.xml -->

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-
+    
+    
             <SwitchPreference android:title="Benachrichtigungen"
             android:defaultValue="true"
             android:key="notification"
@@ -16,6 +17,7 @@
             android:dialogTitle="Intervall"
             android:negativeButtonText="Zurück!"
             android:persistent="true"/>
+    
     
 </PreferenceScreen>
 <!-- From: file:/C:/Users/Rico/AndroidStudioProjects/MGGVertretungsplan/app/src/main/res/xml/notification_preferences.xml -->

@@ -23,7 +23,7 @@
         <item>d</item>
         <item>e</item>
         <item>f</item>
-	</string-array>
+    </string-array>
     <string-array name="Klassenstufe_List">
         <item>5</item>
         <item>6</item>
@@ -33,6 +33,18 @@
         <item>10</item>
         <item>K1</item>
         <item>K2</item>
+    </string-array>
+    <!-- From: file:/C:/Users/Rico/AndroidStudioProjects/MGGVertretungsplan/app/src/main/res/values/strings_activity_settings.xml -->
+    <eat-comment/>
+    <string-array name="pref_example_list_titles">
+        <item>Always</item>
+        <item>When possible</item>
+        <item>Never</item>
+    </string-array>
+    <string-array name="pref_example_list_values">
+        <item>1</item>
+        <item>0</item>
+        <item>-1</item>
     </string-array>
     <!-- From: file:/C:/Users/Rico/AndroidStudioProjects/MGGVertretungsplan/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
     <eat-comment/>
@@ -281,7 +293,6 @@
     <!-- From: file:/C:/Users/Rico/AndroidStudioProjects/MGGVertretungsplan/app/src/main/res/values/strings.xml -->
     <eat-comment/>
     <integer name="versionNumber">6</integer>
-    <string name="Button_2">Abrufen!</string>
     <string name="Url1">http://www.mgg.karlsruhe.de/index.php/vertretungsplan</string>
     <!-- From: file:/C:/Users/Rico/AndroidStudioProjects/MGGVertretungsplan/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
     <eat-comment/>
@@ -309,7 +320,6 @@
     <eat-comment/>
     <string name="action_settings">Einstellungen</string>
     <string name="action_webview">Webseite</string>
-    <string name="apiKey">ca-app-pub-3045756617316977/8788207447</string>
     <string name="app_name">Vertretungsplan</string>
     <!-- From: file:/C:/Users/Rico/AndroidStudioProjects/MGGVertretungsplan/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/7.5.0/res/values/auth_strings.xml -->
     <eat-comment/>
@@ -366,7 +376,6 @@
     <string name="neuraum">neuraum</string>
     <string name="notifications">Benachrichtigungen</string>
     <string name="raum">raum</string>
-    <string name="rico">Made by <i>Rico Jambor</i></string>
     <string name="showToday">Akt. Tag zeigen</string>
     <!-- From: file:/C:/Users/Rico/AndroidStudioProjects/MGGVertretungsplan/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
     <eat-comment/>
@@ -380,7 +389,7 @@
     <string name="stunde">stunde</string>
     <string name="ur2">http://rickyy.lima-city.de/html/vertretungsplan.html</string>
     <string name="version">1.5.0</string>
-    <string name="zuletztAbger">Zuletzt aktualisiert</string>
+    <string name="zuletztAbger">Zuletzt abgerufen am: </string>
     <!-- From: file:/C:/Users/Rico/AndroidStudioProjects/MGGVertretungsplan/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
     <eat-comment/>
     <style name="AlertDialog.AppCompat" parent="Base.AlertDialog.AppCompat"/>
