@@ -103,46 +103,20 @@ public class hilfsMethoden extends Activity {
 
     // Diese Methode gibt den passenden Namen zu einem bestimmten Datum zurück
     public String getAnyDayByName(int jahr, int monat, int tag) {
+        String[] tage = new String[]{"Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"};
+
         GregorianCalendar gc = new GregorianCalendar();
         gc.set(jahr, monat - 1, tag);
         int tag_index = gc.get(GregorianCalendar.DAY_OF_WEEK);
 
-        String[] tage = new String[]{"Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"};
-
         return tage[tag_index - 1];
-    }
-
-    // Diese Methode wandelt ein gegebenes Array in einen String um, es werden auch bestimmte Zeichen rausgekürzt
-    public String arrayToString(String tabelle, String klasse) {
-        int[] abstand = haeufigkeit(tabelle, klasse);
-        int anzahl = abstand.length;
-
-        if (anzahl == 0) {
-            return "Es fällt nichts aus!";
-        } else {
-            String[][] sArray = stringKuerzen(tabelle, klasse);
-            String tempStr = "", endStr = "";
-            for (int i = 0; i < sArray.length; i++) {
-                tempStr = "| ";
-                for (int y = 0; y < 7; y++) {
-                    tempStr += sArray[i][y] + " | ";
-                }
-                tempStr = tempStr.replace("|  |", "| --- |");
-                endStr += tempStr + " \n";
-            }
-            return endStr;
-        }
     }
 
     //doppelte Zeilen in einem Array werden zusammengefasst
     public String[][] zusammenfassen(String[][] inputArray, String tabelle, String klasse, int anzahl, int stelle) {
-        int laenge = inputArray.length, neuAnzahl = laenge;
+        int laenge = inputArray.length;
 
-        if (stelle >= laenge) {
-            return inputArray;
-        }
-
-        if (inputArray[stelle][0] == null) {
+        if (stelle >= laenge || inputArray[stelle][0] == null) {
             return inputArray;
         }
 
@@ -152,8 +126,7 @@ public class hilfsMethoden extends Activity {
                 inputArray[stelle][4].equals(inputArray[stelle - 1][4]) && inputArray[stelle][5].equals(inputArray[stelle - 1][5]) &&
                 inputArray[stelle][6].equals(inputArray[stelle - 1][6])) {
 
-            neuAnzahl -= 1;
-            String temp[][] = new String[neuAnzahl][7];
+            String temp[][] = new String[laenge-1][7];
 
             //Füllt neues Array bis zur Stelle
             for (int j = 0; j < stelle; j++) {
@@ -163,7 +136,7 @@ public class hilfsMethoden extends Activity {
             }
 
             //Füllt neues Array, lässt "Stelle" raus
-            for (int j = stelle + 1; j < neuAnzahl + 1; j++) {
+            for (int j = stelle + 1; j < laenge; j++) {
                 for (int r = 0; r < 7; r++) {
                     temp[j - 1][r] = inputArray[j][r];
                 }
@@ -236,9 +209,7 @@ public class hilfsMethoden extends Activity {
         return temp;
     }
 
-    /**
-     * gibt den Namen der Abkuerzung eines Faches zurueck
-     */
+    //gibt den Namen der Abkuerzung eines Faches zurueck
     @SuppressLint("DefaultLocale")
     public String abkuerzung(String abk) {
 
@@ -359,7 +330,6 @@ public class hilfsMethoden extends Activity {
 
         final String timeFormatString = "HH:mm";
         final String dateTimeFormatString = "EEEE, MMMM d, h:mm aa";
-        final long HOURS = 60 * 60 * 60;
         if (now.get(Calendar.DATE) == smsTime.get(Calendar.DATE)) {
             return ": Heute " + DateFormat.format(timeFormatString, smsTime);
         } else if (now.get(Calendar.DATE) - smsTime.get(Calendar.DATE) == 1) {

@@ -6,7 +6,6 @@ import android.preference.PreferenceFragment;
 public class MainOptionFragment extends PreferenceFragment{
 	
 	public MainOptionFragment(){
-		
 	}
 	
 	public void onCreate(Bundle savedInstanceState) {

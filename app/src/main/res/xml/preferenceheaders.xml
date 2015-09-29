@@ -1,42 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-    >
-  
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
     <PreferenceCategory android:title="Klasse">
-        
-        <ListPreference android:entries="@array/Klassenstufe_List"
-            android:entryValues="@array/Klassenstufe_List"
+
+        <ListPreference
             android:defaultValue="5"
-            android:title="Stufe"
+            android:entries="@array/Klassenstufe_List"
+            android:entryValues="@array/Klassenstufe_List"
+            android:key="Klassenstufe"
             android:summary="Bitte wähle deine Stufe aus"
-            android:key="Klassenstufe"/>
-        
-        <ListPreference 
+            android:title="Stufe" />
+
+        <ListPreference
+            android:defaultValue="a"
             android:entries="@array/Klassen_List"
             android:entryValues="@array/Klassen_List"
-            android:defaultValue="a"
-            android:title="Klasse"
+            android:key="Klasse"
             android:summary="Bitte wähle deine Klasse aus"
-            android:key="Klasse"/>
-       
-        
+            android:title="Klasse" />
+
     </PreferenceCategory>
-    
+
     <PreferenceCategory android:title="@string/miscellaneous">
-          <PreferenceScreen android:title="@string/notifications">
-            <intent android:action="de.aurora.MggVertretungsplan.EINSTELLUNGEN"/>  
-          </PreferenceScreen>
-        
-       
-        <SwitchPreference android:title="Akt. Tag zeigen"
+
+        <PreferenceScreen android:title="@string/notifications">
+            <intent android:action="de.aurora.MggVertretungsplan.EINSTELLUNGEN" />
+        </PreferenceScreen>
+
+        <SwitchPreference
             android:defaultValue="true"
             android:key="AktTagAnzeigen"
-            android:summary="Akt. Tag nach Schulschluss zeigen"/>
-        </PreferenceCategory>
-        
-    	
-        
-        
-    
-    
+            android:summary="Akt. Tag nach Schulschluss zeigen"
+            android:title="Akt. Tag zeigen" />
+
+    </PreferenceCategory>
 </PreferenceScreen>

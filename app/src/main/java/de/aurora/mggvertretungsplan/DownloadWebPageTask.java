@@ -19,7 +19,6 @@ public class DownloadWebPageTask extends AsyncTask<String, String, String> {
     }
 
     protected String doInBackground(String... urls) {
-        //Hier wird die HTML Datei runtergeladen
         String response = "";
 
         for (String url : urls) {

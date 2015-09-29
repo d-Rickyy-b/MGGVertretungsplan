@@ -5,657 +5,34 @@
       <config />
     </shared>
   </component>
+  <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="8a92eccd-fc24-472b-8886-375eac427ce6" name="Default" comment="">
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\.idea\libraries\android_support_v7_recyclerview.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\.idea\libraries\mediarouter_v7_22_0_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\.idea\libraries\play_services_7_5_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\.idea\libraries\play_services_appindexing_7_5_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\.idea\libraries\play_services_appinvite_7_5_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\.idea\libraries\play_services_appstate_7_5_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\.idea\libraries\play_services_cast_7_5_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\.idea\libraries\play_services_drive_7_5_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\.idea\libraries\play_services_fitness_7_5_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\.idea\libraries\play_services_games_7_5_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\.idea\libraries\play_services_gcm_7_5_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\.idea\libraries\play_services_identity_7_5_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\.idea\libraries\play_services_location_7_5_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\.idea\libraries\play_services_maps_7_5_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\.idea\libraries\play_services_nearby_7_5_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\.idea\libraries\play_services_panorama_7_5_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\.idea\libraries\play_services_plus_7_5_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\.idea\libraries\play_services_safetynet_7_5_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\.idea\libraries\play_services_wallet_7_5_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\.idea\libraries\play_services_wearable_7_5_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\generated\source\buildConfig\release\de\aurora\mggvertretungsplan\BuildConfig.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\generated\source\r\release\android\support\v7\appcompat\R.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\generated\source\r\release\com\google\android\gms\R.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\generated\source\r\release\com\google\android\gms\ads\R.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\generated\source\r\release\com\google\android\gms\analytics\R.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\generated\source\r\release\de\aurora\mggvertretungsplan\R.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes-proguard\release\classes.jar" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\android\support\v7\appcompat\R$anim.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\android\support\v7\appcompat\R$attr.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\android\support\v7\appcompat\R$bool.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\android\support\v7\appcompat\R$color.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\android\support\v7\appcompat\R$dimen.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\android\support\v7\appcompat\R$drawable.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\android\support\v7\appcompat\R$id.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\android\support\v7\appcompat\R$integer.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\android\support\v7\appcompat\R$layout.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\android\support\v7\appcompat\R$string.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\android\support\v7\appcompat\R$style.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\android\support\v7\appcompat\R$styleable.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\android\support\v7\appcompat\R.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\com\google\android\gms\R$attr.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\com\google\android\gms\R$color.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\com\google\android\gms\R$drawable.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\com\google\android\gms\R$id.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\com\google\android\gms\R$integer.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\com\google\android\gms\R$raw.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\com\google\android\gms\R$string.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\com\google\android\gms\R$style.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\com\google\android\gms\R$styleable.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\com\google\android\gms\R.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\com\google\android\gms\ads\R$attr.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\com\google\android\gms\ads\R$color.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\com\google\android\gms\ads\R$drawable.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\com\google\android\gms\ads\R$id.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\com\google\android\gms\ads\R$integer.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\com\google\android\gms\ads\R$raw.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\com\google\android\gms\ads\R$string.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\com\google\android\gms\ads\R$style.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\com\google\android\gms\ads\R$styleable.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\com\google\android\gms\ads\R.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\com\google\android\gms\analytics\R$attr.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\com\google\android\gms\analytics\R$color.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\com\google\android\gms\analytics\R$drawable.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\com\google\android\gms\analytics\R$id.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\com\google\android\gms\analytics\R$integer.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\com\google\android\gms\analytics\R$raw.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\com\google\android\gms\analytics\R$string.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\com\google\android\gms\analytics\R$style.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\com\google\android\gms\analytics\R$styleable.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\com\google\android\gms\analytics\R.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\de\aurora\mggvertretungsplan\AsyncTaskCompleteListener.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\de\aurora\mggvertretungsplan\BootUpReceiver.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\de\aurora\mggvertretungsplan\BuildConfig.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\de\aurora\mggvertretungsplan\DownloadWebPageTask.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\de\aurora\mggvertretungsplan\MainActivity.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\de\aurora\mggvertretungsplan\MainOptionFragment.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\de\aurora\mggvertretungsplan\PreferenceBenachrichtigungen$1.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\de\aurora\mggvertretungsplan\PreferenceBenachrichtigungen.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\de\aurora\mggvertretungsplan\PreferenceWithHeaders$1.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\de\aurora\mggvertretungsplan\PreferenceWithHeaders$MainOptionFragment1.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\de\aurora\mggvertretungsplan\PreferenceWithHeaders.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\de\aurora\mggvertretungsplan\R$anim.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\de\aurora\mggvertretungsplan\R$array.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\de\aurora\mggvertretungsplan\R$attr.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\de\aurora\mggvertretungsplan\R$bool.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\de\aurora\mggvertretungsplan\R$color.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\de\aurora\mggvertretungsplan\R$dimen.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\de\aurora\mggvertretungsplan\R$drawable.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\de\aurora\mggvertretungsplan\R$id.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\de\aurora\mggvertretungsplan\R$integer.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\de\aurora\mggvertretungsplan\R$layout.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\de\aurora\mggvertretungsplan\R$menu.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\de\aurora\mggvertretungsplan\R$raw.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\de\aurora\mggvertretungsplan\R$string.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\de\aurora\mggvertretungsplan\R$style.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\de\aurora\mggvertretungsplan\R$styleable.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\de\aurora\mggvertretungsplan\R$xml.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\de\aurora\mggvertretungsplan\R.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\de\aurora\mggvertretungsplan\RecyclerViewHolder.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\de\aurora\mggvertretungsplan\SubOptionFragment.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\de\aurora\mggvertretungsplan\Vertretungen.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\de\aurora\mggvertretungsplan\VertretungsplanService.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\de\aurora\mggvertretungsplan\hilfsMethoden$1.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\de\aurora\mggvertretungsplan\hilfsMethoden.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\de\aurora\mggvertretungsplan\recycleViewAdapter.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\de\aurora\mggvertretungsplan\vertretungsplanArrayAdapter$1.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\de\aurora\mggvertretungsplan\vertretungsplanArrayAdapter$ViewHolder.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\de\aurora\mggvertretungsplan\vertretungsplanArrayAdapter.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\de\aurora\mggvertretungsplan\webView_Activity$1.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\de\aurora\mggvertretungsplan\webView_Activity$2.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\de\aurora\mggvertretungsplan\webView_Activity$3.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\classes\release\de\aurora\mggvertretungsplan\webView_Activity.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\dex\release\classes.dex" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\incremental\aidl\release\dependency.store" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\incremental\mergeAssets\release\merger.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\incremental\mergeResources\release\merger.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\manifests\full\release\AndroidManifest.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\proguard-rules\release\aapt_rules.txt" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\debug\layout\recycler_view.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\debug\xml\preferences.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\anim\abc_fade_in.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\anim\abc_fade_out.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\anim\abc_grow_fade_in_from_bottom.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\anim\abc_popup_enter.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\anim\abc_popup_exit.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\anim\abc_shrink_fade_out_from_bottom.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\anim\abc_slide_in_bottom.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\anim\abc_slide_in_top.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\anim\abc_slide_out_bottom.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\anim\abc_slide_out_top.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\color-v11\abc_background_cache_hint_selector_material_dark.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\color-v11\abc_background_cache_hint_selector_material_light.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\color\abc_background_cache_hint_selector_material_dark.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\color\abc_background_cache_hint_selector_material_light.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\color\abc_primary_text_disable_only_material_dark.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\color\abc_primary_text_disable_only_material_light.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\color\abc_primary_text_material_dark.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\color\abc_primary_text_material_light.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\color\abc_search_url_text.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\color\abc_secondary_text_material_dark.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\color\abc_secondary_text_material_light.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\color\common_signin_btn_text_dark.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\color\common_signin_btn_text_light.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\color\switch_thumb_material_dark.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\color\switch_thumb_material_light.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-hdpi\abc_ab_share_pack_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-hdpi\abc_btn_check_to_on_mtrl_000.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-hdpi\abc_btn_check_to_on_mtrl_015.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-hdpi\abc_btn_radio_to_on_mtrl_000.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-hdpi\abc_btn_radio_to_on_mtrl_015.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-hdpi\abc_btn_rating_star_off_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-hdpi\abc_btn_rating_star_on_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-hdpi\abc_btn_switch_to_on_mtrl_00001.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-hdpi\abc_btn_switch_to_on_mtrl_00012.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-hdpi\abc_cab_background_top_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-hdpi\abc_ic_ab_back_mtrl_am_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-hdpi\abc_ic_clear_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-hdpi\abc_ic_commit_search_api_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-hdpi\abc_ic_go_search_api_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-hdpi\abc_ic_menu_copy_mtrl_am_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-hdpi\abc_ic_menu_cut_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-hdpi\abc_ic_menu_moreoverflow_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-hdpi\abc_ic_menu_paste_mtrl_am_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-hdpi\abc_ic_menu_selectall_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-hdpi\abc_ic_menu_share_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-hdpi\abc_ic_search_api_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-hdpi\abc_ic_voice_search_api_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-hdpi\abc_list_divider_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-hdpi\abc_list_focused_holo.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-hdpi\abc_list_longpressed_holo.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-hdpi\abc_list_pressed_holo_dark.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-hdpi\abc_list_pressed_holo_light.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-hdpi\abc_list_selector_disabled_holo_dark.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-hdpi\abc_list_selector_disabled_holo_light.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-hdpi\abc_menu_hardkey_panel_mtrl_mult.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-hdpi\abc_popup_background_mtrl_mult.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-hdpi\abc_spinner_mtrl_am_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-hdpi\abc_switch_track_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-hdpi\abc_tab_indicator_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-hdpi\abc_text_cursor_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-hdpi\abc_textfield_activated_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-hdpi\abc_textfield_default_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-hdpi\abc_textfield_search_activated_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-hdpi\abc_textfield_search_default_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-hdpi\common_full_open_on_phone.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-hdpi\common_ic_googleplayservices.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-hdpi\common_signin_btn_icon_disabled_dark.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-hdpi\common_signin_btn_icon_disabled_focus_dark.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-hdpi\common_signin_btn_icon_disabled_focus_light.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-hdpi\common_signin_btn_icon_disabled_light.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-hdpi\common_signin_btn_icon_focus_dark.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-hdpi\common_signin_btn_icon_focus_light.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-hdpi\common_signin_btn_icon_normal_dark.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-hdpi\common_signin_btn_icon_normal_light.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-hdpi\common_signin_btn_icon_pressed_dark.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-hdpi\common_signin_btn_icon_pressed_light.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-hdpi\common_signin_btn_text_disabled_dark.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-hdpi\common_signin_btn_text_disabled_focus_dark.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-hdpi\common_signin_btn_text_disabled_focus_light.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-hdpi\common_signin_btn_text_disabled_light.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-hdpi\common_signin_btn_text_focus_dark.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-hdpi\common_signin_btn_text_focus_light.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-hdpi\common_signin_btn_text_normal_dark.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-hdpi\common_signin_btn_text_normal_light.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-hdpi\common_signin_btn_text_pressed_dark.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-hdpi\common_signin_btn_text_pressed_light.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-hdpi\ic_launcher.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-hdpi\ic_menu_info_details.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-hdpi\ic_plusone_medium_off_client.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-hdpi\ic_plusone_small_off_client.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-hdpi\ic_plusone_standard_off_client.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-hdpi\ic_plusone_tall_off_client.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-hdpi\two_value_colors.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-hdpi\two_value_colors_2.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-ldrtl-hdpi\abc_ic_ab_back_mtrl_am_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-ldrtl-hdpi\abc_ic_menu_copy_mtrl_am_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-ldrtl-hdpi\abc_ic_menu_cut_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-ldrtl-hdpi\abc_spinner_mtrl_am_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-ldrtl-mdpi\abc_ic_ab_back_mtrl_am_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-ldrtl-mdpi\abc_ic_menu_copy_mtrl_am_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-ldrtl-mdpi\abc_ic_menu_cut_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-ldrtl-mdpi\abc_spinner_mtrl_am_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-ldrtl-xhdpi\abc_ic_ab_back_mtrl_am_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-ldrtl-xhdpi\abc_ic_menu_copy_mtrl_am_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-ldrtl-xhdpi\abc_ic_menu_cut_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-ldrtl-xhdpi\abc_spinner_mtrl_am_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-ldrtl-xxhdpi\abc_ic_ab_back_mtrl_am_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-ldrtl-xxhdpi\abc_ic_menu_copy_mtrl_am_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-ldrtl-xxhdpi\abc_ic_menu_cut_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-ldrtl-xxhdpi\abc_spinner_mtrl_am_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-ldrtl-xxxhdpi\abc_ic_ab_back_mtrl_am_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-ldrtl-xxxhdpi\abc_ic_menu_copy_mtrl_am_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-ldrtl-xxxhdpi\abc_ic_menu_cut_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-ldrtl-xxxhdpi\abc_spinner_mtrl_am_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-mdpi\abc_ab_share_pack_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-mdpi\abc_btn_check_to_on_mtrl_000.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-mdpi\abc_btn_check_to_on_mtrl_015.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-mdpi\abc_btn_radio_to_on_mtrl_000.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-mdpi\abc_btn_radio_to_on_mtrl_015.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-mdpi\abc_btn_rating_star_off_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-mdpi\abc_btn_rating_star_on_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-mdpi\abc_btn_switch_to_on_mtrl_00001.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-mdpi\abc_btn_switch_to_on_mtrl_00012.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-mdpi\abc_cab_background_top_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-mdpi\abc_ic_ab_back_mtrl_am_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-mdpi\abc_ic_clear_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-mdpi\abc_ic_commit_search_api_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-mdpi\abc_ic_go_search_api_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-mdpi\abc_ic_menu_copy_mtrl_am_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-mdpi\abc_ic_menu_cut_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-mdpi\abc_ic_menu_moreoverflow_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-mdpi\abc_ic_menu_paste_mtrl_am_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-mdpi\abc_ic_menu_selectall_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-mdpi\abc_ic_menu_share_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-mdpi\abc_ic_search_api_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-mdpi\abc_ic_voice_search_api_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-mdpi\abc_list_divider_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-mdpi\abc_list_focused_holo.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-mdpi\abc_list_longpressed_holo.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-mdpi\abc_list_pressed_holo_dark.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-mdpi\abc_list_pressed_holo_light.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-mdpi\abc_list_selector_disabled_holo_dark.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-mdpi\abc_list_selector_disabled_holo_light.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-mdpi\abc_menu_hardkey_panel_mtrl_mult.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-mdpi\abc_popup_background_mtrl_mult.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-mdpi\abc_spinner_mtrl_am_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-mdpi\abc_switch_track_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-mdpi\abc_tab_indicator_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-mdpi\abc_text_cursor_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-mdpi\abc_textfield_activated_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-mdpi\abc_textfield_default_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-mdpi\abc_textfield_search_activated_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-mdpi\abc_textfield_search_default_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-mdpi\common_full_open_on_phone.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-mdpi\common_signin_btn_icon_disabled_dark.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-mdpi\common_signin_btn_icon_disabled_focus_dark.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-mdpi\common_signin_btn_icon_disabled_focus_light.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-mdpi\common_signin_btn_icon_disabled_light.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-mdpi\common_signin_btn_icon_focus_dark.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-mdpi\common_signin_btn_icon_focus_light.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-mdpi\common_signin_btn_icon_normal_dark.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-mdpi\common_signin_btn_icon_normal_light.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-mdpi\common_signin_btn_icon_pressed_dark.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-mdpi\common_signin_btn_icon_pressed_light.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-mdpi\common_signin_btn_text_disabled_dark.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-mdpi\common_signin_btn_text_disabled_focus_dark.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-mdpi\common_signin_btn_text_disabled_focus_light.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-mdpi\common_signin_btn_text_disabled_light.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-mdpi\common_signin_btn_text_focus_dark.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-mdpi\common_signin_btn_text_focus_light.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-mdpi\common_signin_btn_text_normal_dark.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-mdpi\common_signin_btn_text_normal_light.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-mdpi\common_signin_btn_text_pressed_dark.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-mdpi\common_signin_btn_text_pressed_light.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-mdpi\ic_launcher.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-mdpi\ic_menu_info_details.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-mdpi\ic_plusone_medium_off_client.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-mdpi\ic_plusone_small_off_client.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-mdpi\ic_plusone_standard_off_client.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-mdpi\ic_plusone_tall_off_client.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-tvdpi\common_full_open_on_phone.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-tvdpi\ic_plusone_medium_off_client.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-tvdpi\ic_plusone_small_off_client.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-tvdpi\ic_plusone_standard_off_client.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-tvdpi\ic_plusone_tall_off_client.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xhdpi\abc_ab_share_pack_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xhdpi\abc_btn_check_to_on_mtrl_000.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xhdpi\abc_btn_check_to_on_mtrl_015.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xhdpi\abc_btn_radio_to_on_mtrl_000.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xhdpi\abc_btn_radio_to_on_mtrl_015.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xhdpi\abc_btn_rating_star_off_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xhdpi\abc_btn_rating_star_on_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xhdpi\abc_btn_switch_to_on_mtrl_00001.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xhdpi\abc_btn_switch_to_on_mtrl_00012.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xhdpi\abc_cab_background_top_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xhdpi\abc_ic_ab_back_mtrl_am_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xhdpi\abc_ic_clear_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xhdpi\abc_ic_commit_search_api_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xhdpi\abc_ic_go_search_api_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xhdpi\abc_ic_menu_copy_mtrl_am_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xhdpi\abc_ic_menu_cut_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xhdpi\abc_ic_menu_moreoverflow_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xhdpi\abc_ic_menu_paste_mtrl_am_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xhdpi\abc_ic_menu_selectall_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xhdpi\abc_ic_menu_share_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xhdpi\abc_ic_search_api_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xhdpi\abc_ic_voice_search_api_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xhdpi\abc_list_divider_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xhdpi\abc_list_focused_holo.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xhdpi\abc_list_longpressed_holo.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xhdpi\abc_list_pressed_holo_dark.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xhdpi\abc_list_pressed_holo_light.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xhdpi\abc_list_selector_disabled_holo_dark.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xhdpi\abc_list_selector_disabled_holo_light.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xhdpi\abc_menu_hardkey_panel_mtrl_mult.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xhdpi\abc_popup_background_mtrl_mult.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xhdpi\abc_spinner_mtrl_am_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xhdpi\abc_switch_track_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xhdpi\abc_tab_indicator_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xhdpi\abc_text_cursor_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xhdpi\abc_textfield_activated_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xhdpi\abc_textfield_default_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xhdpi\abc_textfield_search_activated_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xhdpi\abc_textfield_search_default_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xhdpi\common_full_open_on_phone.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xhdpi\common_signin_btn_icon_disabled_dark.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xhdpi\common_signin_btn_icon_disabled_focus_dark.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xhdpi\common_signin_btn_icon_disabled_focus_light.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xhdpi\common_signin_btn_icon_disabled_light.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xhdpi\common_signin_btn_icon_focus_dark.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xhdpi\common_signin_btn_icon_focus_light.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xhdpi\common_signin_btn_icon_normal_dark.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xhdpi\common_signin_btn_icon_normal_light.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xhdpi\common_signin_btn_icon_pressed_dark.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xhdpi\common_signin_btn_icon_pressed_light.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xhdpi\common_signin_btn_text_disabled_dark.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xhdpi\common_signin_btn_text_disabled_focus_dark.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xhdpi\common_signin_btn_text_disabled_focus_light.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xhdpi\common_signin_btn_text_disabled_light.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xhdpi\common_signin_btn_text_focus_dark.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xhdpi\common_signin_btn_text_focus_light.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xhdpi\common_signin_btn_text_normal_dark.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xhdpi\common_signin_btn_text_normal_light.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xhdpi\common_signin_btn_text_pressed_dark.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xhdpi\common_signin_btn_text_pressed_light.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xhdpi\ic_launcher.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xhdpi\ic_plusone_medium_off_client.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xhdpi\ic_plusone_small_off_client.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xhdpi\ic_plusone_standard_off_client.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xhdpi\ic_plusone_tall_off_client.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxhdpi\abc_ab_share_pack_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxhdpi\abc_btn_check_to_on_mtrl_000.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxhdpi\abc_btn_check_to_on_mtrl_015.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxhdpi\abc_btn_radio_to_on_mtrl_000.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxhdpi\abc_btn_radio_to_on_mtrl_015.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxhdpi\abc_btn_rating_star_off_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxhdpi\abc_btn_rating_star_on_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxhdpi\abc_btn_switch_to_on_mtrl_00001.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxhdpi\abc_btn_switch_to_on_mtrl_00012.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxhdpi\abc_cab_background_top_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxhdpi\abc_ic_ab_back_mtrl_am_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxhdpi\abc_ic_clear_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxhdpi\abc_ic_commit_search_api_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxhdpi\abc_ic_go_search_api_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxhdpi\abc_ic_menu_copy_mtrl_am_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxhdpi\abc_ic_menu_cut_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxhdpi\abc_ic_menu_moreoverflow_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxhdpi\abc_ic_menu_paste_mtrl_am_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxhdpi\abc_ic_menu_selectall_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxhdpi\abc_ic_menu_share_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxhdpi\abc_ic_search_api_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxhdpi\abc_ic_voice_search_api_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxhdpi\abc_list_divider_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxhdpi\abc_list_focused_holo.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxhdpi\abc_list_longpressed_holo.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxhdpi\abc_list_pressed_holo_dark.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxhdpi\abc_list_pressed_holo_light.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxhdpi\abc_list_selector_disabled_holo_dark.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxhdpi\abc_list_selector_disabled_holo_light.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxhdpi\abc_menu_hardkey_panel_mtrl_mult.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxhdpi\abc_popup_background_mtrl_mult.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxhdpi\abc_spinner_mtrl_am_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxhdpi\abc_switch_track_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxhdpi\abc_tab_indicator_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxhdpi\abc_text_cursor_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxhdpi\abc_textfield_activated_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxhdpi\abc_textfield_default_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxhdpi\abc_textfield_search_activated_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxhdpi\abc_textfield_search_default_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxhdpi\common_full_open_on_phone.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxhdpi\common_signin_btn_icon_disabled_dark.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxhdpi\common_signin_btn_icon_disabled_focus_dark.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxhdpi\common_signin_btn_icon_disabled_focus_light.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxhdpi\common_signin_btn_icon_disabled_light.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxhdpi\common_signin_btn_icon_focus_dark.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxhdpi\common_signin_btn_icon_focus_light.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxhdpi\common_signin_btn_icon_normal_dark.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxhdpi\common_signin_btn_icon_normal_light.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxhdpi\common_signin_btn_icon_pressed_dark.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxhdpi\common_signin_btn_icon_pressed_light.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxhdpi\common_signin_btn_text_disabled_dark.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxhdpi\common_signin_btn_text_disabled_focus_dark.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxhdpi\common_signin_btn_text_disabled_focus_light.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxhdpi\common_signin_btn_text_disabled_light.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxhdpi\common_signin_btn_text_focus_dark.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxhdpi\common_signin_btn_text_focus_light.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxhdpi\common_signin_btn_text_normal_dark.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxhdpi\common_signin_btn_text_normal_light.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxhdpi\common_signin_btn_text_pressed_dark.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxhdpi\common_signin_btn_text_pressed_light.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxhdpi\ic_launcher.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxhdpi\ic_plusone_medium_off_client.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxhdpi\ic_plusone_small_off_client.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxhdpi\ic_plusone_standard_off_client.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxhdpi\ic_plusone_tall_off_client.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxxhdpi\abc_btn_check_to_on_mtrl_000.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxxhdpi\abc_btn_check_to_on_mtrl_015.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxxhdpi\abc_btn_radio_to_on_mtrl_000.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxxhdpi\abc_btn_radio_to_on_mtrl_015.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxxhdpi\abc_btn_switch_to_on_mtrl_00001.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxxhdpi\abc_btn_switch_to_on_mtrl_00012.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxxhdpi\abc_ic_ab_back_mtrl_am_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxxhdpi\abc_ic_clear_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxxhdpi\abc_ic_menu_copy_mtrl_am_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxxhdpi\abc_ic_menu_cut_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxxhdpi\abc_ic_menu_moreoverflow_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxxhdpi\abc_ic_menu_paste_mtrl_am_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxxhdpi\abc_ic_menu_selectall_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxxhdpi\abc_ic_menu_share_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxxhdpi\abc_ic_search_api_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxxhdpi\abc_ic_voice_search_api_mtrl_alpha.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxxhdpi\abc_spinner_mtrl_am_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxxhdpi\abc_switch_track_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable-xxxhdpi\abc_tab_indicator_mtrl_alpha.9.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable\abc_btn_borderless_material.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable\abc_btn_check_material.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable\abc_btn_default_mtrl_shape.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable\abc_btn_radio_material.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable\abc_cab_background_internal_bg.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable\abc_cab_background_top_material.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable\abc_dialog_material_background_dark.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable\abc_dialog_material_background_light.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable\abc_edit_text_material.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable\abc_item_background_holo_dark.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable\abc_item_background_holo_light.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable\abc_list_selector_background_transition_holo_dark.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable\abc_list_selector_background_transition_holo_light.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable\abc_list_selector_holo_dark.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable\abc_list_selector_holo_light.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable\abc_ratingbar_full_material.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable\abc_spinner_textfield_background_material.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable\abc_switch_thumb_material.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable\abc_tab_indicator_material.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable\abc_textfield_search_material.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable\common_signin_btn_icon_dark.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable\common_signin_btn_icon_light.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable\common_signin_btn_text_dark.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\drawable\common_signin_btn_text_light.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\layout\abc_action_bar_title_item.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\layout\abc_action_bar_up_container.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\layout\abc_action_bar_view_list_nav_layout.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\layout\abc_action_menu_item_layout.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\layout\abc_action_menu_layout.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\layout\abc_action_mode_bar.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\layout\abc_action_mode_close_item_material.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\layout\abc_activity_chooser_view.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\layout\abc_activity_chooser_view_list_item.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\layout\abc_alert_dialog_material.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\layout\abc_dialog_title_material.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\layout\abc_expanded_menu_layout.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\layout\abc_list_menu_item_checkbox.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\layout\abc_list_menu_item_icon.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\layout\abc_list_menu_item_layout.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\layout\abc_list_menu_item_radio.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\layout\abc_popup_menu_item_layout.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\layout\abc_screen_content_include.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\layout\abc_screen_simple.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\layout\abc_screen_simple_overlay_action_mode.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\layout\abc_screen_toolbar.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\layout\abc_search_dropdown_item_icons_2line.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\layout\abc_search_view.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\layout\abc_select_dialog_material.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\layout\abc_simple_dropdown_hint.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\layout\activity_main3.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\layout\activity_main4.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\layout\list_view_item.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\layout\notification_media_action.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\layout\notification_media_cancel_action.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\layout\notification_template_big_media.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\layout\notification_template_big_media_narrow.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\layout\notification_template_lines.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\layout\notification_template_media.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\layout\notification_template_part_chronometer.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\layout\notification_template_part_time.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\layout\recycler_view.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\layout\select_dialog_item_material.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\layout\select_dialog_multichoice_material.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\layout\select_dialog_singlechoice_material.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\layout\settings.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\layout\support_simple_spinner_dropdown_item.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\layout\webview.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\menu\settings.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\raw\gtm_analytics" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-af\values-af.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-am\values-am.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-ar\values-ar.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-bg\values-bg.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-bn-rBD\values-bn-rBD.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-ca\values-ca.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-cs\values-cs.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-da\values-da.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-de\values-de.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-el\values-el.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-en-rAU\values-en-rAU.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-en-rGB\values-en-rGB.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-en-rIN\values-en-rIN.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-es-rUS\values-es-rUS.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-es\values-es.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-et-rEE\values-et-rEE.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-eu-rES\values-eu-rES.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-fa\values-fa.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-fi\values-fi.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-fr-rCA\values-fr-rCA.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-fr\values-fr.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-gl-rES\values-gl-rES.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-h720dp\values-h720dp.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-hdpi\values-hdpi.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-hi\values-hi.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-hr\values-hr.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-hu\values-hu.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-hy-rAM\values-hy-rAM.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-in\values-in.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-is-rIS\values-is-rIS.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-it\values-it.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-iw\values-iw.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-ja\values-ja.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-ka-rGE\values-ka-rGE.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-kk-rKZ\values-kk-rKZ.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-km-rKH\values-km-rKH.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-kn-rIN\values-kn-rIN.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-ko\values-ko.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-ky-rKG\values-ky-rKG.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-land\values-land.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-large\values-large.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-lo-rLA\values-lo-rLA.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-lt\values-lt.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-lv\values-lv.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-mk-rMK\values-mk-rMK.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-ml-rIN\values-ml-rIN.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-mn-rMN\values-mn-rMN.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-mr-rIN\values-mr-rIN.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-ms-rMY\values-ms-rMY.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-my-rMM\values-my-rMM.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-nb\values-nb.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-ne-rNP\values-ne-rNP.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-nl\values-nl.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-pl\values-pl.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-port\values-port.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-pt-rBR\values-pt-rBR.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-pt-rPT\values-pt-rPT.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-pt\values-pt.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-ro\values-ro.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-ru\values-ru.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-si-rLK\values-si-rLK.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-sk\values-sk.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-sl\values-sl.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-sr\values-sr.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-sv\values-sv.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-sw600dp\values-sw600dp.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-sw\values-sw.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-ta-rIN\values-ta-rIN.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-te-rIN\values-te-rIN.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-th\values-th.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-tl\values-tl.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-tr\values-tr.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-uk\values-uk.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-ur-rPK\values-ur-rPK.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-uz-rUZ\values-uz-rUZ.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-v11\values-v11.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-v12\values-v12.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-v14\values-v14.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-v17\values-v17.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-v18\values-v18.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-v21\values-v21.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-vi\values-vi.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-w360dp\values-w360dp.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-w480dp\values-w480dp.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-w500dp\values-w500dp.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-w600dp\values-w600dp.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-w720dp\values-w720dp.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-xlarge-land\values-xlarge-land.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-xlarge\values-xlarge.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-zh-rCN\values-zh-rCN.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-zh-rHK\values-zh-rHK.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-zh-rTW\values-zh-rTW.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values-zu\values-zu.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\values\values.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\xml\notification_preferences.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\xml\preferenceheaders.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\res\release\xml\preferences.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\resources\resources-release.ap_" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\intermediates\symbols\release\R.txt" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\outputs\apk\app-release-unaligned.apk" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\outputs\lint-results-release-fatal.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\outputs\lint-results-release-fatal.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\outputs\lint-results-release-fatal_files\hololike.css" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\outputs\logs\manifest-merger-release-report.txt" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\outputs\mapping\release\dump.txt" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\outputs\mapping\release\mapping.txt" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\outputs\mapping\release\seeds.txt" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\build\outputs\mapping\release\usage.txt" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\src\main\res\xml\preferences.xml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/gradle_project_sync_data.bin" afterPath="$PROJECT_DIR$/build/intermediates/gradle_project_sync_data.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/resources/resources-debug-androidTest.ap_" afterPath="$PROJECT_DIR$/app/build/intermediates/resources/resources-debug-androidTest.ap_" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/resources/resources-debug.ap_" afterPath="$PROJECT_DIR$/app/build/intermediates/resources/resources-debug.ap_" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/generated/source/r/debug/android/support/v7/appcompat/R.java" afterPath="$PROJECT_DIR$/app/build/generated/source/r/debug/android/support/v7/appcompat/R.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/generated/source/r/debug/com/google/android/gms/R.java" afterPath="$PROJECT_DIR$/app/build/generated/source/r/debug/com/google/android/gms/R.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/generated/source/r/debug/com/google/android/gms/ads/R.java" afterPath="$PROJECT_DIR$/app/build/generated/source/r/debug/com/google/android/gms/ads/R.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/generated/source/r/debug/com/google/android/gms/analytics/R.java" afterPath="$PROJECT_DIR$/app/build/generated/source/r/debug/com/google/android/gms/analytics/R.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/generated/source/r/debug/de/aurora/mggvertretungsplan/R.java" afterPath="$PROJECT_DIR$/app/build/generated/source/r/debug/de/aurora/mggvertretungsplan/R.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/symbols/debug/R.txt" afterPath="$PROJECT_DIR$/app/build/intermediates/symbols/debug/R.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/debug/layout/activity_main3.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/res/debug/layout/activity_main3.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/debug/layout/activity_main4.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/res/debug/layout/activity_main4.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/de/aurora/mggvertretungsplan/KlassenFragment.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/de/aurora/mggvertretungsplan/NotificationFragment.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/de/aurora/mggvertretungsplan/PreferenceKlasse.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/de/aurora/mggvertretungsplan/Settings.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/xml/class_preferences.xml" />
+      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\src\main\java\de\aurora\mggvertretungsplan\PreferenceWithHeaders.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\src\main\java\de\aurora\mggvertretungsplan\SubOptionFragment.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\src\main\res\drawable-hdpi\ic_logo.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\src\main\res\drawable-mdpi\ic_launcher_1.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\src\main\res\drawable-xhdpi\ic_logo.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\src\main\res\values\strings_activity_settings.xml" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/de/aurora/mggvertretungsplan/DownloadWebPageTask.java" afterPath="$PROJECT_DIR$/app/src/main/java/de/aurora/mggvertretungsplan/DownloadWebPageTask.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/de/aurora/mggvertretungsplan/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/de/aurora/mggvertretungsplan/MainActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/de/aurora/mggvertretungsplan/MainOptionFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/de/aurora/mggvertretungsplan/MainOptionFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/de/aurora/mggvertretungsplan/PreferenceBenachrichtigungen.java" afterPath="$PROJECT_DIR$/app/src/main/java/de/aurora/mggvertretungsplan/PreferenceBenachrichtigungen.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/de/aurora/mggvertretungsplan/hilfsMethoden.java" afterPath="$PROJECT_DIR$/app/src/main/java/de/aurora/mggvertretungsplan/hilfsMethoden.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/local.properties" afterPath="$PROJECT_DIR$/local.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeResources/debug/merger.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeResources/debug/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/debug/xml/notification_preferences.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/res/debug/xml/notification_preferences.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/debug/xml/preferenceheaders.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/res/debug/xml/preferenceheaders.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/debug/values/values.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/res/debug/values/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/xml/notification_preferences.xml" afterPath="$PROJECT_DIR$/app/src/main/res/xml/notification_preferences.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/xml/preferenceheaders.xml" afterPath="$PROJECT_DIR$/app/src/main/res/xml/preferenceheaders.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="MGGVertretungsplan.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -723,63 +100,64 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/build.gradle">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-15.448276">
-              <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/de/aurora/mggvertretungsplan/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="6.780488">
-              <caret line="312" column="0" selection-start-line="312" selection-start-column="0" selection-end-line="312" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.33333334">
+              <caret line="154" column="44" selection-start-line="154" selection-start-column="44" selection-end-line="154" selection-end-column="44" />
+              <folding>
+                <element signature="method#AlarmManager#0;class#MainActivity#0" expanded="false" />
+                <element signature="method#AlarmManagerBeenden#0;class#MainActivity#0" expanded="false" />
+                <element signature="method#onTaskComplete#0;class#MainActivity#0" expanded="false" />
+                <element signature="method#onPause#0;class#MainActivity#0" expanded="false" />
+                <element signature="method#onResume#0;class#MainActivity#0" expanded="false" />
+                <element signature="method#onDestroy#0;class#MainActivity#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PreferenceBenachrichtigungen.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/de/aurora/mggvertretungsplan/PreferenceBenachrichtigungen.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="41" column="17" selection-start-line="41" selection-start-column="17" selection-end-line="41" selection-end-column="17" />
+              <folding>
+                <element signature="e#822#919#0" expanded="true" />
+                <element signature="e#918#919#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MainOptionFragment.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/de/aurora/mggvertretungsplan/MainOptionFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="12" column="53" selection-start-line="12" selection-start-column="53" selection-end-line="12" selection-end-column="53" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="activity_main3.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main3.xml">
+      <file leaf-file-name="preferenceheaders.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/xml/preferenceheaders.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-16.551723">
-              <caret line="30" column="9" selection-start-line="30" selection-start-column="9" selection-end-line="30" selection-end-column="9" />
-              <folding />
-            </state>
-          </provider>
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="activity_main4.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main4.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.724138">
-              <caret line="58" column="44" selection-start-line="58" selection-start-column="44" selection-end-line="58" selection-end-column="44" />
-              <folding />
-            </state>
-          </provider>
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="strings.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="2.3703704">
-              <caret line="23" column="42" selection-start-line="23" selection-start-column="42" selection-end-line="23" selection-end-column="42" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="23" column="62" selection-start-line="23" selection-start-column="62" selection-end-line="23" selection-end-column="62" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="layoutResourceFile_vertical" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -2253,7 +1631,30 @@
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main3.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/de/aurora/mggvertretungsplan/recycleViewAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/de/aurora/mggvertretungsplan/RecyclerViewHolder.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/de/aurora/mggvertretungsplan/PreferenceBenachrichtigungen.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/de/aurora/mggvertretungsplan/vertretungsplanArrayAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/de/aurora/mggvertretungsplan/webView_Activity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/de/aurora/mggvertretungsplan/BootUpReceiver.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/de/aurora/mggvertretungsplan/MainOptionFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/de/aurora/mggvertretungsplan/PreferenceWithHeaders.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/de/aurora/mggvertretungsplan/SubOptionFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/de/aurora/mggvertretungsplan/PreferenceSettings.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/de/aurora/mggvertretungsplan/VertretungsplanService.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/de/aurora/mggvertretungsplan/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/de/aurora/mggvertretungsplan/NotificationFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/de/aurora/mggvertretungsplan/KlassenFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/xml/class_preferences.xml" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/de/aurora/mggvertretungsplan/Settings.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/de/aurora/mggvertretungsplan/PreferenceKlasse.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/xml/notification_preferences.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/de/aurora/mggvertretungsplan/hilfsMethoden.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/de/aurora/mggvertretungsplan/DownloadWebPageTask.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/xml/tool_bar" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/tool_bar.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/test_layout.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/xml/preferenceheaders.xml" />
       </list>
     </option>
   </component>
@@ -2265,6 +1666,25 @@
     <option name="y" value="-8" />
     <option name="width" value="1936" />
     <option name="height" value="1176" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+          <State>
+            <id>Spelling</id>
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>SpellCheckingInspection</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -2289,18 +1709,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="AndroidView">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MGGVertretungsplan" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -2467,7 +1875,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="layout" />
+              <option name="myItemId" value="drawable-hdpi" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -2503,11 +1911,37 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="AndroidView">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MGGVertretungsplan" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="Scratches" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="recentsLimit" value="5" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../MGGVertretungsplan_TEST" />
+    <property name="FullScreen" value="false" />
+    <property name="settings.editor.selected.configurable" value="Errors" />
+    <property name="settings.editor.splitter.proportion" value="0.2" />
+    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="8f0ccbdd" />
+    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_AVD" value="Nexus_5_API_22_x86" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Rico\AndroidStudioProjects\MGGVertretungsplan\app\src\main\res\xml" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="de.aurora.mggvertretungsplan" />
+    </key>
   </component>
   <component name="RunManager" selected="Android Application.app">
     <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
@@ -2706,50 +2140,85 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1176" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32941177" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32995737" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32941177" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32995737" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32941177" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32941177" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32941177" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32941177" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="true" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32941177" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/de/aurora/mggvertretungsplan/hilfsMethoden.java">
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.37096775">
-          <caret line="30" column="64" selection-start-line="30" selection-start-column="64" selection-end-line="30" selection-end-column="64" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/de/aurora/mggvertretungsplan/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="89" column="17" selection-start-line="89" selection-start-column="17" selection-end-line="89" selection-end-column="17" />
+          <folding>
+            <element signature="method#AlarmManager#0;class#MainActivity#0" expanded="false" />
+            <element signature="method#AlarmManagerBeenden#0;class#MainActivity#0" expanded="false" />
+            <element signature="method#onTaskComplete#0;class#MainActivity#0" expanded="false" />
+            <element signature="method#onPause#0;class#MainActivity#0" expanded="false" />
+            <element signature="method#onResume#0;class#MainActivity#0" expanded="false" />
+            <element signature="method#onDestroy#0;class#MainActivity#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/de/aurora/mggvertretungsplan/Settings.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2757,7 +2226,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.0">
           <caret line="0" column="26" selection-start-line="0" selection-start-column="26" selection-end-line="0" selection-end-column="26" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2765,7 +2233,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.0">
           <caret line="0" column="10" selection-start-line="0" selection-start-column="10" selection-end-line="0" selection-end-column="10" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2773,7 +2240,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2781,49 +2247,48 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.448276">
+        <state vertical-scroll-proportion="0.0">
           <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/settings_toolbar.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.2551834">
           <caret line="10" column="6" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
           <folding />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/settings.xml">
       <provider editor-type-id="android-designer">
         <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/settings.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3875598">
           <caret line="19" column="9" selection-start-line="19" selection-start-column="9" selection-end-line="19" selection-end-column="9" />
           <folding />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/list_view_item.xml">
       <provider editor-type-id="android-designer">
         <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/list_view_item.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
@@ -2835,48 +2300,252 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main4.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-6.724138">
           <caret line="58" column="44" selection-start-line="58" selection-start-column="44" selection-end-line="58" selection-end-column="44" />
           <folding />
         </state>
       </provider>
-      <provider editor-type-id="android-designer">
-        <state />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/de/aurora/mggvertretungsplan/webView_Activity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.06451613">
+          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/de/aurora/mggvertretungsplan/Vertretungen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.032258064">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main3.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-16.551723">
+        <state vertical-scroll-proportion="0.49844238">
           <caret line="30" column="9" selection-start-line="30" selection-start-column="9" selection-end-line="30" selection-end-column="9" />
           <folding />
         </state>
       </provider>
-      <provider editor-type-id="android-designer">
-        <state />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/de/aurora/mggvertretungsplan/AsyncTaskCompleteListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.032258064">
+          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/de/aurora/mggvertretungsplan/BootUpReceiver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.032258064">
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/de/aurora/mggvertretungsplan/vertretungsplanArrayAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.20967741">
+          <caret line="55" column="36" selection-start-line="55" selection-start-column="36" selection-end-line="55" selection-end-column="36" />
+          <folding>
+            <element signature="method#getView#0;class#vertretungsplanArrayAdapter#0" expanded="false" />
+            <element signature="class#ViewHolder#0;class#vertretungsplanArrayAdapter#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/AppData/Local/Android/sdk/platforms/android-21/android.jar!/android/app/Activity.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.36212623">
+          <caret line="420" column="19" selection-start-line="420" selection-start-column="19" selection-end-line="420" selection-end-column="19" />
+          <folding>
+            <element signature="e#11867#11868#0" expanded="true" />
+            <element signature="e#11918#11919#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/de/aurora/mggvertretungsplan/VertretungsplanService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.43540668">
+          <caret line="98" column="9" selection-start-line="98" selection-start-column="9" selection-end-line="98" selection-end-column="9" />
+          <folding>
+            <element signature="e#849#850#0" expanded="true" />
+            <element signature="e#876#877#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/app.iml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/de/aurora/mggvertretungsplan/NotificationFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.08064516">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/xml/class_preferences.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.29032257">
+          <caret line="18" column="33" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/de/aurora/mggvertretungsplan/KlassenFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.22580644">
+          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/de/aurora/mggvertretungsplan/PreferenceBenachrichtigungen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="41" column="17" selection-start-line="41" selection-start-column="17" selection-end-line="41" selection-end-column="17" />
+          <folding>
+            <element signature="e#822#919#0" expanded="true" />
+            <element signature="e#918#919#0" expanded="true" />
+          </folding>
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/de/aurora/mggvertretungsplan/MainOptionFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.09756097">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="12" column="53" selection-start-line="12" selection-start-column="53" selection-end-line="12" selection-end-column="53" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/xml/preferenceheaders_new.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/de/aurora/mggvertretungsplan/PreferenceKlasse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7804878">
+          <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#onOptionsItemSelected#0;class#PreferenceKlasse#0" expanded="false" />
+            <element signature="method#onSharedPreferenceChanged#0;class#PreferenceKlasse#0" expanded="false" />
+            <element signature="method#getClassName#0;class#PreferenceKlasse#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/de/aurora/mggvertretungsplan/Settings.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5121951">
+          <caret line="77" column="85" selection-start-line="77" selection-start-column="85" selection-end-line="77" selection-end-column="85" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.5365854">
-          <caret line="8" column="33" selection-start-line="8" selection-start-column="33" selection-end-line="8" selection-end-column="33" />
+        <state vertical-scroll-proportion="0.5629984">
+          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+          <folding>
+            <element signature="e#238#255#0" expanded="true" />
+            <element signature="e#696#714#0" expanded="true" />
+            <element signature="e#846#865#0" expanded="true" />
+            <element signature="e#1177#1195#0" expanded="true" />
+            <element signature="e#1298#1322#0" expanded="true" />
+            <element signature="e#3025#3064#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/xml/notification_preferences.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.07317073">
+          <caret line="3" column="4" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/de/aurora/mggvertretungsplan/DownloadWebPageTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.34146342">
+          <caret line="17" column="33" selection-start-line="17" selection-start-column="33" selection-end-line="17" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1587#1588#0" expanded="true" />
+            <element signature="e#1632#1633#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/de/aurora/mggvertretungsplan/hilfsMethoden.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.1463414">
+          <caret line="23" column="39" selection-start-line="23" selection-start-column="39" selection-end-line="23" selection-end-column="39" />
+          <folding>
+            <element signature="method#haeufigkeit#0;class#hilfsMethoden#0" expanded="false" />
+            <element signature="method#zusammenfassen#0;class#hilfsMethoden#0" expanded="false" />
+            <element signature="method#stundenZusammenfassen#0;class#hilfsMethoden#0" expanded="false" />
+            <element signature="method#sortieren#0;class#hilfsMethoden#0" expanded="false" />
+            <element signature="e#11371#12859#0" expanded="true" />
+            <element signature="e#12858#12859#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/xml/preferenceheaders.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="23" column="62" selection-start-line="23" selection-start-column="62" selection-end-line="23" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-hdpi/two_value_colors_2.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/de/aurora/mggvertretungsplan/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="6.780488">
-          <caret line="312" column="0" selection-start-line="312" selection-start-column="0" selection-end-line="312" selection-end-column="0" />
-          <folding />
+        <state vertical-scroll-proportion="0.33333334">
+          <caret line="154" column="44" selection-start-line="154" selection-start-column="44" selection-end-line="154" selection-end-column="44" />
+          <folding>
+            <element signature="method#AlarmManager#0;class#MainActivity#0" expanded="false" />
+            <element signature="method#AlarmManagerBeenden#0;class#MainActivity#0" expanded="false" />
+            <element signature="method#onTaskComplete#0;class#MainActivity#0" expanded="false" />
+            <element signature="method#onPause#0;class#MainActivity#0" expanded="false" />
+            <element signature="method#onResume#0;class#MainActivity#0" expanded="false" />
+            <element signature="method#onDestroy#0;class#MainActivity#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

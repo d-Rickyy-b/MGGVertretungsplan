@@ -5,13 +5,12 @@ import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
 public class PreferenceBenachrichtigungen extends PreferenceActivity{
 
-	SubOptionFragment subOptionFragment = new SubOptionFragment();
+	NotificationFragment notificationFragment = new NotificationFragment();
 	Toolbar toolbar;
 	
 	@SuppressLint("NewApi")
@@ -31,8 +30,8 @@ public class PreferenceBenachrichtigungen extends PreferenceActivity{
 				finish();
 			}
 		});
-		subOptionFragment = new SubOptionFragment();
-        getFragmentManager().beginTransaction().replace(R.id.content, subOptionFragment).commit();
+		notificationFragment = new NotificationFragment();
+        getFragmentManager().beginTransaction().replace(R.id.content, notificationFragment).commit();
         getFragmentManager().executePendingTransactions();
     }
 	

@@ -62,7 +62,6 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         }
 
         sp = PreferenceManager.getDefaultSharedPreferences(this);
-
         createAdBanner();
         gespeicherteDatenAnzeigen();
     }
@@ -112,19 +111,15 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         String AbrufDatum = sp.getString("AbrufDatum", "Noch nie aktualisiert!");
         aktualisiertAmTextView.setText("Zuletzt aktualisiert am: " + AbrufDatum);
 
-        String[][] ersteTabelleArr, zweiteTabelleArr;
-        String erDatum, zwDatum;
-
-        GregorianCalendar calender = new GregorianCalendar();
-        jahr = calender.get(GregorianCalendar.YEAR);
-
-        erDatum = sp.getString("erstesDatum", "01.01.2015");
-        zwDatum = sp.getString("zweitesDatum", "01.01.2015");
+        jahr = new GregorianCalendar().get(GregorianCalendar.YEAR);
         klasse = sp.getString("KlasseGesamt", "5a");
         setTitle("Vertretungsplan (" + klasse + ")");
 
-        ersteTabelleArr = stringToArray(sp.getString("ersteTabelle", ""));
-        zweiteTabelleArr = stringToArray(sp.getString("zweiteTabelle", ""));
+        String erDatum = sp.getString("erstesDatum", "01.01.2015");
+        String zwDatum = sp.getString("zweitesDatum", "01.01.2015");
+
+        String[][] ersteTabelleArr = stringToArray(sp.getString("ersteTabelle", ""));
+        String[][] zweiteTabelleArr = stringToArray(sp.getString("zweiteTabelle", ""));
 
         anzeigen(ersteTabelleArr, zweiteTabelleArr, erDatum, zwDatum, sp.getBoolean("AktTagAnzeigen", true));
     }
@@ -139,7 +134,6 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
     public void createAdBanner() {
         adView = (AdView) this.findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder()
-                //.addTestDevice("B3EEABB8EE11C2BE770B684D95219ECB")
                 .build();
         adView.loadAd(adRequest);
     }
@@ -148,7 +142,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_settings:
-                Intent preferenceIntent = new Intent(getApplicationContext(), de.aurora.mggvertretungsplan.PreferenceWithHeaders.class);
+                Intent preferenceIntent = new Intent(getApplicationContext(), Settings.class);
                 startActivity(preferenceIntent);
                 break;
             case R.id.action_webview:
@@ -193,7 +187,10 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         final ConnectivityManager conMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         final NetworkInfo activeNetwork = conMgr.getActiveNetworkInfo();
 
-        return activeNetwork.isConnected();
+        if (activeNetwork != null)
+            return activeNetwork.isConnected();
+        else
+            return false;
     }
 
     // überprüfen ob Klasse ausgewählt, ob Internetverbinding besteht, gibt Befehl zum Runterladen
@@ -230,7 +227,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         ArrayList<Vertretungen> list = new ArrayList<>();
 
         long unixTime = System.currentTimeMillis() / 1000L;
-        String AbrufDatum = new SimpleDateFormat("HH").format((unixTime + 3600) * 1000L).toString();
+        String currentTimeInHours = new SimpleDateFormat("HH").format((unixTime + 3600) * 1000L).toString();
         String tagAkt = (String) DateFormat.format("dd", new Date());
         String monatAkt = (String) DateFormat.format("MM", new Date());
 
@@ -245,7 +242,8 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
             //Wenn Tag angezeigt werden soll, dann anzeigen
             //ODER Wenn Tag nicht angezeigt werden soll, aber es noch vor 16 Uhr ist, dann anzeigen
             //ODER Wenn der Tag1 kleiner als der aktuelle ist, aber der aktuelle Monat kleiner als der monat1 ist
-            if (aktTagAnzeigen || (!aktTagAnzeigen && Integer.valueOf(AbrufDatum) < 16 && tag1 == Integer.valueOf(tagAkt) && monat1 == Integer.valueOf(monatAkt)) ||
+            if (aktTagAnzeigen ||
+                    (Integer.valueOf(currentTimeInHours) < 16 && tag1 == Integer.valueOf(tagAkt) && monat1 == Integer.valueOf(monatAkt)) ||
                     (tag1 > Integer.valueOf(tagAkt) && monat1 == Integer.valueOf(monatAkt)) ||
                     (tag1 < Integer.valueOf(tagAkt) && monat1 > Integer.valueOf(monatAkt))) {
 
@@ -266,7 +264,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
             //wenn der erste Tag Nach dem 2. kommt (im selben Monat), oder wenn der erste Tag vor dem zweiten kommt, aber der erste Monat nach dem zweiten
         } else if ((tag1 > tag2 && monat1 == monat2) || (tag1 < tag2 && monat1 > monat2)) {
             if (aktTagAnzeigen ||
-                    (Integer.valueOf(AbrufDatum) < 16 && tag2 == Integer.valueOf(tagAkt) && monat2 == Integer.valueOf(monatAkt)) ||
+                    (Integer.valueOf(currentTimeInHours) < 16 && tag2 == Integer.valueOf(tagAkt) && monat2 == Integer.valueOf(monatAkt)) ||
                     (tag2 > Integer.valueOf(tagAkt) && monat2 == Integer.valueOf(monatAkt)) ||
                     (tag2 < Integer.valueOf(tagAkt) && monat2 > Integer.valueOf(monatAkt))
                     ) {
