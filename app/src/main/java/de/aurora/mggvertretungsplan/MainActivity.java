@@ -115,8 +115,8 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         klasse = sp.getString("KlasseGesamt", "5a");
         setTitle("Vertretungsplan (" + klasse + ")");
 
-        String erDatum = sp.getString("erstesDatum", "01.01.2015");
-        String zwDatum = sp.getString("zweitesDatum", "01.01.2015");
+        String erDatum = sp.getString("erstesDatum", "01.01.2016");
+        String zwDatum = sp.getString("zweitesDatum", "01.01.2016");
 
         String[][] ersteTabelleArr = stringToArray(sp.getString("ersteTabelle", ""));
         String[][] zweiteTabelleArr = stringToArray(sp.getString("zweiteTabelle", ""));

@@ -13,6 +13,7 @@
     <string name="neuraum">neuraum</string>
     <string name="raum">raum</string>
     <string name="stunde">stunde</string>
+    <string name="adMobToken">YourAPITokenHere</string>
 
     <string name="version">1.5.0</string>
     <integer name="versionNumber">6</integer>

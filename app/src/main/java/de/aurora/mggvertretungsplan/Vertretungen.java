@@ -13,7 +13,7 @@ public class Vertretungen {
 		this.datum = datum;
 	}
 
-	public void setStunde(String stunde) {
+	public void setstunde(String stunde) {
         this.stunde= stunde;
     }
     public String getStunde() {

@@ -60,7 +60,7 @@
         android:layout_alignParentBottom="true"
         android:background="@android:color/transparent"
         ads:adSize="SMART_BANNER"
-        ads:adUnitId="yourAppTokenHere" />
+        ads:adUnitId="@string/adMobToken"/>
 
 
 </RelativeLayout>

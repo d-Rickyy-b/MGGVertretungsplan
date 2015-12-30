@@ -16,7 +16,6 @@ public class PreferenceKlasse extends PreferenceActivity implements SharedPrefer
     KlassenFragment klassenFragment;
 	Toolbar toolbar;
     public String klasseGesamt_saved;
-    ListPreference listPref;
 	
 	@SuppressLint("NewApi")
 	protected void onCreate(Bundle savedInstanceState) {
@@ -46,22 +45,18 @@ public class PreferenceKlasse extends PreferenceActivity implements SharedPrefer
 	//ActionBar zurück option
     public boolean onOptionsItemSelected(MenuItem item) {
 	    switch (item.getItemId()) {
-	case android.R.id.home:
-    	finish();
-    break;
-    
-	default:	
-    break;
-    }
-    return true;
+	        case android.R.id.home:
+    	        finish();
+                break;
+	        default:
+                break;
+        }
+        return true;
 	}
 
-
+    //Wenn eine Einstellung geändert wird
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        if (key.equals("Klassenstufe")) {
-            String klasseGesamt = getClassName(sharedPreferences);
-            sharedPreferences.edit().putString("KlasseGesamt", klasseGesamt).apply();
-        } else if (key.equals("Klasse")) {
+        if (key.equals("Klassenstufe") || key.equals("Klasse")) {
             String klasseGesamt = getClassName(sharedPreferences);
             sharedPreferences.edit().putString("KlasseGesamt", klasseGesamt).apply();
         }
@@ -70,15 +65,16 @@ public class PreferenceKlasse extends PreferenceActivity implements SharedPrefer
     private String getClassName(SharedPreferences sharedPreferences) {
         String klassenstufe = sharedPreferences.getString("Klassenstufe", "5");
         if (klassenstufe.equals("K1") || klassenstufe.equals("K2")) {
-            setListPrefStatus(false);
+            setClassPrefStatus(false);
             return klassenstufe;
         } else {
-            setListPrefStatus(true);
+            setClassPrefStatus(true);
             return klassenstufe + sharedPreferences.getString("Klasse", "a");
         }
     }
 
-    private void setListPrefStatus(boolean status) {
+
+    private void setClassPrefStatus(boolean status) {
         ListPreference listPref = (ListPreference) klassenFragment.findPreference("Klasse");
         listPref.setEnabled(status);
         listPref.setSelectable(status);
@@ -86,9 +82,9 @@ public class PreferenceKlasse extends PreferenceActivity implements SharedPrefer
 
     private void correctClassPicker() {
         if (klasseGesamt_saved.equals("K1") || klasseGesamt_saved.equals("K2")) {
-            setListPrefStatus(false);
+            setClassPrefStatus(false);
         } else {
-            setListPrefStatus(true);
+            setClassPrefStatus(true);
         }
     }
 
@@ -109,6 +105,5 @@ public class PreferenceKlasse extends PreferenceActivity implements SharedPrefer
     protected void onDestroy() {
         super.onDestroy();
     }
-
 
 }

@@ -18,7 +18,7 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
 
     MainOptionFragment mainOptionFragment;
     public String klasseGesamt_saved;
-    ListPreference listPref;
+    ListPreference classPref;
     Toolbar toolbar;
 
 
@@ -50,7 +50,7 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
 
         klasseGesamt_saved = PreferenceManager.getDefaultSharedPreferences(this).getString("KlasseGesamt", "5a");
         getFragmentManager().executePendingTransactions();
-        listPref = (ListPreference) mainOptionFragment.findPreference("Klasse");
+        classPref = (ListPreference) mainOptionFragment.findPreference("Klasse");
         correctClassPicker();
     }
 
@@ -70,10 +70,7 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
 
     //Wenn (gespeicherte) Daten geändert werden
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        if (key.equals("Klassenstufe")) {
-            String klasseGesamt = getClassName(sharedPreferences);
-            sharedPreferences.edit().putString("KlasseGesamt", klasseGesamt).apply();
-        } else if (key.equals("Klasse")) {
+        if (key.equals("Klassenstufe") || key.equals("Klasse")) {
             String klasseGesamt = getClassName(sharedPreferences);
             sharedPreferences.edit().putString("KlasseGesamt", klasseGesamt).apply();
         }
@@ -82,25 +79,25 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
     private String getClassName(SharedPreferences sharedPreferences) {
         String klassenstufe = sharedPreferences.getString("Klassenstufe", "5");
         if (klassenstufe.equals("K1") || klassenstufe.equals("K2")) {
-            setListPrefStatus(false);
+            setClassPrefStatus(false);
             return klassenstufe;
         } else {
-            setListPrefStatus(true);
+            setClassPrefStatus(true);
             return klassenstufe + sharedPreferences.getString("Klasse", "a");
         }
     }
 
-    private void setListPrefStatus(boolean status) {
-        ListPreference listPref = (ListPreference) mainOptionFragment.findPreference("Klasse");
-        listPref.setEnabled(status);
-        listPref.setSelectable(status);
+    private void setClassPrefStatus(boolean status) {
+        ListPreference classPref = (ListPreference) mainOptionFragment.findPreference("Klasse");
+        classPref.setEnabled(status);
+        classPref.setSelectable(status);
     }
 
     private void correctClassPicker() {
         if (klasseGesamt_saved.equals("K1") || klasseGesamt_saved.equals("K2")) {
-            setListPrefStatus(false);
+            setClassPrefStatus(false);
         } else {
-            setListPrefStatus(true);
+            setClassPrefStatus(true);
         }
     }
 
