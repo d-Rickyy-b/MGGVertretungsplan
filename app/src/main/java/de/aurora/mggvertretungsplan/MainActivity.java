@@ -32,6 +32,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements AsyncTaskCompleteListener<String>, SwipeRefreshLayout.OnRefreshListener {
 
@@ -227,7 +228,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         ArrayList<Vertretungen> list = new ArrayList<>();
 
         long unixTime = System.currentTimeMillis() / 1000L;
-        String currentTimeInHours = new SimpleDateFormat("HH").format((unixTime + 3600) * 1000L).toString();
+        String currentTimeInHours = new SimpleDateFormat("HH", new Locale("de")).format((unixTime + 3600) * 1000L).toString(); //added ", new Locale("de")"
         String tagAkt = (String) DateFormat.format("dd", new Date());
         String monatAkt = (String) DateFormat.format("MM", new Date());
 
@@ -243,22 +244,22 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
             //ODER Wenn Tag nicht angezeigt werden soll, aber es noch vor 16 Uhr ist, dann anzeigen
             //ODER Wenn der Tag1 kleiner als der aktuelle ist, aber der aktuelle Monat kleiner als der monat1 ist
             if (aktTagAnzeigen ||
-                    (Integer.valueOf(currentTimeInHours) < 16 && tag1 == Integer.valueOf(tagAkt) && monat1 == Integer.valueOf(monatAkt)) ||
-                    (tag1 > Integer.valueOf(tagAkt) && monat1 == Integer.valueOf(monatAkt)) ||
-                    (tag1 < Integer.valueOf(tagAkt) && monat1 > Integer.valueOf(monatAkt))) {
+                (Integer.valueOf(currentTimeInHours) < 16 && tag1 == Integer.valueOf(tagAkt) && monat1 == Integer.valueOf(monatAkt)) ||
+                (tag1 > Integer.valueOf(tagAkt) && monat1 == Integer.valueOf(monatAkt)) ||
+                (tag1 < Integer.valueOf(tagAkt) && monat1 > Integer.valueOf(monatAkt))) {
 
                 //Tag 1
                 list.add(new Vertretungen("", "", "", "", "", erstesDatum, erstesDatumName));
-                for (int i = 0; i < ersteTabelleArr.length; i++) {
-                    list.add(new Vertretungen(ersteTabelleArr[i][0] + ". Stunde", hm.abkuerzung(ersteTabelleArr[i][2]), ersteTabelleArr[i][4], ersteTabelleArr[i][5], ersteTabelleArr[i][6], "", ""));
+                for (String[] zeile : ersteTabelleArr) {
+                    list.add(new Vertretungen(zeile[0] + ". Stunde", hm.abkuerzung(zeile[2]), zeile[4], zeile[5], zeile[6], "", ""));
                 }
                 list.add(new Vertretungen("", "", "", "", "", "", ""));
             }
 
             //Tag 2
             list.add(new Vertretungen("", "", "", "", "", zweitesDatum, zweitesDatumName));
-            for (int i = 0; i < zweiteTabelleArr.length; i++) {
-                list.add(new Vertretungen(zweiteTabelleArr[i][0] + ". Stunde", hm.abkuerzung(zweiteTabelleArr[i][2]), zweiteTabelleArr[i][4], zweiteTabelleArr[i][5], zweiteTabelleArr[i][6], "", ""));
+            for (String[] zeile : zweiteTabelleArr) {
+                list.add(new Vertretungen(zeile[0] + ". Stunde", hm.abkuerzung(zeile[2]), zeile[4], zeile[5], zeile[6], "", ""));
             }
 
             //wenn der erste Tag Nach dem 2. kommt (im selben Monat), oder wenn der erste Tag vor dem zweiten kommt, aber der erste Monat nach dem zweiten
@@ -270,8 +271,8 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
                     ) {
 
                 list.add(new Vertretungen("", "", "", "", "", zweitesDatum, zweitesDatumName));
-                for (int i = 0; i < zweiteTabelleArr.length; i++) {
-                    list.add(new Vertretungen(zweiteTabelleArr[i][0] + ". Stunde", hm.abkuerzung(zweiteTabelleArr[i][2]), zweiteTabelleArr[i][4], zweiteTabelleArr[i][5], zweiteTabelleArr[i][6], "", ""));
+                for (String[] zeile : zweiteTabelleArr) {
+                    list.add(new Vertretungen(zeile[0] + ". Stunde", hm.abkuerzung(zeile[2]), zeile[4], zeile[5], zeile[6], "", ""));
                 }
 
                 list.add(new Vertretungen("", "", "", "", "", "", ""));
@@ -279,8 +280,8 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
             //Tag 2
             list.add(new Vertretungen("", "", "", "", "", erstesDatum, erstesDatumName));
-            for (int i = 0; i < ersteTabelleArr.length; i++) {
-                list.add(new Vertretungen(ersteTabelleArr[i][0] + ". Stunde", hm.abkuerzung(ersteTabelleArr[i][2]), ersteTabelleArr[i][4], ersteTabelleArr[i][5], ersteTabelleArr[i][6], "", ""));
+            for (String[] zeile : ersteTabelleArr) {
+                list.add(new Vertretungen(zeile[0] + ". Stunde", hm.abkuerzung(zeile[2]), zeile[4], zeile[5], zeile[6], "", ""));
             }
 
         }
@@ -298,6 +299,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
         TextView aktualisiertAmTextView = (TextView) findViewById(R.id.listText);
 
+        //TODO mit Regex arbeiten
         final String startPunkt = "___-1\"></a><h2 class=\"tabber_title\">",
                 stoppPunkt = "</table><div style=\"clear:both;\"></div></div><div style=\"clear:both;\"></div>",
                 trennPunkt = "___-2\"></a><h2 class=\"tabber_title\">";
