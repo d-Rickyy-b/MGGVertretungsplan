@@ -36,12 +36,12 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements AsyncTaskCompleteListener<String>, SwipeRefreshLayout.OnRefreshListener {
 
-    private String klasse;
-    private int jahr;
     public AdView adView;
     SharedPreferences sp;
-    private SwipeRefreshLayout mSwipeLayout;
     Toolbar toolbar;
+    private String klasse;
+    private int jahr;
+    private SwipeRefreshLayout mSwipeLayout;
 
     @SuppressLint("NewApi")
     @Override
@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
     public void gespeicherteDatenAnzeigen() {
         TextView aktualisiertAmTextView = (TextView) findViewById(R.id.listText);
         String AbrufDatum = sp.getString("AbrufDatum", "Noch nie aktualisiert!");
-        aktualisiertAmTextView.setText("Zuletzt aktualisiert am: " + AbrufDatum);
+        aktualisiertAmTextView.setText("Zuletzt aktualisiert" + AbrufDatum);
 
         jahr = new GregorianCalendar().get(GregorianCalendar.YEAR);
         klasse = sp.getString("KlasseGesamt", "5a");

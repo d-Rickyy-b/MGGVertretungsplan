@@ -18,9 +18,9 @@ public class hilfsMethoden extends Activity {
     //Diese Methode durchsucht die Tabellen nach der angegebenen Klasse. Alle gefundenen Elemente werden aufgelistet
     public String[][] stringKuerzen(String str, String klasse) {
         int[] abstand = haeufigkeit(str, klasse);
-        int anzahl = abstand.length, index1 = 0, index2 = 0, abstandVar = 0;
+        int anzahl = abstand.length, index1, index2, abstandVar;
         String[][] sArray;
-        String zwischenresult = "";
+        String zwischenresult;
         sArray = new String[anzahl][7];
 
         for (int i = 0; i < anzahl; i++) {
@@ -196,7 +196,7 @@ public class hilfsMethoden extends Activity {
             }
         }
 
-        for (int j = stelle + 1; j < neuLaenge + 1; j++) {
+        for (int j = stelle + 1; j <= neuLaenge; j++) { //TODO geändert am 07.04.16
             for (int r = 0; r < 7; r++) {
                 temp[j - 1][r] = inputArray[j][r];
             }
@@ -214,7 +214,7 @@ public class hilfsMethoden extends Activity {
     public String abkuerzung(String abk) {
 
         if (abk.equals("") || abk == null) {
-            return "kein Fach angegeben";
+            return "kein Fach";
         } else {
             abk = abk.toUpperCase();
             if (abk.equals("D")) {
@@ -281,8 +281,6 @@ public class hilfsMethoden extends Activity {
                 return abk;
             }
         }
-
-
     }
 
     //sortiert ein Array
@@ -322,21 +320,21 @@ public class hilfsMethoden extends Activity {
     }
 
 
-    public String getFormattedDate(long smsTimeInMilis) {
-        Calendar smsTime = Calendar.getInstance();
-        smsTime.setTimeInMillis(smsTimeInMilis);
+    public String getFormattedDate(long currentTimeInMillis) {
+        Calendar currentTime = Calendar.getInstance();
+        currentTime.setTimeInMillis(currentTimeInMillis);
 
         Calendar now = Calendar.getInstance();
 
         final String timeFormatString = "HH:mm";
         final String dateTimeFormatString = "EEEE, MMMM d, h:mm aa";
-        if (now.get(Calendar.DATE) == smsTime.get(Calendar.DATE)) {
-            return ": Heute " + DateFormat.format(timeFormatString, smsTime);
-        } else if (now.get(Calendar.DATE) - smsTime.get(Calendar.DATE) == 1) {
-            return ": Gestern " + DateFormat.format(timeFormatString, smsTime);
-        } else if (now.get(Calendar.YEAR) == smsTime.get(Calendar.YEAR)) {
-            return DateFormat.format(dateTimeFormatString, smsTime).toString();
+        if (now.get(Calendar.DATE) == currentTime.get(Calendar.DATE)) {
+            return ": Heute " + DateFormat.format(timeFormatString, currentTime);
+        } else if ((now.get(Calendar.DATE) - currentTime.get(Calendar.DATE)) == 1) {
+            return ": Gestern " + DateFormat.format(timeFormatString, currentTime);
+        } else if (now.get(Calendar.YEAR) == currentTime.get(Calendar.YEAR)) {
+            return DateFormat.format(dateTimeFormatString, currentTime).toString();
         } else
-            return " am: " + DateFormat.format("dd.MM.yyyy HH:mm", smsTime).toString();
+            return " am: " + DateFormat.format("dd.MM.yyyy HH:mm", currentTime).toString();
     }
 }       
