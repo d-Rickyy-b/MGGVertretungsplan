@@ -3,6 +3,8 @@ package de.aurora.mggvertretungsplan;
 import android.annotation.SuppressLint;
 import android.app.AlarmManager;
 import android.app.AlertDialog;
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
@@ -18,9 +20,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.format.DateFormat;
 import android.text.format.DateUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,6 +43,8 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
     public AdView adView;
     SharedPreferences sp;
     Toolbar toolbar;
+    hilfsMethoden hm;
+    int clickcount = 0;
     private String klasse;
     private int jahr;
     private SwipeRefreshLayout mSwipeLayout;
@@ -58,13 +64,55 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         toolbar.setTitle("Vertretungsplan");
         toolbar.showOverflowMenu();
 
+        toolbar.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                clickcount = clickcount + 1;
+                if (clickcount % 10 == 0) {
+                    Toast.makeText(getApplicationContext(), "Notification gesendet!", Toast.LENGTH_SHORT).show();
+
+                    notification("Ticker", "Titel", "Text");
+
+                }
+            }
+        });
+
         if (Build.VERSION.SDK_INT >= 21) {
             toolbar.setElevation(25);
         }
 
+        hm = new hilfsMethoden();
         sp = PreferenceManager.getDefaultSharedPreferences(this);
         createAdBanner();
         gespeicherteDatenAnzeigen();
+    }
+
+    //added for testing purposes
+    public void notification(String ticker, String titel, String text) {
+
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        PendingIntent pIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, 0);
+        Log.i("VertretungsplanService", "Notification!");
+        @SuppressWarnings("deprecation")
+        Notification n = new Notification.Builder(getApplicationContext())
+                .setContentTitle(titel)
+                .setContentText(text)
+                .setTicker(ticker)
+                .setSmallIcon(getNotificationIcon())
+                .setContentIntent(pIntent)
+                .setAutoCancel(true)
+                .getNotification();
+        //TODO statt .getNotification() -> .build() ... Android Version 14 (IceCreamSandwich) -> Version 16 (JellyBean)
+        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        n.flags |= Notification.FLAG_AUTO_CANCEL;
+        notificationManager.notify(0, n);
+    }
+
+    //added for testing purposes
+    private int getNotificationIcon() {
+        boolean useWhiteIcon = (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP);
+        return useWhiteIcon ? R.drawable.icon_inverted : R.drawable.app_logo_material;
     }
 
     @Override
@@ -109,15 +157,16 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
     public void gespeicherteDatenAnzeigen() {
         TextView aktualisiertAmTextView = (TextView) findViewById(R.id.listText);
-        String AbrufDatum = sp.getString("AbrufDatum", "Noch nie aktualisiert!");
+        String AbrufDatum = sp.getString("AbrufDatum", ": Noch nie aktualisiert!");
         aktualisiertAmTextView.setText("Zuletzt aktualisiert" + AbrufDatum);
 
         jahr = new GregorianCalendar().get(GregorianCalendar.YEAR);
         klasse = sp.getString("KlasseGesamt", "5a");
         setTitle("Vertretungsplan (" + klasse + ")");
 
-        String erDatum = sp.getString("erstesDatum", "01.01.2016");
-        String zwDatum = sp.getString("zweitesDatum", "01.01.2016");
+        //String erDatum = sp.getString("erstesDatum", "01.01." + jahr);
+        String erDatum = "01.01." + jahr;
+        String zwDatum = sp.getString("zweitesDatum", "01.01." + jahr);
 
         String[][] ersteTabelleArr = stringToArray(sp.getString("ersteTabelle", ""));
         String[][] zweiteTabelleArr = stringToArray(sp.getString("zweiteTabelle", ""));
@@ -216,13 +265,11 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
     // Macht aus dem String ein Array
     private String[][] stringToArray(String inputString) {
-        hilfsMethoden hm = new hilfsMethoden();
         return hm.stringKuerzen(inputString, klasse);
     }
 
     //Initialisieren einer ArrayList, Hinzufügen von Items, Adapter an ListView binden
     private void anzeigen(String[][] ersteTabelleArr, String[][] zweiteTabelleArr, String erstesDatum, String zweitesDatum, boolean aktTagAnzeigen) {
-        hilfsMethoden hm = new hilfsMethoden();
         ListView listView = (ListView) findViewById(R.id.listView);
 
         ArrayList<Vertretungen> list = new ArrayList<>();
@@ -313,8 +360,6 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
             erstesDatum = ersteTabelle.substring(36, 42);
             zweitesDatum = zweiteTabelle.substring(36, 42);
 
-
-            hilfsMethoden hm = new hilfsMethoden();
             String AbrufDatum = hm.getFormattedDate(System.currentTimeMillis());
 
             aktualisiertAmTextView.setText("Zuletzt aktualisiert" + AbrufDatum);

@@ -21,8 +21,8 @@ import java.util.Date;
 
 public class VertretungsplanService extends Service implements AsyncTaskCompleteListener<String> {
 
-    private String klasse, ersteTabelle_saved, zweiteTabelle_saved;
     SharedPreferences sp;
+    private String klasse, ersteTabelle_saved, zweiteTabelle_saved;
 
     public VertretungsplanService() {
 
@@ -70,10 +70,10 @@ public class VertretungsplanService extends Service implements AsyncTaskComplete
     public void notification(String ticker, String titel, String text) {
 
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-        PendingIntent pIntent = PendingIntent.getActivity(this, 0, intent, 0);
+        PendingIntent pIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, 0);
         Log.i("VertretungsplanService", "Notification!");
         @SuppressWarnings("deprecation")
-        Notification n = new Notification.Builder(this)
+        Notification n = new Notification.Builder(getApplicationContext())
                 .setContentTitle(titel)
                 .setContentText(text)
                 .setTicker(ticker)
@@ -92,11 +92,12 @@ public class VertretungsplanService extends Service implements AsyncTaskComplete
         final ConnectivityManager conMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         final NetworkInfo activeNetwork = conMgr.getActiveNetworkInfo();
 
-        if (activeNetwork != null && activeNetwork.isConnected()) {
-            return true;
-        } else {
-            return false;
-        }
+        return activeNetwork != null && activeNetwork.isConnected();
+    }
+
+    private int getNotificationIcon() {
+        boolean useWhiteIcon = (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP);
+        return useWhiteIcon ? R.drawable.icon_inverted : R.drawable.ic_launcher;
     }
 
 
