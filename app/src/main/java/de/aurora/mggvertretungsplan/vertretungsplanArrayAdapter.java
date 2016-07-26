@@ -39,7 +39,7 @@ public class vertretungsplanArrayAdapter extends ArrayAdapter<Vertretungen> {
             viewHolder = (ViewHolder) updateView.getTag();
         }
 
-        Vertretungen ver = (Vertretungen) getItem(position);
+        Vertretungen ver = getItem(position);
 
         viewHolder.StundeView.setText(ver.getStunde());
         viewHolder.RaumView.setText(ver.getRaum());

@@ -35,7 +35,7 @@ public class PreferenceBenachrichtigungen extends PreferenceActivity{
         getFragmentManager().executePendingTransactions();
     }
 	
-	//ActionBar zurück option
+	//ActionBar zurÃ¼ck option
     public boolean onOptionsItemSelected(MenuItem item) {
 	    switch (item.getItemId()) {
 	case android.R.id.home:
@@ -47,21 +47,6 @@ public class PreferenceBenachrichtigungen extends PreferenceActivity{
     }
     return true;
 	}
-    
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-    }
-    
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-    }
 
 
 }

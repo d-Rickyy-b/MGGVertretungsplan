@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.text.format.DateFormat;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Comparator;
@@ -17,14 +18,14 @@ public class hilfsMethoden extends Activity {
 
     //Diese Methode durchsucht die Tabellen nach der angegebenen Klasse. Alle gefundenen Elemente werden aufgelistet
     public String[][] stringKuerzen(String str, String klasse) {
-        int[] abstand = haeufigkeit(str, klasse);
-        int anzahl = abstand.length, index1, index2, abstandVar;
+        ArrayList<Integer> abstand = haeufigkeit(str, klasse);
+        int anzahl = abstand.size(), index1, index2, abstandVar;
         String[][] sArray;
         String zwischenresult;
         sArray = new String[anzahl][7];
 
         for (int i = 0; i < anzahl; i++) {
-            abstandVar = abstand[i];
+            abstandVar = abstand.get(i);
 
             if (abstandVar > 30) {
                 zwischenresult = str.substring(abstandVar - 30);
@@ -33,26 +34,26 @@ public class hilfsMethoden extends Activity {
             }
 
             int endposition = zwischenresult.indexOf("</td></tr>");
-            String zwischenresult2 = zwischenresult.substring(0, endposition + 5);
+            zwischenresult = zwischenresult.substring(0, endposition + 5);
 
-            int startposition2 = zwischenresult2.indexOf("<td>");
-            String zwischenresult3 = zwischenresult2.substring(startposition2, zwischenresult2.length());
+            int startposition2 = zwischenresult.indexOf("<td>");
+            zwischenresult = zwischenresult.substring(startposition2, zwischenresult.length());
 
-            if (zwischenresult3.contains("</tr>")) {
-                int endposition2 = zwischenresult3.indexOf("</tr>");
-                zwischenresult3 = zwischenresult3.substring(0, endposition2);
+            if (zwischenresult.contains("</tr>")) {
+                int endposition2 = zwischenresult.indexOf("</tr>");
+                zwischenresult = zwischenresult.substring(0, endposition2);
             }
 
-            zwischenresult3 = zwischenresult3.replace("&auml;", "ä").replace("&ouml;", "ö").replace("&uuml;", "ü");
+            zwischenresult = zwischenresult.replace("&auml;", "Ã¤").replace("&ouml;", "Ã¶").replace("&uuml;", "Ã¼");
 
-            if (zwischenresult3.contains("</td><td>")) {
-                index1 = zwischenresult3.indexOf("<td>") + 4;
-                index2 = zwischenresult3.indexOf("</td>");
+            if (zwischenresult.contains("</td><td>")) {
+                index1 = zwischenresult.indexOf("<td>") + 4;
+                index2 = zwischenresult.indexOf("</td>");
 
                 for (int y = 0; y < 7; y++) {
-                    sArray[i][y] = zwischenresult3.substring(index1, index2);
-                    index1 = zwischenresult3.indexOf("<td>", index1 + 1) + 4;
-                    index2 = zwischenresult3.indexOf("</td>", index2 + 1);
+                    sArray[i][y] = zwischenresult.substring(index1, index2);
+                    index1 = zwischenresult.indexOf("<td>", index1 + 1) + 4;
+                    index2 = zwischenresult.indexOf("</td>", index2 + 1);
                 }
             }
         }
@@ -62,12 +63,12 @@ public class hilfsMethoden extends Activity {
         if (laenge >= 2) {
             for (int j = 0; j < 2; j++) {
                 for (int i = 1; i < laenge; i++) {
-                    sArray = zusammenfassen(sArray, str, klasse, anzahl, i);
+                    sArray = zusammenfassen(sArray, i);
                     laenge = sArray.length;
                 }
 
                 for (int i = 1; i < laenge; i++) {
-                    sArray = stundenZusammenfassen(sArray, str, klasse, anzahl, i);
+                    sArray = stundenZusammenfassen(sArray, i);
                     laenge = sArray.length;
                 }
             }
@@ -75,33 +76,29 @@ public class hilfsMethoden extends Activity {
         return sArray;
     }
 
-    // zählt die Häufigkeit der eingegebenen Klasse im vorhandenen Dokument
-    public int[] haeufigkeit(String quelle, String Ausschnitt) {
+    // zÃ¤hlt die HÃ¤ufigkeit der eingegebenen Klasse im vorhandenen String
+    public ArrayList<Integer> haeufigkeit(String quelle, String Ausschnitt) {
         if (quelle == null || Ausschnitt == null) {
-            return new int[0];
+            return new ArrayList<>();
         }
 
         int zahl = 0;
-        int[] laengenArray = new int[0];
+        ArrayList<Integer> laengenArray = new ArrayList<>();
 
-        for (int schalter = 0; schalter < 2; schalter++) {
-            laengenArray = new int[zahl];
-            zahl = 0;
-
-            for (int pos = 0; (pos = quelle.indexOf(Ausschnitt, pos)) != -1; zahl++) {
-                if (quelle.substring(pos - 1, pos + 2).equals("BK1") || quelle.substring(pos - 1, pos + 2).equals("BK2")) {
-                    zahl--;
-                    pos += 1;
-                } else if (schalter == 1) {
-                    laengenArray[zahl] = pos;
-                }
-                pos += Ausschnitt.length(); //Wenn Klasse ist NICHT BK1 od. BK2, an Stelle hinter der Klasse springen
+        for (int pos = 0; (pos = quelle.indexOf(Ausschnitt, pos)) != -1; zahl++) {
+            if (quelle.substring(pos - 1, pos + 2).equals("BK1") || quelle.substring(pos - 1, pos + 2).equals("BK2")) {
+                //zahl--;
+                pos++;
+            } else {
+                laengenArray.add(pos);
             }
-        }
+            pos += Ausschnitt.length(); //Wenn Klasse ist NICHT BK1 od. BK2, an Stelle hinter der Klasse springen
+            }
+
         return laengenArray;
     }
 
-    // Diese Methode gibt den passenden Namen zu einem bestimmten Datum zurück
+    // Diese Methode gibt den passenden Namen zu einem bestimmten Datum zurÃ¼ck
     public String getAnyDayByName(int jahr, int monat, int tag) {
         String[] tage = new String[]{"Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"};
 
@@ -113,8 +110,9 @@ public class hilfsMethoden extends Activity {
     }
 
     //doppelte Zeilen in einem Array werden zusammengefasst
-    public String[][] zusammenfassen(String[][] inputArray, String tabelle, String klasse, int anzahl, int stelle) {
+    public String[][] zusammenfassen(String[][] inputArray, int stelle) {
         int laenge = inputArray.length;
+        int neuLaenge = laenge - 1;
 
         if (stelle >= laenge || inputArray[stelle][0] == null) {
             return inputArray;
@@ -126,21 +124,12 @@ public class hilfsMethoden extends Activity {
                 inputArray[stelle][4].equals(inputArray[stelle - 1][4]) && inputArray[stelle][5].equals(inputArray[stelle - 1][5]) &&
                 inputArray[stelle][6].equals(inputArray[stelle - 1][6])) {
 
-            String temp[][] = new String[laenge-1][7];
+            String temp[][] = new String[neuLaenge][7];
 
-            //Füllt neues Array bis zur Stelle
-            for (int j = 0; j < stelle; j++) {
-                for (int r = 0; r < 7; r++) {
-                    temp[j][r] = inputArray[j][r];
-                }
-            }
+            //System.arraycopy(inputArray, 0, temp, 0 , stelle);
+            //System.arraycopy(inputArray, stelle+1, temp, stelle, neuLaenge - stelle);
 
-            //Füllt neues Array, lässt "Stelle" raus
-            for (int j = stelle + 1; j < laenge; j++) {
-                for (int r = 0; r < 7; r++) {
-                    temp[j - 1][r] = inputArray[j][r];
-                }
-            }
+            zeileEntfernen(inputArray, stelle, true);
 
             return temp;
         } else {
@@ -149,15 +138,15 @@ public class hilfsMethoden extends Activity {
     }
 
     //wenn 2 Zeilen gleich sind (Zeile 1: 5. Stunde; Zeile 2: 6. Stunde), diese zusammenfassen
-    public String[][] stundenZusammenfassen(String[][] inputArray, String tabelle, String klasse, int anzahl, int stelle) {
-        int laenge = inputArray.length, neuAnzahl = laenge; //neuAnzahl = anzahl;
+    public String[][] stundenZusammenfassen(String[][] inputArray, int stelle) {
+        int laenge = inputArray.length;
 
-        //prüfen ob die Stelle, die man prüfen möchte, länger ist als das vorhandene Array
+        //prÃ¼fen ob die Stelle, die man prÃ¼fen mÃ¶chte, lÃ¤nger ist als das vorhandene Array
         if (stelle >= laenge) {
             return inputArray;
         }
 
-        //prüfen ob das Array an der Stelle einen Wert enthält
+        //prÃ¼fen ob das Array an der Stelle einen Wert enthÃ¤lt
         if (inputArray[stelle][0] == null) {
             return inputArray;
         }
@@ -166,18 +155,17 @@ public class hilfsMethoden extends Activity {
                 inputArray[stelle][2].equals(inputArray[stelle - 1][2]) && inputArray[stelle][3].equals(inputArray[stelle - 1][3]) &&
                 inputArray[stelle][4].equals(inputArray[stelle - 1][4]) && inputArray[stelle][5].equals(inputArray[stelle - 1][5]) &&
                 inputArray[stelle][6].equals(inputArray[stelle - 1][6])) {
-            /**Die Zeilen sollen in allem gleich sein, außer an der ersten Stelle**/
-            neuAnzahl -= 1;
-            String temp[][] = new String[neuAnzahl][9];
+            /**Die Zeilen sollen in allem gleich sein, auÃŸer an der ersten Stelle**/
+            String temp[][] = new String[laenge - 1][9];
 
-            //wenn beide stellen nicht länger als 2, dann zusammenfassen
+            //wenn beide stellen nicht lÃ¤nger als 2, dann zusammenfassen
             if (inputArray[stelle][1].length() <= 2 && inputArray[stelle - 1][1].length() <= 2) {
-                temp = zeileEntfernen(inputArray, neuAnzahl, stelle, false);
+                temp = zeileEntfernen(inputArray, stelle, false);
             } else if ((inputArray[stelle][1].length() <= 2 && inputArray[stelle - 1][1].length() > 2)) {
-                temp = zeileEntfernen(inputArray, neuAnzahl, stelle, true);
+                temp = zeileEntfernen(inputArray, stelle, true);
 
             } else if (inputArray[stelle - 1][1].length() <= 2 && inputArray[stelle][1].length() > 2) {
-                temp = zeileEntfernen(inputArray, neuAnzahl, stelle - 1, true);
+                temp = zeileEntfernen(inputArray, stelle - 1, true);
             }
 
             return temp;
@@ -187,20 +175,12 @@ public class hilfsMethoden extends Activity {
     }
 
     //Entfernt Zeile "stelle" aus dem Array
-    public String[][] zeileEntfernen(String[][] inputArray, int neuLaenge, int stelle, boolean nurEntfernen) {
+    public String[][] zeileEntfernen(String[][] inputArray, int stelle, boolean nurEntfernen) {
+        int neuLaenge = inputArray.length - 1;
         String temp[][] = new String[neuLaenge][9];
 
-        for (int j = 0; j < stelle; j++) {
-            for (int r = 0; r < 7; r++) {
-                temp[j][r] = inputArray[j][r];
-            }
-        }
-
-        for (int j = stelle + 1; j <= neuLaenge; j++) { //TODO geändert am 07.04.16
-            for (int r = 0; r < 7; r++) {
-                temp[j - 1][r] = inputArray[j][r];
-            }
-        }
+        System.arraycopy(inputArray, 0, temp, 0 , stelle);
+        System.arraycopy(inputArray, stelle+1, temp, stelle, neuLaenge - stelle);
 
         if (!nurEntfernen) {
             temp[stelle - 1][0] = temp[stelle - 1][0] + " - " + inputArray[stelle][0];
@@ -213,7 +193,7 @@ public class hilfsMethoden extends Activity {
     @SuppressLint("DefaultLocale")
     public String abkuerzung(String abk) {
 
-        if (abk.equals("") || abk == null) {
+        if (abk == null || abk.equals("")) {
             return "kein Fach";
         } else {
             abk = abk.toUpperCase();
@@ -252,11 +232,11 @@ public class hilfsMethoden extends Activity {
             } else if (abk.equals("SW")) {
                 return "Sport weibl.";
             } else if (abk.equals("SM")) {
-                return "Sport männl.";
+                return "Sport mÃ¤nnl.";
             } else if (abk.equals("G")) {
                 return "Geschichte";
             } else if (abk.equals("F")) {
-                return "Französisch";
+                return "FranzÃ¶sisch";
             } else if (abk.equals("NWT")) {
                 return "Naturwissenschaft u. Technik";
             } else if (abk.equals("GK")) {
@@ -264,7 +244,7 @@ public class hilfsMethoden extends Activity {
             } else if (abk.equals("SF")) {
                 return "Seminarkurs";
             } else if (abk.equals("NP")) {
-                return "Naturphänomene";
+                return "NaturphÃ¤nomene";
             } else if (abk.equals("WI")) {
                 return "Wirtschaft";
             } else if (abk.equals("METH")) {

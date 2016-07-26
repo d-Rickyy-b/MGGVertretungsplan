@@ -12,16 +12,15 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
-import android.text.format.DateFormat;
 import android.util.Log;
 
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 
 
 public class VertretungsplanService extends Service implements AsyncTaskCompleteListener<String> {
 
-    SharedPreferences sp;
+    private SharedPreferences sp;
     private String klasse, ersteTabelle_saved, zweiteTabelle_saved;
 
     public VertretungsplanService() {
@@ -33,15 +32,9 @@ public class VertretungsplanService extends Service implements AsyncTaskComplete
     }
 
     @Override
-    public void onCreate() {
-        Date d = new Date();
-        CharSequence s = DateFormat.format("H:mm:ss", d.getTime());
-    }
-
-    @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         updateData();
-        //TODO Vibration zu Permissions hinzufügen
+        //TODO Vibration zu Permissions hinzufÃ¼gen
         stopSelf();
         return START_STICKY;
     }
@@ -67,6 +60,7 @@ public class VertretungsplanService extends Service implements AsyncTaskComplete
         }
     }
 
+    @SuppressWarnings("SameParameterValue")
     public void notification(String ticker, String titel, String text) {
 
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
@@ -87,7 +81,7 @@ public class VertretungsplanService extends Service implements AsyncTaskComplete
         notificationManager.notify(0, n);
     }
 
-    //Überprüft Internetverbindung (true = vorhandene Verbindung, false = keine Verbindung)
+    //ÃœberprÃ¼ft Internetverbindung (true = vorhandene Verbindung, false = keine Verbindung)
     public boolean aktiveVerbindung() {
         final ConnectivityManager conMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         final NetworkInfo activeNetwork = conMgr.getActiveNetworkInfo();
@@ -95,10 +89,12 @@ public class VertretungsplanService extends Service implements AsyncTaskComplete
         return activeNetwork != null && activeNetwork.isConnected();
     }
 
-    private int getNotificationIcon() {
-        boolean useWhiteIcon = (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP);
-        return useWhiteIcon ? R.drawable.icon_inverted : R.drawable.app_logo_material;
-    }
+// --Commented out by Inspection START (26.07.2016 22:31):
+//    private int getNotificationIcon() {
+//        boolean useWhiteIcon = (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP);
+//        return useWhiteIcon ? R.drawable.icon_inverted : R.drawable.app_logo_material;
+//    }
+// --Commented out by Inspection STOP (26.07.2016 22:31)
 
 
     public void onTaskComplete(String html) {
@@ -109,7 +105,7 @@ public class VertretungsplanService extends Service implements AsyncTaskComplete
         int htmlLaenge = html.length();
 
         final String startPunkt = "___-1\"></a><h2 class=\"tabber_title\">",
-                stoppPunkt = "</table><div style=\"clear:both;\"></div></div><div style=\"clear:both;\"></div>",    // geändert am 02.02.14 von </tbody></table><div style=\"clear:both;\"></div></div><div style || </table><div style=\"clear:both;\"></div>
+                stoppPunkt = "</table><div style=\"clear:both;\"></div></div><div style=\"clear:both;\"></div>",    // geÃ¤ndert am 02.02.14 von </tbody></table><div style=\"clear:both;\"></div></div><div style || </table><div style=\"clear:both;\"></div>
                 trennPunkt = "___-2\"></a><h2 class=\"tabber_title\">";
 
 
@@ -120,11 +116,11 @@ public class VertretungsplanService extends Service implements AsyncTaskComplete
             ersteTabelle = beideTabellen.substring(0, beideTabellen.indexOf(trennPunkt));
             zweiteTabelle = beideTabellen.substring(beideTabellen.indexOf(trennPunkt), beideTabellen.length());
 
-            int[] abstand1 = hm.haeufigkeit(ersteTabelle, klasse);
-            int[] abstand2 = hm.haeufigkeit(zweiteTabelle, klasse);
+            ArrayList<Integer> abstand1 = hm.haeufigkeit(ersteTabelle, klasse);
+            ArrayList<Integer> abstand2 = hm.haeufigkeit(zweiteTabelle, klasse);
 
-            int anzahl1 = abstand1.length;
-            int anzahl2 = abstand2.length;
+            int anzahl1 = abstand1.size();
+            int anzahl2 = abstand2.size();
 
             boolean faelltEtwasAus = false;
             int anzahlAusfaelle = 0;
@@ -155,9 +151,9 @@ public class VertretungsplanService extends Service implements AsyncTaskComplete
 
             if (faelltEtwasAus) {
                 if (anzahlAusfaelle > 1) {
-                    notification("Stundenplan Änderung!", "MGG Vertretungsplan", anzahlAusfaelle + " Änderungen!"); //Push mit der Nachricht "Es fällt etwas aus!"
+                    notification("Stundenplan Ã„nderung!", "MGG Vertretungsplan", anzahlAusfaelle + " Ã„nderungen!"); //Push mit der Nachricht "Es fÃ¤llt etwas aus!"
                 } else if (anzahlAusfaelle == 1) {
-                    notification("Stundenplan Änderung!", "MGG Vertretungsplan", anzahlAusfaelle + " Änderung!"); //Push mit der Nachricht "Es fällt etwas aus!"
+                    notification("Stundenplan Ã„nderung!", "MGG Vertretungsplan", anzahlAusfaelle + " Ã„nderung!"); //Push mit der Nachricht "Es fÃ¤llt etwas aus!"
                 } else {
                     Log.v("VertretungsplanService", "Fehler!");
                 }

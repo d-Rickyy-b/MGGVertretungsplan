@@ -6,7 +6,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -17,9 +16,6 @@ import android.widget.Toast;
 
 public class webView_Activity extends AppCompatActivity {
 
-    private WebView webView;
-    Toolbar toolbar;
-
     @SuppressLint("NewApi")
     public void onCreate(Bundle savedInstanceState) {
         getWindow().requestFeature(Window.FEATURE_PROGRESS);
@@ -27,7 +23,7 @@ public class webView_Activity extends AppCompatActivity {
 
         getWindow().setContentView(R.layout.webview);
 
-        toolbar = (Toolbar) findViewById(R.id.webview_toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.webview_toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitle("Website");
         if (Build.VERSION.SDK_INT >= 21) {
@@ -45,7 +41,7 @@ public class webView_Activity extends AppCompatActivity {
 
 
     public void web() {
-        webView = (WebView) findViewById(R.id.webView1);
+        WebView webView = (WebView) findViewById(R.id.webView1);
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setBuiltInZoomControls(true);
 

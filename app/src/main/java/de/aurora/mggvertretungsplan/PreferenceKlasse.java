@@ -42,7 +42,7 @@ public class PreferenceKlasse extends PreferenceActivity implements SharedPrefer
     }
 
 
-	//ActionBar zurück option
+	//ActionBar zurÃ¼ck option
     public boolean onOptionsItemSelected(MenuItem item) {
 	    switch (item.getItemId()) {
 	        case android.R.id.home:
@@ -54,7 +54,7 @@ public class PreferenceKlasse extends PreferenceActivity implements SharedPrefer
         return true;
 	}
 
-    //Wenn eine Einstellung geändert wird
+    //Wenn eine Einstellung geÃ¤ndert wird
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         if (key.equals("Klassenstufe") || key.equals("Klasse")) {
             String klasseGesamt = getClassName(sharedPreferences);
@@ -99,11 +99,6 @@ public class PreferenceKlasse extends PreferenceActivity implements SharedPrefer
     protected void onPause() {
         super.onPause();
         PreferenceManager.getDefaultSharedPreferences(this).unregisterOnSharedPreferenceChangeListener(this);
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
     }
 
 }

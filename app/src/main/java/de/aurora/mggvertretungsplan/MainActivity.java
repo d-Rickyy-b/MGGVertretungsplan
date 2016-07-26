@@ -40,11 +40,11 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements AsyncTaskCompleteListener<String>, SwipeRefreshLayout.OnRefreshListener {
 
-    public AdView adView;
+    private AdView adView;
     SharedPreferences sp;
-    Toolbar toolbar;
-    hilfsMethoden hm;
-    int clickcount = 0;
+    private Toolbar toolbar;
+    private hilfsMethoden hm;
+    private int clickcount = 0;
     private String klasse;
     private int jahr;
     private SwipeRefreshLayout mSwipeLayout;
@@ -180,15 +180,15 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         return super.onCreateOptionsMenu(menu);
     }
 
-    //Werbebanner hinzufügen
-    public void createAdBanner() {
+    //Werbebanner hinzufÃ¼gen
+    private void createAdBanner() {
         adView = (AdView) this.findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder()
                 .build();
         adView.loadAd(adRequest);
     }
 
-    //Aktion die ausgeführt werden soll, wenn action bar item geklickt wurde (auch aktualisieren)
+    //Aktion die ausgefÃ¼hrt werden soll, wenn action bar item geklickt wurde (auch aktualisieren)
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_settings:
@@ -215,7 +215,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
     }
 
     //AlarmManager Starten! -> Hintergrund Prozess
-    public void AlarmManager(int intervall) {
+    private void AlarmManager(int intervall) {
         long interval = (long) intervall;
         long firstStart = System.currentTimeMillis() + DateUtils.MINUTE_IN_MILLIS * 30;
 
@@ -226,14 +226,14 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
     }
 
     //beendet AlarmManager
-    public void AlarmManagerBeenden() {
+    private void AlarmManagerBeenden() {
         Intent intentsOpen = new Intent(this, VertretungsplanService.class);
         PendingIntent pendingIntent = PendingIntent.getService(this, 0, intentsOpen, 0);
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
         alarmManager.cancel(pendingIntent);
     }
 
-    public boolean aktiveVerbindung() {
+    private boolean aktiveVerbindung() {
         final ConnectivityManager conMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         final NetworkInfo activeNetwork = conMgr.getActiveNetworkInfo();
 
@@ -243,7 +243,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
             return false;
     }
 
-    // überprüfen ob Klasse ausgewählt, ob Internetverbinding besteht, gibt Befehl zum Runterladen
+    // Ã¼berprÃ¼fen ob Klasse ausgewÃ¤hlt, ob Internetverbinding besteht, gibt Befehl zum Runterladen
     private void initialisierung() {
         if (aktiveVerbindung()) {
             createAdBanner();
@@ -268,14 +268,14 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         return hm.stringKuerzen(inputString, klasse);
     }
 
-    //Initialisieren einer ArrayList, Hinzufügen von Items, Adapter an ListView binden
+    //Initialisieren einer ArrayList, HinzufÃ¼gen von Items, Adapter an ListView binden
     private void anzeigen(String[][] ersteTabelleArr, String[][] zweiteTabelleArr, String erstesDatum, String zweitesDatum, boolean aktTagAnzeigen) {
         ListView listView = (ListView) findViewById(R.id.listView);
 
         ArrayList<Vertretungen> list = new ArrayList<>();
 
         long unixTime = System.currentTimeMillis() / 1000L;
-        String currentTimeInHours = new SimpleDateFormat("HH", new Locale("de")).format((unixTime + 3600) * 1000L).toString(); //added ", new Locale("de")"
+        String currentTimeInHours = new SimpleDateFormat("HH", new Locale("de")).format((unixTime + 3600) * 1000L); //added ", new Locale("de")"
         String tagAkt = (String) DateFormat.format("dd", new Date());
         String monatAkt = (String) DateFormat.format("MM", new Date());
 
@@ -353,12 +353,35 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
         try {
             /** Beschneiden der Tabellen, Speichern in Strings, Auslesen des Datums aus html **/
-            beideTabellen = html.substring(html.indexOf(startPunkt), html.indexOf(stoppPunkt));
-            ersteTabelle = beideTabellen.substring(0, beideTabellen.indexOf(trennPunkt));
-            zweiteTabelle = beideTabellen.substring(beideTabellen.indexOf(trennPunkt), beideTabellen.length());
+            try {
+                beideTabellen = html.substring(html.indexOf(startPunkt), html.indexOf(stoppPunkt));
+            } catch (Exception e){
+                beideTabellen = html;
+            }
 
-            erstesDatum = ersteTabelle.substring(36, 42);
-            zweitesDatum = zweiteTabelle.substring(36, 42);
+            try {
+                ersteTabelle = beideTabellen.substring(0, beideTabellen.indexOf(trennPunkt));
+            } catch (Exception e) {
+                ersteTabelle = "";
+            }
+
+            try {
+                zweiteTabelle = beideTabellen.substring(beideTabellen.indexOf(trennPunkt), beideTabellen.length());
+            } catch (Exception e) {
+                zweiteTabelle = "";
+            }
+
+            try {
+                erstesDatum = ersteTabelle.substring(36, 42);
+            } catch (Exception e) {
+                erstesDatum = "";
+            }
+
+            try {
+                zweitesDatum = zweiteTabelle.substring(36, 42);
+            } catch (Exception e) {
+                zweitesDatum = "";
+            }
 
             String AbrufDatum = hm.getFormattedDate(System.currentTimeMillis());
 
@@ -376,7 +399,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
             editor.putString("AbrufDatum", AbrufDatum);
             editor.putString("ersteTabelle", ersteTabelle);
             editor.putString("zweiteTabelle", zweiteTabelle);
-            editor.commit();
+            editor.apply();
 
         } catch (Exception e) {
             e.printStackTrace();

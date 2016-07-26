@@ -1,6 +1,7 @@
 package de.aurora.mggvertretungsplan;
 
 import android.os.AsyncTask;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -29,7 +30,7 @@ public class DownloadWebPageTask extends AsyncTask<String, String, String> {
                 InputStream content = execute.getEntity().getContent();
 
                 BufferedReader buffer = new BufferedReader(new InputStreamReader(content));
-                String s = "";
+                String s;
                 while ((s = buffer.readLine()) != null) {
                     response += s;
                 }

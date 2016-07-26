@@ -16,10 +16,10 @@ import android.widget.Toast;
 
 public class Settings extends PreferenceActivity implements OnSharedPreferenceChangeListener {
 
-    MainOptionFragment mainOptionFragment;
-    public String klasseGesamt_saved;
-    ListPreference classPref;
-    Toolbar toolbar;
+    private MainOptionFragment mainOptionFragment;
+    private String klasseGesamt_saved;
+    private ListPreference classPref;
+    private Toolbar toolbar;
 
 
     @SuppressLint("NewApi")
@@ -39,7 +39,7 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Einstellungen übernommen!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Einstellungen Ã¼bernommen!", Toast.LENGTH_SHORT).show();
                 finish();
             }
         });
@@ -55,11 +55,11 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
     }
 
 
-    //Toolbar zurück option
+    //Toolbar zurÃ¼ck option
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                Toast.makeText(getApplicationContext(), "Einstellungen übernommen!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Einstellungen Ã¼bernommen!", Toast.LENGTH_SHORT).show();
                 finish();
                 break;
             default:
@@ -68,7 +68,7 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
         return true;
     }
 
-    //Wenn (gespeicherte) Daten geändert werden
+    //Wenn (gespeicherte) Daten geÃ¤ndert werden
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         if (key.equals("Klassenstufe") || key.equals("Klasse")) {
             String klasseGesamt = getClassName(sharedPreferences);
@@ -114,8 +114,4 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
         PreferenceManager.getDefaultSharedPreferences(this).unregisterOnSharedPreferenceChangeListener(this);
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-    }
 }
