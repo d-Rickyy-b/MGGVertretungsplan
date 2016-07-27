@@ -18,6 +18,10 @@ local.properties
 *.class
 ./app/build/*
 ./build/*
+.idea/*
+.idea/
+.gradle
+./gradle/*
 
 # External tool builders
 .externalToolBuilders/
