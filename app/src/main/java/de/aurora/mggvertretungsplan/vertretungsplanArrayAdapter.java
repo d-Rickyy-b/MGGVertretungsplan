@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-public class vertretungsplanArrayAdapter extends ArrayAdapter<Vertretungen> {
+class vertretungsplanArrayAdapter extends ArrayAdapter<Vertretungen> {
 
     public vertretungsplanArrayAdapter(Context context, int textViewResourceId, List<Vertretungen> objects) {
         super(context, textViewResourceId, objects);

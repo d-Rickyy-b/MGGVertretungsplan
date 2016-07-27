@@ -11,9 +11,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 
-public class DownloadWebPageTask extends AsyncTask<String, String, String> {
+class DownloadWebPageTask extends AsyncTask<String, String, String> {
 
-    private AsyncTaskCompleteListener<String> callback;
+    private final AsyncTaskCompleteListener<String> callback;
 
     public DownloadWebPageTask(AsyncTaskCompleteListener<String> callback) {
         this.callback = callback;

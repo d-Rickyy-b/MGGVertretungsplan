@@ -41,7 +41,7 @@ import java.util.Locale;
 public class MainActivity extends AppCompatActivity implements AsyncTaskCompleteListener<String>, SwipeRefreshLayout.OnRefreshListener {
 
     private AdView adView;
-    SharedPreferences sp;
+    private SharedPreferences sp;
     private Toolbar toolbar;
     private hilfsMethoden hm;
     private int clickcount = 0;
@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
     }
 
     //added for testing purposes
-    public void notification(String ticker, String titel, String text) {
+    private void notification(String ticker, String titel, String text) {
 
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         PendingIntent pIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, 0);
@@ -155,7 +155,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         }
     }
 
-    public void gespeicherteDatenAnzeigen() {
+    private void gespeicherteDatenAnzeigen() {
         TextView aktualisiertAmTextView = (TextView) findViewById(R.id.listText);
         String AbrufDatum = sp.getString("AbrufDatum", ": Noch nie aktualisiert!");
         aktualisiertAmTextView.setText("Zuletzt aktualisiert" + AbrufDatum);

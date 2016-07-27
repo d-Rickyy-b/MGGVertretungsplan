@@ -110,7 +110,7 @@ public class hilfsMethoden extends Activity {
     }
 
     //doppelte Zeilen in einem Array werden zusammengefasst
-    public String[][] zusammenfassen(String[][] inputArray, int stelle) {
+    private String[][] zusammenfassen(String[][] inputArray, int stelle) {
         int laenge = inputArray.length;
         int neuLaenge = laenge - 1;
 
@@ -138,7 +138,7 @@ public class hilfsMethoden extends Activity {
     }
 
     //wenn 2 Zeilen gleich sind (Zeile 1: 5. Stunde; Zeile 2: 6. Stunde), diese zusammenfassen
-    public String[][] stundenZusammenfassen(String[][] inputArray, int stelle) {
+    private String[][] stundenZusammenfassen(String[][] inputArray, int stelle) {
         int laenge = inputArray.length;
 
         //prüfen ob die Stelle, die man prüfen möchte, länger ist als das vorhandene Array
@@ -175,7 +175,7 @@ public class hilfsMethoden extends Activity {
     }
 
     //Entfernt Zeile "stelle" aus dem Array
-    public String[][] zeileEntfernen(String[][] inputArray, int stelle, boolean nurEntfernen) {
+    private String[][] zeileEntfernen(String[][] inputArray, int stelle, boolean nurEntfernen) {
         int neuLaenge = inputArray.length - 1;
         String temp[][] = new String[neuLaenge][9];
 
@@ -264,7 +264,7 @@ public class hilfsMethoden extends Activity {
     }
 
     //sortiert ein Array
-    public void sortieren(String[][] data) {
+    private void sortieren(String[][] data) {
         Arrays.sort(data, new Comparator<String[]>() {
             @Override
             public int compare(final String[] entry1, final String[] entry2) {

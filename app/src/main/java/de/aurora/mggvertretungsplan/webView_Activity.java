@@ -40,7 +40,7 @@ public class webView_Activity extends AppCompatActivity {
     }
 
 
-    public void web() {
+    private void web() {
         WebView webView = (WebView) findViewById(R.id.webView1);
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setBuiltInZoomControls(true);

@@ -13,9 +13,9 @@ import android.view.View;
 
 public class PreferenceKlasse extends PreferenceActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
 
-    KlassenFragment klassenFragment;
-	Toolbar toolbar;
-    public String klasseGesamt_saved;
+    private KlassenFragment klassenFragment;
+	private Toolbar toolbar;
+    private String klasseGesamt_saved;
 	
 	@SuppressLint("NewApi")
 	protected void onCreate(Bundle savedInstanceState) {

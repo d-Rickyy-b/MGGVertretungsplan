@@ -1,6 +1,6 @@
 package de.aurora.mggvertretungsplan;
 
-public class Vertretungen {
+class Vertretungen {
 	private String stunde, raum, fach, neuRaum,bemerkung,tag,datum;
 	
 	public Vertretungen(String stunde, String fach, String raum, String neuRaum, String bemerkung,String tag, String datum) {

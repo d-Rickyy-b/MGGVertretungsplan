@@ -10,8 +10,8 @@ import android.view.View;
 
 public class PreferenceBenachrichtigungen extends PreferenceActivity{
 
-	NotificationFragment notificationFragment = new NotificationFragment();
-	Toolbar toolbar;
+	private NotificationFragment notificationFragment = new NotificationFragment();
+	private Toolbar toolbar;
 	
 	@SuppressLint("NewApi")
 	protected void onCreate(Bundle savedInstanceState) {

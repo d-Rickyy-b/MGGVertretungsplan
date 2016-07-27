@@ -43,7 +43,7 @@ public class VertretungsplanService extends Service implements AsyncTaskComplete
     public void onDestroy() {
     }
 
-    public void updateData() {
+    private void updateData() {
         Log.v("VertretungsplanService", "UpdateData");
         if (aktiveVerbindung()) {
             sp = PreferenceManager.getDefaultSharedPreferences(this);
@@ -61,7 +61,7 @@ public class VertretungsplanService extends Service implements AsyncTaskComplete
     }
 
     @SuppressWarnings("SameParameterValue")
-    public void notification(String ticker, String titel, String text) {
+    private void notification(String ticker, String titel, String text) {
 
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         PendingIntent pIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, 0);
@@ -82,7 +82,7 @@ public class VertretungsplanService extends Service implements AsyncTaskComplete
     }
 
     //Überprüft Internetverbindung (true = vorhandene Verbindung, false = keine Verbindung)
-    public boolean aktiveVerbindung() {
+    private boolean aktiveVerbindung() {
         final ConnectivityManager conMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         final NetworkInfo activeNetwork = conMgr.getActiveNetworkInfo();
 
