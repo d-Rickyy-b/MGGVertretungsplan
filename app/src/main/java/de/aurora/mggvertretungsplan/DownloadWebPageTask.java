@@ -15,7 +15,7 @@ class DownloadWebPageTask extends AsyncTask<String, String, String> {
 
     private final AsyncTaskCompleteListener<String> callback;
 
-    private DownloadWebPageTask(AsyncTaskCompleteListener<String> callback) {
+    public DownloadWebPageTask(AsyncTaskCompleteListener<String> callback) {
         this.callback = callback;
     }
 
