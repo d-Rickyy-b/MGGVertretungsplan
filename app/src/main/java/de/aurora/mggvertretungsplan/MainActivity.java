@@ -7,6 +7,7 @@ import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
@@ -29,9 +30,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -40,7 +38,6 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements AsyncTaskCompleteListener<String>, SwipeRefreshLayout.OnRefreshListener {
 
-    private AdView adView;
     private SharedPreferences sp;
     private Toolbar toolbar;
     private hilfsMethoden hm;
@@ -84,7 +81,6 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
         hm = new hilfsMethoden();
         sp = PreferenceManager.getDefaultSharedPreferences(this);
-        createAdBanner();
         gespeicherteDatenAnzeigen();
     }
 
@@ -158,7 +154,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
     private void gespeicherteDatenAnzeigen() {
         TextView aktualisiertAmTextView = (TextView) findViewById(R.id.listText);
         String AbrufDatum = sp.getString("AbrufDatum", ": Noch nie aktualisiert!");
-        aktualisiertAmTextView.setText("Zuletzt aktualisiert" + AbrufDatum);
+        aktualisiertAmTextView.setText(String.format("Zuletzt aktualisiert: %s", AbrufDatum));
 
         jahr = new GregorianCalendar().get(GregorianCalendar.YEAR);
         klasse = sp.getString("KlasseGesamt", "5a");
@@ -180,13 +176,6 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         return super.onCreateOptionsMenu(menu);
     }
 
-    //Werbebanner hinzufügen
-    private void createAdBanner() {
-        adView = (AdView) this.findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder()
-                .build();
-        adView.loadAd(adRequest);
-    }
 
     //Aktion die ausgeführt werden soll, wenn action bar item geklickt wurde (auch aktualisieren)
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -200,11 +189,16 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
                 startActivity(webViewIntent);
                 break;
             case R.id.action_info:
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.YourAlertDialogTheme);
                 builder
                         .setIcon(R.drawable.ic_menu_info_details)
                         .setTitle("MGG Vertretungsplan v" + getString(R.string.version))
-                        .setMessage("Programmiert von Rico Jambor");
+                        .setMessage("Programmiert von Rico Jambor")
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        });
 
                 AlertDialog dialog = builder.create();
                 dialog.show();
@@ -237,16 +231,12 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         final ConnectivityManager conMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         final NetworkInfo activeNetwork = conMgr.getActiveNetworkInfo();
 
-        if (activeNetwork != null)
-            return activeNetwork.isConnected();
-        else
-            return false;
+        return activeNetwork != null && activeNetwork.isConnected();
     }
 
     // überprüfen ob Klasse ausgewählt, ob Internetverbinding besteht, gibt Befehl zum Runterladen
     private void initialisierung() {
         if (aktiveVerbindung()) {
-            createAdBanner();
             mSwipeLayout.setRefreshing(true);
             klasse = sp.getString("KlasseGesamt", "5a");
             sp = PreferenceManager.getDefaultSharedPreferences(this);
@@ -385,7 +375,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
             String AbrufDatum = hm.getFormattedDate(System.currentTimeMillis());
 
-            aktualisiertAmTextView.setText("Zuletzt aktualisiert" + AbrufDatum);
+            aktualisiertAmTextView.setText(String.format("Zuletzt aktualisiert: %s", AbrufDatum));
 
             ersteTabelleArr = stringToArray(ersteTabelle);
             zweiteTabelleArr = stringToArray(zweiteTabelle);
@@ -408,18 +398,12 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
     }
 
     public void onPause() {
-        if (adView != null) {
-            adView.pause();
-        }
         super.onPause();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        if (adView != null) {
-            adView.resume();
-        }
         initialisierung();
         serviceProvider();
     }
@@ -427,9 +411,6 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (adView != null) {
-            adView.destroy();
-        }
     }
 
 	/*
