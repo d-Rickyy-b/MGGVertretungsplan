@@ -7,16 +7,15 @@
     <string name="action_webview">Webseite</string>
     <string name="Url1">http://www.mgg.karlsruhe.de/index.php/vertretungsplan</string>
     <string name="ur2">http://rickyy.lima-city.de/html/vertretungsplan.html</string>
-    <string name="zuletztAbger">Zuletzt abgerufen am: </string>
+    <string name="zuletztAbger">Zuletzt aktualisiert: %s</string>
     <string name="bemerkung">bemerkung</string>
     <string name="fach">fach</string>
     <string name="neuraum">neuraum</string>
     <string name="raum">raum</string>
     <string name="stunde">stunde</string>
-    <string name="adMobToken">YourAPITokenHere</string>
 
-    <string name="version">1.5.0</string>
-    <integer name="versionNumber">6</integer>
+    <string name="version">1.5.1</string>
+    <integer name="versionNumber">7</integer>
 
     <string name="notifications">Benachrichtigungen</string>
     <string name="miscellaneous">Verschiedenes</string>
