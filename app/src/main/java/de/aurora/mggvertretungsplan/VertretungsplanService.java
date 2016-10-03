@@ -1,6 +1,5 @@
 package de.aurora.mggvertretungsplan;
 
-import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
@@ -14,6 +13,9 @@ import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -21,7 +23,7 @@ import java.util.Arrays;
 public class VertretungsplanService extends Service implements AsyncTaskCompleteListener<String> {
 
     private SharedPreferences sp;
-    private String klasse, ersteTabelle_saved, zweiteTabelle_saved;
+    private String klasse;
 
     public VertretungsplanService() {
 
@@ -47,10 +49,7 @@ public class VertretungsplanService extends Service implements AsyncTaskComplete
         Log.v("VertretungsplanService", "UpdateData");
         if (aktiveVerbindung()) {
             sp = PreferenceManager.getDefaultSharedPreferences(this);
-
             klasse = sp.getString("KlasseGesamt", "5a");
-            ersteTabelle_saved = sp.getString("ersteTabelle", "");
-            zweiteTabelle_saved = sp.getString("zweiteTabelle", "");
 
             try {
                 new DownloadWebPageTask(this).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, getString(R.string.Url1));
@@ -60,25 +59,25 @@ public class VertretungsplanService extends Service implements AsyncTaskComplete
         }
     }
 
-    @SuppressWarnings("SameParameterValue")
     private void notification(String ticker, String titel, String text) {
-
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         PendingIntent pIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, 0);
         Log.i("VertretungsplanService", "Notification!");
         @SuppressWarnings("deprecation")
-        Notification n = new Notification.Builder(getApplicationContext())
+        android.support.v7.app.NotificationCompat.Builder notification = (android.support.v7.app.NotificationCompat.Builder) new android.support.v7.app.NotificationCompat.Builder(this)
                 .setContentTitle(titel)
                 .setContentText(text)
                 .setTicker(ticker)
-                .setSmallIcon(R.drawable.ic_launcher)
+                .setColor(getResources().getColor(R.color.accentColor))
+                .setSmallIcon(R.drawable.icon_inverted)
                 .setContentIntent(pIntent)
-                .setAutoCancel(true)
-                .getNotification();
-        //TODO statt .getNotification() -> .build() ... Android Version 14 (IceCreamSandwich) -> Version 16 (JellyBean)
+                .setAutoCancel(true);
+
+        //.setVibrate(new long[]{0,300,200,300})
+        //.setLights(Color.WHITE, 1000, 5000)
+
         NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        n.flags |= Notification.FLAG_AUTO_CANCEL;
-        notificationManager.notify(0, n);
+        notificationManager.notify(0, notification.build());
     }
 
     //Überprüft Internetverbindung (true = vorhandene Verbindung, false = keine Verbindung)
@@ -98,71 +97,65 @@ public class VertretungsplanService extends Service implements AsyncTaskComplete
 
 
     public void onTaskComplete(String html) {
-        Log.v("VertretungsplanService", "onTaskComplete");
-        String zwischenString, beideTabellen, ersteTabelle, zweiteTabelle;
-        hilfsMethoden hm = new hilfsMethoden();
+        Log.v("VertretungsplanService", "Check auf Vertretungen");
+        sp = PreferenceManager.getDefaultSharedPreferences(this);
+        ArrayList<ArrayList<String>> tableOne, tableTwo;
 
-        int htmlLaenge = html.length();
-
-        final String startPunkt = "___-1\"></a><h2 class=\"tabber_title\">",
-                stoppPunkt = "</table><div style=\"clear:both;\"></div></div><div style=\"clear:both;\"></div>",    // geändert am 02.02.14 von </tbody></table><div style=\"clear:both;\"></div></div><div style || </table><div style=\"clear:both;\"></div>
-                trennPunkt = "___-2\"></a><h2 class=\"tabber_title\">";
-
+        html = html.replace("&auml;", "ä").replace("&ouml;", "ö").replace("&uuml;", "ü");
+        Document doc = Jsoup.parse(html);
 
         try {
-            zwischenString = html.substring(html.indexOf(startPunkt), htmlLaenge);
-            beideTabellen = zwischenString.substring(0, zwischenString.indexOf(stoppPunkt));
-
-            ersteTabelle = beideTabellen.substring(0, beideTabellen.indexOf(trennPunkt));
-            zweiteTabelle = beideTabellen.substring(beideTabellen.indexOf(trennPunkt), beideTabellen.length());
-
-            ArrayList<Integer> abstand1 = hm.haeufigkeit(ersteTabelle, klasse);
-            ArrayList<Integer> abstand2 = hm.haeufigkeit(zweiteTabelle, klasse);
-
-            int anzahl1 = abstand1.size();
-            int anzahl2 = abstand2.size();
-
-            boolean faelltEtwasAus = false;
-            int anzahlAusfaelle = 0;
-
-            if (anzahl1 != 0) {
-                String[][] sArray1 = hm.stringKuerzen(ersteTabelle, klasse);
-                String[][] sArray1_1 = hm.stringKuerzen(ersteTabelle_saved, klasse);
-
-
-                if (!Arrays.deepEquals(sArray1, sArray1_1)) {
-                    faelltEtwasAus = true;
-                    anzahlAusfaelle += sArray1.length;
-                }
-            }
-
-            //Wenn anzahl2 nicht 0 ist, dann gespeicherte Tabelle mit aktueller vergleichen.
-            if (anzahl2 != 0) {
-
-                String[][] sArray2 = hm.stringKuerzen(zweiteTabelle, klasse);
-                String[][] sArray2_1 = hm.stringKuerzen(zweiteTabelle_saved, klasse);
-
-                if (!Arrays.deepEquals(sArray2, sArray2_1)) {
-                    faelltEtwasAus = true;
-                    anzahlAusfaelle += sArray2.length;
-                }
-            }
-
-
-            if (faelltEtwasAus) {
-                if (anzahlAusfaelle > 1) {
-                    notification("Stundenplan Änderung!", "MGG Vertretungsplan", anzahlAusfaelle + " Änderungen!"); //Push mit der Nachricht "Es fällt etwas aus!"
-                } else if (anzahlAusfaelle == 1) {
-                    notification("Stundenplan Änderung!", "MGG Vertretungsplan", anzahlAusfaelle + " Änderung!"); //Push mit der Nachricht "Es fällt etwas aus!"
-                } else {
-                    Log.v("VertretungsplanService", "Fehler!");
-                }
-            }
-
-
-        } catch (Exception e) {
+            tableOne = hilfsMethoden.extractTable(doc, 0);
+        } catch (IndexOutOfBoundsException e) {
             e.printStackTrace();
+            tableOne = new ArrayList<>();
+            tableOne.add(new ArrayList<>(Arrays.asList("", "", "", "", "", "", "")));
         }
+
+        try {
+            tableTwo = hilfsMethoden.extractTable(doc, 1);
+        } catch (IndexOutOfBoundsException e) {
+            e.printStackTrace();
+            tableTwo = new ArrayList<>();
+            tableTwo.add(new ArrayList<>(Arrays.asList("", "", "", "", "", "", "")));
+        }
+
+        tableOne = hilfsMethoden.getRightClass(tableOne, klasse);
+        tableTwo = hilfsMethoden.getRightClass(tableTwo, klasse);
+
+        tableOne = hilfsMethoden.deleteDoubles(tableOne);
+        tableTwo = hilfsMethoden.deleteDoubles(tableTwo);
+
+        tableOne = hilfsMethoden.removeBlanks(tableOne);
+        tableTwo = hilfsMethoden.removeBlanks(tableTwo);
+
+        hilfsMethoden.sortieren(tableOne);
+        hilfsMethoden.sortieren(tableTwo);
+
+        tableOne = hilfsMethoden.stundenZusammenfassen(tableOne);
+        tableTwo = hilfsMethoden.stundenZusammenfassen(tableTwo);
+
+        ArrayList<ArrayList<String>> tableOne_saved = hilfsMethoden.getArrayList(sp.getString("ersteTabelle", ""));
+        ArrayList<ArrayList<String>> tableTwo_saved = hilfsMethoden.getArrayList(sp.getString("zweiteTabelle", ""));
+
+        int anzahlAusfaelle = tableOne.size() + tableTwo.size();
+
+        if (anzahlAusfaelle > 0) {
+            int count1 = hilfsMethoden.getDifferencesCount(tableOne, tableOne_saved);
+            int count2 = hilfsMethoden.getDifferencesCount(tableTwo, tableTwo_saved);
+            int gesamt = (count1 + count2);
+//            Log.v("MyTag", "Gesamt: " + gesamt);
+//            Log.v("MyTag", "tableOne: " + tableOne.toString() + " | " + tableOne_saved.toString());
+//            Log.v("MyTag", "tableTwo: " + tableTwo.toString() + " | " + tableTwo_saved.toString());
+
+            if (gesamt > 1) {
+                notification("Stundenplan Änderung!", "MGG Vertretungsplan", gesamt + " Änderungen!"); //Push mit der Nachricht "Es fällt etwas aus!"
+            } else if (gesamt == 1) {
+                notification("Stundenplan Änderung!", "MGG Vertretungsplan", "Eine Änderung!"); //Push mit der Nachricht "Es fällt etwas aus!"
+            }
+        }
+        //TODO neue Listen speichern?
+
     }
 
 }

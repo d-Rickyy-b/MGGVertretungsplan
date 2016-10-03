@@ -1,105 +1,30 @@
 package de.aurora.mggvertretungsplan;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.text.format.DateFormat;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.GregorianCalendar;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 
-public class hilfsMethoden extends Activity {
+public class hilfsMethoden {
 
     public hilfsMethoden() {
     }
 
-    //Diese Methode durchsucht die Tabellen nach der angegebenen Klasse. Alle gefundenen Elemente werden aufgelistet
-    public String[][] stringKuerzen(String str, String klasse) {
-        ArrayList<Integer> abstand = haeufigkeit(str, klasse);
-        int anzahl = abstand.size(), index1, index2, abstandVar;
-        String[][] sArray;
-        String zwischenresult;
-        sArray = new String[anzahl][7];
-
-        for (int i = 0; i < anzahl; i++) {
-            abstandVar = abstand.get(i);
-
-            if (abstandVar > 30) {
-                zwischenresult = str.substring(abstandVar - 30);
-            } else {
-                zwischenresult = str;
-            }
-
-            int endposition = zwischenresult.indexOf("</td></tr>");
-            zwischenresult = zwischenresult.substring(0, endposition + 5);
-
-            int startposition2 = zwischenresult.indexOf("<td>");
-            zwischenresult = zwischenresult.substring(startposition2, zwischenresult.length());
-
-            if (zwischenresult.contains("</tr>")) {
-                int endposition2 = zwischenresult.indexOf("</tr>");
-                zwischenresult = zwischenresult.substring(0, endposition2);
-            }
-
-            zwischenresult = zwischenresult.replace("&auml;", "ä").replace("&ouml;", "ö").replace("&uuml;", "ü");
-
-            if (zwischenresult.contains("</td><td>")) {
-                index1 = zwischenresult.indexOf("<td>") + 4;
-                index2 = zwischenresult.indexOf("</td>");
-
-                for (int y = 0; y < 7; y++) {
-                    sArray[i][y] = zwischenresult.substring(index1, index2);
-                    index1 = zwischenresult.indexOf("<td>", index1 + 1) + 4;
-                    index2 = zwischenresult.indexOf("</td>", index2 + 1);
-                }
-            }
-        }
-        sortieren(sArray);
-        int laenge = sArray.length;
-
-        if (laenge >= 2) {
-            for (int j = 0; j < 2; j++) {
-                for (int i = 1; i < laenge; i++) {
-                    sArray = zusammenfassen(sArray, i);
-                    laenge = sArray.length;
-                }
-
-                for (int i = 1; i < laenge; i++) {
-                    sArray = stundenZusammenfassen(sArray, i);
-                    laenge = sArray.length;
-                }
-            }
-        }
-        return sArray;
-    }
-
-    // zählt die Häufigkeit der eingegebenen Klasse im vorhandenen String
-    public ArrayList<Integer> haeufigkeit(String quelle, String Ausschnitt) {
-        if (quelle == null || Ausschnitt == null) {
-            return new ArrayList<>();
-        }
-
-        int zahl = 0;
-        ArrayList<Integer> laengenArray = new ArrayList<>();
-
-        for (int pos = 0; (pos = quelle.indexOf(Ausschnitt, pos)) != -1; zahl++) {
-            if (quelle.substring(pos - 1, pos + 2).equals("BK1") || quelle.substring(pos - 1, pos + 2).equals("BK2")) {
-                //zahl--;
-                pos++;
-            } else {
-                laengenArray.add(pos);
-            }
-            pos += Ausschnitt.length(); //Wenn Klasse ist NICHT BK1 od. BK2, an Stelle hinter der Klasse springen
-            }
-
-        return laengenArray;
-    }
-
     // Diese Methode gibt den passenden Namen zu einem bestimmten Datum zurück
-    public String getAnyDayByName(int jahr, int monat, int tag) {
+    public static String getAnyDayByName(int jahr, int monat, int tag) {
         String[] tage = new String[]{"Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"};
 
         GregorianCalendar gc = new GregorianCalendar();
@@ -109,92 +34,235 @@ public class hilfsMethoden extends Activity {
         return tage[tag_index - 1];
     }
 
-    //doppelte Zeilen in einem Array werden zusammengefasst
-    private String[][] zusammenfassen(String[][] inputArray, int stelle) {
-        int laenge = inputArray.length;
-        int neuLaenge = laenge - 1;
 
-        if (stelle >= laenge || inputArray[stelle][0] == null) {
-            return inputArray;
+    public static ArrayList<ArrayList<String>> stundenZusammenfassen(ArrayList<ArrayList<String>> inputList) {
+        if (inputList.size() <= 1) {
+            return inputList;
         }
 
-        //wenn Zeile Nr."stelle" genau das gleiche beinhaltet wie Zeile Nr."stelle - 1" dann zusammenfassen
-        if (inputArray[stelle][0].equals(inputArray[stelle - 1][0]) && inputArray[stelle][1].equals(inputArray[stelle - 1][1]) &&
-                inputArray[stelle][2].equals(inputArray[stelle - 1][2]) && inputArray[stelle][3].equals(inputArray[stelle - 1][3]) &&
-                inputArray[stelle][4].equals(inputArray[stelle - 1][4]) && inputArray[stelle][5].equals(inputArray[stelle - 1][5]) &&
-                inputArray[stelle][6].equals(inputArray[stelle - 1][6])) {
+        for (int i = 1; i < inputList.size(); i++) {
+            boolean identical = true;
+            ArrayList<String> zeile = inputList.get(i);
 
-            String temp[][] = new String[neuLaenge][7];
+            if (!zeile.get(0).equals(inputList.get(i - 1).get(0))) {
+                for (int j = 1; j < zeile.size(); j++) {
+                    if (!zeile.get(j).equals(inputList.get(i - 1).get(j))) {
+                        identical = false;
+                        break;
+                    }
+                }
 
-            //System.arraycopy(inputArray, 0, temp, 0 , stelle);
-            //System.arraycopy(inputArray, stelle+1, temp, stelle, neuLaenge - stelle);
+                if (identical) {
+                    String neuStunde;
+                    //TODO prüfen ob Stunde > als 2 Zeichen | Ansonsten passiert folgendes: 5-6-8 (bei 5-6 und 8)
+                    neuStunde = String.format("%s-%s", inputList.get(i - 1).get(0), inputList.get(i).get(0));
+                    inputList.get(i - 1).set(0, neuStunde);
+                    inputList.remove(i);
+                    i--;
+                }
+            }
+        }
 
-            zeileEntfernen(inputArray, stelle, true);
+        return inputList;
+    }
 
-            return temp;
+    public static String getFormattedDate(long currentTimeInMillis) {
+        Calendar currentTime = Calendar.getInstance();
+        currentTime.setTimeInMillis(currentTimeInMillis);
+
+        Calendar now = Calendar.getInstance();
+
+        final String timeFormatString = "HH:mm";
+        final String dateTimeFormatString = "EEEE, MMMM d, h:mm aa";
+        if (now.get(Calendar.DATE) == currentTime.get(Calendar.DATE)) {
+            return "Heute " + DateFormat.format(timeFormatString, currentTime);
+        } else if ((now.get(Calendar.DATE) - currentTime.get(Calendar.DATE)) == 1) {
+            return "Gestern " + DateFormat.format(timeFormatString, currentTime);
+        } else if (now.get(Calendar.YEAR) == currentTime.get(Calendar.YEAR)) {
+            return DateFormat.format(dateTimeFormatString, currentTime).toString();
+        } else
+            return "am " + DateFormat.format("dd.MM.yyyy HH:mm", currentTime).toString();
+    }
+
+    public static void sortieren(ArrayList<ArrayList<String>> inputlist) {
+        Collections.sort(inputlist, new Comparator<ArrayList<String>>() {
+            @Override
+            public int compare(ArrayList<String> o1, ArrayList<String> o2) {
+                int value1, value2;
+                String strValue1 = o1.get(0);
+                String strValue2 = o2.get(0);
+
+                if (strValue1.contains("-")) {
+                    String[] parts = strValue1.split("-"); //TODO wenn leerzeichen drin, dann hier auch notwendig
+                    value1 = Integer.valueOf(parts[0]);
+                } else {
+                    value1 = Integer.valueOf(strValue1);
+                }
+
+                if (strValue2.contains("-")) {
+                    String[] parts = strValue2.split("-");
+                    value2 = Integer.valueOf(parts[0]);
+                } else {
+                    value2 = Integer.valueOf(strValue2);
+                }
+
+                if (value1 < value2) {
+                    return -1;
+                } else if (value1 == value2) {
+                    return 0;
+                } else { //if (value1 > value2){
+                    return 1;
+                }
+            }
+        });
+    }
+
+    public static boolean listsEqual(ArrayList<ArrayList<String>> listOne, ArrayList<ArrayList<String>> listTwo) {
+        if (listOne == null && listTwo == null) {
+            return true;
+        } else if ((listOne == null || listTwo == null)
+                || (listOne.isEmpty() && !listTwo.isEmpty())
+                || (!listOne.isEmpty() && listTwo.isEmpty())
+                || (listOne.size() != listTwo.size())) {
+            return false;
+        } else if (listOne.isEmpty() && listTwo.isEmpty()) {
+            return true;
         } else {
-            return inputArray;
+            return false;
         }
     }
 
-    //wenn 2 Zeilen gleich sind (Zeile 1: 5. Stunde; Zeile 2: 6. Stunde), diese zusammenfassen
-    private String[][] stundenZusammenfassen(String[][] inputArray, int stelle) {
-        int laenge = inputArray.length;
-
-        //prüfen ob die Stelle, die man prüfen möchte, länger ist als das vorhandene Array
-        if (stelle >= laenge) {
-            return inputArray;
+    public static int getDifferencesCount(ArrayList<ArrayList<String>> listOne, ArrayList<ArrayList<String>> listTwo) {
+        if (listOne.size() < listTwo.size()) {
+            ArrayList<ArrayList<String>> tempList = new ArrayList<>(listOne);
+            listOne = listTwo;
+            listTwo = tempList;
         }
 
-        //prüfen ob das Array an der Stelle einen Wert enthält
-        if (inputArray[stelle][0] == null) {
-            return inputArray;
-        }
-        //wenn Zeile Nr."stelle" nicht genau das gleiche beinhaltet wie Zeile Nr."stelle - 1" dann zusammenfassen
-        if (!inputArray[stelle][0].equals(inputArray[stelle - 1][0]) && inputArray[stelle][1].equals(inputArray[stelle - 1][1]) &&
-                inputArray[stelle][2].equals(inputArray[stelle - 1][2]) && inputArray[stelle][3].equals(inputArray[stelle - 1][3]) &&
-                inputArray[stelle][4].equals(inputArray[stelle - 1][4]) && inputArray[stelle][5].equals(inputArray[stelle - 1][5]) &&
-                inputArray[stelle][6].equals(inputArray[stelle - 1][6])) {
-            /**Die Zeilen sollen in allem gleich sein, außer an der ersten Stelle**/
-            String temp[][] = new String[laenge - 1][9];
+        int counter = 0;
 
-            //wenn beide stellen nicht länger als 2, dann zusammenfassen
-            if (inputArray[stelle][1].length() <= 2 && inputArray[stelle - 1][1].length() <= 2) {
-                temp = zeileEntfernen(inputArray, stelle, false);
-            } else if ((inputArray[stelle][1].length() <= 2 && inputArray[stelle - 1][1].length() > 2)) {
-                temp = zeileEntfernen(inputArray, stelle, true);
+        for (int i = 0; i < listOne.size(); i++) {
+            boolean rowsEqual = false;
 
-            } else if (inputArray[stelle - 1][1].length() <= 2 && inputArray[stelle][1].length() > 2) {
-                temp = zeileEntfernen(inputArray, stelle - 1, true);
+            for (int j = 0; j < listTwo.size(); j++) {
+                if (listOne.get(i).equals(listTwo.get(j))) {
+                    rowsEqual = true;
+                    break;
+                }
             }
 
-            return temp;
-        } else {
-            return inputArray;
+            if (!rowsEqual) {
+                counter++;
+            }
+        }
+
+        return counter;
+    }
+
+    public static ArrayList<ArrayList<String>> removeBlanks(ArrayList<ArrayList<String>> inputList) {
+        //TODO vielleicht NICHT ersetzen... sah ganz gut mit leerzeichen aus
+        for (ArrayList<String> row : inputList) {
+            row.set(0, row.get(0).replace(" - ", "-"));
+        }
+        return inputList;
+    }
+
+    //Doppelte Zeilen werden gelöscht
+    public static ArrayList<ArrayList<String>> deleteDoubles(ArrayList<ArrayList<String>> inputList) {
+        Set<ArrayList<String>> set = new LinkedHashSet<>();
+        set.addAll(inputList);
+        inputList.clear();
+        inputList.addAll(set);
+        return inputList;
+    }
+
+    //Hiermit werden nur die richtigen Klassen rausgesucht
+    public static ArrayList<ArrayList<String>> getRightClass(ArrayList<ArrayList<String>> inputList, String klasse) {
+        ArrayList<ArrayList<String>> classList = new ArrayList<>();
+
+        for (ArrayList<String> element : inputList) {
+            if (element.get(1).contains(klasse)) {
+                classList.add(element);
+            }
+        }
+
+        return classList;
+    }
+
+    public static ArrayList<ArrayList<String>> extractTable(Document doc, int index) {
+        Element table = doc.select("table").get(index);
+        Iterator<Element> rowIterator = table.select("tr").iterator();
+
+        ArrayList<ArrayList<String>> tableArrayList = new ArrayList<>();
+
+        while (rowIterator.hasNext()) {
+            Iterator<Element> colIterator = rowIterator.next().select("td").iterator();
+            ArrayList<String> tableRow = new ArrayList<>();
+            while (colIterator.hasNext()) {
+                tableRow.add(colIterator.next().text());
+            }
+            //TODO was, wenn size kleiner als benoetigte Elemente (7)?
+            //Sollte nie vorkommen, da im HTML immer 7 Elemente sind
+            if (tableRow.size() > 0)
+                tableArrayList.add(tableRow);
+        }
+
+        return tableArrayList;
+    }
+
+    public static JSONArray getJSONArray(ArrayList<ArrayList<String>> inputlist) {
+        return new JSONArray(inputlist);
+    }
+
+    public static ArrayList<ArrayList<String>> getArrayList(String jsonArraytext) {
+        try {
+            JSONArray jsonArray = new JSONArray(jsonArraytext);
+            return getArrayList(jsonArray);
+        } catch (JSONException jsonException) {
+            jsonException.printStackTrace();
+            return new ArrayList<>();
         }
     }
 
-    //Entfernt Zeile "stelle" aus dem Array
-    private String[][] zeileEntfernen(String[][] inputArray, int stelle, boolean nurEntfernen) {
-        int neuLaenge = inputArray.length - 1;
-        String temp[][] = new String[neuLaenge][9];
+    public static ArrayList<ArrayList<String>> getArrayList(JSONArray jsonArray) {
+        ArrayList<ArrayList<String>> resultList = new ArrayList<>();
 
-        System.arraycopy(inputArray, 0, temp, 0 , stelle);
-        System.arraycopy(inputArray, stelle+1, temp, stelle, neuLaenge - stelle);
+        try {
+            for (int i = 0; i < jsonArray.length(); i++) {
+                ArrayList<String> row = new ArrayList<>();
+                JSONArray jsonArrayRow = jsonArray.getJSONArray(i);
 
-        if (!nurEntfernen) {
-            temp[stelle - 1][0] = temp[stelle - 1][0] + " - " + inputArray[stelle][0];
+                for (int j = 0; j < jsonArrayRow.length(); j++) {
+                    row.add((String) jsonArrayRow.get(j));
+                }
+                resultList.add(row);
+            }
+        } catch (JSONException jsonException) {
+            jsonException.printStackTrace();
+            return new ArrayList<>();
         }
 
-        return temp;
+        return resultList;
     }
+
+    public static boolean isEntfall(String fachVertretung, String raumVertretung) {
+        return fachVertretung.equals("---") && raumVertretung.equals("---");
+    }
+
+    public static String getType(String fachVertretung, String raumVertretung) {
+        if (isEntfall(fachVertretung, raumVertretung))
+            return "Entfall";
+        else
+            return "Vertretung";
+    }
+
 
     //gibt den Namen der Abkuerzung eines Faches zurueck
     @SuppressLint("DefaultLocale")
-    public String abkuerzung(String abk) {
+    public static String abkuerzung(String abk) {
 
         if (abk == null || abk.equals("")) {
-            return "kein Fach";
+            return "Kein Fach";
         } else {
             abk = abk.toUpperCase();
             if (abk.equals("D")) {
@@ -248,7 +316,7 @@ public class hilfsMethoden extends Activity {
             } else if (abk.equals("WI")) {
                 return "Wirtschaft";
             } else if (abk.equals("METH")) {
-                return "Meth";
+                return "METH";
             } else if (abk.equals("BK")) {
                 return "Bildende Kunst";
             } else if (abk.equals("LRS")) {
@@ -261,60 +329,5 @@ public class hilfsMethoden extends Activity {
                 return abk;
             }
         }
-    }
-
-    //sortiert ein Array
-    private void sortieren(String[][] data) {
-        Arrays.sort(data, new Comparator<String[]>() {
-            @Override
-            public int compare(final String[] entry1, final String[] entry2) {
-                final String string1 = entry1[0];
-                final String string2 = entry2[0];
-
-                //Versucht die Stunden als Zahl zu speichern und dann zu sortieren, sollte es fehlschlagen wird nach Strings sortiert
-                try {
-                    String string1Copy = string1, string2Copy = string2;
-
-                    if (string1Copy.length() == 2) {
-                        string1Copy = string1Copy.substring(0, 2);
-                    } else if (string1Copy.length() <= 5) {
-                        string1Copy = string1Copy.substring(0, 1);
-                    } else if (string1Copy.length() >= 6) {
-                        string1Copy = string1Copy.substring(0, 2);
-                    }
-
-                    if (string2Copy.length() == 2) {
-                        string2Copy = string2Copy.substring(0, 2);
-                    } else if (string2Copy.length() <= 5) {
-                        string2Copy = string2Copy.substring(0, 1);
-                    } else if (string2Copy.length() >= 6) {
-                        string2Copy = string2Copy.substring(0, 2);
-                    }
-
-                    return Integer.valueOf(string1Copy).compareTo(Integer.valueOf(string2Copy));
-                } catch (Exception e) {
-                    return string1.compareTo(string2);
-                }
-            }
-        });
-    }
-
-
-    public String getFormattedDate(long currentTimeInMillis) {
-        Calendar currentTime = Calendar.getInstance();
-        currentTime.setTimeInMillis(currentTimeInMillis);
-
-        Calendar now = Calendar.getInstance();
-
-        final String timeFormatString = "HH:mm";
-        final String dateTimeFormatString = "EEEE, MMMM d, h:mm aa";
-        if (now.get(Calendar.DATE) == currentTime.get(Calendar.DATE)) {
-            return ": Heute " + DateFormat.format(timeFormatString, currentTime);
-        } else if ((now.get(Calendar.DATE) - currentTime.get(Calendar.DATE)) == 1) {
-            return ": Gestern " + DateFormat.format(timeFormatString, currentTime);
-        } else if (now.get(Calendar.YEAR) == currentTime.get(Calendar.YEAR)) {
-            return DateFormat.format(dateTimeFormatString, currentTime).toString();
-        } else
-            return " am: " + DateFormat.format("dd.MM.yyyy HH:mm", currentTime).toString();
     }
 }       

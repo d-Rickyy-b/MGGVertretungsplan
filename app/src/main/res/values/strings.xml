@@ -8,18 +8,22 @@
     <string name="Url1">http://www.mgg.karlsruhe.de/index.php/vertretungsplan</string>
     <string name="ur2">http://rickyy.lima-city.de/html/vertretungsplan.html</string>
     <string name="zuletztAbger">Zuletzt aktualisiert: %s</string>
-    <string name="bemerkung">bemerkung</string>
-    <string name="fach">fach</string>
-    <string name="neuraum">neuraum</string>
-    <string name="raum">raum</string>
-    <string name="stunde">stunde</string>
+    <string name="welcome_slide_title">Willkommen</string>
+    <string name="welcome_slide_descr">Vielen Dank, dass du diese App nutzt. Auf der folgenden Seite findest du einige Einstellungen, die du setzen solltest.</string>
+    <string name="settings_slide_title">@string/action_settings</string>
+    <string name="settings_slide_descr">Bitte stelle deine Klasse ein!\nFalls du keine Benachrichtigungen wünschst, dann schalte sie oben aus!\nAlle Einstellungen kannst du später wieder ändern.</string>
+    <string name="notification_setting_title">Benachrichtigungen</string>
+    <string name="notification_setting_summary">Benachrichtigung bei Änderung des Vertretungsplans</string>
+    <string name="notification_interval_title">Prüfintervall</string>
+    <string name="notification_interval_summary">Bitte wähle das Zeitintervall, in welchem der Vertretungsplan geprüft werden soll</string>
 
-    <string name="version">1.5.1</string>
-    <integer name="versionNumber">7</integer>
+    <string name="version">1.7.0</string>
+    <integer name="versionNumber">10</integer>
 
     <string name="notifications">Benachrichtigungen</string>
     <string name="miscellaneous">Verschiedenes</string>
     <string name="showToday">Akt. Tag zeigen</string>
+    <string name="action_done">FERTIG</string>
 
     <string name="infoTitle">Info</string>
 

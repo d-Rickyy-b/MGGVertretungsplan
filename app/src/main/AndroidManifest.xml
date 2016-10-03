@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="de.aurora.mggvertretungsplan"
     android:installLocation="auto"
-    android:versionCode="7"
+    android:versionCode="10"
     android:versionName="@string/version">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -13,11 +13,12 @@
         android:allowBackup="true"
         android:icon="@drawable/app_logo_material"
         android:label="@string/app_name"
-        android:theme="@style/AppBaseTheme">
+        android:theme="@style/AppTheme">
 
         <activity
             android:name=".MainActivity"
-            android:label="@string/bar_title">
+            android:label="@string/bar_title"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -25,19 +26,15 @@
         </activity>
 
         <activity
-            android:name=".hilfsMethoden"
-            android:label="@string/app_name">
-        </activity>
-
-        <activity
             android:name=".webView_Activity"
-            android:label="@string/action_webview">
+            android:label="@string/action_webview"
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
 
         <activity
             android:name=".Settings"
             android:label="Einstellungen"
-            android:theme="@style/PreferencesTheme">
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.SETTINGS" />
             </intent-filter>
@@ -46,12 +43,17 @@
         <activity
             android:name=".PreferenceBenachrichtigungen"
             android:label="Einstellungen"
-            android:theme="@style/PreferencesTheme">
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="de.aurora.MggVertretungsplan.EINSTELLUNGEN" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name="de.aurora.mggvertretungsplan.ui.intro.IntroActivity"
+            android:label="Test"
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <service android:name=".VertretungsplanService">
         </service>

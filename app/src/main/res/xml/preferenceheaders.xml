@@ -30,8 +30,16 @@
         <SwitchPreference
             android:defaultValue="true"
             android:key="AktTagAnzeigen"
-            android:summary="Akt. Tag nach Schulschluss zeigen"
-            android:title="Akt. Tag zeigen" />
+            android:summary="Sollen alte Daten noch angezeigt werden?"
+            android:title="Alte Tage zeigen"
+            android:enabled="false" />
+
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="listColors"
+            android:summary="Farbige Karten in der Übersicht zeigen"
+            android:title="Farben" />
+
 
     </PreferenceCategory>
 </PreferenceScreen>

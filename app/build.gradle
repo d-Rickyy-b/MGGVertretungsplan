@@ -17,7 +17,11 @@ android {
     buildTypes {
         release {
             minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        debug {
+            applicationIdSuffix ".debug"
         }
     }
 }
@@ -25,5 +29,9 @@ android {
 dependencies {
     compile 'com.android.support:support-v4:23.2.0'
     compile 'com.android.support:appcompat-v7:23.2.0'
-    compile 'com.google.android.gms:play-services-ads:8.4.0'
+    compile 'com.android.support:design:23.2.0'
+    compile 'com.android.support:recyclerview-v7:23.2.0'
+    compile 'com.android.support:cardview-v7:23.2.0'
+    compile 'org.jsoup:jsoup:1.9.2'
+    compile 'com.github.paolorotolo:appintro:4.1.0'
 }

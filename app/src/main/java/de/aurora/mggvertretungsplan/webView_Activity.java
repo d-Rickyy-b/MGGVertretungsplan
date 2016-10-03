@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -18,13 +17,11 @@ public class webView_Activity extends AppCompatActivity {
 
     @SuppressLint("NewApi")
     public void onCreate(Bundle savedInstanceState) {
-        getWindow().requestFeature(Window.FEATURE_PROGRESS);
+        //getWindow().requestFeature(Window.FEATURE_PROGRESS);
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.webview);
 
-        getWindow().setContentView(R.layout.webview);
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.webview_toolbar);
-        setSupportActionBar(toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Website");
         if (Build.VERSION.SDK_INT >= 21) {
             toolbar.setElevation(25);
@@ -36,6 +33,7 @@ public class webView_Activity extends AppCompatActivity {
                 finish();
             }
         });
+
         web();
     }
 

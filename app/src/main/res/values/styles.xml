@@ -5,7 +5,6 @@
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
     -->
     <style name="AppBaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimaryDark">@color/toolbarColor2</item>
         <item name="colorPrimary">@color/toolbarColor</item>
         <item name="colorAccent">@color/toolbarColor</item>
 
@@ -13,9 +12,11 @@
         <item name="dropDownListViewStyle">@style/MyActionBarMenu</item>
 
         <item name="android:textColorPrimary">@color/textColor</item>
-        <item name="android:textColorPrimaryInverse">@color/textColor</item>
+        <item name="android:textColorPrimaryInverse">@color/textColorInverse</item>
         <item name="android:textColorSecondary">@color/textColor</item>
         <item name="colorControlNormal">@color/textColor</item>
+        <item name="android:alertDialogStyle">@style/YourAlertDialogTheme</item>
+        <item name="android:alertDialogTheme">@style/YourAlertDialogTheme</item>
 
     </style>
 
@@ -32,12 +33,47 @@
     </style>
 
 
-    <style name="PreferencesTheme" parent="AppBaseTheme">
+    <style name="PreferencesTheme" parent="AppTheme">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
         <item name="android:textColorPrimary">@color/textColor</item>
         <item name="android:textColorPrimaryInverse">@color/textColor</item>
         <item name="android:textColor">@drawable/two_value_colors_2</item>
         <item name="android:textColorSecondary">@drawable/two_value_colors</item>
     </style>
 
-  
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="android:dropDownListViewStyle">@style/MyActionBarMenu</item>
+        <item name="dropDownListViewStyle">@style/MyActionBarMenu</item>
+
+        <item name="android:textColorPrimary">@color/textColor</item>
+        <item name="android:textColorPrimaryInverse">@color/textColorInverse</item>
+        <item name="colorControlNormal">@color/textColor</item>
+        <item name="android:alertDialogStyle">@style/YourAlertDialogTheme</item>
+        <item name="android:alertDialogTheme">@style/YourAlertDialogTheme</item>
+
+        <item name="android:textColor">@drawable/two_value_colors_2</item>
+        <item name="android:textColorSecondary">@drawable/two_value_colors</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="AppTheme.Switch_Activated">
+        <item name="colorAccent">@color/switchActivated</item>
+    </style>
 </resources>

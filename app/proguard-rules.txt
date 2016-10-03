@@ -36,7 +36,14 @@
 # The support library contains references to newer platform versions.
 # Don't warn about those in case this app is linking against an older
 # platform version. We know about them, and they are safe.
+-keepattributes EnclosingMethod
+-keepattributes *
 -dontwarn android.support.**
 -dontwarn com.google.ads.**
 -keep class org.brickred.** { *; }
 -dontwarn org.brickred.**
+
+-keep public enum * {
+    public static **[] values();
+    public static ** valueOf(java.lang.String);
+}
