@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:id="@id/main"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="64dp">
+
+    <TextView
+        android:id="@id/title"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="32dp"
+        android:paddingBottom="10dp"
+        android:layout_weight="2"
+        android:gravity="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        tools:text="Einstellungen"
+        android:textStyle="bold" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="5"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:gravity="top"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp">
+
+                <TextView
+                    android:id="@+id/slide_class_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Stufe"
+                    android:textColor="@color/Weiss"
+                    tools:textColor="@color/Schwarz"
+                    android:textSize="20sp"
+                    android:gravity="center_vertical"
+                    android:layout_centerInParent="true"
+                    android:layout_toLeftOf="@+id/slide_class_spinner"
+                    android:layout_toStartOf="@+id/slide_class_spinner"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+
+                <android.support.v7.widget.AppCompatSpinner
+                    android:id="@+id/slide_class_spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|center"
+                    android:minWidth="60dp"
+                    tools:text="Klasse"
+
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp">
+
+                <TextView
+                    android:id="@+id/slide_class1_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Klasse"
+                    android:textColor="@color/Weiss"
+                    tools:textColor="@color/Schwarz"
+                    android:textSize="20sp"
+                    android:gravity="center_vertical"
+                    android:layout_centerInParent="true"
+                    android:layout_toLeftOf="@+id/slide_class_spinner2"
+                    android:layout_toStartOf="@+id/slide_class_spinner2"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+
+                <android.support.v7.widget.AppCompatSpinner
+                    android:id="@+id/slide_class_spinner2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|center"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:minWidth="60dp"
+                    tools:text="Stufe"
+
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp" />
+
+            </RelativeLayout>
+
+
+            <android.support.v7.widget.SwitchCompat
+                android:id="@+id/slide_notifications_switch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Benachrichtigungen"
+                android:textColorHint="@color/Weiss"
+                android:textSize="20sp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:theme="@style/AppTheme.Switch_Activated" />
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+    <TextView
+        android:id="@id/description"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_weight="3"
+        android:gravity="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam." />
+
+</LinearLayout>
