@@ -17,8 +17,8 @@
     <string name="notification_interval_title">Prüfintervall</string>
     <string name="notification_interval_summary">Bitte wähle das Zeitintervall, in welchem der Vertretungsplan geprüft werden soll</string>
 
-    <string name="version">1.7.0</string>
-    <integer name="versionNumber">10</integer>
+    <string name="version">2.0.1</string>
+    <integer name="versionNumber">13</integer>
 
     <string name="notifications">Benachrichtigungen</string>
     <string name="miscellaneous">Verschiedenes</string>

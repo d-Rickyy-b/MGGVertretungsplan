@@ -110,8 +110,16 @@ public class CardsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
         } else if (holder instanceof HeadingsViewHolder) {
             HeadingsViewHolder myholder = (HeadingsViewHolder) holder;
-            DateHeading dateHeading = headingList.get(whichHeader(position));
-            myholder.heading.setText(dateHeading.getWholeDate());
+            String dateString;
+            try {
+                DateHeading dateHeading = headingList.get(whichHeader(position));
+                dateString = dateHeading.getWholeDate();
+            } catch (Exception e) {
+                e.printStackTrace();
+                dateString = "Fehler!";
+            }
+
+            myholder.heading.setText(dateString);
 
             setAnimation(myholder.heading, position);
         } else if (holder instanceof NoInfoViewHolder) {

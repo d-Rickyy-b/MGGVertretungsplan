@@ -21,6 +21,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -64,6 +65,9 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         super.onCreate(savedInstanceState);
         sp = PreferenceManager.getDefaultSharedPreferences(this);
 
+        //TODO wieder entfernen, sobald die Funktion wieder geht
+        sp.edit().putBoolean("AktTagAnzeigen", true).apply(); //true!!!
+
         if (sp.getBoolean("firstStart", true)) {
             //Wenn erster Start
             Intent intent = new Intent(getApplicationContext(), de.aurora.mggvertretungsplan.ui.intro.IntroActivity.class);
@@ -91,11 +95,12 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
             public void onClick(View v) {
                 clickcount = clickcount + 1;
                 if (clickcount % 10 == 0) {
-                    Toast.makeText(getApplicationContext(), "Notification gesendet!", Toast.LENGTH_SHORT).show();
-
-                    notification("Ticker", "Titel", "Text");
-                    Intent intent = new Intent(getApplicationContext(), de.aurora.mggvertretungsplan.ui.intro.IntroActivity.class);
-                    startActivity(intent);
+//                    Toast.makeText(getApplicationContext(), "Notification gesendet!", Toast.LENGTH_SHORT).show();
+//
+//                    notification("Ticker", "Titel", "Text");
+//                    notification("Stundenplan Änderung!", "MGG Vertretungsplan", "3 Änderungen!");
+//                    Intent intent = new Intent(getApplicationContext(), de.aurora.mggvertretungsplan.ui.intro.IntroActivity.class);
+//                    startActivity(intent);
                 }
             }
         });
@@ -221,7 +226,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         tableOne = hilfsMethoden.getArrayList(sp.getString("ersteTabelle", ""));
         tableTwo = hilfsMethoden.getArrayList(sp.getString("zweiteTabelle", ""));
 
-//        if (!(tableOne.equals("") && tableTwo.equals("")))
+        sp.edit().putBoolean("AktTagAnzeigen", true).apply();
         anzeigen(tableOne, tableTwo, erDatum, zwDatum, sp.getBoolean("AktTagAnzeigen", true));
     }
 
@@ -247,7 +252,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
                 builder
                         .setIcon(R.drawable.ic_menu_info_details)
                         .setTitle("MGG Vertretungsplan v" + getString(R.string.version))
-                        .setMessage("Programmiert von Rico Jambor")
+                        .setMessage(Html.fromHtml("Programmiert von Rico Jambor<br><br>Bei Fehlern entweder eine Email an:<br><b>rico.jambor@gmail.com</b><br><br>Oder per Telegram an:<br><center><b>@d_Rickyy_b</b></center>"))
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
 
@@ -256,6 +261,9 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
                 AlertDialog dialog = builder.create();
                 dialog.show();
+
+//                TextView messageText = (TextView)dialog.findViewById(android.R.id.message);
+//                messageText.setGravity(Gravity.CENTER);
             default:
                 break;
         }
