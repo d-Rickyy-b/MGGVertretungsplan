@@ -88,13 +88,6 @@ public class VertretungsplanService extends Service implements AsyncTaskComplete
         return activeNetwork != null && activeNetwork.isConnected();
     }
 
-// --Commented out by Inspection START (26.07.2016 22:31):
-//    private int getNotificationIcon() {
-//        boolean useWhiteIcon = (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP);
-//        return useWhiteIcon ? R.drawable.icon_inverted : R.drawable.app_logo_material;
-//    }
-// --Commented out by Inspection STOP (26.07.2016 22:31)
-
 
     public void onTaskComplete(String html) {
         Log.v("VertretungsplanService", "Check auf Vertretungen");
