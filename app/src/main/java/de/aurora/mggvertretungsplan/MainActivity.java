@@ -351,14 +351,8 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
         Log.v("MyTag", erstesDatum + jahr + " | " + zweitesDatum + jahr);
 
-        String erstesDatumName = hilfsMethoden.getAnyDayByName(jahr, monat1, tag1);
-        String zweitesDatumName = hilfsMethoden.getAnyDayByName(jahr, monat2, tag2);
-
-        Log.v("MyTag", erstesDatumName + " | " + zweitesDatumName);
-
         //Wenn der erste Tag vor dem zweiten kommt im gleichen Monat (normalfall), oder wenn der erste Monat vor dem zweiten kommt
         if ((tag1 > tag2 && monat1 == monat2) || (tag1 < tag2 && monat1 > monat2)) {
-            Log.v("MyTag", "Switching dates around");
             ArrayList<ArrayList<String>> tempList = new ArrayList<>(ersterTag);
             ersterTag = zweiterTag;
             zweiterTag = tempList;
@@ -375,6 +369,11 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 //            headingsList.set(0, headingsList.get(1));
 //            headingsList.set(1, tempHeading);
         }
+
+        String erstesDatumName = hilfsMethoden.getAnyDayByName(jahr, monat1, tag1);
+        String zweitesDatumName = hilfsMethoden.getAnyDayByName(jahr, monat2, tag2);
+
+        Log.v("MainActivity", erstesDatumName + " | " + zweitesDatumName);
 
         headingsList.add(new DateHeading(erstesDatumName, tag1 + "." + monat1 + "." + "2016"));
         headingsList.add(new DateHeading(zweitesDatumName, tag2 + "." + monat2 + "." + "2016"));

@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="de.aurora.mggvertretungsplan"
     android:installLocation="auto"
-    android:versionCode="13"
+    android:versionCode="14"
     android:versionName="@string/version">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
