@@ -375,8 +375,8 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
         Log.v("MainActivity", erstesDatumName + " | " + zweitesDatumName);
 
-        headingsList.add(new DateHeading(erstesDatumName, tag1 + "." + monat1 + "." + "2016"));
-        headingsList.add(new DateHeading(zweitesDatumName, tag2 + "." + monat2 + "." + "2016"));
+        headingsList.add(new DateHeading(erstesDatumName, tag1 + "." + monat1 + "." + jahr));
+        headingsList.add(new DateHeading(zweitesDatumName, tag2 + "." + monat2 + "." + jahr));
 
         //Wenn Tag angezeigt werden soll, dann anzeigen
         //ODER Wenn Tag nicht angezeigt werden soll, aber es noch vor 16 Uhr ist, dann anzeigen
