@@ -1,5 +1,8 @@
 language: android
-jdk: oraclejdk8
+jdk: oraclejdk7
+branches:
+  only:
+    - master
 android:
   components:
     - build-tools-23.0.3
@@ -15,7 +18,10 @@ notifications:
 before_install:
 
   # for gradle output style
+  - chmod +x gradlew
   - export TERM=dumb
+  - export ANDROID_HOME=$PWD/android-sdk-linux
+  - export PATH=${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
 
 # Let's try to build...
-script: ./gradlew clean build
+script: TERM=dumb ./gradlew clean build
