@@ -24,4 +24,4 @@ before_install:
   - export PATH=${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
 
 # Let's try to build...
-script: TERM=dumb ./gradlew clean build
+script: TERM=dumb ./gradlew build
