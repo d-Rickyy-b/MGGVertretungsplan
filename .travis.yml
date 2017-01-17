@@ -7,6 +7,11 @@ android:
   components:
     - build-tools-23.0.3
     - android-23
+  licenses:
+    - 'android-sdk-preview-license-.+'
+    - 'android-sdk-license-.+'
+    - 'google-gdk-license-.+'
+    - 'intel-android-extra-license-.+'
 
 notifications:
   email: false
