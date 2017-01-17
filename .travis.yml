@@ -6,7 +6,6 @@ branches:
 android:
   components:
     - tools
-    - platform-tools
     - build-tools-23.0.3
     - android-23
   licenses:
@@ -14,7 +13,6 @@ android:
     - 'android-sdk-license-.+'
     - 'google-gdk-license-.+'
     - 'intel-android-extra-license-.+'
-    - 'android-sdk-license-c81a61d9'
 
 notifications:
   email: false
@@ -25,7 +23,7 @@ before_install:
   - chmod +x gradlew
   - export TERM=dumb
   - export PATH=${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
-  - android update sdk --no-ui --filter build-tools-23.0.2,android-23,extra-android-m2repository
+  - android update sdk --no-ui --filter build-tools-23.0.2,android-23
 
 # Let's try to build...
 script: TERM=dumb ./gradlew build
