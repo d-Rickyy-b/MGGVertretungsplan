@@ -21,6 +21,8 @@ before_install:
   - export TERM=dumb
   - export PATH=${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
   - android update sdk --no-ui --filter build-tools-23.0.2,android-23
+  - ls -ltr /usr/local/android-sdk/licenses
+  - echo -e "8933bad161af4178b1185d1a37fbf41ea5269c55" > "/usr/local/android-sdk/licenses/android-sdk-license"
 
 # Let's try to build...
 script: TERM=dumb ./gradlew build
