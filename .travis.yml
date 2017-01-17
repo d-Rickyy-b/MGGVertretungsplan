@@ -5,6 +5,9 @@ branches:
     - master
 android:
   components:
+    - tools
+    - platform-tools
+    - tools
     - build-tools-23.0.3
     - android-23
   licenses:
