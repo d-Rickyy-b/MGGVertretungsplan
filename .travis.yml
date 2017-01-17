@@ -7,7 +7,6 @@ android:
   components:
     - tools
     - platform-tools
-    - tools
     - build-tools-23.0.3
     - android-23
   licenses:
@@ -25,6 +24,7 @@ before_install:
   - chmod +x gradlew
   - export TERM=dumb
   - export PATH=${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
+  - android update sdk --no-ui --filter build-tools-23.0.2,android-23,extra-android-m2repository
 
 # Let's try to build...
 script: TERM=dumb ./gradlew build
