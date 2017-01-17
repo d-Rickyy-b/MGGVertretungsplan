@@ -21,6 +21,8 @@ before_install:
 
   # for gradle output style
   - chmod +x gradlew
+  - mkdir "$ANDROID_SDK/licenses" || true
+  - echo -e "\n8933bad161af4178b1185d1a37fbf41ea5269c55" > "$ANDROID_SDK/licenses/android-sdk-license"
   - export TERM=dumb
   - export PATH=${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
   - android update sdk --no-ui --filter build-tools-23.0.2,android-23
