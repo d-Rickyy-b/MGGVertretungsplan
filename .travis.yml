@@ -14,7 +14,7 @@ android:
     - 'android-sdk-license-.+'
     - 'google-gdk-license-.+'
     - 'intel-android-extra-license-.+'
-	- 'android-sdk-license-c81a61d9'
+    - 'android-sdk-license-c81a61d9'
 
 notifications:
   email: false
