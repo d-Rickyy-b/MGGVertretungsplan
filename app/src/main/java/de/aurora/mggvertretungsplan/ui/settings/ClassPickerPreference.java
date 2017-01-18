@@ -28,6 +28,7 @@ public class ClassPickerPreference extends Preference {
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     protected View onCreateView(ViewGroup parent) {
         LayoutInflater li = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         return li.inflate(R.layout.class_picker_preference, parent, false);
