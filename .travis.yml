@@ -32,8 +32,12 @@ before_install:
   - export PATH=${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
   - android update sdk --no-ui --filter build-tools-23.0.2,android-23
   - sudo ls -ltr /usr/local/android-sdk
+  - whoami
   - sudo cp -R /usr/local/android-sdk-24.0.2 ${ANDROID_HOME}
   - sudo ls -ltr ${ANDROID_HOME}
+  - sudo mkdir ${ANDROID_HOME}/licenses
+  - sudo touch ${ANDROID_HOME}/licenses/android-sdk-license
+  - sudo chown travis:travis -R ${ANDROID_HOME}
   - sudo echo -e "8933bad161af4178b1185d1a37fbf41ea5269c55" > ${ANDROID_HOME}/licenses/android-sdk-license
 
 # Let's try to build...
