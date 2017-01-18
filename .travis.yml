@@ -4,8 +4,8 @@ sudo: false
 android:
   components:
     - tools
-	- tools
-	- platform-tools
+    - tools
+    - platform-tools
     - build-tools-23.0.3
     - android-23
   licenses:
