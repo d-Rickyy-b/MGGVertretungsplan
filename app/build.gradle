@@ -4,7 +4,11 @@ android {
     compileSdkVersion 23
     buildToolsVersion '25.0.0'
     useLibrary 'org.apache.http.legacy'
-
+    
+    lintOptions {
+          abortOnError false
+    }
+      
     defaultConfig {
         applicationId "de.aurora.mggvertretungsplan"
         minSdkVersion 11
