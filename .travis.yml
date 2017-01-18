@@ -3,6 +3,9 @@ jdk: oraclejdk8
 sudo: false
 android:
   components:
+    - tools
+	- tools
+	- platform-tools
     - build-tools-23.0.3
     - android-23
   licenses:
@@ -28,8 +31,6 @@ before_install:
   - export TERM=dumb
   - export PATH=${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
   - android update sdk --no-ui --filter build-tools-23.0.2,android-23
-  - cp -R /usr/local/android-sdk-23.0.2 ./android-sdk
-  - sudo echo -e "8933bad161af4178b1185d1a37fbf41ea5269c55" > ./android-sdk/licenses/android-sdk-license
 
 # Let's try to build...
 script: TERM=dumb ./gradlew build
