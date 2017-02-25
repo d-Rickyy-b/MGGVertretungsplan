@@ -1,6 +1,5 @@
 package de.aurora.mggvertretungsplan;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Build;
 import android.os.Bundle;
@@ -9,13 +8,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebChromeClient;
+import android.webkit.WebResourceError;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
 
 public class webView_Activity extends AppCompatActivity {
 
-    @SuppressLint("NewApi")
     public void onCreate(Bundle savedInstanceState) {
         //getWindow().requestFeature(Window.FEATURE_PROGRESS);
         super.onCreate(savedInstanceState);
@@ -39,23 +39,19 @@ public class webView_Activity extends AppCompatActivity {
 
 
     private void web() {
-        WebView webView = (WebView) findViewById(R.id.webView1);
+        WebView webView = (WebView) findViewById(R.id.webView);
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setBuiltInZoomControls(true);
 
         final Activity activity = this;
-        webView.setWebChromeClient(new WebChromeClient() {
-            public void onProgressChanged(WebView view, int progress) {
-                activity.setProgress(progress * 1000);
-            }
-        });
+        webView.setWebChromeClient(new WebChromeClient());
         webView.setWebViewClient(new WebViewClient() {
-            public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
-                Toast.makeText(activity, "Oh no! " + description, Toast.LENGTH_SHORT).show();
+            public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
+                Toast.makeText(activity, "Oh nein! Ein Fehler ist aufgetreten!", Toast.LENGTH_SHORT).show();
             }
         });
 
-        webView.loadUrl(getString(R.string.Url1));
+        webView.loadUrl(getString(R.string.vertretungsplan_url));
     }
 
 

@@ -315,7 +315,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
             sp = PreferenceManager.getDefaultSharedPreferences(this);
 
             try {
-                new DownloadWebPageTask(this).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, getString(R.string.Url1));
+                new DownloadWebPageTask(this).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, getString(R.string.vertretungsplan_url));
             } catch (Exception e) {
                 mSwipeLayout.setRefreshing(false);
                 Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
