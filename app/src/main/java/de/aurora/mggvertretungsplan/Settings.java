@@ -18,8 +18,6 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
 
     private MainOptionFragment mainOptionFragment;
     private String klasseGesamt_saved;
-    private ListPreference classPref;
-
 
     @SuppressLint("NewApi")
     @Override
@@ -50,7 +48,6 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
 
         klasseGesamt_saved = PreferenceManager.getDefaultSharedPreferences(this).getString("KlasseGesamt", "5a");
         getFragmentManager().executePendingTransactions();
-        classPref = (ListPreference) mainOptionFragment.findPreference("Klasse");
         correctClassPicker();
     }
 
