@@ -264,6 +264,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
 //                TextView messageText = (TextView)dialog.findViewById(android.R.id.message);
 //                messageText.setGravity(Gravity.CENTER);
+                break;
             default:
                 break;
         }
@@ -271,7 +272,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
     }
 
 
-    public void serviceProvider() {
+    private void serviceProvider() {
         if (sp.getBoolean("notification", true)) {
             AlarmManager(Integer.valueOf(sp.getString("AbrufIntervall", "1800000")));
             Log.v("VertretungsplanService", "serviceProvider, Interval: " + sp.getString("AbrufIntervall", "1800000"));
@@ -458,20 +459,8 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
             tableTwo.add(new ArrayList<>(Arrays.asList("", "", "", "", "", "", "")));
         }
 
-        tableOne = hilfsMethoden.getRightClass(tableOne, klasse);
-        tableTwo = hilfsMethoden.getRightClass(tableTwo, klasse);
-
-        tableOne = hilfsMethoden.deleteDoubles(tableOne);
-        tableTwo = hilfsMethoden.deleteDoubles(tableTwo);
-
-        tableOne = hilfsMethoden.removeBlanks(tableOne);
-        tableTwo = hilfsMethoden.removeBlanks(tableTwo);
-
-        hilfsMethoden.sortieren(tableOne);
-        hilfsMethoden.sortieren(tableTwo);
-
-        tableOne = hilfsMethoden.stundenZusammenfassen(tableOne);
-        tableTwo = hilfsMethoden.stundenZusammenfassen(tableTwo);
+        tableOne = hilfsMethoden.datenAufbereiten(tableOne, klasse);
+        tableTwo = hilfsMethoden.datenAufbereiten(tableTwo, klasse);
 
         String AbrufDatum = hilfsMethoden.getFormattedDate(System.currentTimeMillis());
 

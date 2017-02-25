@@ -19,7 +19,6 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
     private MainOptionFragment mainOptionFragment;
     private String klasseGesamt_saved;
     private ListPreference classPref;
-    private Toolbar toolbar;
 
 
     @SuppressLint("NewApi")
@@ -27,6 +26,7 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings);
+        Toolbar toolbar;
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Einstellungen");

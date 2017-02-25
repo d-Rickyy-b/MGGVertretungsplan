@@ -23,6 +23,16 @@ public class hilfsMethoden {
     public hilfsMethoden() {
     }
 
+    public static ArrayList<ArrayList<String>> datenAufbereiten(ArrayList<ArrayList<String>> tabelle, String klasse){
+        tabelle = getRightClass(tabelle, klasse);
+        tabelle = deleteDoubles(tabelle);
+        tabelle = removeBlanks(tabelle);
+        sortieren(tabelle);
+        tabelle = stundenZusammenfassen(tabelle);
+
+        return tabelle;
+    }
+
     // Diese Methode gibt den passenden Namen zu einem bestimmten Datum zurück
     public static String getAnyDayByName(int jahr, int monat, int tag) {
         String[] tage = new String[]{"Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"};
@@ -125,11 +135,7 @@ public class hilfsMethoden {
                 || (!listOne.isEmpty() && listTwo.isEmpty())
                 || (listOne.size() != listTwo.size())) {
             return false;
-        } else if (listOne.isEmpty() && listTwo.isEmpty()) {
-            return true;
-        } else {
-            return false;
-        }
+        } else return listOne.isEmpty() && listTwo.isEmpty();
     }
 
     public static int getDifferencesCount(ArrayList<ArrayList<String>> listOne, ArrayList<ArrayList<String>> listTwo) {
