@@ -262,8 +262,6 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
                 AlertDialog dialog = builder.create();
                 dialog.show();
 
-//                TextView messageText = (TextView)dialog.findViewById(android.R.id.message);
-//                messageText.setGravity(Gravity.CENTER);
                 break;
             default:
                 break;
