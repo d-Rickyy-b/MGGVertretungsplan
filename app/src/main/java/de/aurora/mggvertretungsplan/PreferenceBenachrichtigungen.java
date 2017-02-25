@@ -10,12 +10,11 @@ import android.view.View;
 
 public class PreferenceBenachrichtigungen extends PreferenceActivity{
 
-	private NotificationFragment notificationFragment = new NotificationFragment();
-	private Toolbar toolbar;
-	
 	@SuppressLint("NewApi")
 	protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Toolbar toolbar;
+
         setContentView(R.layout.settings);
         
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -30,8 +29,7 @@ public class PreferenceBenachrichtigungen extends PreferenceActivity{
 				finish();
 			}
 		});
-		notificationFragment = new NotificationFragment();
-        getFragmentManager().beginTransaction().replace(R.id.content, notificationFragment).commit();
+        getFragmentManager().beginTransaction().replace(R.id.content, new NotificationFragment()).commit();
         getFragmentManager().executePendingTransactions();
     }
 	
