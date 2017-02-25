@@ -52,7 +52,7 @@ public class VertretungsplanService extends Service implements AsyncTaskComplete
             klasse = sp.getString("KlasseGesamt", "5a");
 
             try {
-                new DownloadWebPageTask(this).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, getString(R.string.Url1));
+                new DownloadWebPageTask(this).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, getString(R.string.vertretungsplan_url));
             } catch (Exception e) {
                 e.printStackTrace();
             }
