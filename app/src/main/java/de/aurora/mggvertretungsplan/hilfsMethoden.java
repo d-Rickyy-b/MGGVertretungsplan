@@ -274,68 +274,70 @@ public class hilfsMethoden {
             return "Kein Fach";
         } else {
             abk = abk.toUpperCase();
-            if (abk.equals("D")) {
-                return "Deutsch";
-            } else if (abk.equals("PH")) {
-                return "Physik";
-            } else if (abk.equals("CH") || abk.equals("4CH1")) {
-                return "Chemie";
-            } else if (abk.equals("L")) {
-                return "Latein";
-            } else if (abk.equals("S")) {
-                return "Spanisch";
-            } else if (abk.equals("E")) {
-                return "Englisch";
-            } else if (abk.equals("INF")) {
-                return "Informatik";
-            } else if (abk.equals("LIT")) {
-                return "Literatur";
-            } else if (abk.equals("EVR")) {
-                return "ev. Religion";
-            } else if (abk.equals("KAR")) {
-                return "kath. Religion";
-            } else if (abk.equals("ETH")) {
-                return "Ethik";
-            } else if (abk.equals("MA")) {
-                return "Mathe";
-            } else if (abk.equals("EK")) {
-                return "Erdkunde";
-            } else if (abk.equals("BIO")) {
-                return "Biologie";
-            } else if (abk.equals("MU")) {
-                return "Musik";
-            } else if (abk.equals("SP")) {
-                return "Sport";
-            } else if (abk.equals("SW")) {
-                return "Sport weibl.";
-            } else if (abk.equals("SM")) {
-                return "Sport männl.";
-            } else if (abk.equals("G")) {
-                return "Geschichte";
-            } else if (abk.equals("F")) {
-                return "Französisch";
-            } else if (abk.equals("NWT")) {
-                return "Naturwissenschaft u. Technik";
-            } else if (abk.equals("GK")) {
-                return "Gemeinschaftskunde";
-            } else if (abk.equals("SF")) {
-                return "Seminarkurs";
-            } else if (abk.equals("NP")) {
-                return "Naturphänomene";
-            } else if (abk.equals("WI")) {
-                return "Wirtschaft";
-            } else if (abk.equals("METH")) {
-                return "METH";
-            } else if (abk.equals("BK")) {
-                return "Bildende Kunst";
-            } else if (abk.equals("LRS")) {
-                return "LRS";
-            } else if (abk.equals("PSY")) {
-                return "Psychologie";
-            } else if (abk.equals("PHIL")) {
-                return "Philosophie";
-            } else {
-                return abk;
+            switch (abk) {
+                case "D":
+                    return "Deutsch";
+                case "PH":
+                    return "Physik";
+                case "CH":
+                case "4CH1":
+                    return "Chemie";
+                case "L":
+                    return "Latein";
+                case "S":
+                    return "Spanisch";
+                case "E":
+                    return "Englisch";
+                case "INF":
+                    return "Informatik";
+                case "LIT":
+                    return "Literatur";
+                case "EVR":
+                    return "ev. Religion";
+                case "KAR":
+                    return "kath. Religion";
+                case "ETH":
+                    return "Ethik";
+                case "MA":
+                    return "Mathe";
+                case "EK":
+                    return "Erdkunde";
+                case "BIO":
+                    return "Biologie";
+                case "MU":
+                    return "Musik";
+                case "SP":
+                    return "Sport";
+                case "SW":
+                    return "Sport weibl.";
+                case "SM":
+                    return "Sport männl.";
+                case "G":
+                    return "Geschichte";
+                case "F":
+                    return "Französisch";
+                case "NWT":
+                    return "Naturwissenschaft u. Technik";
+                case "GK":
+                    return "Gemeinschaftskunde";
+                case "SF":
+                    return "Seminarkurs";
+                case "NP":
+                    return "Naturphänomene";
+                case "WI":
+                    return "Wirtschaft";
+                case "METH":
+                    return "METH";
+                case "BK":
+                    return "Bildende Kunst";
+                case "LRS":
+                    return "LRS";
+                case "PSY":
+                    return "Psychologie";
+                case "PHIL":
+                    return "Philosophie";
+                default:
+                    return abk;
             }
         }
     }
