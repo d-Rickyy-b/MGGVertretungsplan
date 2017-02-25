@@ -8,8 +8,8 @@
         android:summary="@string/notification_setting_summary" />
         
         	<ListPreference 
-            android:entries="@array/Intervall_neu"
-            android:entryValues="@array/Intervall_neu_values"
+            android:entries="@array/Intervall"
+            android:entryValues="@array/Intervall_values"
             android:defaultValue="3600000"
                 android:title="@string/notification_interval_title"
                 android:summary="@string/notification_interval_summary"
