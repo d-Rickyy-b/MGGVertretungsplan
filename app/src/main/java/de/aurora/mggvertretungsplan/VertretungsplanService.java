@@ -113,20 +113,8 @@ public class VertretungsplanService extends Service implements AsyncTaskComplete
             tableTwo.add(new ArrayList<>(Arrays.asList("", "", "", "", "", "", "")));
         }
 
-        tableOne = hilfsMethoden.getRightClass(tableOne, klasse);
-        tableTwo = hilfsMethoden.getRightClass(tableTwo, klasse);
-
-        tableOne = hilfsMethoden.deleteDoubles(tableOne);
-        tableTwo = hilfsMethoden.deleteDoubles(tableTwo);
-
-        tableOne = hilfsMethoden.removeBlanks(tableOne);
-        tableTwo = hilfsMethoden.removeBlanks(tableTwo);
-
-        hilfsMethoden.sortieren(tableOne);
-        hilfsMethoden.sortieren(tableTwo);
-
-        tableOne = hilfsMethoden.stundenZusammenfassen(tableOne);
-        tableTwo = hilfsMethoden.stundenZusammenfassen(tableTwo);
+        tableOne = hilfsMethoden.datenAufbereiten(tableOne, klasse);
+        tableTwo = hilfsMethoden.datenAufbereiten(tableTwo, klasse);
 
         ArrayList<ArrayList<String>> tableOne_saved = hilfsMethoden.getArrayList(sp.getString("ersteTabelle", ""));
         ArrayList<ArrayList<String>> tableTwo_saved = hilfsMethoden.getArrayList(sp.getString("zweiteTabelle", ""));
