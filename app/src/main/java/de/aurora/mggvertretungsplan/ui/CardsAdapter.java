@@ -10,6 +10,7 @@ import android.graphics.Color;
 import android.preference.PreferenceManager;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +31,7 @@ public class CardsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     private static final int TYPE_DAYONE = 1;
     private static final int TYPE_DAYTWO = 2;
     private static final int TYPE_NOINFO = 3;
+    private static final int TYPE_SPACER = 4;
     private int lastPosition = -1;
     private List<TimeTableCard> dayOneList;
     private List<TimeTableCard> dayTwoList;
@@ -64,6 +66,11 @@ public class CardsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                     .inflate(R.layout.view_no_info_card, parent, false);
 
             return new NoInfoViewHolder(itemView);
+        } else if (viewType == TYPE_SPACER) {
+            View itemView = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.view_spacer, parent, false);
+
+            return new SpacingViewHolder(itemView);
         }
 
         throw new RuntimeException("there is no type that matches the type " + viewType + " + make sure your using types correctly");
@@ -127,6 +134,8 @@ public class CardsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             myholder.noInfo.setText("Keine Informationen!");
 
             setAnimation(myholder.noInfo, position);
+        } else if (holder instanceof SpacingViewHolder) {
+            SpacingViewHolder myholder = (SpacingViewHolder) holder;
         }
 
     }
@@ -164,6 +173,12 @@ public class CardsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         }
     }
 
+    public class SpacingViewHolder extends RecyclerView.ViewHolder {
+        public SpacingViewHolder(View view) {
+            super(view);
+        }
+    }
+
 
     @Override
     public int getItemCount() {
@@ -182,7 +197,7 @@ public class CardsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     private boolean isPositionHeader(int position) {
         if (dayOneList.size() > 0) {
-            return position == 0 || position == dayOneList.size() + 1;
+            return position == 0 || position == dayOneList.size() + 2;
         } else {
             return position == 0 || position == 2;
         }
@@ -197,16 +212,34 @@ public class CardsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     @Override
     public int getItemViewType(int position) {
 
-        if (isPositionHeader(position))
+        if (isPositionHeader(position)) {
+            Log.v("Test", "Header");
             return TYPE_HEADER;
-        else if (dayOneList.size() == 0 && position == 1)
+        }
+        else if (dayOneList.size() == 0 && position == 1) {
+            Log.v("Test", "NoInfo");
             return TYPE_NOINFO;
-        else if (position <= dayOneList.size())
+        }
+        else if (position <= dayOneList.size()){
+            Log.v("Test", "DayOne");
             return TYPE_DAYONE;
-        else if ((dayTwoList.size() == 0 && position >= (dayOneList.size() + headingList.size())))
+        }
+        else if ((dayTwoList.size() == 0 && position >= (dayOneList.size() + headingList.size()))) {
+            Log.v("Test", "NoInfo");
             return TYPE_NOINFO;
-        else if (position >= (dayOneList.size() + headingList.size()))
+        }
+        else if (dayOneList.size() == 0 && position == 3) {
+            Log.v("Test", "Spacer");
+            return TYPE_SPACER;
+        }
+        else if (position == dayOneList.size() + headingList.size() - 1) {
+            Log.v("Test", "Spacer2");
+            return TYPE_SPACER;
+        }
+        else if (position >= (dayOneList.size() + headingList.size() + 1)) {
+            Log.v("Test", "DayTwo");
             return TYPE_DAYTWO;
+        }
 
 
         throw new RuntimeException("No matching type! Position = " + position + ", dayOneList.size() = " +
