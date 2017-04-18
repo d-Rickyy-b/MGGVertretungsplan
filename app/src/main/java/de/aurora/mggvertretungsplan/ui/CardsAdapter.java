@@ -34,8 +34,8 @@ public class CardsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     private List<TimeTableCard> dayOneList;
     private List<TimeTableCard> dayTwoList;
     private List<DateHeading> headingList;
-    private Context context;
-    private SharedPreferences sp;
+    private final Context context;
+    private final SharedPreferences sp;
 
     public CardsAdapter(List<TimeTableCard> dayOneList, List<TimeTableCard> dayTwoList, List<DateHeading> headingList, Context context) {
         this.dayOneList = dayOneList;
@@ -132,8 +132,8 @@ public class CardsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     }
 
     public class ClassInfoViewHolder extends RecyclerView.ViewHolder {
-        public TextView title, hour, info, raum, neuRaum;
-        public CardView cardView;
+        public final TextView title, hour, info, raum, neuRaum;
+        public final CardView cardView;
 
         public ClassInfoViewHolder(View view) {
             super(view);
@@ -147,7 +147,7 @@ public class CardsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     }
 
     public class HeadingsViewHolder extends RecyclerView.ViewHolder {
-        public TextView heading;
+        public final TextView heading;
 
         public HeadingsViewHolder(View view) {
             super(view);
@@ -208,8 +208,6 @@ public class CardsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         else if (position >= (dayOneList.size() + headingList.size()))
             return TYPE_DAYTWO;
 
-
-        // "Keine Informationen"
 
         throw new RuntimeException("No matching type! Position = " + position + ", dayOneList.size() = " +
                 dayOneList.size() + ", dayTwoList.size() = " + dayTwoList.size() +
