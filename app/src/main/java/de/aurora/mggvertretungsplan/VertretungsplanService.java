@@ -122,13 +122,10 @@ public class VertretungsplanService extends Service implements AsyncTaskComplete
         int anzahlAusfaelle = tableOne.size() + tableTwo.size();
 
         if (anzahlAusfaelle > 0) {
+            // TODO Testen ob Tabelle 1 = Tabelle 2
             int count1 = hilfsMethoden.getDifferencesCount(tableOne, tableOne_saved);
             int count2 = hilfsMethoden.getDifferencesCount(tableTwo, tableTwo_saved);
             int gesamt = (count1 + count2);
-//            Log.v("MyTag", "Gesamt: " + gesamt);
-//            Log.v("MyTag", "tableOne: " + tableOne.toString() + " | " + tableOne_saved.toString());
-//            Log.v("MyTag", "tableTwo: " + tableTwo.toString() + " | " + tableTwo_saved.toString());
-
             if (gesamt > 1) {
                 notification("Stundenplan Änderung!", "MGG Vertretungsplan", gesamt + " Änderungen!"); //Push mit der Nachricht "Es fällt etwas aus!"
             } else if (gesamt == 1) {
