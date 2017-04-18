@@ -1,6 +1,5 @@
 package de.aurora.mggvertretungsplan;
 
-import android.annotation.SuppressLint;
 import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.NotificationManager;
@@ -59,7 +58,6 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
     private ArrayList<DateHeading> headingsList = new ArrayList<>();
     private CardsAdapter cAdapter;
 
-    @SuppressLint("NewApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,21 +87,21 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         toolbar.setTitle("Vertretungsplan");
         toolbar.showOverflowMenu();
 
-        toolbar.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                clickcount = clickcount + 1;
-                if (clickcount % 10 == 0) {
+//        toolbar.setOnClickListener(new View.OnClickListener() {
+//
+//            @Override
+//            public void onClick(View v) {
+//                clickcount = clickcount + 1;
+//                if (clickcount % 10 == 0) {
 //                    Toast.makeText(getApplicationContext(), "Notification gesendet!", Toast.LENGTH_SHORT).show();
 //
 //                    notification("Ticker", "Titel", "Text");
 //                    notification("Stundenplan Änderung!", "MGG Vertretungsplan", "3 Änderungen!");
 //                    Intent intent = new Intent(getApplicationContext(), de.aurora.mggvertretungsplan.ui.intro.IntroActivity.class);
 //                    startActivity(intent);
-                }
-            }
-        });
+//                }
+//            }
+//        });
 
         if (Build.VERSION.SDK_INT >= 21) {
             toolbar.setElevation(25);
@@ -168,7 +166,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
                 .setContentText(text)
                 .setTicker(ticker)
                 .setColor(getResources().getColor(R.color.colorAccent))
-                .setSmallIcon(R.drawable.icon_inverted)
+                .setSmallIcon(R.drawable.icon)
                 .setContentIntent(pIntent)
                 .setAutoCancel(true);
 
@@ -255,7 +253,6 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
                         .setMessage(Html.fromHtml("Programmiert von Rico Jambor<br><br>Bei Fehlern entweder eine Email an:<br><b>rico.jambor@gmail.com</b><br><br>Oder per Telegram an:<br><center><b>@d_Rickyy_b</b></center>"))
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
-
                             }
                         });
 

@@ -69,7 +69,7 @@ public class VertretungsplanService extends Service implements AsyncTaskComplete
                 .setContentText(text)
                 .setTicker(ticker)
                 .setColor(getResources().getColor(R.color.accentColor))
-                .setSmallIcon(R.drawable.icon_inverted)
+                .setSmallIcon(R.drawable.icon)
                 .setContentIntent(pIntent)
                 .setAutoCancel(true);
 
