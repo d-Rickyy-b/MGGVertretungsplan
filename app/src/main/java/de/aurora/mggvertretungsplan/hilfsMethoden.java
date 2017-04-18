@@ -20,9 +20,6 @@ import java.util.Set;
 
 public class hilfsMethoden {
 
-    public hilfsMethoden() {
-    }
-
     public static ArrayList<ArrayList<String>> datenAufbereiten(ArrayList<ArrayList<String>> tabelle, String klasse){
         tabelle = getRightClass(tabelle, klasse);
         tabelle = deleteDoubles(tabelle);
