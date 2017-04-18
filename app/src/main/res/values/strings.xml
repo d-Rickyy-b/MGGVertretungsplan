@@ -25,6 +25,13 @@
     <string name="showToday">Akt. Tag zeigen</string>
     <string name="action_done">FERTIG</string>
 
+    <!-- Not Added yet :( -->
+    <string name="cancelled">Entfällt</string>
+    <string name="representation">Vertretung</string>
+    <string name="settings_name">Einstellungen</string>
+    <string name="settings_saved">Einstellungen übernommen!</string>
+    <!--  -->
+
     <string name="infoTitle">Info</string>
 
     <string-array name="Klassenstufe_List">
