@@ -45,6 +45,9 @@ import de.aurora.mggvertretungsplan.ui.CardsAdapter;
 import de.aurora.mggvertretungsplan.ui.DateHeading;
 import de.aurora.mggvertretungsplan.ui.TimeTableCard;
 
+import android.support.customtabs.*;
+import android.net.Uri;
+
 public class MainActivity extends AppCompatActivity implements AsyncTaskCompleteListener<String>, SwipeRefreshLayout.OnRefreshListener {
 
     private SharedPreferences sp;
@@ -242,8 +245,10 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
                 startActivity(preferenceIntent);
                 break;
             case R.id.action_webview:
-                Intent webViewIntent = new Intent(getApplicationContext(), de.aurora.mggvertretungsplan.webView_Activity.class);
-                startActivity(webViewIntent);
+                CustomTabsIntent.Builder chromeTabsBuilder = new CustomTabsIntent.Builder();
+                chromeTabsBuilder.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary));
+                CustomTabsIntent customTabsFeedbackIntent = chromeTabsBuilder.build();
+                customTabsFeedbackIntent.launchUrl(this, Uri.parse(getString(R.string.vertretungsplan_url)));
                 break;
             case R.id.action_info:
                 AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.YourAlertDialogTheme);

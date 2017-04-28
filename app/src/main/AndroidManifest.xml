@@ -2,12 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="de.aurora.mggvertretungsplan"
     android:installLocation="auto"
-    android:versionCode="14"
-    android:versionName="@string/version">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <uses-sdk tools:overrideLibrary="android.support.customtabs"/>
 
     <application
         android:allowBackup="true"
