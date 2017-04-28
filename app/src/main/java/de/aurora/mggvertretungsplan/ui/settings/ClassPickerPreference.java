@@ -15,21 +15,14 @@ import de.aurora.mggvertretungsplan.R;
 
 public class ClassPickerPreference extends Preference {
 
-    public ClassPickerPreference(Context context, AttributeSet attrs) {
-        super(context, attrs);
-    }
-
     public ClassPickerPreference(Context context) {
         super(context);
-    }
-
-    public ClassPickerPreference(Context context, AttributeSet attrs, int defStyle) {
-        super(context, attrs, defStyle);
     }
 
     @Override
     @SuppressWarnings("deprecation")
     protected View onCreateView(ViewGroup parent) {
+        super.onCreateView(parent);
         LayoutInflater li = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         return li.inflate(R.layout.class_picker_preference, parent, false);
     }
