@@ -7,7 +7,6 @@ package de.aurora.mggvertretungsplan.ui;
 public class TimeTableCard {
     private String hour;
     private String fach;
-    private String neuFach;
     private String typ;
     private String info;
     private String raum;
@@ -32,7 +31,6 @@ public class TimeTableCard {
 
         this.hour = hour;
         this.fach = fach;
-        this.neuFach = neuFach;
         this.raum = raum;
         this.neuRaum = neuRaum;
         this.typ = typ;
