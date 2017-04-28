@@ -169,7 +169,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
                 .setContentText(text)
                 .setTicker(ticker)
                 .setColor(getResources().getColor(R.color.colorAccent))
-                .setSmallIcon(R.drawable.icon)
+                .setSmallIcon(R.drawable.ic_notification)
                 .setContentIntent(pIntent)
                 .setAutoCancel(true);
 
