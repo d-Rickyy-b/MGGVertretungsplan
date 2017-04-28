@@ -42,7 +42,7 @@ public class hilfsMethoden {
     }
 
 
-    public static ArrayList<ArrayList<String>> stundenZusammenfassen(ArrayList<ArrayList<String>> inputList) {
+    private static ArrayList<ArrayList<String>> stundenZusammenfassen(ArrayList<ArrayList<String>> inputList) {
         if (inputList.size() <= 1) {
             return inputList;
         }
@@ -91,7 +91,7 @@ public class hilfsMethoden {
             return "am " + DateFormat.format("dd.MM.yyyy HH:mm", currentTime).toString();
     }
 
-    public static void sortieren(ArrayList<ArrayList<String>> inputlist) {
+    private static void sortieren(ArrayList<ArrayList<String>> inputlist) {
         Collections.sort(inputlist, new Comparator<ArrayList<String>>() {
             @Override
             public int compare(ArrayList<String> o1, ArrayList<String> o2) {
@@ -162,7 +162,7 @@ public class hilfsMethoden {
         return counter;
     }
 
-    public static ArrayList<ArrayList<String>> removeBlanks(ArrayList<ArrayList<String>> inputList) {
+    private static ArrayList<ArrayList<String>> removeBlanks(ArrayList<ArrayList<String>> inputList) {
         //TODO vielleicht NICHT ersetzen... sah ganz gut mit leerzeichen aus
         for (ArrayList<String> row : inputList) {
             row.set(0, row.get(0).replace(" - ", "-"));
@@ -171,7 +171,7 @@ public class hilfsMethoden {
     }
 
     //Doppelte Zeilen werden gelöscht
-    public static ArrayList<ArrayList<String>> deleteDoubles(ArrayList<ArrayList<String>> inputList) {
+    private static ArrayList<ArrayList<String>> deleteDoubles(ArrayList<ArrayList<String>> inputList) {
         Set<ArrayList<String>> set = new LinkedHashSet<>();
         set.addAll(inputList);
         inputList.clear();
@@ -180,7 +180,7 @@ public class hilfsMethoden {
     }
 
     //Hiermit werden nur die richtigen Klassen rausgesucht
-    public static ArrayList<ArrayList<String>> getRightClass(ArrayList<ArrayList<String>> inputList, String klasse) {
+    private static ArrayList<ArrayList<String>> getRightClass(ArrayList<ArrayList<String>> inputList, String klasse) {
         ArrayList<ArrayList<String>> classList = new ArrayList<>();
 
         for (ArrayList<String> element : inputList) {
@@ -230,7 +230,7 @@ public class hilfsMethoden {
         }
     }
 
-    public static ArrayList<ArrayList<String>> getArrayList(JSONArray jsonArray) {
+    private static ArrayList<ArrayList<String>> getArrayList(JSONArray jsonArray) {
         ArrayList<ArrayList<String>> resultList = new ArrayList<>();
 
         try {
@@ -251,7 +251,7 @@ public class hilfsMethoden {
         return resultList;
     }
 
-    public static boolean isEntfall(String fachVertretung, String raumVertretung) {
+    private static boolean isEntfall(String fachVertretung, String raumVertretung) {
         return fachVertretung.equals("---") && raumVertretung.equals("---");
     }
 
