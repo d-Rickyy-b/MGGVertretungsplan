@@ -29,8 +29,6 @@ public class IntroActivity extends AppIntro {
         setGoBackLock(true);
         showSkipButton(false);
         setDoneText(getString(R.string.action_done));
-
-        setFadeAnimation();
     }
 
     @Override
