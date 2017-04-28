@@ -22,10 +22,9 @@ public class IntroActivity extends AppIntro {
         int image = R.drawable.app_logo_material;
         int backgroundColor = ContextCompat.getColor(this, R.color.introBackground);
         int titleColor = ContextCompat.getColor(this, R.color.Weiss);
-        int descrColor = titleColor;
 
         addSlide(AppIntroFragment.newInstance(getString(R.string.welcome_slide_title), getString(R.string.welcome_slide_descr), image, backgroundColor));
-        addSlide(SettingsIntroSlide.newInstance(getString(R.string.settings_slide_title), getString(R.string.settings_slide_descr), backgroundColor, titleColor, descrColor));
+        addSlide(SettingsIntroSlide.newInstance(getString(R.string.settings_slide_title), getString(R.string.settings_slide_descr), backgroundColor, titleColor, titleColor));
 
         setGoBackLock(true);
         showSkipButton(false);
