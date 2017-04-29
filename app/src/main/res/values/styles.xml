@@ -62,6 +62,23 @@
 
         <item name="android:textColor">@drawable/two_value_colors_2</item>
         <item name="android:textColorSecondary">@drawable/two_value_colors</item>
+
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="BlueTheme" parent="AppTheme">
+        <item name="colorPrimary">#5677fc</item>
+        <item name="colorPrimaryDark">#455ede</item>
+        <item name="colorAccent">#40c4ff</item>
+
+    </style>
+
+    <style name="PinkTheme" parent="AppTheme">
+        <item name="colorPrimary">#E91E63</item>
+        <item name="colorPrimaryDark">#C2185B</item>
+        <item name="colorAccent">#C2185B</item>
+        <item name="android:windowBackground">@color/pinkBackground</item>
     </style>
 
     <style name="AppTheme.NoActionBar">

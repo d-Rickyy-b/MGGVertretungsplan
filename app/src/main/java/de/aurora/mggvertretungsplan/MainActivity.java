@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(R.style.PinkTheme);
         super.onCreate(savedInstanceState);
         sp = PreferenceManager.getDefaultSharedPreferences(this);
 
