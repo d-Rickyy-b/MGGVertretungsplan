@@ -4,9 +4,12 @@ package de.aurora.mggvertretungsplan.ui.intro;
  * Created by Rico on 02.10.2016.
  */
 
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.support.annotation.ColorInt;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.util.TypedValue;
 
 import com.github.paolorotolo.appintro.AppIntro;
 import com.github.paolorotolo.appintro.AppIntroFragment;
@@ -17,6 +20,7 @@ import de.aurora.mggvertretungsplan.ui.intro.slides.SettingsIntroSlide;
 public class IntroActivity extends AppIntro {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(R.style.PinkTheme);
         super.onCreate(savedInstanceState);
 
         int image = R.drawable.app_logo_material;

@@ -22,6 +22,7 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
     @SuppressLint("NewApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(R.style.PinkTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings);
         Toolbar toolbar;
