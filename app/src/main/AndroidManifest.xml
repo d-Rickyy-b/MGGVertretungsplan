@@ -28,12 +28,6 @@
         </activity>
 
         <activity
-            android:name=".webView_Activity"
-            android:label="@string/action_webview"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
-
-        <activity
             android:name=".Settings"
             android:label="Einstellungen"
             android:theme="@style/AppTheme.NoActionBar">
