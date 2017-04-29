@@ -23,8 +23,12 @@ public class IntroActivity extends AppIntro {
         setTheme(R.style.PinkTheme);
         super.onCreate(savedInstanceState);
 
+        TypedValue typedValue = new TypedValue();
+        Resources.Theme theme = getTheme();
+        theme.resolveAttribute(R.attr.colorPrimary, typedValue, true);
+        @ColorInt int backgroundColor = typedValue.data;
+
         int image = R.drawable.app_logo_material;
-        int backgroundColor = ContextCompat.getColor(this, R.color.introBackground);
         int titleColor = ContextCompat.getColor(this, R.color.Weiss);
 
         addSlide(AppIntroFragment.newInstance(getString(R.string.welcome_slide_title), getString(R.string.welcome_slide_descr), image, backgroundColor));
