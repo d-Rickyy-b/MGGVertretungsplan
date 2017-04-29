@@ -4,14 +4,10 @@
 	<color name="refresh_progress_2">#CDDC39</color>
 	<color name="refresh_progress_3">#4CAF50</color>
 
-    <!--
-    <color name="toolbarColor">#424242</color>
-    -->
     <color name="primaryDark">#004D40</color>
     <color name="accentColor">#00897B</color>
     <color name="textColor">#FAFAFA</color>
-    <color name="textColorInverse">#0e0e0e</color> <!-- #0e0e0e -->
-    <!--<color name="textColor">#181818</color>-->
+    <color name="textColorInverse">#0e0e0e</color>
     <color name="MenuColor">#424242</color>
     <color name="ListViewItemColor">#ff303030</color>
     <color name="ListViewItemBlau">#0099CC</color>
@@ -29,7 +25,6 @@
     <color name="disabled">#a0a0a0</color>
     <color name="disabled2">#bababa</color>
 
-    <color name="introBackground">@color/colorPrimary</color>
     <color name="switchActivated">#0099CC</color>
 
     <color name="colorPrimary">#757575</color>
