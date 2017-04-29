@@ -8,14 +8,17 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources.Theme;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.annotation.ColorInt;
+import android.support.customtabs.CustomTabsIntent;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -24,6 +27,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.text.format.DateFormat;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -44,9 +48,6 @@ import java.util.Locale;
 import de.aurora.mggvertretungsplan.ui.CardsAdapter;
 import de.aurora.mggvertretungsplan.ui.DateHeading;
 import de.aurora.mggvertretungsplan.ui.TimeTableCard;
-
-import android.support.customtabs.*;
-import android.net.Uri;
 
 public class MainActivity extends AppCompatActivity implements AsyncTaskCompleteListener<String>, SwipeRefreshLayout.OnRefreshListener {
 
@@ -240,6 +241,11 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
     //Aktion die ausgeführt werden soll, wenn action bar item geklickt wurde
     public boolean onOptionsItemSelected(MenuItem item) {
+        TypedValue typedValue = new TypedValue();
+        Theme theme = getTheme();
+        theme.resolveAttribute(R.attr.colorPrimary, typedValue, true);
+        @ColorInt int color = typedValue.data;
+
         switch (item.getItemId()) {
             case R.id.action_settings:
                 Intent preferenceIntent = new Intent(getApplicationContext(), Settings.class);
@@ -247,13 +253,13 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
                 break;
             case R.id.action_webview:
                 CustomTabsIntent.Builder chromeTabsBuilder = new CustomTabsIntent.Builder();
-                chromeTabsBuilder.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary));
+                chromeTabsBuilder.setToolbarColor(color);
                 CustomTabsIntent customTabsFeedbackIntent = chromeTabsBuilder.build();
                 customTabsFeedbackIntent.launchUrl(this, Uri.parse(getString(R.string.vertretungsplan_url)));
                 break;
             case R.id.action_feedback:
                 CustomTabsIntent.Builder chromeTabsFeedbackBuilder = new CustomTabsIntent.Builder();
-                chromeTabsFeedbackBuilder.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary));
+                chromeTabsFeedbackBuilder.setToolbarColor(color);
                 CustomTabsIntent customTabsIntent = chromeTabsFeedbackBuilder.build();
                 customTabsIntent.launchUrl(this, Uri.parse(getString(R.string.feedback_url)));
                 break;
