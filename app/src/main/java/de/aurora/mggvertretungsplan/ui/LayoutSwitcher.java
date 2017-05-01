@@ -5,9 +5,11 @@ import android.support.annotation.StyleRes;
 import de.aurora.mggvertretungsplan.R;
 
 public class LayoutSwitcher {
-    private static final int bluePrimary = 0xFF64B5F6;
-    private static final int pinkPrimary = 0xFFD81B60;
     private static final int stdPrimary = 0xFF757575;
+    private static final int bluePrimary = 0xFF64B5F6;
+    private static final int pinkPrimary = 0xFFf06292;
+    private static final int greenPrimary = 0xFF9ccc65;
+    private static final int orangePrimary = 0xFFff9800;
 
     @StyleRes
     public static int getTheme(int themeID) {
