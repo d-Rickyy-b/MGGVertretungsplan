@@ -1,5 +1,6 @@
 package de.aurora.mggvertretungsplan;
 
+import android.app.ActivityManager;
 import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.NotificationManager;
@@ -9,6 +10,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources.Theme;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -68,6 +71,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         sp = PreferenceManager.getDefaultSharedPreferences(this);
         int themeID = sp.getInt("Theme", 0);
         setTheme(LayoutSwitcher.getTheme(themeID));
+        setMultitaskView();
         super.onCreate(savedInstanceState);
 
         //TODO wieder entfernen, sobald die Funktion wieder geht
@@ -506,12 +510,28 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
     }
 
 
+    private void setMultitaskView() {
+        if (Build.VERSION.SDK_INT >= 21) {
+            TypedValue typedValue = new TypedValue();
+            Theme theme = getTheme();
+            theme.resolveAttribute(R.attr.colorPrimary, typedValue, true);
+            @ColorInt int color = typedValue.data;
+
+            Bitmap icon = BitmapFactory.decodeResource(this.getResources(),
+                    R.drawable.ic_launcher);
+
+            ActivityManager.TaskDescription tDesc = new ActivityManager.TaskDescription("Vertretungsplan", icon, color);
+            this.setTaskDescription(tDesc);
+        }
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
 
         if (requestCode == 0) {
             recreate();
+            setMultitaskView();
         }
     }
 
