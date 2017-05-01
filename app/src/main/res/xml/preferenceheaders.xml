@@ -41,6 +41,13 @@
             android:summary="Farbige Karten in der Übersicht zeigen"
             android:title="Farben" />
 
+        <com.thebluealliance.spectrum.SpectrumPreference
+            android:key="color"
+            android:summary="Das Aussehen der App"
+            android:title="Farbgebung"
+            android:defaultValue="@color/colorPrimary"
+            app:spectrum_colors="@array/theme_picker" />
+
 
     </PreferenceCategory>
 </PreferenceScreen>
