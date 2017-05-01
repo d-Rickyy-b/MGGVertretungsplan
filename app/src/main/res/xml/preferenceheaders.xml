@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <PreferenceCategory android:title="Klasse">
 
@@ -7,17 +8,17 @@
             android:defaultValue="5"
             android:entries="@array/Klassenstufe_List"
             android:entryValues="@array/Klassenstufe_List"
-            android:key="Klassenstufe"
-            android:summary="Bitte wähle deine Stufe aus"
-            android:title="Stufe" />
+            android:key="@string/choose_classLayer_key"
+            android:summary="@string/choose_classLayer_desc"
+            android:title="@string/choose_classLayer_title" />
 
         <ListPreference
             android:defaultValue="a"
             android:entries="@array/Klassen_List"
             android:entryValues="@array/Klassen_List"
-            android:key="Klasse"
-            android:summary="Bitte wähle deine Klasse aus"
-            android:title="Klasse" />
+            android:key="@string/choose_class_key"
+            android:summary="@string/choose_class_desc"
+            android:title="@string/choose_class_title" />
 
     </PreferenceCategory>
 
