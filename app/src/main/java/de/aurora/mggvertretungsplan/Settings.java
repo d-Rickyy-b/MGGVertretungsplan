@@ -18,11 +18,13 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
 
     private MainOptionFragment mainOptionFragment;
     private String klasseGesamt_saved;
+    private SharedPreferences sp;
 
     @SuppressLint("NewApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.PinkTheme);
+        sp = PreferenceManager.getDefaultSharedPreferences(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings);
         Toolbar toolbar;
@@ -47,7 +49,7 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
         mainOptionFragment = new MainOptionFragment();
         getFragmentManager().beginTransaction().replace(R.id.content, mainOptionFragment).commit();
 
-        klasseGesamt_saved = PreferenceManager.getDefaultSharedPreferences(this).getString("KlasseGesamt", "5a");
+        klasseGesamt_saved = sp.getString("KlasseGesamt", "5a");
         getFragmentManager().executePendingTransactions();
         correctClassPicker();
     }
@@ -67,10 +69,10 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
     }
 
     //Wenn (gespeicherte) Daten geändert werden
-    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+    public void onSharedPreferenceChanged(SharedPreferences sp, String key) {
         if (key.equals("Klassenstufe") || key.equals("Klasse")) {
-            String klasseGesamt = getClassName(sharedPreferences);
-            sharedPreferences.edit().putString("KlasseGesamt", klasseGesamt).apply();
+            String klasseGesamt = getClassName(sp);
+            sp.edit().putString("KlasseGesamt", klasseGesamt).apply();
         }
     }
 
@@ -102,14 +104,14 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
     @Override
     protected void onResume() {
         super.onResume();
-        PreferenceManager.getDefaultSharedPreferences(this).registerOnSharedPreferenceChangeListener(this);
+        sp.registerOnSharedPreferenceChangeListener(this);
         correctClassPicker();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        PreferenceManager.getDefaultSharedPreferences(this).unregisterOnSharedPreferenceChangeListener(this);
+        sp.unregisterOnSharedPreferenceChangeListener(this);
     }
 
 }
