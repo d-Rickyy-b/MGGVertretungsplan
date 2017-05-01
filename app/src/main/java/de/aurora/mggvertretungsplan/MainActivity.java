@@ -64,9 +64,10 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setTheme(R.style.PinkTheme);
-        super.onCreate(savedInstanceState);
         sp = PreferenceManager.getDefaultSharedPreferences(this);
+        int themeID = sp.getInt("Theme", 0);
+        setTheme(LayoutSwitcher.getTheme(themeID));
+        super.onCreate(savedInstanceState);
 
         //TODO wieder entfernen, sobald die Funktion wieder geht
         sp.edit().putBoolean("AktTagAnzeigen", true).apply(); //true!!!
@@ -249,7 +250,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         switch (item.getItemId()) {
             case R.id.action_settings:
                 Intent preferenceIntent = new Intent(getApplicationContext(), Settings.class);
-                startActivity(preferenceIntent);
+                startActivityForResult(preferenceIntent, 0);
                 break;
             case R.id.action_webview:
                 CustomTabsIntent.Builder chromeTabsBuilder = new CustomTabsIntent.Builder();
@@ -499,6 +500,16 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         editor.putString("zweiteTabelle", hilfsMethoden.getJSONArray(tableTwo).toString());
         editor.putBoolean("AktTagAnzeigen", true);
         editor.apply();
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+
+        if (requestCode == 0) {
+            recreate();
+        }
     }
 
     @Override
