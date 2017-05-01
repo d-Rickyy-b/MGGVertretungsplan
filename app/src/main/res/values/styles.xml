@@ -32,19 +32,6 @@
         <item name="android:gravity">center</item>
     </style>
 
-
-    <style name="PreferencesTheme" parent="AppTheme">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-
-        <item name="android:textColorPrimary">@color/textColor</item>
-        <item name="android:textColorPrimaryInverse">@color/textColor</item>
-        <item name="android:textColor">@drawable/two_value_colors_2</item>
-        <item name="android:textColorSecondary">@drawable/two_value_colors</item>
-    </style>
-
-
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
