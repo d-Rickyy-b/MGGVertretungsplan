@@ -13,6 +13,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import de.aurora.mggvertretungsplan.ui.LayoutSwitcher;
+
 
 public class Settings extends PreferenceActivity implements OnSharedPreferenceChangeListener {
 
@@ -23,8 +25,9 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
     @SuppressLint("NewApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setTheme(R.style.PinkTheme);
         sp = PreferenceManager.getDefaultSharedPreferences(this);
+        int themeID = sp.getInt("Theme", 0);
+        setTheme(LayoutSwitcher.getTheme(themeID));
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings);
         Toolbar toolbar;
@@ -73,6 +76,13 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
         if (key.equals("Klassenstufe") || key.equals("Klasse")) {
             String klasseGesamt = getClassName(sp);
             sp.edit().putString("KlasseGesamt", klasseGesamt).apply();
+        } else if (key.equals("color")){
+            int num = sp.getInt("color", 0);
+            int id = LayoutSwitcher.getID(num);
+            sp.edit().putInt("Theme", id).apply();
+            findViewById(android.R.id.content).invalidate();
+            setTheme(LayoutSwitcher.getTheme(id));
+            recreate();
         }
     }
 
