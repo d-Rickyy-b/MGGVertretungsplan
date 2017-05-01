@@ -33,9 +33,9 @@
     </style>
 
     <style name="BlueTheme" parent="AppTheme">
-        <item name="colorPrimary">#5677fc</item>
-        <item name="colorPrimaryDark">#455ede</item>
-        <item name="colorAccent">#40c4ff</item>
+        <item name="colorPrimary">#64b5f6</item>
+        <item name="colorPrimaryDark">#2286c3</item>
+        <item name="colorAccent">#9be7ff</item>
 
     </style>
 
