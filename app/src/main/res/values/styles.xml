@@ -1,26 +1,4 @@
 <resources>
-
-    <!--
-        Base application theme, dependent on API level. This theme is replaced
-        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
-    -->
-    <style name="AppBaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/toolbarColor</item>
-        <item name="colorAccent">@color/toolbarColor</item>
-
-        <item name="android:dropDownListViewStyle">@style/MyActionBarMenu</item>
-        <item name="dropDownListViewStyle">@style/MyActionBarMenu</item>
-
-        <item name="android:textColorPrimary">@color/textColor</item>
-        <item name="android:textColorPrimaryInverse">@color/textColorInverse</item>
-        <item name="android:textColorSecondary">@color/textColor</item>
-        <item name="colorControlNormal">@color/textColor</item>
-        <item name="android:alertDialogStyle">@style/YourAlertDialogTheme</item>
-        <item name="android:alertDialogTheme">@style/YourAlertDialogTheme</item>
-
-    </style>
-
-
     <style name="MyActionBarMenu" parent="@style/Widget.AppCompat.Light.ListView.DropDown">
         <item name="android:textColorPrimary">@android:color/black</item>
         <item name="android:background">@android:color/white</item>
