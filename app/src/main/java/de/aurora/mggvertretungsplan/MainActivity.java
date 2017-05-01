@@ -255,14 +255,16 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
             case R.id.action_webview:
                 CustomTabsIntent.Builder chromeTabsBuilder = new CustomTabsIntent.Builder();
                 chromeTabsBuilder.setToolbarColor(color);
-                CustomTabsIntent customTabsFeedbackIntent = chromeTabsBuilder.build();
-                customTabsFeedbackIntent.launchUrl(this, Uri.parse(getString(R.string.vertretungsplan_url)));
+                chromeTabsBuilder.setShowTitle(true);
+                CustomTabsIntent websiteIntent = chromeTabsBuilder.build();
+                websiteIntent.launchUrl(this, Uri.parse(getString(R.string.vertretungsplan_url)));
                 break;
             case R.id.action_feedback:
                 CustomTabsIntent.Builder chromeTabsFeedbackBuilder = new CustomTabsIntent.Builder();
                 chromeTabsFeedbackBuilder.setToolbarColor(color);
-                CustomTabsIntent customTabsIntent = chromeTabsFeedbackBuilder.build();
-                customTabsIntent.launchUrl(this, Uri.parse(getString(R.string.feedback_url)));
+                chromeTabsFeedbackBuilder.setShowTitle(true);
+                CustomTabsIntent feedbackIntent = chromeTabsFeedbackBuilder.build();
+                feedbackIntent.launchUrl(this, Uri.parse(getString(R.string.feedback_url)));
                 break;
             case R.id.action_info:
                 AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.YourAlertDialogTheme);
