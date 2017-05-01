@@ -5,6 +5,7 @@ package de.aurora.mggvertretungsplan.ui.intro.slides;
  */
 
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
@@ -168,7 +169,7 @@ public class SettingsIntroSlide extends AppIntroBaseFragment {
         }
 
         notificationsSwitch = (SwitchCompat) v.findViewById(R.id.slide_notifications_switch);
-        notificationsSwitch.setTextColor(ContextCompat.getColor(getActivity(), R.color.Weiss));
+        notificationsSwitch.setTextColor(Color.WHITE);
 
         notificationsSwitch.setChecked(sp.getBoolean("notification", true));
 //        Log.v("MyTag", "getBoolean: " + notificationsSwitch.isChecked());

@@ -5,6 +5,7 @@ package de.aurora.mggvertretungsplan.ui.intro;
  */
 
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.ColorInt;
 import android.support.v4.app.Fragment;
@@ -29,7 +30,7 @@ public class IntroActivity extends AppIntro {
         @ColorInt int backgroundColor = typedValue.data;
 
         int image = R.drawable.app_logo_material;
-        int titleColor = ContextCompat.getColor(this, R.color.Weiss);
+        int titleColor = Color.WHITE;
 
         addSlide(AppIntroFragment.newInstance(getString(R.string.welcome_slide_title), getString(R.string.welcome_slide_descr), image, backgroundColor));
         addSlide(SettingsIntroSlide.newInstance(getString(R.string.settings_slide_title), getString(R.string.settings_slide_descr), backgroundColor, titleColor, titleColor));
