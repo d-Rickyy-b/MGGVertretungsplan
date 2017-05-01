@@ -20,6 +20,10 @@ public class LayoutSwitcher {
                 return R.style.BlueTheme;
             case 2:
                 return R.style.PinkTheme;
+            case 3:
+                return R.style.GreenTheme;
+            case 4:
+                return R.style.OrangeTheme;
             default:
                 return R.style.AppTheme;
         }
@@ -33,6 +37,10 @@ public class LayoutSwitcher {
                 return 1;
             case pinkPrimary:
                 return 2;
+            case greenPrimary:
+                return 3;
+            case orangePrimary:
+                return 4;
             default:
                 return 0;
         }
