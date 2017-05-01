@@ -33,4 +33,10 @@
     <color name="cardVertretung">#FFFFFF</color>
 
     <color name="pinkBackground">#F8BBD0</color>
+
+    <array name="theme_picker">
+        <item name="standard">#757575</item>
+        <item name="blue">#64b5f6</item>
+        <item name="pink">#d81b60</item>
+    </array>
 </resources>
