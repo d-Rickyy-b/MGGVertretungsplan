@@ -47,8 +47,8 @@ import java.util.Locale;
 
 import de.aurora.mggvertretungsplan.ui.CardsAdapter;
 import de.aurora.mggvertretungsplan.ui.DateHeading;
-import de.aurora.mggvertretungsplan.ui.TimeTableCard;
 import de.aurora.mggvertretungsplan.ui.LayoutSwitcher;
+import de.aurora.mggvertretungsplan.ui.TimeTableCard;
 
 public class MainActivity extends AppCompatActivity implements AsyncTaskCompleteListener<String>, SwipeRefreshLayout.OnRefreshListener {
 
