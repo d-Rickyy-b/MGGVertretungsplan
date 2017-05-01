@@ -37,6 +37,8 @@
     <array name="theme_picker">
         <item name="standard">#757575</item>
         <item name="blue">#64b5f6</item>
-        <item name="pink">#d81b60</item>
+        <item name="pink">#f06292</item>
+        <item name="green">#9ccc65</item>
+        <item name="orange">#ff9800</item>
     </array>
 </resources>
