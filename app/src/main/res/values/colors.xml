@@ -26,14 +26,14 @@
 
     <color name="colorPrimary">#757575</color>
     <color name="colorPrimaryDark">#616161</color>
-    <color name="colorAccent">#616161</color> <!-- #00897B -->
-    <color name="toolbarColor">@color/colorPrimary</color>
+    <color name="colorAccent">#616161</color>
 
     <color name="cardEntfall">#EF5350</color>
     <color name="cardVertretung">#FFFFFF</color>
 
     <color name="pinkBackground">#F8BBD0</color>
 
+    <!-- Colors shown in the color picker in the settings -->
     <array name="theme_picker">
         <item name="standard">#757575</item>
         <item name="blue">#64b5f6</item>
