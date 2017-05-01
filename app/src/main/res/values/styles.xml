@@ -50,4 +50,11 @@
     <style name="AppTheme.Switch_Activated">
         <item name="colorAccent">@color/switchActivated</item>
     </style>
+
+    <style name="PinkTheme" parent="AppTheme">
+        <item name="colorPrimary">#f06292</item>
+        <item name="colorPrimaryDark">#ba2d65</item>
+        <item name="colorAccent">#ff94c2</item>
+    </style>
+
 </resources>
