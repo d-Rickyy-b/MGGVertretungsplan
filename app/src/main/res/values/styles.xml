@@ -35,15 +35,7 @@
     <style name="BlueTheme" parent="AppTheme">
         <item name="colorPrimary">#64b5f6</item>
         <item name="colorPrimaryDark">#2286c3</item>
-        <item name="colorAccent">#9be7ff</item>
-
-    </style>
-
-    <style name="PinkTheme" parent="AppTheme">
-        <item name="colorPrimary">#d81b60</item>
-        <item name="colorPrimaryDark">#ad164d</item>
-        <item name="colorAccent">#ff5c8d</item>
-
+        <item name="colorAccent">#4d2c91</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
