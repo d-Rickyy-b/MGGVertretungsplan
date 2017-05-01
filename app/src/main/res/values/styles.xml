@@ -40,10 +40,10 @@
     </style>
 
     <style name="PinkTheme" parent="AppTheme">
-        <item name="colorPrimary">#E91E63</item>
-        <item name="colorPrimaryDark">#C2185B</item>
-        <item name="colorAccent">#C2185B</item>
-        <item name="android:windowBackground">@color/pinkBackground</item>
+        <item name="colorPrimary">#d81b60</item>
+        <item name="colorPrimaryDark">#ad164d</item>
+        <item name="colorAccent">#ff5c8d</item>
+
     </style>
 
     <style name="AppTheme.NoActionBar">
