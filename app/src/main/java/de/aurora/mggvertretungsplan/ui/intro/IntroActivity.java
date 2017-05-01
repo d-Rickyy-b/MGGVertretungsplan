@@ -7,6 +7,7 @@ package de.aurora.mggvertretungsplan.ui.intro;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.ColorInt;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
@@ -16,12 +17,14 @@ import com.github.paolorotolo.appintro.AppIntro;
 import com.github.paolorotolo.appintro.AppIntroFragment;
 
 import de.aurora.mggvertretungsplan.R;
+import de.aurora.mggvertretungsplan.ui.LayoutSwitcher;
 import de.aurora.mggvertretungsplan.ui.intro.slides.SettingsIntroSlide;
 
 public class IntroActivity extends AppIntro {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setTheme(R.style.PinkTheme);
+        int themeID = PreferenceManager.getDefaultSharedPreferences(this).getInt("Theme", 0);
+        setTheme(LayoutSwitcher.getTheme(themeID));
         super.onCreate(savedInstanceState);
 
         TypedValue typedValue = new TypedValue();
