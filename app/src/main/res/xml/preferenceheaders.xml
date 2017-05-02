@@ -43,8 +43,8 @@
 
         <com.thebluealliance.spectrum.SpectrumPreference
             android:key="color"
-            android:summary="@string/setting_app_color_title"
-            android:title="@string/setting_app_color_summary"
+            android:summary="@string/setting_app_color_summary"
+            android:title="@string/setting_app_color_title"
             android:defaultValue="@color/colorPrimary"
             app:spectrum_colors="@array/theme_picker" />
 
