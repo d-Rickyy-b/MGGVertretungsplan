@@ -53,8 +53,6 @@
         <item name="colorPrimary">#9ccc65</item>
         <item name="colorPrimaryDark">#6b9b37</item>
         <item name="colorAccent">#8d6e63</item>
-        <item name="android:textColorPrimary">@android:color/black</item>
-        <item name="colorControlNormal">@android:color/black</item>
     </style>
 
     <style name="OrangeTheme" parent="AppTheme.Light">
