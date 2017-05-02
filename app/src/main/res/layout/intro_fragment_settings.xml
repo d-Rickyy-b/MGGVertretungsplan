@@ -121,7 +121,7 @@
                 android:textSize="20sp"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
-                android:theme="@style/AppTheme.Switch_Activated" />
+                android:theme="@style/AppTheme.Light.Switch_Activated" />
 
 
         </LinearLayout>
