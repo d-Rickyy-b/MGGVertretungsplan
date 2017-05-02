@@ -268,7 +268,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
                 feedbackIntent.launchUrl(this, Uri.parse(getString(R.string.feedback_url)));
                 break;
             case R.id.action_info:
-                AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.YourAlertDialogTheme);
+                AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.AlertDialogTheme);
                 builder
                         .setIcon(R.drawable.ic_info_outline_black)
                         .setTitle("MGG Vertretungsplan v" + getString(R.string.version))

@@ -22,8 +22,8 @@
         <item name="android:textColorPrimary">@color/textColor</item>
         <item name="android:textColorPrimaryInverse">@color/textColorInverse</item>
         <item name="colorControlNormal">@color/textColor</item>
-        <item name="android:alertDialogStyle">@style/YourAlertDialogTheme</item>
-        <item name="android:alertDialogTheme">@style/YourAlertDialogTheme</item>
+        <item name="android:alertDialogStyle">@style/AlertDialogTheme</item>
+        <item name="android:alertDialogTheme">@style/AlertDialogTheme</item>
 
         <item name="android:textColor">@drawable/two_value_colors_2</item>
         <item name="android:textColorSecondary">@drawable/two_value_colors</item>
