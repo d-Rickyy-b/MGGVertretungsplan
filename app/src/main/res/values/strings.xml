@@ -19,10 +19,8 @@
     <string name="notification_interval_title">Prüfintervall</string>
     <string name="notification_interval_summary">Bitte wähle das Zeitintervall, in welchem der Vertretungsplan geprüft werden soll</string>
 
-    <string name="choose_class_key">Klasse</string>
     <string name="choose_class_title">Klasse</string>
     <string name="choose_class_desc">Bitte wähle deine Klasse aus</string>
-    <string name="choose_classLayer_key">Klassenstufe</string>
     <string name="choose_classLayer_title">Stufe</string>
     <string name="choose_classLayer_desc">Bitte wähle deine Stufe aus</string>
 
@@ -33,6 +31,15 @@
     <string name="miscellaneous">Verschiedenes</string>
     <string name="showToday">Akt. Tag zeigen</string>
     <string name="action_done">FERTIG</string>
+
+    <string name="colored_cards_title">Farbige Karten</string>
+    <string name="colored_cards_summary">Ausfälle in Übersicht farbig anzeigen</string>
+
+    <string name="setting_app_color_title">Farbgebung</string>
+    <string name="setting_app_color_summary">Wähle die Farbe der App</string>
+
+    <string name="setting_past_days_title">Alte Tage zeigen</string>
+    <string name="setting_past_days_summary">Sollen alte Daten noch angezeigt werden?</string>
 
     <!-- Not Added yet :( -->
     <string name="cancelled">Entfällt</string>

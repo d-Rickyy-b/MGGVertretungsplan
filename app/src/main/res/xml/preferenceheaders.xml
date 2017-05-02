@@ -8,7 +8,7 @@
             android:defaultValue="5"
             android:entries="@array/Klassenstufe_List"
             android:entryValues="@array/Klassenstufe_List"
-            android:key="@string/choose_classLayer_key"
+            android:key="Klassenstufe"
             android:summary="@string/choose_classLayer_desc"
             android:title="@string/choose_classLayer_title" />
 
@@ -16,7 +16,7 @@
             android:defaultValue="a"
             android:entries="@array/Klassen_List"
             android:entryValues="@array/Klassen_List"
-            android:key="@string/choose_class_key"
+            android:key="Klasse"
             android:summary="@string/choose_class_desc"
             android:title="@string/choose_class_title" />
 
@@ -31,20 +31,20 @@
         <SwitchPreference
             android:defaultValue="true"
             android:key="AktTagAnzeigen"
-            android:summary="Sollen alte Daten noch angezeigt werden?"
-            android:title="Alte Tage zeigen"
+            android:summary="@string/setting_past_days_title"
+            android:title="@string/setting_past_days_title"
             android:enabled="false" />
 
         <SwitchPreference
             android:defaultValue="true"
             android:key="listColors"
-            android:summary="Farbige Karten in der Übersicht zeigen"
-            android:title="Farben" />
+            android:summary="@string/colored_cards_summary"
+            android:title="@string/colored_cards_title" />
 
         <com.thebluealliance.spectrum.SpectrumPreference
             android:key="color"
-            android:summary="Das Aussehen der App"
-            android:title="Farbgebung"
+            android:summary="@string/setting_app_color_title"
+            android:title="@string/setting_app_color_summary"
             android:defaultValue="@color/colorPrimary"
             app:spectrum_colors="@array/theme_picker" />
 
