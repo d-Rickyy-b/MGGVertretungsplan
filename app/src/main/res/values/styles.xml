@@ -5,7 +5,7 @@
 
     </style>
 
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme.Light" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -27,27 +27,26 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="BlueTheme" parent="AppTheme">
+    <style name="BlueTheme" parent="AppTheme.Light">
         <item name="colorPrimary">#64b5f6</item>
         <item name="colorPrimaryDark">#2286c3</item>
         <item name="colorAccent">#4d2c91</item>
     </style>
 
-    <style name="AppTheme.NoActionBar">
+    <style name="AppTheme.Light.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-
-    <style name="PinkTheme" parent="AppTheme">
+    <style name="PinkTheme" parent="AppTheme.Light">
         <item name="colorPrimary">#f06292</item>
         <item name="colorPrimaryDark">#ba2d65</item>
         <item name="colorAccent">#ff94c2</item>
     </style>
 
-    <style name="GreenTheme" parent="AppTheme">
+    <style name="GreenTheme" parent="AppTheme.Light">
         <item name="colorPrimary">#9ccc65</item>
         <item name="colorPrimaryDark">#6b9b37</item>
         <item name="colorAccent">#8d6e63</item>
@@ -55,7 +54,7 @@
         <item name="colorControlNormal">@android:color/black</item>
     </style>
 
-    <style name="OrangeTheme" parent="AppTheme">
+    <style name="OrangeTheme" parent="AppTheme.Light">
         <item name="colorPrimary">#ff9800</item>
         <item name="colorPrimaryDark">#c66900</item>
         <item name="colorAccent">#9c64a6</item>

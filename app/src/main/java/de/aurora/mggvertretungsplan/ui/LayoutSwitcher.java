@@ -15,7 +15,7 @@ public class LayoutSwitcher {
     public static int getTheme(int themeID) {
         switch (themeID) {
             case 0:
-                return R.style.AppTheme;
+                return R.style.AppTheme_Light;
             case 1:
                 return R.style.BlueTheme;
             case 2:
@@ -25,7 +25,7 @@ public class LayoutSwitcher {
             case 4:
                 return R.style.OrangeTheme;
             default:
-                return R.style.AppTheme;
+                return R.style.AppTheme_Light;
         }
     }
 
