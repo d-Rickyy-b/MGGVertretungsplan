@@ -277,10 +277,8 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
                             public void onClick(DialogInterface dialog, int which) {
                             }
                         });
-
                 AlertDialog dialog = builder.create();
                 dialog.show();
-
                 break;
             default:
                 break;
