@@ -270,7 +270,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
             case R.id.action_info:
                 AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.YourAlertDialogTheme);
                 builder
-                        .setIcon(R.drawable.ic_menu_info_details)
+                        .setIcon(R.drawable.ic_info_outline_black)
                         .setTitle("MGG Vertretungsplan v" + getString(R.string.version))
                         .setMessage(Html.fromHtml("Programmiert von Rico Jambor<br><br>Bei Fehlern entweder eine Email an:<br><b>rico.jambor@gmail.com</b><br><br>Oder per Telegram an:<br><center><b>@d_Rickyy_b</b></center>"))
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
