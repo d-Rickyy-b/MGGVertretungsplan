@@ -14,9 +14,9 @@
         <item name="android:dropDownListViewStyle">@style/DropDownMenuTheme</item>
         <item name="dropDownListViewStyle">@style/DropDownMenuTheme</item>
 
+        <item name="colorControlNormal">@color/textColor</item>
         <item name="android:textColorPrimary">@color/textColor</item>
         <item name="android:textColorPrimaryInverse">@color/textColorInverse</item>
-        <item name="colorControlNormal">@color/textColor</item>
         <item name="android:alertDialogStyle">@style/AlertDialogTheme</item>
         <item name="android:alertDialogTheme">@style/AlertDialogTheme</item>
 
