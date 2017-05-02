@@ -1,5 +1,5 @@
 <resources>
-    <style name="MyActionBarMenu" parent="@style/Widget.AppCompat.Light.ListView.DropDown">
+    <style name="DropDownMenuTheme" parent="@style/Widget.AppCompat.Light.ListView.DropDown">
         <item name="android:textColorPrimary">@android:color/black</item>
         <item name="android:background">@android:color/white</item>
 
@@ -11,8 +11,8 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
 
-        <item name="android:dropDownListViewStyle">@style/MyActionBarMenu</item>
-        <item name="dropDownListViewStyle">@style/MyActionBarMenu</item>
+        <item name="android:dropDownListViewStyle">@style/DropDownMenuTheme</item>
+        <item name="dropDownListViewStyle">@style/DropDownMenuTheme</item>
 
         <item name="android:textColorPrimary">@color/textColor</item>
         <item name="android:textColorPrimaryInverse">@color/textColorInverse</item>
