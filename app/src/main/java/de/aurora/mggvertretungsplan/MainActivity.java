@@ -40,7 +40,6 @@ import org.jsoup.select.Elements;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
@@ -429,7 +428,6 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         } catch (IndexOutOfBoundsException e) {
             e.printStackTrace();
             tableOne = new ArrayList<>();
-            tableOne.add(new ArrayList<>(Arrays.asList("", "", "", "", "", "", "")));
         }
 
         try {
@@ -437,7 +435,6 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         } catch (IndexOutOfBoundsException e) {
             e.printStackTrace();
             tableTwo = new ArrayList<>();
-            tableTwo.add(new ArrayList<>(Arrays.asList("", "", "", "", "", "", "")));
         }
 
         tableOne = hilfsMethoden.datenAufbereiten(tableOne, klasse);
@@ -474,8 +471,6 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        //super.onActivityResult(requestCode, resultCode, intent);
-
         if (requestCode == 0) {
             recreate();
         }
