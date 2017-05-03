@@ -2,7 +2,7 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <PreferenceCategory android:title="Klasse">
+    <PreferenceCategory android:title="@string/preference_class">
 
         <ListPreference
             android:defaultValue="5"
@@ -47,7 +47,6 @@
             android:title="@string/setting_app_color_title"
             android:defaultValue="@color/colorPrimary"
             app:spectrum_colors="@array/theme_picker" />
-
 
     </PreferenceCategory>
 </PreferenceScreen>

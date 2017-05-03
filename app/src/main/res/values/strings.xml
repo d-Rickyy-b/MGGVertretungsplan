@@ -10,6 +10,7 @@
     <string name="feedback_url">https://goo.gl/forms/AeYT99ElhH7vzqAx1</string>
     <string name="ur2">http://rickyy.lima-city.de/html/vertretungsplan.html</string>
     <string name="zuletztAbger">Zuletzt aktualisiert: %s</string>
+
     <string name="welcome_slide_title">Willkommen</string>
     <string name="welcome_slide_descr">Vielen Dank, dass du diese App nutzt. Auf der folgenden Seite findest du einige Einstellungen, die du setzen solltest.</string>
     <string name="settings_slide_title">@string/action_settings</string>
@@ -23,11 +24,11 @@
     <string name="choose_class_desc">Bitte wähle deine Klasse aus</string>
     <string name="choose_classLayer_title">Stufe</string>
     <string name="choose_classLayer_desc">Bitte wähle deine Stufe aus</string>
+    <string name="preference_class">Klasse</string>
 
     <string name="version">2.1.0</string>
     <integer name="versionNumber">15</integer>
 
-    <string name="notifications">Benachrichtigungen</string>
     <string name="miscellaneous">Verschiedenes</string>
     <string name="showToday">Akt. Tag zeigen</string>
     <string name="action_done">FERTIG</string>
