@@ -59,7 +59,6 @@ public class CardsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
             return new HeadingsViewHolder(itemView);
         } else if (viewType == TYPE_NOINFO) {
-//            Log.v("MyTag", "Type: " + viewType + " | " + dayOneList.toString() + " | " + dayTwoList.toString());
             View itemView = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.view_no_info_card, parent, false);
 
