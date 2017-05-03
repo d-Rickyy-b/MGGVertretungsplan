@@ -9,10 +9,8 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatSpinner;
 import android.support.v7.widget.SwitchCompat;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -86,7 +84,6 @@ public class SettingsIntroSlide extends AppIntroBaseFragment {
         super.onSaveInstanceState(outState);
 
         saveData();
-        Log.v("MyTag", "PutBoolean (onSaveInstanceState): " + notificationsSwitch.isChecked());
     }
 
     @Nullable
@@ -122,7 +119,6 @@ public class SettingsIntroSlide extends AppIntroBaseFragment {
         stufeSpinner = (AppCompatSpinner) v.findViewById(R.id.slide_class_spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
                 getActivity().getApplicationContext(), R.array.Klassenstufe_List, android.R.layout.simple_spinner_item);
-//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
         stufeSpinner.setAdapter(adapter);
         stufeSpinner.setSelection(getPositionFromString(getResources().getStringArray(R.array.Klassenstufe_List), sp.getString("Klassenstufe", "5")));
@@ -157,10 +153,8 @@ public class SettingsIntroSlide extends AppIntroBaseFragment {
         classSpinner = (AppCompatSpinner) v.findViewById(R.id.slide_class_spinner2);
         ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(
                 getActivity().getApplicationContext(), R.array.Klassen_List, android.R.layout.simple_spinner_item);
-//        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         adapter2.setDropDownViewResource(R.layout.spinner_dropdown_item);
         classSpinner.setAdapter(adapter2);
-
         classSpinner.setSelection(getPositionFromString(getResources().getStringArray(R.array.Klassen_List), sp.getString("Klasse", "a")));
 
         if (stufeSpinner.getSelectedItem().toString().equals("K1") || stufeSpinner.getSelectedItem().toString().equals("K2")) {
@@ -172,10 +166,7 @@ public class SettingsIntroSlide extends AppIntroBaseFragment {
         notificationsSwitch.setTextColor(Color.WHITE);
 
         notificationsSwitch.setChecked(sp.getBoolean("notification", true));
-//        Log.v("MyTag", "getBoolean: " + notificationsSwitch.isChecked());
-
         mainLayout.setBackgroundColor(bgColor);
-
         return v;
     }
 
