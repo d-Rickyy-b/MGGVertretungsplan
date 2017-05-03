@@ -350,9 +350,6 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
             monat1 = monat2;
             monat2 = tmpMonat;
 
-//            DateHeading tempHeading = headingsList.get(0);
-//            headingsList.set(0, headingsList.get(1));
-//            headingsList.set(1, tempHeading);
         }
 
         String erstesDatumName = hilfsMethoden.getAnyDayByName(jahr, monat1, tag1);
