@@ -121,7 +121,7 @@
                 android:paddingTop="10dp"
                 android:textColorHint="@android:color/white"
                 android:textSize="20sp"
-                android:theme="@style/AppTheme.Light.Switch_Activated" />
+                />
 
         </LinearLayout>
     </ScrollView>
