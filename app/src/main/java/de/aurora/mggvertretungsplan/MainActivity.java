@@ -452,12 +452,14 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         int count1 = hilfsMethoden.getDifferencesCount(tableOne, tableOne_saved);
         int count2 = hilfsMethoden.getDifferencesCount(tableTwo, tableTwo_saved);
 
-        if ((count1 + count2) > 0) {
+
+//        if ((count1 + count2) > 0) {
             Log.v("MyTag", "Anzeigen");
             anzeigen(tableOne, tableTwo, erstesDatum, zweitesDatum, sp.getBoolean("AktTagAnzeigen", true));
-        } else {
-            mSwipeLayout.setRefreshing(false);
-        }
+//        } else {
+//            Log.v("MyTag", "Nicht anzeigen");
+//            mSwipeLayout.setRefreshing(false);
+//        }
 
         SharedPreferences.Editor editor = sp.edit();
         editor.putString("erstesDatum", erstesDatum);
