@@ -127,36 +127,6 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(cAdapter);
 
-        //TODO entfernen oder auskommentieren, da noch nicht genutzt
-        /*
-        recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), recyclerView, new RecyclerTouchListener.ClickListener() {
-            @Override
-            public void onClick(View view, int position) {
-                String infotext = "";
-                if (position == 0){
-                    DateHeading dv = headingsList.get(0);
-                    infotext = dv.getTitle();
-                } else if (position == dayOneList.size() + 1) {
-                    DateHeading dv = headingsList.get(position - (dayOneList.size() + 1));
-                    infotext = dv.getTitle();
-                } else if (position <= dayOneList.size()){
-                    TimeTableCard timeTableCard = dayOneList.get(position - 1);
-                    infotext = timeTableCard.getInfo();
-                } else if (position >= dayOneList.size() + headingsList.size()){
-                    TimeTableCard timeTableCard = dayTwoList.get(position - (dayOneList.size() + headingsList.size()));
-                    infotext = timeTableCard.getInfo();
-                }
-
-                Toast.makeText(getApplicationContext(), infotext + " is selected!", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onLongClick(View view, int position) {
-                Toast.makeText(getApplicationContext(), position + " is selected!", Toast.LENGTH_SHORT).show();
-            }
-        }));
-        */
-
         gespeicherteDatenAnzeigen();
         updateData();
     }
