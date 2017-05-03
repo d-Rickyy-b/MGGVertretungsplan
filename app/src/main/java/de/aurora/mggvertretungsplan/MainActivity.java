@@ -472,7 +472,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        super.onActivityResult(requestCode, resultCode, intent);
+        //super.onActivityResult(requestCode, resultCode, intent);
 
         if (requestCode == 0) {
             recreate();
