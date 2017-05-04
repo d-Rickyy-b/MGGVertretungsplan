@@ -38,7 +38,6 @@ public class SettingsIntroSlide extends AppIntroBaseFragment {
     private boolean isSwitchChecked = true;
     private String title, titleTypeface, description, descTypeface;
     private int drawable, bgColor, titleColor, descColor;
-    private LinearLayout mainLayout;
 
 
     public static SettingsIntroSlide newInstance(CharSequence title, CharSequence description, int bgColor, int titleColor, int descColor) {
@@ -95,7 +94,7 @@ public class SettingsIntroSlide extends AppIntroBaseFragment {
         View v = inflater.inflate(R.layout.intro_fragment_settings, container, false);
         TextView t = (TextView) v.findViewById(com.github.paolorotolo.appintro.R.id.title);
         TextView d = (TextView) v.findViewById(com.github.paolorotolo.appintro.R.id.description);
-        mainLayout = (LinearLayout) v.findViewById(com.github.paolorotolo.appintro.R.id.main);
+        LinearLayout mainLayout = (LinearLayout) v.findViewById(com.github.paolorotolo.appintro.R.id.main);
 
         t.setText(title);
         t.setTextColor(titleColor);
