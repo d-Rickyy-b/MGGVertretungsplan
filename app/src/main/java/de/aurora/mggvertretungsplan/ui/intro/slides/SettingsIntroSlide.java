@@ -123,7 +123,7 @@ public class SettingsIntroSlide extends AppIntroBaseFragment {
         stufeSpinner.setSelection(getPositionFromString(getResources().getStringArray(R.array.Klassenstufe_List), sp.getString("Klassenstufe", "5")));
 
         stufeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            protected Adapter initializedAdapter = null;
+            Adapter initializedAdapter = null;
 
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {

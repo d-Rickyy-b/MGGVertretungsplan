@@ -18,7 +18,7 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 
-public class hilfsMethoden {
+class hilfsMethoden {
 
     public static ArrayList<ArrayList<String>> datenAufbereiten(ArrayList<ArrayList<String>> tabelle, String klasse){
         tabelle = getRightClass(tabelle, klasse);
