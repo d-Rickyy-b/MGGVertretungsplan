@@ -219,7 +219,7 @@ public class hilfsMethoden {
 
     public static ArrayList<ArrayList<String>> getArrayList(String jsonArraytext) {
         try {
-            if (jsonArraytext.equals("") || jsonArraytext == null)
+            if (jsonArraytext == null || jsonArraytext.equals(""))
                 return new ArrayList<>();
 
             JSONArray jsonArray = new JSONArray(jsonArraytext);
