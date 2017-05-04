@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.ColorInt;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.util.TypedValue;
 
 import com.github.paolorotolo.appintro.AppIntro;
