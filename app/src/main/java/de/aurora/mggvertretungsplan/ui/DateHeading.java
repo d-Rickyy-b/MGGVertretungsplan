@@ -5,7 +5,8 @@ package de.aurora.mggvertretungsplan.ui;
  */
 
 public class DateHeading {
-    private String day_name, date;
+    private final String day_name;
+    private final String date;
 
     public DateHeading(String day_name, String date) {
         this.day_name = day_name;
