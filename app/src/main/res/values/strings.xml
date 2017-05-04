@@ -52,6 +52,9 @@
     <string name="settings_name">Einstellungen</string>
     <string name="settings_saved">Einstellungen übernommen!</string>
     <!--  -->
+    <string name="no_information_card">Keine Informationen!</string>
+    <string name="placeholder_title">Titel</string>
+    <string name="placeholder_summary">Summary</string>
 
     <string name="infoTitle">Info</string>
 

@@ -123,7 +123,7 @@ public class CardsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             setAnimation(myholder.heading, position);
         } else if (holder instanceof NoInfoViewHolder) {
             NoInfoViewHolder myholder = (NoInfoViewHolder) holder;
-            myholder.noInfo.setText("Keine Informationen!");
+            myholder.noInfo.setText(context.getResources().getString(R.string.no_information_card));
 
             setAnimation(myholder.noInfo, position);
         }
