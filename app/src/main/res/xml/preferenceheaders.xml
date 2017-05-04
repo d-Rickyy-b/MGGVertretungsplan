@@ -25,7 +25,7 @@
     <PreferenceCategory android:title="@string/miscellaneous">
 
         <PreferenceScreen android:title="@string/notification_setting_title">
-            <intent android:action="de.aurora.MggVertretungsplan.EINSTELLUNGEN" />
+            <intent android:action=".EINSTELLUNGEN" />
         </PreferenceScreen>
 
         <SwitchPreference
