@@ -333,7 +333,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
             tag1 = tag2 = 1;
         }
 
-        Log.v("MyTag", erstesDatum + jahr + " | " + zweitesDatum + jahr);
+        Log.v("Vertretungsplan", erstesDatum + jahr + " | " + zweitesDatum + jahr);
 
         //Wenn der erste Tag vor dem zweiten kommt im gleichen Monat (normalfall), oder wenn der erste Monat vor dem zweiten kommt
         if ((tag1 > tag2 && monat1 == monat2) || (tag1 < tag2 && monat1 > monat2)) {
@@ -451,10 +451,10 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
 
 //        if ((count1 + count2) > 0) {
-            Log.v("MyTag", "Anzeigen");
+            Log.v("Vertretungsplan", "Anzeigen");
             anzeigen(tableOne, tableTwo, erstesDatum, zweitesDatum, sp.getBoolean("AktTagAnzeigen", true));
 //        } else {
-//            Log.v("MyTag", "Nicht anzeigen");
+//            Log.v("Vertretungsplan", "Nicht anzeigen");
 //            mSwipeLayout.setRefreshing(false);
 //        }
 
