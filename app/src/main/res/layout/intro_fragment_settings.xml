@@ -20,7 +20,7 @@
         android:paddingBottom="10dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
         android:textStyle="bold"
-        tools:text="@string/action_settings"
+        tools:text="@string/action_settings" />
 
     <ScrollView
         android:layout_width="match_parent"
