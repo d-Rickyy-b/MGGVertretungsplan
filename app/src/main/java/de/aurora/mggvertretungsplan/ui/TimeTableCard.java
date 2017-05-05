@@ -5,12 +5,12 @@ package de.aurora.mggvertretungsplan.ui;
  */
 
 public class TimeTableCard {
-    private String hour;
-    private String fach;
-    private String typ;
-    private String info;
-    private String raum;
-    private String neuRaum;
+    private final String hour;
+    private final String fach;
+    private final String typ;
+    private final String info;
+    private final String raum;
+    private final String neuRaum;
 
     public TimeTableCard(String hour, String fach, String neuFach, String raum, String neuRaum, String typ, String info) {
         if (info.length() > 0) {

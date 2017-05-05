@@ -57,9 +57,9 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
     private String klasse;
     private int jahr;
     private SwipeRefreshLayout mSwipeLayout;
-    private ArrayList<TimeTableCard> dayOneList = new ArrayList<>();
-    private ArrayList<TimeTableCard> dayTwoList = new ArrayList<>();
-    private ArrayList<DateHeading> headingsList = new ArrayList<>();
+    private final ArrayList<TimeTableCard> dayOneList = new ArrayList<>();
+    private final ArrayList<TimeTableCard> dayTwoList = new ArrayList<>();
+    private final ArrayList<DateHeading> headingsList = new ArrayList<>();
     private CardsAdapter cAdapter;
 
     @Override

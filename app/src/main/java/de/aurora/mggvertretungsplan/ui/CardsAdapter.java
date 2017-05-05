@@ -31,9 +31,9 @@ public class CardsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     private static final int TYPE_DAYTWO = 2;
     private static final int TYPE_NOINFO = 3;
     private int lastPosition = -1;
-    private List<TimeTableCard> dayOneList;
-    private List<TimeTableCard> dayTwoList;
-    private List<DateHeading> headingList;
+    private final List<TimeTableCard> dayOneList;
+    private final List<TimeTableCard> dayTwoList;
+    private final List<DateHeading> headingList;
     private final Context context;
     private final SharedPreferences sp;
 
@@ -95,7 +95,7 @@ public class CardsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             if (sp.getBoolean("listColors", true)) {
                 switch (timeTableCard.getTyp()) {
                     case "Entfall":
-                        myholder.cardView.setCardBackgroundColor(Color.parseColor("#FF6961")); //#EF5350
+                        myholder.cardView.setCardBackgroundColor(Color.parseColor("#FF6961"));
                         break;
                     case "Vertretung":
                         myholder.cardView.setCardBackgroundColor(Color.parseColor("#779ECB"));
@@ -155,7 +155,7 @@ public class CardsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     }
 
     public class NoInfoViewHolder extends RecyclerView.ViewHolder {
-        public TextView noInfo;
+        public final TextView noInfo;
 
         public NoInfoViewHolder(View view) {
             super(view);
