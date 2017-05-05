@@ -39,7 +39,12 @@ public class PreferenceBenachrichtigungen extends PreferenceActivity{
         getFragmentManager().beginTransaction().replace(R.id.content, new NotificationFragment()).commit();
         getFragmentManager().executePendingTransactions();
     }
-	
+
+    @Override
+    public boolean isValidFragment(String fragmentName){
+        return super.isValidFragment(fragmentName);
+    }
+
 	//ActionBar zurück option
     public boolean onOptionsItemSelected(MenuItem item) {
 	    switch (item.getItemId()) {
