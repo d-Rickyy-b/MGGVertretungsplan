@@ -42,7 +42,7 @@
     <style name="PinkTheme" parent="AppTheme.Light">
         <item name="colorPrimary">#f06292</item>
         <item name="colorPrimaryDark">#ba2d65</item>
-        <item name="colorAccent">#ff94c2</item>
+        <item name="colorAccent">#673ab7</item>
     </style>
 
     <style name="GreenTheme" parent="AppTheme.Light">
