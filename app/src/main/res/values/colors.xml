@@ -8,21 +8,15 @@
     <color name="accentColor">#00897B</color>
     <color name="textColor">#FAFAFA</color>
     <color name="textColorInverse">#0e0e0e</color>
-    <color name="MenuColor">#424242</color>
-    <color name="ListViewItemColor">#ff303030</color>
-    <color name="ListViewItemBlau">#0099CC</color>
 
     <color name="Schrift1">#424242</color>
     <color name="Schrift2">#5c5c5c</color>
 
     <color name="lightGrey">#6b6b6b</color>
     <color name="reallyLightGrey">#f5f5f5</color>
-    <color name="tagBackground">#2A2E31</color>
 
     <color name="disabled">#a0a0a0</color>
     <color name="disabled2">#bababa</color>
-
-    <color name="switchActivated">#0099CC</color>
 
     <color name="colorPrimary">#757575</color>
     <color name="colorPrimaryDark">#616161</color>
@@ -30,8 +24,6 @@
 
     <color name="cardEntfall">#EF5350</color>
     <color name="cardVertretung">#FFFFFF</color>
-
-    <color name="pinkBackground">#F8BBD0</color>
 
     <!-- Colors shown in the color picker in the settings -->
     <array name="theme_picker">
