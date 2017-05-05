@@ -19,7 +19,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:weightSum="3"
-            android:layout_gravity="center">
+            android:layout_gravity="center"
+            android:baselineAligned="true">
 
             <RelativeLayout
                 android:layout_width="match_parent"
