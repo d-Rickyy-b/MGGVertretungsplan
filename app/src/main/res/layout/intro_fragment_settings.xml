@@ -65,7 +65,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_alignParentTop="true"
 
-                    android:layout_gravity="right|center"
+                    android:layout_gravity="end|center"
                     android:minWidth="60dp"
                     android:paddingBottom="10dp"
                     android:paddingTop="10dp"
@@ -102,7 +102,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentTop="true"
-                    android:layout_gravity="right|center"
+                    android:layout_gravity="end|center"
                     android:minWidth="60dp"
                     android:paddingBottom="10dp"
 
