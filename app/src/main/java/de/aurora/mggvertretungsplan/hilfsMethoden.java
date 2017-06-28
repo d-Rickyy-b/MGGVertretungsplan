@@ -18,7 +18,7 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 
-public class hilfsMethoden {
+class hilfsMethoden {
 
     public static ArrayList<ArrayList<String>> datenAufbereiten(ArrayList<ArrayList<String>> tabelle, String klasse){
         tabelle = getRightClass(tabelle, klasse);
@@ -219,7 +219,7 @@ public class hilfsMethoden {
 
     public static ArrayList<ArrayList<String>> getArrayList(String jsonArraytext) {
         try {
-            if (jsonArraytext.equals("") || jsonArraytext == null)
+            if (jsonArraytext == null || jsonArraytext.equals(""))
                 return new ArrayList<>();
 
             JSONArray jsonArray = new JSONArray(jsonArraytext);

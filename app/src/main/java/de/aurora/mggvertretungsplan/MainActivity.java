@@ -8,14 +8,17 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources.Theme;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.annotation.ColorInt;
+import android.support.customtabs.CustomTabsIntent;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -24,6 +27,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.text.format.DateFormat;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -36,17 +40,14 @@ import org.jsoup.select.Elements;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 
 import de.aurora.mggvertretungsplan.ui.CardsAdapter;
 import de.aurora.mggvertretungsplan.ui.DateHeading;
+import de.aurora.mggvertretungsplan.ui.LayoutSwitcher;
 import de.aurora.mggvertretungsplan.ui.TimeTableCard;
-
-import android.support.customtabs.*;
-import android.net.Uri;
 
 public class MainActivity extends AppCompatActivity implements AsyncTaskCompleteListener<String>, SwipeRefreshLayout.OnRefreshListener {
 
@@ -56,15 +57,17 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
     private String klasse;
     private int jahr;
     private SwipeRefreshLayout mSwipeLayout;
-    private ArrayList<TimeTableCard> dayOneList = new ArrayList<>();
-    private ArrayList<TimeTableCard> dayTwoList = new ArrayList<>();
-    private ArrayList<DateHeading> headingsList = new ArrayList<>();
+    private final ArrayList<TimeTableCard> dayOneList = new ArrayList<>();
+    private final ArrayList<TimeTableCard> dayTwoList = new ArrayList<>();
+    private final ArrayList<DateHeading> headingsList = new ArrayList<>();
     private CardsAdapter cAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         sp = PreferenceManager.getDefaultSharedPreferences(this);
+        int themeID = sp.getInt("Theme", 0);
+        setTheme(LayoutSwitcher.getTheme(themeID));
+        super.onCreate(savedInstanceState);
 
         //TODO wieder entfernen, sobald die Funktion wieder geht
         sp.edit().putBoolean("AktTagAnzeigen", true).apply(); //true!!!
@@ -122,36 +125,6 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(cAdapter);
-
-        //TODO entfernen oder auskommentieren, da noch nicht genutzt
-        /*
-        recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), recyclerView, new RecyclerTouchListener.ClickListener() {
-            @Override
-            public void onClick(View view, int position) {
-                String infotext = "";
-                if (position == 0){
-                    DateHeading dv = headingsList.get(0);
-                    infotext = dv.getTitle();
-                } else if (position == dayOneList.size() + 1) {
-                    DateHeading dv = headingsList.get(position - (dayOneList.size() + 1));
-                    infotext = dv.getTitle();
-                } else if (position <= dayOneList.size()){
-                    TimeTableCard timeTableCard = dayOneList.get(position - 1);
-                    infotext = timeTableCard.getInfo();
-                } else if (position >= dayOneList.size() + headingsList.size()){
-                    TimeTableCard timeTableCard = dayTwoList.get(position - (dayOneList.size() + headingsList.size()));
-                    infotext = timeTableCard.getInfo();
-                }
-
-                Toast.makeText(getApplicationContext(), infotext + " is selected!", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onLongClick(View view, int position) {
-                Toast.makeText(getApplicationContext(), position + " is selected!", Toast.LENGTH_SHORT).show();
-            }
-        }));
-        */
 
         gespeicherteDatenAnzeigen();
         updateData();
@@ -239,37 +212,42 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
     //Aktion die ausgeführt werden soll, wenn action bar item geklickt wurde
     public boolean onOptionsItemSelected(MenuItem item) {
+        TypedValue typedValue = new TypedValue();
+        Theme theme = getTheme();
+        theme.resolveAttribute(R.attr.colorPrimary, typedValue, true);
+        @ColorInt int color = typedValue.data;
+
         switch (item.getItemId()) {
             case R.id.action_settings:
                 Intent preferenceIntent = new Intent(getApplicationContext(), Settings.class);
-                startActivity(preferenceIntent);
+                startActivityForResult(preferenceIntent, 0);
                 break;
             case R.id.action_webview:
                 CustomTabsIntent.Builder chromeTabsBuilder = new CustomTabsIntent.Builder();
-                chromeTabsBuilder.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary));
-                CustomTabsIntent customTabsFeedbackIntent = chromeTabsBuilder.build();
-                customTabsFeedbackIntent.launchUrl(this, Uri.parse(getString(R.string.vertretungsplan_url)));
+                chromeTabsBuilder.setToolbarColor(color);
+                chromeTabsBuilder.setShowTitle(true);
+                CustomTabsIntent websiteIntent = chromeTabsBuilder.build();
+                websiteIntent.launchUrl(this, Uri.parse(getString(R.string.vertretungsplan_url)));
                 break;
             case R.id.action_feedback:
                 CustomTabsIntent.Builder chromeTabsFeedbackBuilder = new CustomTabsIntent.Builder();
-                chromeTabsFeedbackBuilder.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary));
-                CustomTabsIntent customTabsIntent = chromeTabsFeedbackBuilder.build();
-                customTabsIntent.launchUrl(this, Uri.parse(getString(R.string.feedback_url)));
+                chromeTabsFeedbackBuilder.setToolbarColor(color);
+                chromeTabsFeedbackBuilder.setShowTitle(true);
+                CustomTabsIntent feedbackIntent = chromeTabsFeedbackBuilder.build();
+                feedbackIntent.launchUrl(this, Uri.parse(getString(R.string.feedback_url)));
                 break;
             case R.id.action_info:
-                AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.YourAlertDialogTheme);
+                AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.AlertDialogTheme);
                 builder
-                        .setIcon(R.drawable.ic_menu_info_details)
+                        .setIcon(R.drawable.ic_info_outline_black)
                         .setTitle("MGG Vertretungsplan v" + getString(R.string.version))
                         .setMessage(Html.fromHtml("Programmiert von Rico Jambor<br><br>Bei Fehlern entweder eine Email an:<br><b>rico.jambor@gmail.com</b><br><br>Oder per Telegram an:<br><center><b>@d_Rickyy_b</b></center>"))
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                             }
                         });
-
                 AlertDialog dialog = builder.create();
                 dialog.show();
-
                 break;
             default:
                 break;
@@ -280,7 +258,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
     private void serviceProvider() {
         if (sp.getBoolean("notification", true)) {
-            AlarmManager(Integer.valueOf(sp.getString("AbrufIntervall", "1800000")));
+            AlarmManager(Long.valueOf(sp.getString("AbrufIntervall", "1800000")));
             Log.v("VertretungsplanService", "serviceProvider, Interval: " + sp.getString("AbrufIntervall", "1800000"));
         } else {
             AlarmManagerBeenden();
@@ -288,8 +266,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
     }
 
     //AlarmManager Starten! -> Hintergrund Prozess
-    private void AlarmManager(int intervall) {
-        long interval = (long) intervall;
+    private void AlarmManager(long interval) {
         long firstStart = System.currentTimeMillis() + interval;
 
         Intent intentsOpen = new Intent(this, VertretungsplanService.class);
@@ -356,7 +333,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
             tag1 = tag2 = 1;
         }
 
-        Log.v("MyTag", erstesDatum + jahr + " | " + zweitesDatum + jahr);
+        Log.v("Vertretungsplan", erstesDatum + jahr + " | " + zweitesDatum + jahr);
 
         //Wenn der erste Tag vor dem zweiten kommt im gleichen Monat (normalfall), oder wenn der erste Monat vor dem zweiten kommt
         if ((tag1 > tag2 && monat1 == monat2) || (tag1 < tag2 && monat1 > monat2)) {
@@ -372,9 +349,6 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
             monat1 = monat2;
             monat2 = tmpMonat;
 
-//            DateHeading tempHeading = headingsList.get(0);
-//            headingsList.set(0, headingsList.get(1));
-//            headingsList.set(1, tempHeading);
         }
 
         String erstesDatumName = hilfsMethoden.getAnyDayByName(jahr, monat1, tag1);
@@ -454,7 +428,6 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         } catch (IndexOutOfBoundsException e) {
             e.printStackTrace();
             tableOne = new ArrayList<>();
-            tableOne.add(new ArrayList<>(Arrays.asList("", "", "", "", "", "", "")));
         }
 
         try {
@@ -462,7 +435,6 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         } catch (IndexOutOfBoundsException e) {
             e.printStackTrace();
             tableTwo = new ArrayList<>();
-            tableTwo.add(new ArrayList<>(Arrays.asList("", "", "", "", "", "", "")));
         }
 
         tableOne = hilfsMethoden.datenAufbereiten(tableOne, klasse);
@@ -477,12 +449,14 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         int count1 = hilfsMethoden.getDifferencesCount(tableOne, tableOne_saved);
         int count2 = hilfsMethoden.getDifferencesCount(tableTwo, tableTwo_saved);
 
-        if ((count1 + count2) > 0) {
-            Log.v("MyTag", "Anzeigen");
+
+//        if ((count1 + count2) > 0) {
+            Log.v("Vertretungsplan", "Anzeigen");
             anzeigen(tableOne, tableTwo, erstesDatum, zweitesDatum, sp.getBoolean("AktTagAnzeigen", true));
-        } else {
-            mSwipeLayout.setRefreshing(false);
-        }
+//        } else {
+//            Log.v("Vertretungsplan", "Nicht anzeigen");
+//            mSwipeLayout.setRefreshing(false);
+//        }
 
         SharedPreferences.Editor editor = sp.edit();
         editor.putString("erstesDatum", erstesDatum);
@@ -492,6 +466,14 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         editor.putString("zweiteTabelle", hilfsMethoden.getJSONArray(tableTwo).toString());
         editor.putBoolean("AktTagAnzeigen", true);
         editor.apply();
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        if (requestCode == 0) {
+            recreate();
+        }
     }
 
     @Override

@@ -10,8 +10,10 @@
     <string name="feedback_url">https://goo.gl/forms/AeYT99ElhH7vzqAx1</string>
     <string name="ur2">http://rickyy.lima-city.de/html/vertretungsplan.html</string>
     <string name="zuletztAbger">Zuletzt aktualisiert: %s</string>
+
     <string name="welcome_slide_title">Willkommen</string>
     <string name="welcome_slide_descr">Vielen Dank, dass du diese App nutzt. Auf der folgenden Seite findest du einige Einstellungen, die du setzen solltest.</string>
+    <string name="welcome_slide_content_descr">App-Logo</string>
     <string name="settings_slide_title">@string/action_settings</string>
     <string name="settings_slide_descr">Bitte stelle deine Klasse ein!\nFalls du keine Benachrichtigungen wünschst, dann schalte sie oben aus!\nAlle Einstellungen kannst du später wieder ändern.</string>
     <string name="notification_setting_title">Benachrichtigungen</string>
@@ -19,13 +21,30 @@
     <string name="notification_interval_title">Prüfintervall</string>
     <string name="notification_interval_summary">Bitte wähle das Zeitintervall, in welchem der Vertretungsplan geprüft werden soll</string>
 
+    <string name="choose_class_title">Klasse</string>
+    <string name="choose_class_desc">Bitte wähle deine Klasse aus</string>
+    <string name="choose_classLayer_title">Stufe</string>
+    <string name="choose_classLayer_desc">Bitte wähle deine Stufe aus</string>
+    <string name="preference_class">Klasse</string>
+
     <string name="version">2.1.0</string>
     <integer name="versionNumber">15</integer>
 
-    <string name="notifications">Benachrichtigungen</string>
     <string name="miscellaneous">Verschiedenes</string>
     <string name="showToday">Akt. Tag zeigen</string>
     <string name="action_done">FERTIG</string>
+
+    <string name="colored_cards_title">Farbige Karten</string>
+    <string name="colored_cards_summary">Ausfälle in Übersicht farbig anzeigen</string>
+
+    <string name="setting_app_color_title">Farbgebung</string>
+    <string name="setting_app_color_summary">Wähle die Farbe der App</string>
+
+    <string name="setting_past_days_title">Alte Tage zeigen</string>
+    <string name="setting_past_days_summary">Sollen alte Daten noch angezeigt werden?</string>
+
+    <string name="settings_dialog_back">Zurück!</string>
+    <string name="settings_dialog_title">Intervall</string>
 
     <!-- Not Added yet :( -->
     <string name="cancelled">Entfällt</string>
@@ -33,6 +52,9 @@
     <string name="settings_name">Einstellungen</string>
     <string name="settings_saved">Einstellungen übernommen!</string>
     <!--  -->
+    <string name="no_information_card">Keine Informationen!</string>
+    <string name="placeholder_title">Titel</string>
+    <string name="placeholder_summary">Summary</string>
 
     <string name="infoTitle">Info</string>
 

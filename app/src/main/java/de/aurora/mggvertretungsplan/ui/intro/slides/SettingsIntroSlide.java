@@ -5,13 +5,12 @@ package de.aurora.mggvertretungsplan.ui.intro.slides;
  */
 
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatSpinner;
 import android.support.v7.widget.SwitchCompat;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,7 +38,6 @@ public class SettingsIntroSlide extends AppIntroBaseFragment {
     private boolean isSwitchChecked = true;
     private String title, titleTypeface, description, descTypeface;
     private int drawable, bgColor, titleColor, descColor;
-    private LinearLayout mainLayout;
 
 
     public static SettingsIntroSlide newInstance(CharSequence title, CharSequence description, int bgColor, int titleColor, int descColor) {
@@ -85,7 +83,6 @@ public class SettingsIntroSlide extends AppIntroBaseFragment {
         super.onSaveInstanceState(outState);
 
         saveData();
-        Log.v("MyTag", "PutBoolean (onSaveInstanceState): " + notificationsSwitch.isChecked());
     }
 
     @Nullable
@@ -97,7 +94,7 @@ public class SettingsIntroSlide extends AppIntroBaseFragment {
         View v = inflater.inflate(R.layout.intro_fragment_settings, container, false);
         TextView t = (TextView) v.findViewById(com.github.paolorotolo.appintro.R.id.title);
         TextView d = (TextView) v.findViewById(com.github.paolorotolo.appintro.R.id.description);
-        mainLayout = (LinearLayout) v.findViewById(com.github.paolorotolo.appintro.R.id.main);
+        LinearLayout mainLayout = (LinearLayout) v.findViewById(com.github.paolorotolo.appintro.R.id.main);
 
         t.setText(title);
         t.setTextColor(titleColor);
@@ -121,13 +118,12 @@ public class SettingsIntroSlide extends AppIntroBaseFragment {
         stufeSpinner = (AppCompatSpinner) v.findViewById(R.id.slide_class_spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
                 getActivity().getApplicationContext(), R.array.Klassenstufe_List, android.R.layout.simple_spinner_item);
-//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
         stufeSpinner.setAdapter(adapter);
         stufeSpinner.setSelection(getPositionFromString(getResources().getStringArray(R.array.Klassenstufe_List), sp.getString("Klassenstufe", "5")));
 
         stufeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            protected Adapter initializedAdapter = null;
+            Adapter initializedAdapter = null;
 
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
@@ -156,10 +152,8 @@ public class SettingsIntroSlide extends AppIntroBaseFragment {
         classSpinner = (AppCompatSpinner) v.findViewById(R.id.slide_class_spinner2);
         ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(
                 getActivity().getApplicationContext(), R.array.Klassen_List, android.R.layout.simple_spinner_item);
-//        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         adapter2.setDropDownViewResource(R.layout.spinner_dropdown_item);
         classSpinner.setAdapter(adapter2);
-
         classSpinner.setSelection(getPositionFromString(getResources().getStringArray(R.array.Klassen_List), sp.getString("Klasse", "a")));
 
         if (stufeSpinner.getSelectedItem().toString().equals("K1") || stufeSpinner.getSelectedItem().toString().equals("K2")) {
@@ -168,13 +162,10 @@ public class SettingsIntroSlide extends AppIntroBaseFragment {
         }
 
         notificationsSwitch = (SwitchCompat) v.findViewById(R.id.slide_notifications_switch);
-        notificationsSwitch.setTextColor(ContextCompat.getColor(getActivity(), R.color.Weiss));
+        notificationsSwitch.setTextColor(Color.WHITE);
 
         notificationsSwitch.setChecked(sp.getBoolean("notification", true));
-//        Log.v("MyTag", "getBoolean: " + notificationsSwitch.isChecked());
-
         mainLayout.setBackgroundColor(bgColor);
-
         return v;
     }
 

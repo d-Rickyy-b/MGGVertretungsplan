@@ -1,45 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <PreferenceCategory android:title="Klasse">
+    <PreferenceCategory android:title="@string/preference_class">
 
         <ListPreference
             android:defaultValue="5"
             android:entries="@array/Klassenstufe_List"
             android:entryValues="@array/Klassenstufe_List"
             android:key="Klassenstufe"
-            android:summary="Bitte wähle deine Stufe aus"
-            android:title="Stufe" />
+            android:summary="@string/choose_classLayer_desc"
+            android:title="@string/choose_classLayer_title" />
 
         <ListPreference
             android:defaultValue="a"
             android:entries="@array/Klassen_List"
             android:entryValues="@array/Klassen_List"
             android:key="Klasse"
-            android:summary="Bitte wähle deine Klasse aus"
-            android:title="Klasse" />
+            android:summary="@string/choose_class_desc"
+            android:title="@string/choose_class_title" />
 
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/miscellaneous">
 
-        <PreferenceScreen android:title="@string/notifications">
-            <intent android:action="de.aurora.MggVertretungsplan.EINSTELLUNGEN" />
+        <PreferenceScreen android:title="@string/notification_setting_title">
+            <intent android:action=".EINSTELLUNGEN" />
         </PreferenceScreen>
 
         <SwitchPreference
             android:defaultValue="true"
             android:key="AktTagAnzeigen"
-            android:summary="Sollen alte Daten noch angezeigt werden?"
-            android:title="Alte Tage zeigen"
+            android:summary="@string/setting_past_days_title"
+            android:title="@string/setting_past_days_title"
             android:enabled="false" />
 
         <SwitchPreference
             android:defaultValue="true"
             android:key="listColors"
-            android:summary="Farbige Karten in der Übersicht zeigen"
-            android:title="Farben" />
+            android:summary="@string/colored_cards_summary"
+            android:title="@string/colored_cards_title" />
 
+        <com.thebluealliance.spectrum.SpectrumPreference
+            android:key="color"
+            android:summary="@string/setting_app_color_summary"
+            android:title="@string/setting_app_color_title"
+            android:defaultValue="@color/colorPrimary"
+            app:spectrum_colors="@array/theme_picker" />
 
     </PreferenceCategory>
 </PreferenceScreen>
