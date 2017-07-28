@@ -37,27 +37,27 @@ public class TimeTableCard {
         this.info = info;
     }
 
-    public String getHour() {
+    String getHour() {
         return this.hour;
     }
 
-    public String getTyp() {
+    String getTyp() {
         return this.typ;
     }
 
-    public String getTitle() {
+    String getTitle() {
         return this.fach;
     }
 
-    public String getInfo() {
+    String getInfo() {
         return this.info;
     }
 
-    public String getRaum() {
+    String getRaum() {
         return this.raum;
     }
 
-    public String getNeuRaum() {
+    String getNeuRaum() {
         return this.neuRaum;
     }
 }
