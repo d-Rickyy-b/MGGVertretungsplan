@@ -8,8 +8,8 @@
     <string name="action_webview">Webseite</string>
     <string name="vertretungsplan_url">http://www.mgg.karlsruhe.de/index.php/vertretungsplan</string>
     <string name="feedback_url">https://goo.gl/forms/AeYT99ElhH7vzqAx1</string>
-    <string name="ur2">http://rickyy.lima-city.de/html/vertretungsplan.html</string>
-    <string name="zuletztAbger">Zuletzt aktualisiert: %s</string>
+    <string name="test_url">http://rickyy.lima-city.de/html/vertretungsplan.html</string>
+    <string name="lastChecked">Zuletzt aktualisiert: %s</string>
 
     <string name="welcome_slide_title">Willkommen</string>
     <string name="welcome_slide_descr">Vielen Dank, dass du diese App nutzt. Auf der folgenden Seite findest du einige Einstellungen, die du setzen solltest.</string>
@@ -49,9 +49,10 @@
     <!-- Not Added yet :( -->
     <string name="cancelled">Entfällt</string>
     <string name="representation">Vertretung</string>
+    <!--  -->
     <string name="settings_name">Einstellungen</string>
     <string name="settings_saved">Einstellungen übernommen!</string>
-    <!--  -->
+
     <string name="no_information_card">Keine Informationen!</string>
     <string name="placeholder_title">Titel</string>
     <string name="placeholder_summary">Summary</string>
