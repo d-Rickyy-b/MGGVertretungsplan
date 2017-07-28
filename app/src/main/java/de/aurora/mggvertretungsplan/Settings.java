@@ -33,7 +33,7 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
         Toolbar toolbar;
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("Einstellungen");
+        toolbar.setTitle(R.string.settings_name);
 
         if (Build.VERSION.SDK_INT >= 21) {
             toolbar.setElevation(25);
@@ -43,7 +43,7 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Einstellungen übernommen!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), R.string.settings_saved, Toast.LENGTH_SHORT).show();
                 finish();
             }
         });
