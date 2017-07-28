@@ -20,7 +20,7 @@ import java.util.Set;
 
 class hilfsMethoden {
 
-    public static ArrayList<ArrayList<String>> datenAufbereiten(ArrayList<ArrayList<String>> tabelle, String klasse){
+    static ArrayList<ArrayList<String>> datenAufbereiten(ArrayList<ArrayList<String>> tabelle, String klasse){
         tabelle = getRightClass(tabelle, klasse);
         tabelle = deleteDoubles(tabelle);
         tabelle = removeBlanks(tabelle);
@@ -31,7 +31,7 @@ class hilfsMethoden {
     }
 
     // Diese Methode gibt den passenden Namen zu einem bestimmten Datum zurück
-    public static String getAnyDayByName(int jahr, int monat, int tag) {
+    static String getAnyDayByName(int jahr, int monat, int tag) {
         String[] tage = new String[]{"Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"};
 
         GregorianCalendar gc = new GregorianCalendar();
@@ -73,7 +73,7 @@ class hilfsMethoden {
         return inputList;
     }
 
-    public static String getFormattedDate(long currentTimeInMillis) {
+    static String getFormattedDate(long currentTimeInMillis) {
         Calendar currentTime = Calendar.getInstance();
         currentTime.setTimeInMillis(currentTimeInMillis);
 
@@ -124,7 +124,7 @@ class hilfsMethoden {
         });
     }
 
-    public static boolean listsEqual(ArrayList<ArrayList<String>> listOne, ArrayList<ArrayList<String>> listTwo) {
+    static boolean listsEqual(ArrayList<ArrayList<String>> listOne, ArrayList<ArrayList<String>> listTwo) {
         if (listOne == null && listTwo == null) {
             return true;
         } else if ((listOne == null || listTwo == null)
@@ -135,7 +135,7 @@ class hilfsMethoden {
         } else return listOne.isEmpty() && listTwo.isEmpty();
     }
 
-    public static int getDifferencesCount(ArrayList<ArrayList<String>> listOne, ArrayList<ArrayList<String>> listTwo) {
+    static int getDifferencesCount(ArrayList<ArrayList<String>> listOne, ArrayList<ArrayList<String>> listTwo) {
         if (listOne.size() < listTwo.size()) {
             ArrayList<ArrayList<String>> tempList = new ArrayList<>(listOne);
             listOne = listTwo;
