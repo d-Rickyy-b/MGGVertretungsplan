@@ -13,7 +13,7 @@
             android:title="@string/choose_classLayer_title" />
 
         <ListPreference
-            android:defaultValue="a"
+            android:defaultValue="0"
             android:entries="@array/Klassen_List"
             android:entryValues="@array/Klassen_List"
             android:key="Klasse"
