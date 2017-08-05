@@ -163,7 +163,6 @@ class hilfsMethoden {
     }
 
     private static ArrayList<ArrayList<String>> removeBlanks(ArrayList<ArrayList<String>> inputList) {
-        //TODO vielleicht NICHT ersetzen... sah ganz gut mit leerzeichen aus
         for (ArrayList<String> row : inputList) {
             row.set(0, row.get(0).replace(" - ", "-"));
         }
