@@ -234,7 +234,7 @@ class hilfsMethoden {
         return classList;
     }
 
-    public static ArrayList<ArrayList<String>> extractTable(Document doc, int index) {
+    static ArrayList<ArrayList<String>> extractTable(Document doc, int index) {
         Element table = doc.select("table").get(index);
         Iterator<Element> rowIterator = table.select("tr").iterator();
 
@@ -255,11 +255,11 @@ class hilfsMethoden {
         return tableArrayList;
     }
 
-    public static JSONArray getJSONArray(ArrayList<ArrayList<String>> inputlist) {
+    static JSONArray getJSONArray(ArrayList<ArrayList<String>> inputlist) {
         return new JSONArray(inputlist);
     }
 
-    public static ArrayList<ArrayList<String>> getArrayList(String jsonArraytext) {
+    static ArrayList<ArrayList<String>> getArrayList(String jsonArraytext) {
         try {
             if (jsonArraytext == null || jsonArraytext.equals(""))
                 return new ArrayList<>();
@@ -297,7 +297,7 @@ class hilfsMethoden {
         return fachVertretung.equals("---") && raumVertretung.equals("---");
     }
 
-    public static String getType(String fachVertretung, String raumVertretung) {
+    static String getType(String fachVertretung, String raumVertretung) {
         if (isEntfall(fachVertretung, raumVertretung))
             return "Entfall";
         else
@@ -307,7 +307,7 @@ class hilfsMethoden {
 
     //gibt den Namen der Abkuerzung eines Faches zurueck
     @SuppressLint("DefaultLocale")
-    public static String abkuerzung(String abk) {
+    static String abkuerzung(String abk) {
 
         if (abk == null || abk.equals("")) {
             return "Kein Fach";
