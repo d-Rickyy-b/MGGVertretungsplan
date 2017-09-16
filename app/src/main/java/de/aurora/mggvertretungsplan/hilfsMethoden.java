@@ -5,10 +5,12 @@ import android.text.format.DateFormat;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
@@ -160,6 +162,34 @@ class hilfsMethoden {
         }
 
         return counter;
+    }
+
+    static CancellationDays parseTimetable(String website_html, String className){
+        ArrayList<ArrayList<String>> tableOne, tableTwo;
+
+        website_html = website_html.replace("&auml;", "ä").replace("&ouml;", "ö").replace("&uuml;", "ü");
+        Document doc = Jsoup.parse(website_html);
+
+        try {
+            tableOne = extractTable(doc, 0);
+        } catch (IndexOutOfBoundsException e) {
+            e.printStackTrace();
+            tableOne = new ArrayList<>();
+            tableOne.add(new ArrayList<>(Arrays.asList("", "", "", "", "", "", "")));
+        }
+
+        try {
+            tableTwo = extractTable(doc, 1);
+        } catch (IndexOutOfBoundsException e) {
+            e.printStackTrace();
+            tableTwo = new ArrayList<>();
+            tableTwo.add(new ArrayList<>(Arrays.asList("", "", "", "", "", "", "")));
+        }
+
+        tableOne = datenAufbereiten(tableOne, className);
+        tableTwo = datenAufbereiten(tableTwo, className);
+
+        return new CancellationDays(tableOne, tableTwo);
     }
 
     private static ArrayList<ArrayList<String>> removeBlanks(ArrayList<ArrayList<String>> inputList) {

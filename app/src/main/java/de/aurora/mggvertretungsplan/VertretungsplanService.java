@@ -13,11 +13,7 @@ import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 
 
 public class VertretungsplanService extends Service implements AsyncTaskCompleteListener<String> {
@@ -89,35 +85,17 @@ public class VertretungsplanService extends Service implements AsyncTaskComplete
     }
 
 
-    public void onTaskComplete(String html) {
+    public void onTaskComplete(String website_html) {
         Log.v("VertretungsplanService", "Check auf Vertretungen");
         sp = PreferenceManager.getDefaultSharedPreferences(this);
-        ArrayList<ArrayList<String>> tableOne, tableTwo;
+        ArrayList<ArrayList<String>> tableOne, tableTwo, tableOne_saved, tableTwo_saved;
 
-        html = html.replace("&auml;", "ä").replace("&ouml;", "ö").replace("&uuml;", "ü");
-        Document doc = Jsoup.parse(html);
+        CancellationDays cancellationDays = hilfsMethoden.parseTimetable(website_html, klasse);
+        tableOne = cancellationDays.getFirstDay();
+        tableTwo = cancellationDays.getSecondDay();
 
-        try {
-            tableOne = hilfsMethoden.extractTable(doc, 0);
-        } catch (IndexOutOfBoundsException e) {
-            e.printStackTrace();
-            tableOne = new ArrayList<>();
-            tableOne.add(new ArrayList<>(Arrays.asList("", "", "", "", "", "", "")));
-        }
-
-        try {
-            tableTwo = hilfsMethoden.extractTable(doc, 1);
-        } catch (IndexOutOfBoundsException e) {
-            e.printStackTrace();
-            tableTwo = new ArrayList<>();
-            tableTwo.add(new ArrayList<>(Arrays.asList("", "", "", "", "", "", "")));
-        }
-
-        tableOne = hilfsMethoden.datenAufbereiten(tableOne, klasse);
-        tableTwo = hilfsMethoden.datenAufbereiten(tableTwo, klasse);
-
-        ArrayList<ArrayList<String>> tableOne_saved = hilfsMethoden.getArrayList(sp.getString("ersteTabelle", ""));
-        ArrayList<ArrayList<String>> tableTwo_saved = hilfsMethoden.getArrayList(sp.getString("zweiteTabelle", ""));
+        tableOne_saved = hilfsMethoden.getArrayList(sp.getString("ersteTabelle", ""));
+        tableTwo_saved = hilfsMethoden.getArrayList(sp.getString("zweiteTabelle", ""));
 
         int anzahlAusfaelle = tableOne.size() + tableTwo.size();
 
