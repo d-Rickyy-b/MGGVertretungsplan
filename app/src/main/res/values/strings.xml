@@ -11,12 +11,13 @@
     <string name="test_url">http://rickyy.lima-city.de/html/vertretungsplan.html</string>
     <string name="lastChecked">Zuletzt aktualisiert: %s</string>
 
-    <string name="welcome_slide_title">Willkommen</string>
-    <string name="welcome_slide_descr">Vielen Dank, dass du diese App nutzt. Auf der folgenden Seite findest du einige Einstellungen, die du setzen solltest.</string>
-    <string name="welcome_slide_content_descr">App-Logo</string>
+    <string name="slide_welcome_title">Willkommen</string>
+    <string name="slide_welcome_descr">Vielen Dank, dass du diese App nutzt. Auf der folgenden Seite findest du einige Einstellungen, die du setzen solltest.</string>
+    <string name="slide_welcome_content_descr">App-Logo</string>
 
-    <string name="settings_slide_title">@string/action_settings</string>
-    <string name="settings_slide_descr">Bitte stelle deine Klasse ein!\nFalls du keine Benachrichtigungen wünschst, dann schalte sie oben aus!\nAlle Einstellungen kannst du später wieder ändern.</string>
+    <string name="slide_settings_title">@string/action_settings</string>
+    <string name="slide_settings_descr">Bitte stelle deine Klasse ein!\nFalls du keine Benachrichtigungen wünschst, dann schalte sie oben aus!\nAlle Einstellungen kannst du später wieder ändern.</string>
+
     <string name="settings_notification_title">Benachrichtigungen</string>
     <string name="settings_notification_summary">Benachrichtigung bei Änderung des Vertretungsplans</string>
     <string name="settings_notification_interval_title">Prüfintervall</string>
