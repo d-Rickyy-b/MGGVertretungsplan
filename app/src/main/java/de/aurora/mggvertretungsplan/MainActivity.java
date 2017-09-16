@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         sp.edit().putBoolean("AktTagAnzeigen", true).apply(); //true!!!
 
         if (sp.getBoolean("firstStart", true)) {
-            //Wenn erster Start
+            // If application is called for the first time, intro slides will show up
             Intent intent = new Intent(getApplicationContext(), de.aurora.mggvertretungsplan.ui.intro.IntroActivity.class);
             startActivity(intent);
 
@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         displaySavedData();
         updateData();
     }
-
+    //TODO move to hilfsmethoden
 
     //added for testing purposes
     private void notification(String ticker, String titel, String text) {
@@ -159,6 +159,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         }
         return false;
     }
+
 
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
