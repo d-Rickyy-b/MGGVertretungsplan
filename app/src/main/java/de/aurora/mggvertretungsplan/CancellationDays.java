@@ -8,10 +8,12 @@ import java.util.ArrayList;
 
 class CancellationDays {
     ArrayList<ArrayList<String>> tableOne, tableTwo;
+    ArrayList<String> datesList;
 
-    CancellationDays(ArrayList<ArrayList<String>> tableOne, ArrayList<ArrayList<String>> tableTwo){
+    CancellationDays(ArrayList<ArrayList<String>> tableOne, ArrayList<ArrayList<String>> tableTwo,ArrayList<String> datesList){
         this.tableOne = tableOne;
         this.tableTwo = tableTwo;
+        this.datesList = datesList;
     }
 
     ArrayList<ArrayList<String>> getFirstDay(){
@@ -20,5 +22,21 @@ class CancellationDays {
 
     ArrayList<ArrayList<String>> getSecondDay(){
         return tableTwo;
+    }
+
+    String getDate(int day){
+        if (day < datesList.size()) {
+            return datesList.get(day);
+        } else {
+            return "01.01.";
+        }
+    }
+
+    String getFirstDate(){
+        return getDate(0);
+    }
+
+    String getSecondDate(){
+        return getDate(1);
     }
 }
