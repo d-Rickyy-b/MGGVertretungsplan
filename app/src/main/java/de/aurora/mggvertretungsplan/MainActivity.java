@@ -33,11 +33,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -390,55 +385,19 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
     }
 
     // Wird aufgerufen wenn die Website heruntergeladen wurde
-    public void onTaskComplete(String html) {
+    public void onTaskComplete(String website_html) {
         setTitle("Vertretungsplan (" + klasse + ")");
         sp = PreferenceManager.getDefaultSharedPreferences(this);
 
-        String erstesDatum, zweitesDatum;
+        String firstDate, secondDate;
         ArrayList<ArrayList<String>> tableOne, tableTwo;
 
-        //Umlaute entfernen
-        html = html.replace("&auml;", "ä").replace("&ouml;", "ö").replace("&uuml;", "ü");
+        CancellationDays cancellationDays = hilfsMethoden.parseTimetable(website_html, klasse);
+        firstDate = cancellationDays.getFirstDate();
+        secondDate = cancellationDays.getSecondDate();
 
-        Document doc = Jsoup.parse(html);
-        Elements dates = doc.select("h2.tabber_title");
-
-        ArrayList<String> datesList = new ArrayList<>();
-        for (Element date : dates) {
-            datesList.add(date.text()); //Datum 1 und 2
-        }
-
-        try {
-            erstesDatum = datesList.get(0);
-        } catch (Exception e) {
-            e.printStackTrace();
-            erstesDatum = "";
-        }
-
-        try {
-            zweitesDatum = datesList.get(1);
-        } catch (Exception e) {
-            e.printStackTrace();
-            zweitesDatum = "";
-        }
-
-        try {
-            tableOne = hilfsMethoden.extractTable(doc, 0);
-
-        } catch (IndexOutOfBoundsException e) {
-            e.printStackTrace();
-            tableOne = new ArrayList<>();
-        }
-
-        try {
-            tableTwo = hilfsMethoden.extractTable(doc, 1);
-        } catch (IndexOutOfBoundsException e) {
-            e.printStackTrace();
-            tableTwo = new ArrayList<>();
-        }
-
-        tableOne = hilfsMethoden.datenAufbereiten(tableOne, klasse);
-        tableTwo = hilfsMethoden.datenAufbereiten(tableTwo, klasse);
+        tableOne = cancellationDays.getFirstDay();
+        tableTwo = cancellationDays.getSecondDay();
 
         String AbrufDatum = hilfsMethoden.getFormattedDate(System.currentTimeMillis());
 
@@ -452,15 +411,15 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
 //        if ((count1 + count2) > 0) {
             Log.v("Vertretungsplan", "Anzeigen");
-            anzeigen(tableOne, tableTwo, erstesDatum, zweitesDatum, sp.getBoolean("AktTagAnzeigen", true));
+            anzeigen(tableOne, tableTwo, firstDate, secondDate, sp.getBoolean("AktTagAnzeigen", true));
 //        } else {
 //            Log.v("Vertretungsplan", "Nicht anzeigen");
 //            mSwipeLayout.setRefreshing(false);
 //        }
 
         SharedPreferences.Editor editor = sp.edit();
-        editor.putString("erstesDatum", erstesDatum);
-        editor.putString("zweitesDatum", zweitesDatum);
+        editor.putString("firstDate", firstDate);
+        editor.putString("secondDate", secondDate);
         editor.putString("AbrufDatum", AbrufDatum);
         editor.putString("ersteTabelle", hilfsMethoden.getJSONArray(tableOne).toString());
         editor.putString("zweiteTabelle", hilfsMethoden.getJSONArray(tableTwo).toString());
