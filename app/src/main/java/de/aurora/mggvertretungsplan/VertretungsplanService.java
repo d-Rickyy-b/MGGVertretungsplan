@@ -127,9 +127,9 @@ public class VertretungsplanService extends Service implements AsyncTaskComplete
             int count2 = hilfsMethoden.getDifferencesCount(tableTwo, tableTwo_saved);
             int gesamt = (count1 + count2);
             if (gesamt > 1) {
-                notification("Stundenplan Änderung!", "MGG Vertretungsplan", gesamt + " Änderungen!"); //Push mit der Nachricht "Es fällt etwas aus!"
+                notification("Stundenplan Änderung!", "MGG Vertretungsplan", gesamt + " Änderungen!");
             } else if (gesamt == 1) {
-                notification("Stundenplan Änderung!", "MGG Vertretungsplan", "Eine Änderung!"); //Push mit der Nachricht "Es fällt etwas aus!"
+                notification("Stundenplan Änderung!", "MGG Vertretungsplan", "Eine Änderung!");
             }
         }
         //TODO neue Listen speichern?
