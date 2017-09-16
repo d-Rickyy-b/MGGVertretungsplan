@@ -8,6 +8,7 @@ import org.json.JSONException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -170,6 +171,14 @@ class hilfsMethoden {
         website_html = website_html.replace("&auml;", "ä").replace("&ouml;", "ö").replace("&uuml;", "ü");
         Document doc = Jsoup.parse(website_html);
 
+        Elements dates = doc.select("h2.tabber_title");
+
+        ArrayList<String> datesList = new ArrayList<>();
+
+        for (Element date : dates) {
+            datesList.add(date.text()); // The parse the dates on the website
+        }
+
         try {
             tableOne = extractTable(doc, 0);
         } catch (IndexOutOfBoundsException e) {
@@ -189,7 +198,7 @@ class hilfsMethoden {
         tableOne = datenAufbereiten(tableOne, className);
         tableTwo = datenAufbereiten(tableTwo, className);
 
-        return new CancellationDays(tableOne, tableTwo);
+        return new CancellationDays(tableOne, tableTwo, datesList);
     }
 
     private static ArrayList<ArrayList<String>> removeBlanks(ArrayList<ArrayList<String>> inputList) {
