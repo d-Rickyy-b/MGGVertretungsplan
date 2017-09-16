@@ -5,7 +5,7 @@
     <string name="bar_title">Vertretungsplan</string>
     <string name="action_settings">Einstellungen</string>
     <string name="action_feedback">Feedback</string>
-    <string name="action_webview">Webseite</string>
+    <string name="action_website">Webseite</string>
     <string name="vertretungsplan_url">http://www.mgg.karlsruhe.de/index.php/vertretungsplan</string>
     <string name="feedback_url">https://goo.gl/forms/AeYT99ElhH7vzqAx1</string>
     <string name="test_url">http://rickyy.lima-city.de/html/vertretungsplan.html</string>

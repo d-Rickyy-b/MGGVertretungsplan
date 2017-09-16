@@ -23,6 +23,6 @@
         android:id="@+id/action_webview"
         android:orderInCategory="4"
         app:showAsAction="never"
-        android:title="@string/action_webview"/>
+        android:title="@string/action_website"/>
 
 </menu>
