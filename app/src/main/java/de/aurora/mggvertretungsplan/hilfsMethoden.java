@@ -179,12 +179,12 @@ class hilfsMethoden {
     }
 
     //Hiermit werden nur die richtigen Klassen rausgesucht
-    private static ArrayList<ArrayList<String>> getRightClass(ArrayList<ArrayList<String>> inputList, String klasse) {
+    private static ArrayList<ArrayList<String>> getRightClass(ArrayList<ArrayList<String>> inputList, String className) {
         ArrayList<ArrayList<String>> classList = new ArrayList<>();
 
         for (ArrayList<String> element : inputList) {
-            if (element.get(1).contains(klasse)) {
-                classList.add(element);
+                if (element.get(1).contains(className)) {
+                    classList.add(element);
             }
         }
 
