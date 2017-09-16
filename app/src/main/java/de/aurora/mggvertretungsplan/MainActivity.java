@@ -218,7 +218,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
                 Intent preferenceIntent = new Intent(getApplicationContext(), Settings.class);
                 startActivityForResult(preferenceIntent, 0);
                 break;
-            case R.id.action_webview:
+            case R.id.action_website:
                 CustomTabsIntent.Builder chromeTabsBuilder = new CustomTabsIntent.Builder();
                 chromeTabsBuilder.setToolbarColor(color);
                 chromeTabsBuilder.setShowTitle(true);

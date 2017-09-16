@@ -20,7 +20,7 @@
         android:title="@string/action_feedback"/>
     
     <item
-        android:id="@+id/action_webview"
+        android:id="@+id/action_website"
         android:orderInCategory="4"
         app:showAsAction="never"
         android:title="@string/action_website"/>
