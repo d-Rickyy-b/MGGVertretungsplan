@@ -183,8 +183,12 @@ class hilfsMethoden {
         ArrayList<ArrayList<String>> classList = new ArrayList<>();
 
         for (ArrayList<String> element : inputList) {
+            try {
                 if (element.get(1).contains(className)) {
                     classList.add(element);
+                }
+            } catch (IndexOutOfBoundsException e){
+                e.printStackTrace();
             }
         }
 
