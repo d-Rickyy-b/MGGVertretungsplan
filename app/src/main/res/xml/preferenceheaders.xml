@@ -22,17 +22,17 @@
 
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="@string/miscellaneous">
+    <PreferenceCategory android:title="@string/settings_section_miscellaneous">
 
-        <PreferenceScreen android:title="@string/notification_setting_title">
+        <PreferenceScreen android:title="@string/settings_notification_title">
             <intent android:action=".EINSTELLUNGEN" />
         </PreferenceScreen>
 
         <SwitchPreference
             android:defaultValue="true"
             android:key="AktTagAnzeigen"
-            android:summary="@string/setting_past_days_title"
-            android:title="@string/setting_past_days_title"
+            android:summary="@string/settings_past_days_summary"
+            android:title="@string/settings_past_days_title"
             android:enabled="false" />
 
         <SwitchPreference
@@ -43,8 +43,8 @@
 
         <com.thebluealliance.spectrum.SpectrumPreference
             android:key="color"
-            android:summary="@string/setting_app_color_summary"
-            android:title="@string/setting_app_color_title"
+            android:summary="@string/settings_app_color_summary"
+            android:title="@string/settings_app_color_title"
             android:defaultValue="@color/colorPrimary"
             app:spectrum_colors="@array/theme_picker" />
 
