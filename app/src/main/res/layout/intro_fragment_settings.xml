@@ -52,7 +52,7 @@
                     android:layout_toLeftOf="@+id/slide_class_spinner"
                     android:layout_toStartOf="@+id/slide_class_spinner"
                     android:gravity="center_vertical"
-                    android:text="@string/choose_classLayer_title"
+                    android:text="@string/settings_chooseClassLayer_title"
                     android:textColor="@android:color/white"
                     android:textSize="20sp"
                     tools:textColor="@android:color/black" />
@@ -69,7 +69,7 @@
                     android:minWidth="60dp"
                     android:paddingBottom="10dp"
                     android:paddingTop="10dp"
-                    tools:text="@string/choose_class_title" />
+                    tools:text="@string/settings_chooseClass_title" />
 
             </RelativeLayout>
 
@@ -90,7 +90,7 @@
                     android:layout_toLeftOf="@+id/slide_class_spinner2"
                     android:layout_toStartOf="@+id/slide_class_spinner2"
                     android:gravity="center_vertical"
-                    android:text="@string/choose_class_title"
+                    android:text="@string/settings_chooseClass_title"
                     android:textColor="@android:color/white"
                     android:textSize="20sp"
                     tools:textColor="@android:color/black" />

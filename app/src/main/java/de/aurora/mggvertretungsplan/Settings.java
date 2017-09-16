@@ -43,7 +43,7 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), R.string.settings_saved, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), R.string.toast_settings_saved, Toast.LENGTH_SHORT).show();
                 finish();
             }
         });

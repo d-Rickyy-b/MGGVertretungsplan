@@ -39,7 +39,7 @@ public class IntroActivity extends AppIntro {
 
         setGoBackLock(true);
         showSkipButton(false);
-        setDoneText(getString(R.string.action_done));
+        setDoneText(getString(R.string.slide_action_done));
     }
 
     @Override

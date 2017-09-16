@@ -2,23 +2,23 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <PreferenceCategory android:title="@string/preference_class">
+    <PreferenceCategory android:title="@string/settings_section_class">
 
         <ListPreference
             android:defaultValue="5"
             android:entries="@array/Klassenstufe_List"
             android:entryValues="@array/Klassenstufe_List"
             android:key="Klassenstufe"
-            android:summary="@string/choose_classLayer_desc"
-            android:title="@string/choose_classLayer_title" />
+            android:summary="@string/settings_chooseClassLayer_desc"
+            android:title="@string/settings_chooseClassLayer_title" />
 
         <ListPreference
             android:defaultValue="0"
             android:entries="@array/Klassen_List"
             android:entryValues="@array/Klassen_List"
             android:key="Klasse"
-            android:summary="@string/choose_class_desc"
-            android:title="@string/choose_class_title" />
+            android:summary="@string/settings_chooseClass_desc"
+            android:title="@string/settings_chooseClass_title" />
 
     </PreferenceCategory>
 
