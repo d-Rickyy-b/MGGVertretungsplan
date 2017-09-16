@@ -20,8 +20,8 @@ import java.util.Set;
 
 class hilfsMethoden {
 
-    static ArrayList<ArrayList<String>> datenAufbereiten(ArrayList<ArrayList<String>> tabelle, String klasse){
-        tabelle = getRightClass(tabelle, klasse);
+    static ArrayList<ArrayList<String>> datenAufbereiten(ArrayList<ArrayList<String>> tabelle, String className){
+        tabelle = getRightClass(tabelle, className);
         tabelle = deleteDoubles(tabelle);
         tabelle = removeBlanks(tabelle);
         sortieren(tabelle);
