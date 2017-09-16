@@ -27,7 +27,7 @@ class hilfsMethoden {
         tabelle = getRightClass(tabelle, className);
         tabelle = deleteDoubles(tabelle);
         tabelle = removeBlanks(tabelle);
-        sortieren(tabelle);
+        sort(tabelle);
         tabelle = stundenZusammenfassen(tabelle);
 
         return tabelle;
@@ -94,7 +94,7 @@ class hilfsMethoden {
             return "am " + DateFormat.format("dd.MM.yyyy HH:mm", currentTime).toString();
     }
 
-    private static void sortieren(ArrayList<ArrayList<String>> inputlist) {
+    private static void sort(ArrayList<ArrayList<String>> inputlist) {
         Collections.sort(inputlist, new Comparator<ArrayList<String>>() {
             @Override
             public int compare(ArrayList<String> o1, ArrayList<String> o2) {
