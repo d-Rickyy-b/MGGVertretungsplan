@@ -121,7 +121,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(cAdapter);
 
-        gespeicherteDatenAnzeigen();
+        displaySavedData();
         updateData();
     }
 
@@ -180,7 +180,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
     }
 
 
-    private void gespeicherteDatenAnzeigen() {
+    private void displaySavedData() {
         String AbrufDatum = sp.getString("AbrufDatum", ": Noch nie aktualisiert!");
 
         jahr = new GregorianCalendar().get(GregorianCalendar.YEAR);
