@@ -223,7 +223,7 @@ class hilfsMethoden {
         return tableArrayList;
     }
 
-    //Hiermit werden nur die richtigen Klassen rausgesucht
+    // Remove all lines which don't contain the right class
     private static ArrayList<ArrayList<String>> getRightClass(ArrayList<ArrayList<String>> inputList, String className) {
         ArrayList<ArrayList<String>> classList = new ArrayList<>();
 
@@ -240,6 +240,7 @@ class hilfsMethoden {
         return classList;
     }
 
+    // Remove double lines
     private static ArrayList<ArrayList<String>> deleteDoubles(ArrayList<ArrayList<String>> inputList) {
         Set<ArrayList<String>> set = new LinkedHashSet<>();
         set.addAll(inputList);
@@ -248,6 +249,7 @@ class hilfsMethoden {
         return inputList;
     }
 
+    // Remove blank lines
     private static ArrayList<ArrayList<String>> removeBlanks(ArrayList<ArrayList<String>> inputList) {
         for (ArrayList<String> row : inputList) {
             row.set(0, row.get(0).replace(" - ", "-"));
@@ -255,10 +257,12 @@ class hilfsMethoden {
         return inputList;
     }
 
+    // Returns a JSON Array of a given ArrayList
     static JSONArray getJSONArray(ArrayList<ArrayList<String>> inputlist) {
         return new JSONArray(inputlist);
     }
 
+    // Returns an ArrayList of a given JSON Array as String
     static ArrayList<ArrayList<String>> getArrayList(String jsonArraytext) {
         try {
             if (jsonArraytext == null || jsonArraytext.equals(""))
@@ -272,6 +276,7 @@ class hilfsMethoden {
         }
     }
 
+    // Returns an ArrayList of a given JSON Array
     private static ArrayList<ArrayList<String>> getArrayList(JSONArray jsonArray) {
         ArrayList<ArrayList<String>> resultList = new ArrayList<>();
 
@@ -295,6 +300,7 @@ class hilfsMethoden {
 
     private static boolean isEntfall(String fachVertretung, String raumVertretung) {
         return fachVertretung.equals("---") && raumVertretung.equals("---");
+    // Returns if a certain line is a cancellation
     }
 
     static String getType(String fachVertretung, String raumVertretung) {
