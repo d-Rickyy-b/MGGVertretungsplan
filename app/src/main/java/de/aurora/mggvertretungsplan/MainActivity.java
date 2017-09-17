@@ -347,8 +347,8 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
         }
 
-        String erstesDatumName = hilfsMethoden.getAnyDayByName(jahr, monat1, tag1);
-        String zweitesDatumName = hilfsMethoden.getAnyDayByName(jahr, monat2, tag2);
+        String erstesDatumName = hilfsMethoden.getDayOfWeek(jahr, monat1, tag1);
+        String zweitesDatumName = hilfsMethoden.getDayOfWeek(jahr, monat2, tag2);
 
         Log.v("MainActivity", erstesDatumName + " | " + zweitesDatumName);
 

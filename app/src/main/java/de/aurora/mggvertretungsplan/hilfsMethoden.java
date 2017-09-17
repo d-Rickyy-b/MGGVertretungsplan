@@ -34,7 +34,7 @@ class hilfsMethoden {
     }
 
     // Diese Methode gibt den passenden Namen zu einem bestimmten Datum zurück
-    static String getAnyDayByName(int jahr, int monat, int tag) {
+    static String getDayOfWeek(int jahr, int monat, int tag) {
         String[] DAYS = new String[]{"Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"};
 
         GregorianCalendar gc = new GregorianCalendar();
