@@ -53,15 +53,6 @@ class hilfsMethoden {
             return "am " + DateFormat.format("dd.MM.yyyy HH:mm", currentTime).toString();
     }
 
-    static boolean listsEqual(ArrayList<ArrayList<String>> listOne, ArrayList<ArrayList<String>> listTwo) {
-        if (listOne == null && listTwo == null) {
-            return true;
-        } else
-            return !((listOne == null || listTwo == null)
-                    || (listOne.isEmpty() && !listTwo.isEmpty())
-                    || (!listOne.isEmpty() && listTwo.isEmpty())
-                    || (listOne.size() != listTwo.size())) && listOne.isEmpty() && listTwo.isEmpty();
-    }
 
     static int getDifferencesCount(ArrayList<ArrayList<String>> listOne, ArrayList<ArrayList<String>> listTwo) {
         if (listOne.size() < listTwo.size()) {
