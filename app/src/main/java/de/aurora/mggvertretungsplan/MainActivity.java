@@ -50,7 +50,6 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
     private SharedPreferences sp;
     private Toolbar toolbar;
-    private int clickcount = 0;
     private String klasse;
     private int jahr;
     private SwipeRefreshLayout mSwipeLayout;
@@ -89,22 +88,6 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         toolbar.setAlpha(1);
         toolbar.setTitle("Vertretungsplan");
         toolbar.showOverflowMenu();
-
-//        toolbar.setOnClickListener(new View.OnClickListener() {
-//
-//            @Override
-//            public void onClick(View v) {
-//                clickcount = clickcount + 1;
-//                if (clickcount % 10 == 0) {
-//                    Toast.makeText(getApplicationContext(), "Notification gesendet!", Toast.LENGTH_SHORT).show();
-//
-//                    notification("Ticker", "Titel", "Text");
-//                    notification("Stundenplan Änderung!", "MGG Vertretungsplan", "3 Änderungen!");
-//                    Intent intent = new Intent(getApplicationContext(), de.aurora.mggvertretungsplan.ui.intro.IntroActivity.class);
-//                    startActivity(intent);
-//                }
-//            }
-//        });
 
         if (Build.VERSION.SDK_INT >= 21) {
             toolbar.setElevation(25);
