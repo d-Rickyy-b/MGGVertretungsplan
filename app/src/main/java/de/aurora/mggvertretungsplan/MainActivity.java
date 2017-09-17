@@ -402,21 +402,8 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
         String AbrufDatum = hilfsMethoden.getFormattedDate(System.currentTimeMillis());
 
-        //TODO wenn ein Datum = "", dann "Keine Informationen" anzeigen
-        ArrayList<ArrayList<String>> tableOne_saved = hilfsMethoden.getArrayList(sp.getString("ersteTabelle", ""));
-        ArrayList<ArrayList<String>> tableTwo_saved = hilfsMethoden.getArrayList(sp.getString("zweiteTabelle", ""));
-
-        int count1 = hilfsMethoden.getDifferencesCount(tableOne, tableOne_saved);
-        int count2 = hilfsMethoden.getDifferencesCount(tableTwo, tableTwo_saved);
-
-
-//        if ((count1 + count2) > 0) {
-            Log.v("Vertretungsplan", "Anzeigen");
-            anzeigen(tableOne, tableTwo, firstDate, secondDate, sp.getBoolean("AktTagAnzeigen", true));
-//        } else {
-//            Log.v("Vertretungsplan", "Nicht anzeigen");
-//            mSwipeLayout.setRefreshing(false);
-//        }
+        Log.v("Vertretungsplan", "Anzeigen");
+        anzeigen(tableOne, tableTwo, firstDate, secondDate, sp.getBoolean("AktTagAnzeigen", true));
 
         SharedPreferences.Editor editor = sp.edit();
         editor.putString("firstDate", firstDate);
