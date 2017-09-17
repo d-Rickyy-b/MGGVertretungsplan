@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import de.aurora.mggvertretungsplan.ui.LayoutSwitcher;
+import de.aurora.mggvertretungsplan.ui.settings.MainOptionFragment;
 
 
 public class Settings extends PreferenceActivity implements OnSharedPreferenceChangeListener {

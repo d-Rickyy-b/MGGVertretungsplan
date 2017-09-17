@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import de.aurora.mggvertretungsplan.ui.LayoutSwitcher;
+import de.aurora.mggvertretungsplan.ui.settings.NotificationFragment;
 
 public class PreferenceBenachrichtigungen extends PreferenceActivity{
 
