@@ -11,7 +11,7 @@ import java.util.Locale;
 public class DateHeading {
     private final Date date;
 
-    public DateHeading(Date date){
+    public DateHeading(Date date) {
         this.date = date;
     }
 
