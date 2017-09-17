@@ -1,28 +1,32 @@
 package de.aurora.mggvertretungsplan.ui;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 /**
  * Created by Rico on 26.09.2016.
  */
 
 public class DateHeading {
-    private final String day_name;
-    private final String date;
+    private final Date date;
 
-    public DateHeading(String day_name, String date) {
-        this.day_name = day_name;
+    public DateHeading(Date date){
         this.date = date;
     }
 
     public String getDay_name() {
-        return this.day_name;
+        SimpleDateFormat dayOfWeekFormat = new SimpleDateFormat("EEEE", Locale.GERMANY);
+        return dayOfWeekFormat.format(date);
     }
 
-    public String getDate() {
+    public Date getDate() {
         return this.date;
     }
 
     public String getWholeDate() {
-        return String.format("%s, %s", this.day_name, this.date);
+        SimpleDateFormat wholeDate = new SimpleDateFormat("EEEE, dd.MM.yyyy", Locale.GERMANY);
+        return wholeDate.format(date);
     }
 
     public String getTitle() {

@@ -33,6 +33,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -296,61 +297,42 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
 
     //Initialisieren einer ArrayList, Hinzufügen von Items, Adapter an ListView binden
-    private void anzeigen(ArrayList<ArrayList<String>> ersterTag, ArrayList<ArrayList<String>> zweiterTag, String erstesDatum, String zweitesDatum, boolean aktTagAnzeigen) {
+    private void anzeigen(ArrayList<ArrayList<String>> ersterTag, ArrayList<ArrayList<String>> zweiterTag, String firstDate, String secondDate, boolean aktTagAnzeigen) {
         headingsList.clear();
         dayOneList.clear();
         dayTwoList.clear();
 
-        long unixTime = System.currentTimeMillis() / 1000L;
-        String currentTimeInHours = new SimpleDateFormat("HH", new Locale("de")).format((unixTime + 3600) * 1000L);
-        String tagAkt = (String) DateFormat.format("dd", new Date());
-        String monatAkt = (String) DateFormat.format("MM", new Date());
-        int monat1, monat2, tag1, tag2;
+        SimpleDateFormat fullDateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.GERMANY);
+        Date date1, date2, currentDate;
 
         try {
-            monat1 = Integer.valueOf(erstesDatum.substring(3, 5));
-            monat2 = Integer.valueOf(zweitesDatum.substring(3, 5));
-            tag1 = Integer.valueOf(erstesDatum.substring(0, 2));
-            tag2 = Integer.valueOf(zweitesDatum.substring(0, 2));
-        } catch (Exception e) {
-            e.printStackTrace();
-            monat1 = monat2 = 1;
-            tag1 = tag2 = 1;
+            date1 = fullDateFormat.parse(firstDate);
+            date2 = fullDateFormat.parse(secondDate);
+            currentDate = new Date();
+        } catch (java.text.ParseException e) {
+            date1 = date2 = currentDate = new Date();
         }
 
-        Log.v("Vertretungsplan", erstesDatum + jahr + " | " + zweitesDatum + jahr);
-
-        //Wenn der erste Tag vor dem zweiten kommt im gleichen Monat (normalfall), oder wenn der erste Monat vor dem zweiten kommt
-        if ((tag1 > tag2 && monat1 == monat2) || (tag1 < tag2 && monat1 > monat2)) {
+        // Switch days if the first is later than the second
+        if (date1.after(date2)){
             ArrayList<ArrayList<String>> tempList = new ArrayList<>(ersterTag);
             ersterTag = zweiterTag;
             zweiterTag = tempList;
 
-            int tmpTag = tag1;
-            tag1 = tag2;
-            tag2 = tmpTag;
-
-            int tmpMonat = monat1;
-            monat1 = monat2;
-            monat2 = tmpMonat;
-
+            Date tmpDate = date1;
+            date1 = date2;
+            date2 = tmpDate;
         }
 
-        String erstesDatumName = hilfsMethoden.getDayOfWeek(jahr, monat1, tag1);
-        String zweitesDatumName = hilfsMethoden.getDayOfWeek(jahr, monat2, tag2);
+        headingsList.add(new DateHeading(date1));
+        headingsList.add(new DateHeading(date2));
 
-        Log.v("MainActivity", erstesDatumName + " | " + zweitesDatumName);
+        int sixteenHours = 60 * 60 * 16;
+        long secondsDiff = (currentDate.getTime() - date1.getTime()) / 1000;
 
-        headingsList.add(new DateHeading(erstesDatumName, tag1 + "." + monat1 + "." + jahr));
-        headingsList.add(new DateHeading(zweitesDatumName, tag2 + "." + monat2 + "." + jahr));
-
-        //Wenn Tag angezeigt werden soll, dann anzeigen
-        //ODER Wenn Tag nicht angezeigt werden soll, aber es noch vor 16 Uhr ist, dann anzeigen
-        //ODER Wenn der Tag1 kleiner als der aktuelle ist, aber der aktuelle Monat kleiner als der monat1 ist
-        if (aktTagAnzeigen ||
-                (Integer.valueOf(currentTimeInHours) < 16 && tag1 == Integer.valueOf(tagAkt) && monat1 == Integer.valueOf(monatAkt)) ||
-                (tag1 > Integer.valueOf(tagAkt) && monat1 == Integer.valueOf(monatAkt)) ||
-                (tag1 < Integer.valueOf(tagAkt) && monat1 > Integer.valueOf(monatAkt))) {
+        // Displays the current day onlw when the setting is active
+        // OR when it's not set, but it's before 16:00
+        if (aktTagAnzeigen || ((secondsDiff > 0) && (secondsDiff < sixteenHours))) {
 
             //Tag 1
             for (ArrayList<String> zeile : ersterTag) {
