@@ -7,8 +7,8 @@ import java.util.ArrayList;
  */
 
 class CancellationDays {
-    private ArrayList<ArrayList<String>> tableOne, tableTwo;
-    private ArrayList<String> datesList;
+    private final ArrayList<ArrayList<String>> tableOne, tableTwo;
+    private final ArrayList<String> datesList;
 
     CancellationDays(ArrayList<ArrayList<String>> tableOne, ArrayList<ArrayList<String>> tableTwo, ArrayList<String> datesList) {
         this.tableOne = tableOne;
