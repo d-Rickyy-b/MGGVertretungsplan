@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
     private SharedPreferences sp;
     private Toolbar toolbar;
     private String klasse;
-    private int jahr;
+    private int currentYear;
     private SwipeRefreshLayout mSwipeLayout;
     private final ArrayList<TimeTableCard> dayOneList = new ArrayList<>();
     private final ArrayList<TimeTableCard> dayTwoList = new ArrayList<>();
@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
             toolbar.setElevation(25);
         }
 
-        jahr = new GregorianCalendar().get(GregorianCalendar.YEAR);
+        currentYear = new GregorianCalendar().get(GregorianCalendar.YEAR);
 
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
         cAdapter = new CardsAdapter(dayOneList, dayTwoList, headingsList, this);
@@ -166,12 +166,12 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
 
     private void displaySavedData() {
-        jahr = new GregorianCalendar().get(GregorianCalendar.YEAR);
+        currentYear = new GregorianCalendar().get(GregorianCalendar.YEAR);
         klasse = sp.getString("KlasseGesamt", "5a");
         setTitle(String.format("Vertretungsplan (%s)", klasse));
 
-        String firstDate = sp.getString("firstDate", "01.01." + jahr);
-        String secondDate = sp.getString("secondDate", "01.01." + jahr);
+        String firstDate = sp.getString("firstDate", "01.01." + currentYear);
+        String secondDate = sp.getString("secondDate", "01.01." + currentYear);
 
         ArrayList<ArrayList<String>> tableOne, tableTwo;
 
