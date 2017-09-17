@@ -44,6 +44,8 @@ import de.aurora.mggvertretungsplan.ui.DateHeading;
 import de.aurora.mggvertretungsplan.ui.LayoutSwitcher;
 import de.aurora.mggvertretungsplan.ui.TimeTableCard;
 
+import static android.os.Build.VERSION.SDK_INT;
+
 public class MainActivity extends AppCompatActivity implements AsyncTaskCompleteListener<String>, SwipeRefreshLayout.OnRefreshListener {
 
     private SharedPreferences sp;
@@ -233,11 +235,18 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
                 feedbackIntent.launchUrl(this, Uri.parse(getString(R.string.feedback_url)));
                 break;
             case R.id.action_info:
+                android.text.Spanned informationText;
+                if (SDK_INT >= 24) {
+                    informationText = Html.fromHtml("Programmiert von Rico Jambor<br><br>Bei Fehlern entweder eine Email an:<br><b>rico.jambor@gmail.com</b><br><br>Oder per Telegram an:<br><center><b>@d_Rickyy_b</b></center>", Html.FROM_HTML_MODE_LEGACY);
+                } else {
+                    informationText = Html.fromHtml("Programmiert von Rico Jambor<br><br>Bei Fehlern entweder eine Email an:<br><b>rico.jambor@gmail.com</b><br><br>Oder per Telegram an:<br><center><b>@d_Rickyy_b</b></center>");
+                }
+
                 AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.AlertDialogTheme);
                 builder
                         .setIcon(R.drawable.ic_info_outline_black)
                         .setTitle("MGG Vertretungsplan v" + getString(R.string.version))
-                        .setMessage(Html.fromHtml("Programmiert von Rico Jambor<br><br>Bei Fehlern entweder eine Email an:<br><b>rico.jambor@gmail.com</b><br><br>Oder per Telegram an:<br><center><b>@d_Rickyy_b</b></center>"))
+                        .setMessage(informationText)
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                             }
