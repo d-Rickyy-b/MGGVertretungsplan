@@ -136,12 +136,12 @@ public class CardsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
         public ClassInfoViewHolder(View view) {
             super(view);
-            cardView = (CardView) view.findViewById(R.id.card_view);
-            title = (TextView) view.findViewById(R.id.info_title);
-            hour = (TextView) view.findViewById(R.id.info_hour);
-            info = (TextView) view.findViewById(R.id.info_text);
-            raum = (TextView) view.findViewById(R.id.info_room);
-            neuRaum = (TextView) view.findViewById(R.id.info_new_room);
+            cardView = view.findViewById(R.id.card_view);
+            title = view.findViewById(R.id.info_title);
+            hour = view.findViewById(R.id.info_hour);
+            info = view.findViewById(R.id.info_text);
+            raum = view.findViewById(R.id.info_room);
+            neuRaum = view.findViewById(R.id.info_new_room);
         }
     }
 
@@ -150,7 +150,7 @@ public class CardsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
         public HeadingsViewHolder(View view) {
             super(view);
-            heading = (TextView) view.findViewById(R.id.heading_textView);
+            heading = view.findViewById(R.id.heading_textView);
         }
     }
 
@@ -159,7 +159,7 @@ public class CardsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
         public NoInfoViewHolder(View view) {
             super(view);
-            noInfo = (TextView) view.findViewById(R.id.no_info_textview);
+            noInfo = view.findViewById(R.id.no_info_textview);
         }
     }
 

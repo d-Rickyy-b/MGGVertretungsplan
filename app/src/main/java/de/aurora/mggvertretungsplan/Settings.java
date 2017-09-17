@@ -32,7 +32,7 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
         setContentView(R.layout.settings);
         Toolbar toolbar;
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle(R.string.settings_name);
 
         if (Build.VERSION.SDK_INT >= 21) {

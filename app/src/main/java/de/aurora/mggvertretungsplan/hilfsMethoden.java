@@ -52,7 +52,7 @@ class hilfsMethoden {
         } else
             return "am " + DateFormat.format("dd.MM.yyyy HH:mm", currentTime).toString();
     }
-    
+
     static boolean listsEqual(ArrayList<ArrayList<String>> listOne, ArrayList<ArrayList<String>> listTwo) {
         if (listOne == null && listTwo == null) {
             return true;

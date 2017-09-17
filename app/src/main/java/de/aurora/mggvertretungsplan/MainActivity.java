@@ -80,11 +80,11 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         }
 
         setContentView(R.layout.activity_main);
-        mSwipeLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
+        mSwipeLayout = findViewById(R.id.swipe_refresh_layout);
         mSwipeLayout.setOnRefreshListener(this);
         mSwipeLayout.setColorSchemeResources(R.color.refresh_progress_1, R.color.refresh_progress_2, R.color.refresh_progress_3);
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setAlpha(1);
         toolbar.setTitle("Vertretungsplan");
@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
         jahr = new GregorianCalendar().get(GregorianCalendar.YEAR);
 
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        RecyclerView recyclerView = findViewById(R.id.recycler_view);
         cAdapter = new CardsAdapter(dayOneList, dayTwoList, headingsList, this);
         recyclerView.setHasFixedSize(true);
 

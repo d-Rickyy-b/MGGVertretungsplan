@@ -24,7 +24,7 @@ public class PreferenceBenachrichtigungen extends PreferenceActivity{
 
         setContentView(R.layout.settings);
         
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
 		toolbar.setTitle("Benachrichtigungen");
 		if(Build.VERSION.SDK_INT >= 21){
 			toolbar.setElevation(25);

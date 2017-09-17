@@ -92,9 +92,9 @@ public class SettingsIntroSlide extends AppIntroBaseFragment {
         isSwitchChecked = sp.getBoolean("notification", true);
 
         View v = inflater.inflate(R.layout.intro_fragment_settings, container, false);
-        TextView t = (TextView) v.findViewById(com.github.paolorotolo.appintro.R.id.title);
-        TextView d = (TextView) v.findViewById(com.github.paolorotolo.appintro.R.id.description);
-        LinearLayout mainLayout = (LinearLayout) v.findViewById(com.github.paolorotolo.appintro.R.id.main);
+        TextView t = v.findViewById(com.github.paolorotolo.appintro.R.id.title);
+        TextView d = v.findViewById(com.github.paolorotolo.appintro.R.id.description);
+        LinearLayout mainLayout = v.findViewById(com.github.paolorotolo.appintro.R.id.main);
 
         t.setText(title);
         t.setTextColor(titleColor);
@@ -115,7 +115,7 @@ public class SettingsIntroSlide extends AppIntroBaseFragment {
         }
 
         //Stufe:
-        stufeSpinner = (AppCompatSpinner) v.findViewById(R.id.slide_class_spinner);
+        stufeSpinner = v.findViewById(R.id.slide_class_spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
                 getActivity().getApplicationContext(), R.array.Klassenstufe_List, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
@@ -149,7 +149,7 @@ public class SettingsIntroSlide extends AppIntroBaseFragment {
         });
 
         //Klasse:
-        classSpinner = (AppCompatSpinner) v.findViewById(R.id.slide_class_spinner2);
+        classSpinner = v.findViewById(R.id.slide_class_spinner2);
         ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(
                 getActivity().getApplicationContext(), R.array.Klassen_List, android.R.layout.simple_spinner_item);
         adapter2.setDropDownViewResource(R.layout.spinner_dropdown_item);
@@ -161,7 +161,7 @@ public class SettingsIntroSlide extends AppIntroBaseFragment {
             classSpinner.setEnabled(false);
         }
 
-        notificationsSwitch = (SwitchCompat) v.findViewById(R.id.slide_notifications_switch);
+        notificationsSwitch = v.findViewById(R.id.slide_notifications_switch);
         notificationsSwitch.setTextColor(Color.WHITE);
 
         notificationsSwitch.setChecked(sp.getBoolean("notification", true));
