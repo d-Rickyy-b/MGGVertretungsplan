@@ -383,8 +383,8 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         ArrayList<ArrayList<String>> tableOne, tableTwo;
 
         CancellationDays cancellationDays = hilfsMethoden.parseTimetable(website_html, klasse);
-        firstDate = cancellationDays.getFirstDate();
-        secondDate = cancellationDays.getSecondDate();
+        firstDate = cancellationDays.getFirstDate() + currentYear;
+        secondDate = cancellationDays.getSecondDate() + currentYear;
 
         tableOne = cancellationDays.getFirstDay();
         tableTwo = cancellationDays.getSecondDay();
