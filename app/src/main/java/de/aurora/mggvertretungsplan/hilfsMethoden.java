@@ -23,17 +23,7 @@ import java.util.Set;
 
 class hilfsMethoden {
 
-    static ArrayList<ArrayList<String>> datenAufbereiten(ArrayList<ArrayList<String>> tabelle, String className){
-        tabelle = getRightClass(tabelle, className);
-        tabelle = deleteDoubles(tabelle);
-        tabelle = removeBlanks(tabelle);
-        sort(tabelle);
-        tabelle = stundenZusammenfassen(tabelle);
-
-        return tabelle;
-    }
-
-    // Diese Methode gibt den passenden Namen zu einem bestimmten Datum zurück
+    // Returns the name of a weekday of a date
     static String getDayOfWeek(int jahr, int monat, int tag) {
         String[] DAYS = new String[]{"Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"};
 
@@ -44,38 +34,7 @@ class hilfsMethoden {
         return DAYS[tag_index - 1];
     }
 
-
-    private static ArrayList<ArrayList<String>> stundenZusammenfassen(ArrayList<ArrayList<String>> inputList) {
-        if (inputList.size() <= 1) {
-            return inputList;
-        }
-
-        for (int i = 1; i < inputList.size(); i++) {
-            boolean identical = true;
-            ArrayList<String> zeile = inputList.get(i);
-
-            if (!zeile.get(0).equals(inputList.get(i - 1).get(0))) {
-                for (int j = 1; j < zeile.size(); j++) {
-                    if (!zeile.get(j).equals(inputList.get(i - 1).get(j))) {
-                        identical = false;
-                        break;
-                    }
-                }
-
-                if (identical) {
-                    String neuStunde;
-                    //TODO prüfen ob Stunde > als 2 Zeichen | Ansonsten passiert folgendes: 5-6-8 (bei 5-6 und 8)
-                    neuStunde = String.format("%s-%s", inputList.get(i - 1).get(0), inputList.get(i).get(0));
-                    inputList.get(i - 1).set(0, neuStunde);
-                    inputList.remove(i);
-                    i--;
-                }
-            }
-        }
-
-        return inputList;
-    }
-
+    // Returns a nicely formatted date for the "last checked" String
     static String getFormattedDate(long currentTimeInMillis) {
         Calendar currentTime = Calendar.getInstance();
         currentTime.setTimeInMillis(currentTimeInMillis);
@@ -93,40 +52,7 @@ class hilfsMethoden {
         } else
             return "am " + DateFormat.format("dd.MM.yyyy HH:mm", currentTime).toString();
     }
-
-    private static void sort(ArrayList<ArrayList<String>> inputlist) {
-        Collections.sort(inputlist, new Comparator<ArrayList<String>>() {
-            @Override
-            public int compare(ArrayList<String> o1, ArrayList<String> o2) {
-                int value1, value2;
-                String strValue1 = o1.get(0);
-                String strValue2 = o2.get(0);
-
-                if (strValue1.contains("-")) {
-                    String[] parts = strValue1.split("-"); //TODO wenn leerzeichen drin, dann hier auch notwendig
-                    value1 = Integer.valueOf(parts[0]);
-                } else {
-                    value1 = Integer.valueOf(strValue1);
-                }
-
-                if (strValue2.contains("-")) {
-                    String[] parts = strValue2.split("-");
-                    value2 = Integer.valueOf(parts[0]);
-                } else {
-                    value2 = Integer.valueOf(strValue2);
-                }
-
-                if (value1 < value2) {
-                    return -1;
-                } else if (value1 == value2) {
-                    return 0;
-                } else { //if (value1 > value2){
-                    return 1;
-                }
-            }
-        });
-    }
-
+    
     static boolean listsEqual(ArrayList<ArrayList<String>> listOne, ArrayList<ArrayList<String>> listTwo) {
         if (listOne == null && listTwo == null) {
             return true;
@@ -165,7 +91,8 @@ class hilfsMethoden {
         return counter;
     }
 
-    static CancellationDays parseTimetable(String website_html, String className){
+    // Parses the website
+    static CancellationDays parseTimetable(String website_html, String className) {
         ArrayList<ArrayList<String>> tableOne, tableTwo;
 
         website_html = website_html.replace("&auml;", "ä").replace("&ouml;", "ö").replace("&uuml;", "ü");
@@ -195,14 +122,25 @@ class hilfsMethoden {
             tableTwo.add(new ArrayList<>(Arrays.asList("", "", "", "", "", "", "")));
         }
 
-        tableOne = datenAufbereiten(tableOne, className);
-        tableTwo = datenAufbereiten(tableTwo, className);
+        tableOne = prepareData(tableOne, className);
+        tableTwo = prepareData(tableTwo, className);
 
         return new CancellationDays(tableOne, tableTwo, datesList);
     }
 
+    // Returns a nicely reworked ArrayList of the cancellations
+    private static ArrayList<ArrayList<String>> prepareData(ArrayList<ArrayList<String>> tabelle, String className) {
+        tabelle = getRightClass(tabelle, className);
+        tabelle = deleteDoubles(tabelle);
+        tabelle = removeBlanks(tabelle);
+        sort(tabelle);
+        tabelle = mergeCancellations(tabelle);
+
+        return tabelle;
+    }
+
     // Extracts the two tables from the html code
-    static ArrayList<ArrayList<String>> extractTable(Document doc, int index) {
+    private static ArrayList<ArrayList<String>> extractTable(Document doc, int index) {
         Element table = doc.select("table").get(index);
         Iterator<Element> rowIterator = table.select("tr").iterator();
 
@@ -232,7 +170,7 @@ class hilfsMethoden {
                 if (element.get(1).contains(className)) {
                     classList.add(element);
                 }
-            } catch (IndexOutOfBoundsException e){
+            } catch (IndexOutOfBoundsException e) {
                 e.printStackTrace();
             }
         }
@@ -256,6 +194,73 @@ class hilfsMethoden {
         }
         return inputList;
     }
+
+    // Sort List after hour
+    private static void sort(ArrayList<ArrayList<String>> inputlist) {
+        Collections.sort(inputlist, new Comparator<ArrayList<String>>() {
+            @Override
+            public int compare(ArrayList<String> o1, ArrayList<String> o2) {
+                int value1, value2;
+                String strValue1 = o1.get(0);
+                String strValue2 = o2.get(0);
+
+                if (strValue1.contains("-")) {
+                    String[] parts = strValue1.split("-"); //TODO wenn leerzeichen drin, dann hier auch notwendig
+                    value1 = Integer.valueOf(parts[0]);
+                } else {
+                    value1 = Integer.valueOf(strValue1);
+                }
+
+                if (strValue2.contains("-")) {
+                    String[] parts = strValue2.split("-");
+                    value2 = Integer.valueOf(parts[0]);
+                } else {
+                    value2 = Integer.valueOf(strValue2);
+                }
+
+                if (value1 < value2) {
+                    return -1;
+                } else if (value1 == value2) {
+                    return 0;
+                } else { //if (value1 > value2){
+                    return 1;
+                }
+            }
+        });
+    }
+
+    // Merges cancellations together (3. & 4. -> 3-4)
+    private static ArrayList<ArrayList<String>> mergeCancellations(ArrayList<ArrayList<String>> inputList) {
+        if (inputList.size() <= 1) {
+            return inputList;
+        }
+
+        for (int i = 1; i < inputList.size(); i++) {
+            boolean identical = true;
+            ArrayList<String> zeile = inputList.get(i);
+
+            if (!zeile.get(0).equals(inputList.get(i - 1).get(0))) {
+                for (int j = 1; j < zeile.size(); j++) {
+                    if (!zeile.get(j).equals(inputList.get(i - 1).get(j))) {
+                        identical = false;
+                        break;
+                    }
+                }
+
+                if (identical) {
+                    String neuStunde;
+                    //TODO prüfen ob Stunde > als 2 Zeichen | Ansonsten passiert folgendes: 5-6-8 (bei 5-6 und 8)
+                    neuStunde = String.format("%s-%s", inputList.get(i - 1).get(0), inputList.get(i).get(0));
+                    inputList.get(i - 1).set(0, neuStunde);
+                    inputList.remove(i);
+                    i--;
+                }
+            }
+        }
+
+        return inputList;
+    }
+
 
     // Returns a JSON Array of a given ArrayList
     static JSONArray getJSONArray(ArrayList<ArrayList<String>> inputlist) {
@@ -303,6 +308,7 @@ class hilfsMethoden {
         return substituteSubject.equals("---") && substituteRoom.equals("---");
     }
 
+    // Returns the type of a line in the list
     static String getType(String substituteSubject, String substituteRoom) {
         if (isCancellation(substituteSubject, substituteRoom))
             return "Entfall";
@@ -311,7 +317,7 @@ class hilfsMethoden {
     }
 
 
-    //gibt den Namen der Abkuerzung eines Faches zurueck
+    // Returns the full name of a subject
     @SuppressLint("DefaultLocale")
     static String abkuerzung(String abk) {
 
