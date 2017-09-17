@@ -298,13 +298,13 @@ class hilfsMethoden {
         return resultList;
     }
 
-    private static boolean isEntfall(String fachVertretung, String raumVertretung) {
-        return fachVertretung.equals("---") && raumVertretung.equals("---");
     // Returns if a certain line is a cancellation
+    private static boolean isCancellation(String substituteSubject, String substituteRoom) {
+        return substituteSubject.equals("---") && substituteRoom.equals("---");
     }
 
-    static String getType(String fachVertretung, String raumVertretung) {
-        if (isEntfall(fachVertretung, raumVertretung))
+    static String getType(String substituteSubject, String substituteRoom) {
+        if (isCancellation(substituteSubject, substituteRoom))
             return "Entfall";
         else
             return "Vertretung";
