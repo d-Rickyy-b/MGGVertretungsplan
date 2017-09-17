@@ -201,39 +201,7 @@ class hilfsMethoden {
         return new CancellationDays(tableOne, tableTwo, datesList);
     }
 
-    private static ArrayList<ArrayList<String>> removeBlanks(ArrayList<ArrayList<String>> inputList) {
-        for (ArrayList<String> row : inputList) {
-            row.set(0, row.get(0).replace(" - ", "-"));
-        }
-        return inputList;
-    }
-
-    //Doppelte Zeilen werden gelöscht
-    private static ArrayList<ArrayList<String>> deleteDoubles(ArrayList<ArrayList<String>> inputList) {
-        Set<ArrayList<String>> set = new LinkedHashSet<>();
-        set.addAll(inputList);
-        inputList.clear();
-        inputList.addAll(set);
-        return inputList;
-    }
-
-    //Hiermit werden nur die richtigen Klassen rausgesucht
-    private static ArrayList<ArrayList<String>> getRightClass(ArrayList<ArrayList<String>> inputList, String className) {
-        ArrayList<ArrayList<String>> classList = new ArrayList<>();
-
-        for (ArrayList<String> element : inputList) {
-            try {
-                if (element.get(1).contains(className)) {
-                    classList.add(element);
-                }
-            } catch (IndexOutOfBoundsException e){
-                e.printStackTrace();
-            }
-        }
-
-        return classList;
-    }
-
+    // Extracts the two tables from the html code
     static ArrayList<ArrayList<String>> extractTable(Document doc, int index) {
         Element table = doc.select("table").get(index);
         Iterator<Element> rowIterator = table.select("tr").iterator();
@@ -253,6 +221,38 @@ class hilfsMethoden {
         }
 
         return tableArrayList;
+    }
+
+    //Hiermit werden nur die richtigen Klassen rausgesucht
+    private static ArrayList<ArrayList<String>> getRightClass(ArrayList<ArrayList<String>> inputList, String className) {
+        ArrayList<ArrayList<String>> classList = new ArrayList<>();
+
+        for (ArrayList<String> element : inputList) {
+            try {
+                if (element.get(1).contains(className)) {
+                    classList.add(element);
+                }
+            } catch (IndexOutOfBoundsException e){
+                e.printStackTrace();
+            }
+        }
+
+        return classList;
+    }
+
+    private static ArrayList<ArrayList<String>> deleteDoubles(ArrayList<ArrayList<String>> inputList) {
+        Set<ArrayList<String>> set = new LinkedHashSet<>();
+        set.addAll(inputList);
+        inputList.clear();
+        inputList.addAll(set);
+        return inputList;
+    }
+
+    private static ArrayList<ArrayList<String>> removeBlanks(ArrayList<ArrayList<String>> inputList) {
+        for (ArrayList<String> row : inputList) {
+            row.set(0, row.get(0).replace(" - ", "-"));
+        }
+        return inputList;
     }
 
     static JSONArray getJSONArray(ArrayList<ArrayList<String>> inputlist) {
