@@ -53,7 +53,7 @@ class hilfsMethoden {
             return "am " + DateFormat.format("dd.MM.yyyy HH:mm", currentTime).toString();
     }
 
-
+    // Returns the amount of differences between two lists
     static int getDifferencesCount(ArrayList<ArrayList<String>> listOne, ArrayList<ArrayList<String>> listTwo) {
         if (listOne.size() < listTwo.size()) {
             ArrayList<ArrayList<String>> tempList = new ArrayList<>(listOne);
