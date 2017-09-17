@@ -10,21 +10,21 @@ class CancellationDays {
     ArrayList<ArrayList<String>> tableOne, tableTwo;
     ArrayList<String> datesList;
 
-    CancellationDays(ArrayList<ArrayList<String>> tableOne, ArrayList<ArrayList<String>> tableTwo,ArrayList<String> datesList){
+    CancellationDays(ArrayList<ArrayList<String>> tableOne, ArrayList<ArrayList<String>> tableTwo, ArrayList<String> datesList) {
         this.tableOne = tableOne;
         this.tableTwo = tableTwo;
         this.datesList = datesList;
     }
 
-    ArrayList<ArrayList<String>> getFirstDay(){
+    ArrayList<ArrayList<String>> getFirstDay() {
         return tableOne;
     }
 
-    ArrayList<ArrayList<String>> getSecondDay(){
+    ArrayList<ArrayList<String>> getSecondDay() {
         return tableTwo;
     }
 
-    String getDate(int day){
+    String getDate(int day) {
         if (day < datesList.size()) {
             return datesList.get(day);
         } else {
@@ -32,11 +32,11 @@ class CancellationDays {
         }
     }
 
-    String getFirstDate(){
+    String getFirstDate() {
         return getDate(0);
     }
 
-    String getSecondDate(){
+    String getSecondDate() {
         return getDate(1);
     }
 }
