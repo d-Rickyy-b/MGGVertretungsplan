@@ -188,8 +188,8 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         klasse = sp.getString("KlasseGesamt", "5a");
         setTitle(String.format("Vertretungsplan (%s)", klasse));
 
-        String erDatum = sp.getString("erstesDatum", "01.01." + jahr);
-        String zwDatum = sp.getString("zweitesDatum", "01.01." + jahr);
+        String firstDate = sp.getString("firstDate", "01.01." + jahr);
+        String secondDate = sp.getString("secondDate", "01.01." + jahr);
 
         ArrayList<ArrayList<String>> tableOne, tableTwo;
 
@@ -197,7 +197,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         tableTwo = hilfsMethoden.getArrayList(sp.getString("zweiteTabelle", ""));
 
         sp.edit().putBoolean("AktTagAnzeigen", true).apply();
-        anzeigen(tableOne, tableTwo, erDatum, zwDatum, sp.getBoolean("AktTagAnzeigen", true));
+        anzeigen(tableOne, tableTwo, firstDate, secondDate, sp.getBoolean("AktTagAnzeigen", true));
     }
 
     @Override
