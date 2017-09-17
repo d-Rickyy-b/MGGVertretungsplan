@@ -126,7 +126,6 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         displaySavedData();
         updateData();
     }
-    //TODO move to hilfsmethoden
 
     //added for testing purposes
     private void notification(String ticker, String titel, String text) {
@@ -184,8 +183,6 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
 
     private void displaySavedData() {
-        String AbrufDatum = sp.getString("AbrufDatum", ": Noch nie aktualisiert!");
-
         jahr = new GregorianCalendar().get(GregorianCalendar.YEAR);
         klasse = sp.getString("KlasseGesamt", "5a");
         setTitle(String.format("Vertretungsplan (%s)", klasse));
