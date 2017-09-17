@@ -56,12 +56,11 @@ class hilfsMethoden {
     static boolean listsEqual(ArrayList<ArrayList<String>> listOne, ArrayList<ArrayList<String>> listTwo) {
         if (listOne == null && listTwo == null) {
             return true;
-        } else if ((listOne == null || listTwo == null)
-                || (listOne.isEmpty() && !listTwo.isEmpty())
-                || (!listOne.isEmpty() && listTwo.isEmpty())
-                || (listOne.size() != listTwo.size())) {
-            return false;
-        } else return listOne.isEmpty() && listTwo.isEmpty();
+        } else
+            return !((listOne == null || listTwo == null)
+                    || (listOne.isEmpty() && !listTwo.isEmpty())
+                    || (!listOne.isEmpty() && listTwo.isEmpty())
+                    || (listOne.size() != listTwo.size())) && listOne.isEmpty() && listTwo.isEmpty();
     }
 
     static int getDifferencesCount(ArrayList<ArrayList<String>> listOne, ArrayList<ArrayList<String>> listTwo) {
