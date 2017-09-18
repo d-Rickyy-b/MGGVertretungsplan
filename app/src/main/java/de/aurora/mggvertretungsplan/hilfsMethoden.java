@@ -23,17 +23,6 @@ import java.util.Set;
 
 class hilfsMethoden {
 
-    // Returns the name of a weekday of a date
-    static String getDayOfWeek(int jahr, int monat, int tag) {
-        String[] DAYS = new String[]{"Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"};
-
-        GregorianCalendar gc = new GregorianCalendar();
-        gc.set(jahr, monat - 1, tag);
-        int tag_index = gc.get(GregorianCalendar.DAY_OF_WEEK);
-
-        return DAYS[tag_index - 1];
-    }
-
     // Returns a nicely formatted date for the "last checked" String
     static String getFormattedDate(long currentTimeInMillis) {
         Calendar currentTime = Calendar.getInstance();
