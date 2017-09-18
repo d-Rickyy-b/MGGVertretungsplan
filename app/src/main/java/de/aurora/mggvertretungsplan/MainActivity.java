@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setAlpha(1);
-        toolbar.setTitle("Vertretungsplan");
+        toolbar.setTitle(getString(R.string.app_name));
         toolbar.showOverflowMenu();
 
         if (Build.VERSION.SDK_INT >= 21) {
