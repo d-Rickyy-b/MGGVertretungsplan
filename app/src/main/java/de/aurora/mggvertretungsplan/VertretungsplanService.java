@@ -15,6 +15,8 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
+import de.aurora.mggvertretungsplan.datamodel.CancellationDays;
+
 
 public class VertretungsplanService extends Service implements AsyncTaskCompleteListener<String> {
 

@@ -1,4 +1,4 @@
-package de.aurora.mggvertretungsplan;
+package de.aurora.mggvertretungsplan.datamodel;
 
 import java.util.ArrayList;
 
@@ -6,21 +6,21 @@ import java.util.ArrayList;
  * Created by Rico on 16.09.2017.
  */
 
-class CancellationDays {
+public class CancellationDays {
     private final ArrayList<ArrayList<String>> tableOne, tableTwo;
     private final ArrayList<String> datesList;
 
-    CancellationDays(ArrayList<ArrayList<String>> tableOne, ArrayList<ArrayList<String>> tableTwo, ArrayList<String> datesList) {
+    public CancellationDays(ArrayList<ArrayList<String>> tableOne, ArrayList<ArrayList<String>> tableTwo, ArrayList<String> datesList) {
         this.tableOne = tableOne;
         this.tableTwo = tableTwo;
         this.datesList = datesList;
     }
 
-    ArrayList<ArrayList<String>> getFirstDay() {
+    public ArrayList<ArrayList<String>> getFirstDay() {
         return tableOne;
     }
 
-    ArrayList<ArrayList<String>> getSecondDay() {
+    public ArrayList<ArrayList<String>> getSecondDay() {
         return tableTwo;
     }
 
@@ -32,11 +32,11 @@ class CancellationDays {
         }
     }
 
-    String getFirstDate() {
+    public String getFirstDate() {
         return getDate(0);
     }
 
-    String getSecondDate() {
+    public String getSecondDate() {
         return getDate(1);
     }
 }

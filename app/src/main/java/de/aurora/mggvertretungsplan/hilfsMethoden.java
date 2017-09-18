@@ -19,6 +19,8 @@ import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+import de.aurora.mggvertretungsplan.datamodel.CancellationDays;
+
 
 class hilfsMethoden {
 
