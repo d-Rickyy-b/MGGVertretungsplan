@@ -301,9 +301,6 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
             date2 = tmpDate;
         }
 
-        headingsList.add(new DateHeading(date1));
-        headingsList.add(new DateHeading(date2));
-
         int sixteenHours = 60 * 60 * 16;
         long secondsDiff = (currentDate.getTime() - date1.getTime()) / 1000;
 
@@ -315,17 +312,16 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
                 if (zeile.size() == 7) {
                     TimeTableCard timeTableCard = new TimeTableCard(zeile.get(0), hilfsMethoden.abkuerzung(zeile.get(2)), hilfsMethoden.abkuerzung(zeile.get(3)), zeile.get(4), zeile.get(5), hilfsMethoden.getType(zeile.get(3), zeile.get(5)), zeile.get(6));
                     dayOneList.add(timeTableCard);
+                    headingsList.add(new DateHeading(date1));
                 }
             }
-        } else {
-            //Tag 1 aus Headings löschen
-            headingsList.remove(0);
         }
 
         //Tag 2
         for (ArrayList<String> zeile : zweiterTag) {
             TimeTableCard timeTableCard = new TimeTableCard(zeile.get(0), hilfsMethoden.abkuerzung(zeile.get(2)), hilfsMethoden.abkuerzung(zeile.get(3)), zeile.get(4), zeile.get(5), hilfsMethoden.getType(zeile.get(3), zeile.get(5)), zeile.get(6));
             dayTwoList.add(timeTableCard);
+            headingsList.add(new DateHeading(date2));
         }
 
         cAdapter.notifyDataSetChanged();
