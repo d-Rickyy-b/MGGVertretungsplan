@@ -267,7 +267,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         alarmManager.cancel(pendingIntent);
     }
 
-    private boolean aktiveVerbindung() {
+    private boolean isConnectionActive() {
         final ConnectivityManager conMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         final NetworkInfo activeNetwork = conMgr.getActiveNetworkInfo();
 
@@ -276,7 +276,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
     // überprüfen ob Klasse ausgewählt, ob Internetverbinding besteht, gibt Befehl zum Runterladen
     private void updateData() {
-        if (aktiveVerbindung()) {
+        if (isConnectionActive()) {
             mSwipeLayout.setRefreshing(true);
             klasse = sp.getString("KlasseGesamt", "5a");
             sp = PreferenceManager.getDefaultSharedPreferences(this);
@@ -331,7 +331,6 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         // Displays the current day onlw when the setting is active
         // OR when it's not set, but it's before 16:00
         if (aktTagAnzeigen || ((secondsDiff > 0) && (secondsDiff < sixteenHours))) {
-
             //Tag 1
             for (ArrayList<String> zeile : ersterTag) {
                 if (zeile.size() == 7) {

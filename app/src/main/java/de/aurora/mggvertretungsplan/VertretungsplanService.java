@@ -43,7 +43,7 @@ public class VertretungsplanService extends Service implements AsyncTaskComplete
 
     private void updateData() {
         Log.v("VertretungsplanService", "UpdateData");
-        if (activeConnection()) {
+        if (isConnectionActive()) {
             sp = PreferenceManager.getDefaultSharedPreferences(this);
             klasse = sp.getString("KlasseGesamt", "5a");
 
@@ -77,7 +77,7 @@ public class VertretungsplanService extends Service implements AsyncTaskComplete
     }
 
     //Überprüft Internetverbindung (true = vorhandene Verbindung, false = keine Verbindung)
-    private boolean activeConnection() {
+    private boolean isConnectionActive() {
         final ConnectivityManager conMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         final NetworkInfo activeNetwork = conMgr.getActiveNetworkInfo();
 
