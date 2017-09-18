@@ -4,7 +4,7 @@ package de.aurora.mggvertretungsplan.ui;
  * Created by Rico on 26.09.2016.
  */
 
-public class TimeTableCard {
+public class TimeTableElement {
     private final String hour;
     private final String fach;
     private final String typ;
@@ -12,7 +12,7 @@ public class TimeTableCard {
     private final String raum;
     private final String neuRaum;
 
-    public TimeTableCard(String hour, String fach, String neuFach, String raum, String neuRaum, String typ, String info) {
+    public TimeTableElement(String hour, String fach, String neuFach, String raum, String neuRaum, String typ, String info) {
         if (info.length() > 0) {
             info = info.substring(0, 1).toUpperCase() + info.substring(1);
 

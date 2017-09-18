@@ -40,14 +40,14 @@ import java.util.Locale;
 import de.aurora.mggvertretungsplan.ui.CardsAdapter;
 import de.aurora.mggvertretungsplan.ui.DateHeading;
 import de.aurora.mggvertretungsplan.ui.ThemeManager;
-import de.aurora.mggvertretungsplan.ui.TimeTableCard;
+import de.aurora.mggvertretungsplan.ui.TimeTableElement;
 
 import static android.os.Build.VERSION.SDK_INT;
 
 public class MainActivity extends AppCompatActivity implements AsyncTaskCompleteListener<String>, SwipeRefreshLayout.OnRefreshListener {
 
-    private final ArrayList<TimeTableCard> dayOneList = new ArrayList<>();
-    private final ArrayList<TimeTableCard> dayTwoList = new ArrayList<>();
+    private final ArrayList<TimeTableElement> dayOneList = new ArrayList<>();
+    private final ArrayList<TimeTableElement> dayTwoList = new ArrayList<>();
     private final ArrayList<DateHeading> headingsList = new ArrayList<>();
     private SharedPreferences sp;
     private Toolbar toolbar;
@@ -309,8 +309,8 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
             //Tag 1
             for (ArrayList<String> zeile : ersterTag) {
                 if (zeile.size() == 7) {
-                    TimeTableCard timeTableCard = new TimeTableCard(zeile.get(0), hilfsMethoden.abkuerzung(zeile.get(2)), hilfsMethoden.abkuerzung(zeile.get(3)), zeile.get(4), zeile.get(5), hilfsMethoden.getType(zeile.get(3), zeile.get(5)), zeile.get(6));
-                    dayOneList.add(timeTableCard);
+                    TimeTableElement timeTableElement = new TimeTableElement(zeile.get(0), hilfsMethoden.abkuerzung(zeile.get(2)), hilfsMethoden.abkuerzung(zeile.get(3)), zeile.get(4), zeile.get(5), hilfsMethoden.getType(zeile.get(3), zeile.get(5)), zeile.get(6));
+                    dayOneList.add(timeTableElement);
                     headingsList.add(new DateHeading(date1));
                 }
             }
@@ -318,8 +318,8 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
         //Tag 2
         for (ArrayList<String> zeile : zweiterTag) {
-            TimeTableCard timeTableCard = new TimeTableCard(zeile.get(0), hilfsMethoden.abkuerzung(zeile.get(2)), hilfsMethoden.abkuerzung(zeile.get(3)), zeile.get(4), zeile.get(5), hilfsMethoden.getType(zeile.get(3), zeile.get(5)), zeile.get(6));
-            dayTwoList.add(timeTableCard);
+            TimeTableElement timeTableElement = new TimeTableElement(zeile.get(0), hilfsMethoden.abkuerzung(zeile.get(2)), hilfsMethoden.abkuerzung(zeile.get(3)), zeile.get(4), zeile.get(5), hilfsMethoden.getType(zeile.get(3), zeile.get(5)), zeile.get(6));
+            dayTwoList.add(timeTableElement);
             headingsList.add(new DateHeading(date2));
         }
 

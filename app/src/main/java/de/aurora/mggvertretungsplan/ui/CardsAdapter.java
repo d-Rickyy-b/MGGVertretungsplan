@@ -31,13 +31,13 @@ public class CardsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     private static final int TYPE_DAYTWO = 2;
     private static final int TYPE_NOINFO = 3;
     private int lastPosition = -1;
-    private final List<TimeTableCard> dayOneList;
-    private final List<TimeTableCard> dayTwoList;
+    private final List<TimeTableElement> dayOneList;
+    private final List<TimeTableElement> dayTwoList;
     private final List<DateHeading> headingList;
     private final Context context;
     private final SharedPreferences sp;
 
-    public CardsAdapter(List<TimeTableCard> dayOneList, List<TimeTableCard> dayTwoList, List<DateHeading> headingList, Context context) {
+    public CardsAdapter(List<TimeTableElement> dayOneList, List<TimeTableElement> dayTwoList, List<DateHeading> headingList, Context context) {
         this.dayOneList = dayOneList;
         this.dayTwoList = dayTwoList;
         this.headingList = headingList;
@@ -73,27 +73,27 @@ public class CardsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof ClassInfoViewHolder) {
             ClassInfoViewHolder myholder = (ClassInfoViewHolder) holder;
-            TimeTableCard timeTableCard;
+            TimeTableElement timeTableElement;
             int viewType = getItemViewType(position);
             if (viewType == TYPE_DAYONE) {
-                timeTableCard = dayOneList.get(position - 1); //TODO Bug
+                timeTableElement = dayOneList.get(position - 1); //TODO Bug
             } else if (viewType == TYPE_DAYTWO) {
                 int dayOneListSize = 1;
                 if (dayOneList.size() > 0) {
                     dayOneListSize = dayOneList.size();
                 }
-                timeTableCard = dayTwoList.get(position - headingList.size() - dayOneListSize);
+                timeTableElement = dayTwoList.get(position - headingList.size() - dayOneListSize);
             } else
                 throw new RuntimeException("there is no matching type!");
 
-            myholder.hour.setText(timeTableCard.getHour());
-            myholder.title.setText(timeTableCard.getTitle());
-            myholder.info.setText(timeTableCard.getInfo());
-            myholder.raum.setText(timeTableCard.getRaum());
-            myholder.neuRaum.setText(timeTableCard.getNeuRaum());
+            myholder.hour.setText(timeTableElement.getHour());
+            myholder.title.setText(timeTableElement.getTitle());
+            myholder.info.setText(timeTableElement.getInfo());
+            myholder.raum.setText(timeTableElement.getRaum());
+            myholder.neuRaum.setText(timeTableElement.getNeuRaum());
 
             if (sp.getBoolean("listColors", true)) {
-                switch (timeTableCard.getTyp()) {
+                switch (timeTableElement.getTyp()) {
                     case "Entfall":
                         myholder.cardView.setCardBackgroundColor(Color.parseColor("#FF6961"));
                         break;
