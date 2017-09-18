@@ -33,7 +33,7 @@ before_install:
   - android update sdk --no-ui --filter build-tools-23.0.2,android-23
   - sudo ls -ltr /usr/local/android-sdk
   - whoami
-  - sudo cp -R /usr/local/android-sdk-24.0.2 ${ANDROID_HOME}
+  - sudo cp -R /usr/local//usr/local/android-sdk-25.2.3 ${ANDROID_HOME}
   - sudo ls -ltr ${ANDROID_HOME}
   - sudo mkdir ${ANDROID_HOME}/licenses
   - sudo touch ${ANDROID_HOME}/licenses/android-sdk-license
