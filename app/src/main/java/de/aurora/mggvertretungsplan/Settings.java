@@ -9,7 +9,6 @@ import android.preference.ListPreference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 import android.support.v7.widget.Toolbar;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -58,19 +57,6 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
         correctClassPicker();
     }
 
-
-    //Toolbar zurück option
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                Toast.makeText(getApplicationContext(), "Einstellungen übernommen!", Toast.LENGTH_SHORT).show();
-                finish();
-                break;
-            default:
-                break;
-        }
-        return true;
-    }
 
     // When saved data gets changed
     public void onSharedPreferenceChanged(SharedPreferences sp, String key) {
