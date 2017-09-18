@@ -40,8 +40,6 @@ class DownloadWebPageTask extends AsyncTask<String, String, String> {
         return response;
     }
 
-    //die Methode doInBackground fuehrt automatisch die Methode onPostExecute aus
-    //Diese Methode kuerzt die HTML Datei so, dass nur noch die beiden Tabellen uebrig bleiben. Die Tabellen werden als String gespeichert.
     @Override
     protected void onPostExecute(String html) {
         callback.onTaskComplete(html);
