@@ -16,7 +16,7 @@ import de.aurora.mggvertretungsplan.ui.theming.ThemeManager;
 import de.aurora.mggvertretungsplan.ui.settings.PreferenceFragmentMain;
 
 
-public class Settings extends PreferenceActivity implements OnSharedPreferenceChangeListener {
+public class SettingsActivity extends PreferenceActivity implements OnSharedPreferenceChangeListener {
 
     private PreferenceFragmentMain preferenceFragmentMain;
     private String klasseGesamt_saved;

@@ -33,7 +33,7 @@
     <string name="toast_settings_saved">Einstellungen übernommen!</string>
     <string name="toast_noInternetConnection">Keine Internetverbindung!</string>
 
-    <!-- Class Settings Section -->
+    <!-- Class SettingsActivity Section -->
     <string name="settings_section_class">Klasse</string>
     <string name="settings_chooseClassLayer_title">Stufe</string>
     <string name="settings_chooseClassLayer_desc">Bitte wähle deine Stufe aus</string>
@@ -41,7 +41,7 @@
     <string name="settings_chooseClass_desc">Bitte wähle deine Klasse aus</string>
     <!--  -->
 
-    <!-- Miscellaneous Settings Section -->
+    <!-- Miscellaneous SettingsActivity Section -->
     <string name="settings_section_miscellaneous">Verschiedenes</string>
     <string name="settings_notification_title">Benachrichtigungen</string>
     <string name="settings_notification_summary">Benachrichtigung bei Änderung des Vertretungsplans</string>

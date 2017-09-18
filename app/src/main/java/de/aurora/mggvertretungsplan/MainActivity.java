@@ -175,7 +175,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
         switch (item.getItemId()) {
             case R.id.action_settings:
-                Intent preferenceIntent = new Intent(getApplicationContext(), Settings.class);
+                Intent preferenceIntent = new Intent(getApplicationContext(), SettingsActivity.class);
                 startActivityForResult(preferenceIntent, 0);
                 break;
             case R.id.action_website:
