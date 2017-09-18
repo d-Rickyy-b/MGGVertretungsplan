@@ -97,7 +97,6 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         cAdapter = new CardsAdapter(dayOneList, dayTwoList, headingsList, this);
         recyclerView.setHasFixedSize(true);
 
-        //Neuer LayoutManager
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
 
@@ -137,11 +136,13 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
     }
 
 
+    // When swiped to refresh
     public void onRefresh() {
         updateData();
     }
 
 
+    // Method to display the saved data
     private void displaySavedData() {
         currentYear = new GregorianCalendar().get(GregorianCalendar.YEAR);
         class_name = sp.getString("KlasseGesamt", "5a");
