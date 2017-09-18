@@ -31,7 +31,7 @@
         <activity
             android:name=".Settings"
             android:label="Einstellungen"
-            android:theme="@style/AppTheme.Light.NoActionBar"></activity>
+            android:theme="@style/AppTheme.Light.NoActionBar" />
 
         <activity
             android:name=".PreferenceBenachrichtigungen"
@@ -47,11 +47,11 @@
             android:name="de.aurora.mggvertretungsplan.ui.intro.IntroActivity"
             android:theme="@style/AppTheme.Light.NoActionBar" />
 
-        <service android:name=".VertretungsplanService"></service>
+        <service android:name=".VertretungsplanService" />
 
         <receiver android:name=".BootUpReceiver">
             <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED"></action>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
 
