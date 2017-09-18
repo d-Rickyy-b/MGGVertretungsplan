@@ -120,8 +120,7 @@
                 android:paddingBottom="10dp"
                 android:paddingTop="10dp"
                 android:textColorHint="@android:color/white"
-                android:textSize="20sp"
-                />
+                android:textSize="20sp" />
 
         </LinearLayout>
     </ScrollView>
