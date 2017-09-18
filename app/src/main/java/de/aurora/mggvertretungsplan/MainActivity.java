@@ -303,7 +303,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         int sixteenHours = 60 * 60 * 16;
         long secondsDiff = (currentDate.getTime() - date1.getTime()) / 1000;
 
-        // Displays the current day onlw when the setting is active
+        // Displays the current day only when the setting is active
         // OR when it's not set, but it's before 16:00
         if (aktTagAnzeigen || ((secondsDiff > 0) && (secondsDiff < sixteenHours))) {
             //Tag 1
