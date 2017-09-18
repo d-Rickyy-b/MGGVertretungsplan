@@ -174,8 +174,8 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
         ArrayList<ArrayList<String>> tableOne, tableTwo;
 
-        tableOne = hilfsMethoden.getArrayList(sp.getString("ersteTabelle", ""));
-        tableTwo = hilfsMethoden.getArrayList(sp.getString("zweiteTabelle", ""));
+        tableOne = hilfsMethoden.getArrayList(sp.getString("tableOne", ""));
+        tableTwo = hilfsMethoden.getArrayList(sp.getString("tableTwo", ""));
 
         sp.edit().putBoolean("AktTagAnzeigen", true).apply();
         anzeigen(tableOne, tableTwo, firstDate, secondDate, sp.getBoolean("AktTagAnzeigen", true));
@@ -377,8 +377,8 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         editor.putString("firstDate", firstDate);
         editor.putString("secondDate", secondDate);
         editor.putString("AbrufDatum", AbrufDatum);
-        editor.putString("ersteTabelle", hilfsMethoden.getJSONArray(tableOne).toString());
-        editor.putString("zweiteTabelle", hilfsMethoden.getJSONArray(tableTwo).toString());
+        editor.putString("tableOne", hilfsMethoden.getJSONArray(tableOne).toString());
+        editor.putString("tableTwo", hilfsMethoden.getJSONArray(tableTwo).toString());
         editor.putBoolean("AktTagAnzeigen", true);
         editor.apply();
     }

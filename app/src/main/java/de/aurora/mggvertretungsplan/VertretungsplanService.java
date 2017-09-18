@@ -94,8 +94,8 @@ public class VertretungsplanService extends Service implements AsyncTaskComplete
         tableOne = cancellationDays.getFirstDay();
         tableTwo = cancellationDays.getSecondDay();
 
-        tableOne_saved = hilfsMethoden.getArrayList(sp.getString("ersteTabelle", ""));
-        tableTwo_saved = hilfsMethoden.getArrayList(sp.getString("zweiteTabelle", ""));
+        tableOne_saved = hilfsMethoden.getArrayList(sp.getString("tableOne", ""));
+        tableTwo_saved = hilfsMethoden.getArrayList(sp.getString("tableTwo", ""));
 
         int anzahlAusfaelle = tableOne.size() + tableTwo.size();
 
