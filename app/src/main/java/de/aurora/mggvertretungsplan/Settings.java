@@ -30,8 +30,8 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
         setTheme(ThemeManager.getTheme(themeID));
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings);
-        Toolbar toolbar;
 
+        Toolbar toolbar;
         toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle(R.string.settings_name);
 
