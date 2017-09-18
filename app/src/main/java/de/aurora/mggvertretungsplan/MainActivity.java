@@ -216,7 +216,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         }
         return super.onOptionsItemSelected(item);
     }
-
+    //TODO Refactor!
 
     private void serviceProvider() {
         if (sp.getBoolean("notification", true)) {
@@ -227,6 +227,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         }
     }
 
+    //TODO Refactor
     //AlarmManager Starten! -> Hintergrund Prozess
     private void AlarmManager(long interval) {
         long firstStart = System.currentTimeMillis() + interval;
@@ -237,6 +238,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, firstStart, interval, pendingIntent);
     }
 
+    //TODO Refactor
     //beendet AlarmManager
     private void AlarmManagerBeenden() {
         Intent intentsOpen = new Intent(this, VertretungsplanService.class);
