@@ -98,9 +98,9 @@ public class VertretungsplanService extends Service implements AsyncTaskComplete
         tableOne_saved = hilfsMethoden.getArrayList(sp.getString("tableOne", ""));
         tableTwo_saved = hilfsMethoden.getArrayList(sp.getString("tableTwo", ""));
 
-        int anzahlAusfaelle = tableOne.size() + tableTwo.size();
+        int changeCount = tableOne.size() + tableTwo.size();
 
-        if (anzahlAusfaelle > 0) {
+        if (changeCount > 0) {
             // TODO Testen ob Tabelle 1 = Tabelle 2
             int count1 = hilfsMethoden.getDifferencesCount(tableOne, tableOne_saved);
             int count2 = hilfsMethoden.getDifferencesCount(tableTwo, tableTwo_saved);
