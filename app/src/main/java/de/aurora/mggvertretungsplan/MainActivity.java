@@ -163,7 +163,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.settings, menu);
+        getMenuInflater().inflate(R.menu.toolbar_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
