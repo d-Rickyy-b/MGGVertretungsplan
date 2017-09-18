@@ -1,4 +1,4 @@
-package de.aurora.mggvertretungsplan.ui;
+package de.aurora.mggvertretungsplan.datamodel;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

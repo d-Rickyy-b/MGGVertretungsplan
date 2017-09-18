@@ -20,6 +20,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import de.aurora.mggvertretungsplan.R;
+import de.aurora.mggvertretungsplan.datamodel.DateHeading;
 import de.aurora.mggvertretungsplan.datamodel.TimeTableElement;
 
 /**

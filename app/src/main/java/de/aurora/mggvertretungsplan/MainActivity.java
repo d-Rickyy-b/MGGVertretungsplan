@@ -38,7 +38,7 @@ import java.util.GregorianCalendar;
 import java.util.Locale;
 
 import de.aurora.mggvertretungsplan.ui.CardsAdapter;
-import de.aurora.mggvertretungsplan.ui.DateHeading;
+import de.aurora.mggvertretungsplan.datamodel.DateHeading;
 import de.aurora.mggvertretungsplan.ui.theming.ThemeManager;
 import de.aurora.mggvertretungsplan.datamodel.TimeTableElement;
 
