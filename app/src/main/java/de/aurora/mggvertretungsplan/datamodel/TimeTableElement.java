@@ -1,4 +1,4 @@
-package de.aurora.mggvertretungsplan.ui;
+package de.aurora.mggvertretungsplan.datamodel;
 
 /**
  * Created by Rico on 26.09.2016.
@@ -35,27 +35,27 @@ public class TimeTableElement {
         this.info = info;
     }
 
-    String getHour() {
+    public String getHour() {
         return this.hour;
     }
 
-    String getType() {
+    public String getType() {
         return this.type;
     }
 
-    String getTitle() {
+    public String getTitle() {
         return this.subject;
     }
 
-    String getInfo() {
+    public String getInfo() {
         return this.info;
     }
 
-    String getRoom() {
+    public String getRoom() {
         return this.room;
     }
 
-    String getNewRoom() {
+    public String getNewRoom() {
         return this.newRoom;
     }
 }
