@@ -10,54 +10,54 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 
-import de.aurora.mggvertretungsplan.ui.theming.ThemeManager;
 import de.aurora.mggvertretungsplan.ui.settings.PreferenceFragmentNotification;
+import de.aurora.mggvertretungsplan.ui.theming.ThemeManager;
 
-public class SettingsNotificationActivity extends PreferenceActivity{
+public class SettingsNotificationActivity extends PreferenceActivity {
 
-	@SuppressLint("NewApi")
-	protected void onCreate(Bundle savedInstanceState) {
-		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
-		int themeID = sp.getInt("Theme", 0);
-		setTheme(ThemeManager.getTheme(themeID));
+    @SuppressLint("NewApi")
+    protected void onCreate(Bundle savedInstanceState) {
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        int themeID = sp.getInt("Theme", 0);
+        setTheme(ThemeManager.getTheme(themeID));
         super.onCreate(savedInstanceState);
         Toolbar toolbar;
 
         setContentView(R.layout.settings);
-        
+
         toolbar = findViewById(R.id.toolbar);
-		toolbar.setTitle("Benachrichtigungen");
-		if(Build.VERSION.SDK_INT >= 21){
-			toolbar.setElevation(25);
-		}
-		
-		toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				finish();
-			}
-		});
+        toolbar.setTitle("Benachrichtigungen");
+        if (Build.VERSION.SDK_INT >= 21) {
+            toolbar.setElevation(25);
+        }
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         getFragmentManager().beginTransaction().replace(R.id.content, new PreferenceFragmentNotification()).commit();
         getFragmentManager().executePendingTransactions();
     }
 
     @Override
-    public boolean isValidFragment(String fragmentName){
+    public boolean isValidFragment(String fragmentName) {
         return super.isValidFragment(fragmentName);
     }
 
-	//ActionBar zurück option
+    //ActionBar zurück option
     public boolean onOptionsItemSelected(MenuItem item) {
-	    switch (item.getItemId()) {
-	case android.R.id.home:
-    	finish();
-    break;
-    
-	default:	
-    break;
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                break;
+
+            default:
+                break;
+        }
+        return true;
     }
-    return true;
-	}
 
 
 }

@@ -38,10 +38,10 @@ import java.util.GregorianCalendar;
 import java.util.Locale;
 
 import de.aurora.mggvertretungsplan.datamodel.CancellationDays;
-import de.aurora.mggvertretungsplan.ui.CardsAdapter;
 import de.aurora.mggvertretungsplan.datamodel.DateHeading;
-import de.aurora.mggvertretungsplan.ui.theming.ThemeManager;
 import de.aurora.mggvertretungsplan.datamodel.TimeTableElement;
+import de.aurora.mggvertretungsplan.ui.CardsAdapter;
+import de.aurora.mggvertretungsplan.ui.theming.ThemeManager;
 
 import static android.os.Build.VERSION.SDK_INT;
 
@@ -294,7 +294,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         }
 
         // Switch days if the first is later than the second
-        if (date1.after(date2)){
+        if (date1.after(date2)) {
             ArrayList<ArrayList<String>> tempList = new ArrayList<>(ersterTag);
             ersterTag = zweiterTag;
             zweiterTag = tempList;
