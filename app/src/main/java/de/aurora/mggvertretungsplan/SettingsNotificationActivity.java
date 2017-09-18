@@ -23,7 +23,7 @@ public class SettingsNotificationActivity extends PreferenceActivity {
         super.onCreate(savedInstanceState);
         Toolbar toolbar;
 
-        setContentView(R.layout.settings);
+        setContentView(R.layout.layout_settings);
 
         toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Benachrichtigungen");

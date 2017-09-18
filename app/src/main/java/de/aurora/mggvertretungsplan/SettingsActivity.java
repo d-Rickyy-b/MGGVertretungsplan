@@ -29,7 +29,7 @@ public class SettingsActivity extends PreferenceActivity implements OnSharedPref
         int themeID = sp.getInt("Theme", 0);
         setTheme(ThemeManager.getTheme(themeID));
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.settings);
+        setContentView(R.layout.layout_settings);
 
         Toolbar toolbar;
         toolbar = findViewById(R.id.toolbar);
