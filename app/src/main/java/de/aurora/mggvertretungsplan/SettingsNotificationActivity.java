@@ -13,7 +13,7 @@ import android.view.View;
 import de.aurora.mggvertretungsplan.ui.theming.ThemeManager;
 import de.aurora.mggvertretungsplan.ui.settings.PreferenceFragmentNotification;
 
-public class PreferenceBenachrichtigungen extends PreferenceActivity{
+public class SettingsNotificationActivity extends PreferenceActivity{
 
 	@SuppressLint("NewApi")
 	protected void onCreate(Bundle savedInstanceState) {

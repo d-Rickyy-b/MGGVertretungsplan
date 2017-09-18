@@ -34,7 +34,7 @@
             android:theme="@style/AppTheme.Light.NoActionBar" />
 
         <activity
-            android:name=".PreferenceBenachrichtigungen"
+            android:name=".SettingsNotificationActivity"
             android:label="Einstellungen"
             android:theme="@style/AppTheme.Light.NoActionBar">
             <intent-filter>
