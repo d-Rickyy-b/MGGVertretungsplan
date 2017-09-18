@@ -40,7 +40,7 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
             toolbar.setElevation(25);
         }
 
-        //Wenn auf den Pfeil oben links geklickt:
+        // Toolbar 'back' option
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,7 +72,7 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
         return true;
     }
 
-    //Wenn (gespeicherte) Daten geändert werden
+    // When saved data gets changed
     public void onSharedPreferenceChanged(SharedPreferences sp, String key) {
         if (key.equals("Klassenstufe") || key.equals("Klasse")) {
             String klasseGesamt = getClassName(sp);
