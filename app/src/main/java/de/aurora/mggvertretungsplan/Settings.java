@@ -63,7 +63,7 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
         if (key.equals("Klassenstufe") || key.equals("Klasse")) {
             String klasseGesamt = getClassName(sp);
             sp.edit().putString("KlasseGesamt", klasseGesamt).apply();
-        } else if (key.equals("color")){
+        } else if (key.equals("color")) {
             int color = sp.getInt("color", 0);
             int themeID = ThemeManager.getThemeID(color);
             sp.edit().putInt("Theme", themeID).apply();
