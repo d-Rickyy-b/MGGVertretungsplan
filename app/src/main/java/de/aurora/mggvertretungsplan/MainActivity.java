@@ -47,14 +47,14 @@ import static android.os.Build.VERSION.SDK_INT;
 
 public class MainActivity extends AppCompatActivity implements AsyncTaskCompleteListener<String>, SwipeRefreshLayout.OnRefreshListener {
 
+    private final ArrayList<TimeTableCard> dayOneList = new ArrayList<>();
+    private final ArrayList<TimeTableCard> dayTwoList = new ArrayList<>();
+    private final ArrayList<DateHeading> headingsList = new ArrayList<>();
     private SharedPreferences sp;
     private Toolbar toolbar;
     private String klasse;
     private int currentYear;
     private SwipeRefreshLayout mSwipeLayout;
-    private final ArrayList<TimeTableCard> dayOneList = new ArrayList<>();
-    private final ArrayList<TimeTableCard> dayTwoList = new ArrayList<>();
-    private final ArrayList<DateHeading> headingsList = new ArrayList<>();
     private CardsAdapter cAdapter;
 
     @Override
