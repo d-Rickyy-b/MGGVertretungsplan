@@ -66,8 +66,8 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         //TODO wieder entfernen, sobald die Funktion wieder geht
         sp.edit().putBoolean("AktTagAnzeigen", true).apply(); //true!!!
 
+        // If application is called for the first time, intro slides will show up
         if (sp.getBoolean("firstStart", true)) {
-            // If application is called for the first time, intro slides will show up
             Intent intent = new Intent(getApplicationContext(), de.aurora.mggvertretungsplan.ui.intro.IntroActivity.class);
             startActivity(intent);
 
