@@ -32,12 +32,12 @@ public class CardsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     private static final int TYPE_DAYONE = 1;
     private static final int TYPE_DAYTWO = 2;
     private static final int TYPE_NOINFO = 3;
-    private int lastPosition = -1;
     private final List<TimeTableElement> dayOneList;
     private final List<TimeTableElement> dayTwoList;
     private final List<DateHeading> headingList;
     private final Context context;
     private final SharedPreferences sp;
+    private int lastPosition = -1;
 
     public CardsAdapter(List<TimeTableElement> dayOneList, List<TimeTableElement> dayTwoList, List<DateHeading> headingList, Context context) {
         this.dayOneList = dayOneList;
@@ -132,40 +132,6 @@ public class CardsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     }
 
-    public class ClassInfoViewHolder extends RecyclerView.ViewHolder {
-        public final TextView title, hour, info, raum, neuRaum;
-        public final CardView cardView;
-
-        public ClassInfoViewHolder(View view) {
-            super(view);
-            cardView = view.findViewById(R.id.card_view);
-            title = view.findViewById(R.id.info_title);
-            hour = view.findViewById(R.id.info_hour);
-            info = view.findViewById(R.id.info_text);
-            raum = view.findViewById(R.id.info_room);
-            neuRaum = view.findViewById(R.id.info_new_room);
-        }
-    }
-
-    public class HeadingsViewHolder extends RecyclerView.ViewHolder {
-        public final TextView heading;
-
-        public HeadingsViewHolder(View view) {
-            super(view);
-            heading = view.findViewById(R.id.heading_textView);
-        }
-    }
-
-    public class NoInfoViewHolder extends RecyclerView.ViewHolder {
-        public final TextView noInfo;
-
-        public NoInfoViewHolder(View view) {
-            super(view);
-            noInfo = view.findViewById(R.id.no_info_textview);
-        }
-    }
-
-
     @Override
     public int getItemCount() {
         int dayOneListSize = 1;
@@ -221,6 +187,39 @@ public class CardsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             Animation animation = AnimationUtils.loadAnimation(context, R.anim.slide_up_bottom);
             viewToAnimate.startAnimation(animation);
             lastPosition = position;
+        }
+    }
+
+    public class ClassInfoViewHolder extends RecyclerView.ViewHolder {
+        public final TextView title, hour, info, raum, neuRaum;
+        public final CardView cardView;
+
+        public ClassInfoViewHolder(View view) {
+            super(view);
+            cardView = view.findViewById(R.id.card_view);
+            title = view.findViewById(R.id.info_title);
+            hour = view.findViewById(R.id.info_hour);
+            info = view.findViewById(R.id.info_text);
+            raum = view.findViewById(R.id.info_room);
+            neuRaum = view.findViewById(R.id.info_new_room);
+        }
+    }
+
+    public class HeadingsViewHolder extends RecyclerView.ViewHolder {
+        public final TextView heading;
+
+        public HeadingsViewHolder(View view) {
+            super(view);
+            heading = view.findViewById(R.id.heading_textView);
+        }
+    }
+
+    public class NoInfoViewHolder extends RecyclerView.ViewHolder {
+        public final TextView noInfo;
+
+        public NoInfoViewHolder(View view) {
+            super(view);
+            noInfo = view.findViewById(R.id.no_info_textview);
         }
     }
 

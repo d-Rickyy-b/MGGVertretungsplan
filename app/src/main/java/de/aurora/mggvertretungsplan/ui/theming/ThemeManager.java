@@ -29,7 +29,7 @@ public class ThemeManager {
         }
     }
 
-    public static int getThemeID(int color){
+    public static int getThemeID(int color) {
         switch (color) {
             case stdPrimary:
                 return 0;
