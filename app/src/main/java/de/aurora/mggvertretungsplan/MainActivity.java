@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
             editor.apply();
         }
 
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.layout_main);
         mSwipeLayout = findViewById(R.id.swipe_refresh_layout);
         mSwipeLayout.setOnRefreshListener(this);
         mSwipeLayout.setColorSchemeResources(R.color.refresh_progress_1, R.color.refresh_progress_2, R.color.refresh_progress_3);
