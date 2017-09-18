@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
     private final ArrayList<DateHeading> headingsList = new ArrayList<>();
     private SharedPreferences sp;
     private Toolbar toolbar;
-    private String klasse;
+    private String class_name;
     private int currentYear;
     private SwipeRefreshLayout mSwipeLayout;
     private CardsAdapter cAdapter;
@@ -145,8 +145,8 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
     private void displaySavedData() {
         currentYear = new GregorianCalendar().get(GregorianCalendar.YEAR);
-        klasse = sp.getString("KlasseGesamt", "5a");
-        setTitle(String.format("Vertretungsplan (%s)", klasse));
+        class_name = sp.getString("KlasseGesamt", "5a");
+        setTitle(String.format("Vertretungsplan (%s)", class_name));
 
         String firstDate = sp.getString("firstDate", "01.01." + currentYear);
         String secondDate = sp.getString("secondDate", "01.01." + currentYear);
@@ -257,7 +257,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
     private void updateData() {
         if (isConnectionActive()) {
             mSwipeLayout.setRefreshing(true);
-            klasse = sp.getString("KlasseGesamt", "5a");
+            class_name = sp.getString("KlasseGesamt", "5a");
             sp = PreferenceManager.getDefaultSharedPreferences(this);
 
             try {
@@ -334,13 +334,13 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
     // Wird aufgerufen wenn die Website heruntergeladen wurde
     public void onTaskComplete(String website_html) {
-        setTitle("Vertretungsplan (" + klasse + ")");
+        setTitle("Vertretungsplan (" + class_name + ")");
         sp = PreferenceManager.getDefaultSharedPreferences(this);
 
         String firstDate, secondDate;
         ArrayList<ArrayList<String>> tableOne, tableTwo;
 
-        CancellationDays cancellationDays = hilfsMethoden.parseTimetable(website_html, klasse);
+        CancellationDays cancellationDays = hilfsMethoden.parseTimetable(website_html, class_name);
         firstDate = cancellationDays.getFirstDate() + currentYear;
         secondDate = cancellationDays.getSecondDate() + currentYear;
 
