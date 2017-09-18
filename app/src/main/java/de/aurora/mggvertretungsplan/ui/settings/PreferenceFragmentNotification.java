@@ -5,9 +5,9 @@ import android.preference.PreferenceFragment;
 
 import de.aurora.mggvertretungsplan.R;
 
-public class NotificationFragment extends PreferenceFragment {
+public class PreferenceFragmentNotification extends PreferenceFragment {
 
-    public NotificationFragment() {
+    public PreferenceFragmentNotification() {
     }
 
     public void onCreate(Bundle savedInstanceState) {

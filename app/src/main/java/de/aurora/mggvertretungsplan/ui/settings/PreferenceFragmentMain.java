@@ -5,9 +5,9 @@ import android.preference.PreferenceFragment;
 
 import de.aurora.mggvertretungsplan.R;
 
-public class MainOptionFragment extends PreferenceFragment{
+public class PreferenceFragmentMain extends PreferenceFragment{
 	
-	public MainOptionFragment(){
+	public PreferenceFragmentMain(){
 	}
 	
 	public void onCreate(Bundle savedInstanceState) {

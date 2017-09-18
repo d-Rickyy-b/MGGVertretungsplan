@@ -11,7 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import de.aurora.mggvertretungsplan.ui.ThemeManager;
-import de.aurora.mggvertretungsplan.ui.settings.NotificationFragment;
+import de.aurora.mggvertretungsplan.ui.settings.PreferenceFragmentNotification;
 
 public class PreferenceBenachrichtigungen extends PreferenceActivity{
 
@@ -37,7 +37,7 @@ public class PreferenceBenachrichtigungen extends PreferenceActivity{
 				finish();
 			}
 		});
-        getFragmentManager().beginTransaction().replace(R.id.content, new NotificationFragment()).commit();
+        getFragmentManager().beginTransaction().replace(R.id.content, new PreferenceFragmentNotification()).commit();
         getFragmentManager().executePendingTransactions();
     }
 

@@ -13,12 +13,12 @@ import android.view.View;
 import android.widget.Toast;
 
 import de.aurora.mggvertretungsplan.ui.ThemeManager;
-import de.aurora.mggvertretungsplan.ui.settings.MainOptionFragment;
+import de.aurora.mggvertretungsplan.ui.settings.PreferenceFragmentMain;
 
 
 public class Settings extends PreferenceActivity implements OnSharedPreferenceChangeListener {
 
-    private MainOptionFragment mainOptionFragment;
+    private PreferenceFragmentMain preferenceFragmentMain;
     private String klasseGesamt_saved;
     private SharedPreferences sp;
 
@@ -49,8 +49,8 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
         });
 
 
-        mainOptionFragment = new MainOptionFragment();
-        getFragmentManager().beginTransaction().replace(R.id.content, mainOptionFragment).commit();
+        preferenceFragmentMain = new PreferenceFragmentMain();
+        getFragmentManager().beginTransaction().replace(R.id.content, preferenceFragmentMain).commit();
 
         klasseGesamt_saved = sp.getString("KlasseGesamt", "5a");
         getFragmentManager().executePendingTransactions();
@@ -85,7 +85,7 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
     }
 
     private void setClassPrefStatus(boolean status) {
-        ListPreference classPref = (ListPreference) mainOptionFragment.findPreference("Klasse");
+        ListPreference classPref = (ListPreference) preferenceFragmentMain.findPreference("Klasse");
         classPref.setEnabled(status);
         classPref.setSelectable(status);
     }
