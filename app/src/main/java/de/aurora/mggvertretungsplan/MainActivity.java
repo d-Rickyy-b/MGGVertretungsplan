@@ -39,7 +39,7 @@ import java.util.Locale;
 
 import de.aurora.mggvertretungsplan.ui.CardsAdapter;
 import de.aurora.mggvertretungsplan.ui.DateHeading;
-import de.aurora.mggvertretungsplan.ui.LayoutSwitcher;
+import de.aurora.mggvertretungsplan.ui.ThemeManager;
 import de.aurora.mggvertretungsplan.ui.TimeTableCard;
 
 import static android.os.Build.VERSION.SDK_INT;
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
     protected void onCreate(Bundle savedInstanceState) {
         sp = PreferenceManager.getDefaultSharedPreferences(this);
         int themeID = sp.getInt("Theme", 0);
-        setTheme(LayoutSwitcher.getTheme(themeID));
+        setTheme(ThemeManager.getTheme(themeID));
         super.onCreate(savedInstanceState);
 
         //TODO wieder entfernen, sobald die Funktion wieder geht

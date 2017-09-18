@@ -16,14 +16,14 @@ import com.github.paolorotolo.appintro.AppIntro;
 import com.github.paolorotolo.appintro.AppIntroFragment;
 
 import de.aurora.mggvertretungsplan.R;
-import de.aurora.mggvertretungsplan.ui.LayoutSwitcher;
+import de.aurora.mggvertretungsplan.ui.ThemeManager;
 import de.aurora.mggvertretungsplan.ui.intro.slides.SettingsIntroSlide;
 
 public class IntroActivity extends AppIntro {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         int themeID = PreferenceManager.getDefaultSharedPreferences(this).getInt("Theme", 0);
-        setTheme(LayoutSwitcher.getTheme(themeID));
+        setTheme(ThemeManager.getTheme(themeID));
         super.onCreate(savedInstanceState);
 
         TypedValue typedValue = new TypedValue();

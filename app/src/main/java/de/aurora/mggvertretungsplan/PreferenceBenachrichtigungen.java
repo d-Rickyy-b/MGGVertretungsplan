@@ -10,7 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 
-import de.aurora.mggvertretungsplan.ui.LayoutSwitcher;
+import de.aurora.mggvertretungsplan.ui.ThemeManager;
 import de.aurora.mggvertretungsplan.ui.settings.NotificationFragment;
 
 public class PreferenceBenachrichtigungen extends PreferenceActivity{
@@ -19,7 +19,7 @@ public class PreferenceBenachrichtigungen extends PreferenceActivity{
 	protected void onCreate(Bundle savedInstanceState) {
 		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
 		int themeID = sp.getInt("Theme", 0);
-		setTheme(LayoutSwitcher.getTheme(themeID));
+		setTheme(ThemeManager.getTheme(themeID));
         super.onCreate(savedInstanceState);
         Toolbar toolbar;
 

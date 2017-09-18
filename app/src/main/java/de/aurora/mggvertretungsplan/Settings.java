@@ -13,7 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import de.aurora.mggvertretungsplan.ui.LayoutSwitcher;
+import de.aurora.mggvertretungsplan.ui.ThemeManager;
 import de.aurora.mggvertretungsplan.ui.settings.MainOptionFragment;
 
 
@@ -28,7 +28,7 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
     protected void onCreate(Bundle savedInstanceState) {
         sp = PreferenceManager.getDefaultSharedPreferences(this);
         int themeID = sp.getInt("Theme", 0);
-        setTheme(LayoutSwitcher.getTheme(themeID));
+        setTheme(ThemeManager.getTheme(themeID));
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings);
         Toolbar toolbar;
@@ -79,10 +79,10 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
             sp.edit().putString("KlasseGesamt", klasseGesamt).apply();
         } else if (key.equals("color")){
             int num = sp.getInt("color", 0);
-            int id = LayoutSwitcher.getID(num);
+            int id = ThemeManager.getID(num);
             sp.edit().putInt("Theme", id).apply();
             findViewById(android.R.id.content).invalidate();
-            setTheme(LayoutSwitcher.getTheme(id));
+            setTheme(ThemeManager.getTheme(id));
             recreate();
         }
     }

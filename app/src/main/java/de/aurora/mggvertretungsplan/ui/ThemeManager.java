@@ -4,7 +4,7 @@ import android.support.annotation.StyleRes;
 
 import de.aurora.mggvertretungsplan.R;
 
-public class LayoutSwitcher {
+public class ThemeManager {
     private static final int stdPrimary = 0xFF757575;
     private static final int bluePrimary = 0xFF64B5F6;
     private static final int pinkPrimary = 0xFFf06292;
