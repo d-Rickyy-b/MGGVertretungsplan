@@ -79,7 +79,7 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
             sp.edit().putString("KlasseGesamt", klasseGesamt).apply();
         } else if (key.equals("color")){
             int num = sp.getInt("color", 0);
-            int id = ThemeManager.getID(num);
+            int id = ThemeManager.getThemeID(num);
             sp.edit().putInt("Theme", id).apply();
             findViewById(android.R.id.content).invalidate();
             setTheme(ThemeManager.getTheme(id));
