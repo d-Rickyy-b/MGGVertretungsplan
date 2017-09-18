@@ -59,7 +59,8 @@ public class VertretungsplanService extends Service implements AsyncTaskComplete
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         PendingIntent pIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, 0);
         Log.i("VertretungsplanService", "Notification!");
-        @SuppressWarnings("deprecation")
+
+        //TODO replace deprecated method
         android.support.v7.app.NotificationCompat.Builder notification = (android.support.v7.app.NotificationCompat.Builder) new android.support.v7.app.NotificationCompat.Builder(this)
                 .setContentTitle(titel)
                 .setContentText(text)
