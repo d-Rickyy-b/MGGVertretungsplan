@@ -12,9 +12,9 @@ import de.aurora.mggvertretungsplan.R;
  * Created by Rico on 29.09.2016.
  */
 
-class ClassPickerPreference extends Preference {
+class PreferenceClassPicker extends Preference {
 
-    public ClassPickerPreference(Context context) {
+    public PreferenceClassPicker(Context context) {
         super(context);
     }
 
