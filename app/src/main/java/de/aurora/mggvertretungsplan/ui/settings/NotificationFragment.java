@@ -12,6 +12,6 @@ public class NotificationFragment extends PreferenceFragment {
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        addPreferencesFromResource(R.xml.notification_preferences);
+        addPreferencesFromResource(R.xml.preferences_notification);
     }
 }
