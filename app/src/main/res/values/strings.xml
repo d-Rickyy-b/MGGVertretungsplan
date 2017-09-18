@@ -31,6 +31,7 @@
 
     <string name="settings_name">Einstellungen</string>
     <string name="toast_settings_saved">Einstellungen übernommen!</string>
+    <string name="toast_noInternetConnection">Keine Internetverbindung!</string>
 
     <!-- Class Settings Section -->
     <string name="settings_section_class">Klasse</string>

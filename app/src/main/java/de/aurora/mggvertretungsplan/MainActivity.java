@@ -267,7 +267,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
             }
         } else {
             mSwipeLayout.setRefreshing(false);
-            Toast.makeText(getApplicationContext(), "Keine Internetverbindung!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), getString(R.string.toast_noInternetConnection), Toast.LENGTH_SHORT).show();
         }
     }
 
