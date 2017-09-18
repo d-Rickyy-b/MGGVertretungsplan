@@ -76,7 +76,7 @@ public class VertretungsplanService extends Service implements AsyncTaskComplete
         notificationManager.notify(0, notification.build());
     }
 
-    //Überprüft Internetverbindung (true = vorhandene Verbindung, false = keine Verbindung)
+    // Checks for an active connection
     private boolean isConnectionActive() {
         final ConnectivityManager conMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         final NetworkInfo activeNetwork = conMgr.getActiveNetworkInfo();
