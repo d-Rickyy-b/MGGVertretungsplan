@@ -4,25 +4,25 @@
     <item
         android:id="@+id/action_info"
         android:orderInCategory="1"
-        app:showAsAction="never"
-        android:title="@string/infoTitle"/>
+        android:title="@string/infoTitle"
+        app:showAsAction="never" />
 
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="2"
-        app:showAsAction="never"
-        android:title="@string/action_settings"/>
+        android:title="@string/action_settings"
+        app:showAsAction="never" />
 
     <item
         android:id="@+id/action_feedback"
         android:orderInCategory="3"
-        app:showAsAction="never"
-        android:title="@string/action_feedback"/>
-    
+        android:title="@string/action_feedback"
+        app:showAsAction="never" />
+
     <item
         android:id="@+id/action_website"
         android:orderInCategory="4"
-        app:showAsAction="never"
-        android:title="@string/action_website"/>
+        android:title="@string/action_website"
+        app:showAsAction="never" />
 
 </menu>
