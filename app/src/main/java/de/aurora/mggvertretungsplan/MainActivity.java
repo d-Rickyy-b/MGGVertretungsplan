@@ -307,20 +307,22 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         // OR when it's not set, but it's before 16:00
         if (aktTagAnzeigen || ((secondsDiff > 0) && (secondsDiff < sixteenHours))) {
             //Tag 1
+            headingsList.add(new DateHeading(date1));
+
             for (ArrayList<String> zeile : ersterTag) {
                 if (zeile.size() == 7) {
                     TimeTableElement timeTableElement = new TimeTableElement(zeile.get(0), hilfsMethoden.abkuerzung(zeile.get(2)), hilfsMethoden.abkuerzung(zeile.get(3)), zeile.get(4), zeile.get(5), hilfsMethoden.getType(zeile.get(3), zeile.get(5)), zeile.get(6));
                     dayOneList.add(timeTableElement);
-                    headingsList.add(new DateHeading(date1));
                 }
             }
         }
 
         //Tag 2
+        headingsList.add(new DateHeading(date2));
+
         for (ArrayList<String> zeile : zweiterTag) {
             TimeTableElement timeTableElement = new TimeTableElement(zeile.get(0), hilfsMethoden.abkuerzung(zeile.get(2)), hilfsMethoden.abkuerzung(zeile.get(3)), zeile.get(4), zeile.get(5), hilfsMethoden.getType(zeile.get(3), zeile.get(5)), zeile.get(6));
             dayTwoList.add(timeTableElement);
-            headingsList.add(new DateHeading(date2));
         }
 
         cAdapter.notifyDataSetChanged();
