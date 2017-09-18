@@ -39,7 +39,7 @@ import java.util.Locale;
 
 import de.aurora.mggvertretungsplan.ui.CardsAdapter;
 import de.aurora.mggvertretungsplan.ui.DateHeading;
-import de.aurora.mggvertretungsplan.ui.ThemeManager;
+import de.aurora.mggvertretungsplan.ui.theming.ThemeManager;
 import de.aurora.mggvertretungsplan.ui.TimeTableElement;
 
 import static android.os.Build.VERSION.SDK_INT;

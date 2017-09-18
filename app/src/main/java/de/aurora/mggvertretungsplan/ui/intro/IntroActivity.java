@@ -16,7 +16,7 @@ import com.github.paolorotolo.appintro.AppIntro;
 import com.github.paolorotolo.appintro.AppIntroFragment;
 
 import de.aurora.mggvertretungsplan.R;
-import de.aurora.mggvertretungsplan.ui.ThemeManager;
+import de.aurora.mggvertretungsplan.ui.theming.ThemeManager;
 import de.aurora.mggvertretungsplan.ui.intro.slides.SettingsIntroSlide;
 
 public class IntroActivity extends AppIntro {

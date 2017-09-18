@@ -1,4 +1,4 @@
-package de.aurora.mggvertretungsplan.ui;
+package de.aurora.mggvertretungsplan.ui.theming;
 
 import android.support.annotation.StyleRes;
 

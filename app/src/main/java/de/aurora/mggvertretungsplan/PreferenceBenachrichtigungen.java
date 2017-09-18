@@ -10,7 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 
-import de.aurora.mggvertretungsplan.ui.ThemeManager;
+import de.aurora.mggvertretungsplan.ui.theming.ThemeManager;
 import de.aurora.mggvertretungsplan.ui.settings.PreferenceFragmentNotification;
 
 public class PreferenceBenachrichtigungen extends PreferenceActivity{
