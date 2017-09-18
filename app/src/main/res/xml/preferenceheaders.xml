@@ -30,10 +30,10 @@
 
         <SwitchPreference
             android:defaultValue="true"
+            android:enabled="false"
             android:key="AktTagAnzeigen"
             android:summary="@string/settings_past_days_summary"
-            android:title="@string/settings_past_days_title"
-            android:enabled="false" />
+            android:title="@string/settings_past_days_title" />
 
         <SwitchPreference
             android:defaultValue="true"
@@ -42,10 +42,10 @@
             android:title="@string/colored_cards_title" />
 
         <com.thebluealliance.spectrum.SpectrumPreference
+            android:defaultValue="@color/colorPrimary"
             android:key="color"
             android:summary="@string/settings_app_color_summary"
             android:title="@string/settings_app_color_title"
-            android:defaultValue="@color/colorPrimary"
             app:spectrum_colors="@array/theme_picker" />
 
     </PreferenceCategory>
