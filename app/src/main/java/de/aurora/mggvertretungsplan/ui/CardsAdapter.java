@@ -89,11 +89,11 @@ public class CardsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             myholder.hour.setText(timeTableElement.getHour());
             myholder.title.setText(timeTableElement.getTitle());
             myholder.info.setText(timeTableElement.getInfo());
-            myholder.raum.setText(timeTableElement.getRaum());
-            myholder.neuRaum.setText(timeTableElement.getNeuRaum());
+            myholder.raum.setText(timeTableElement.getRoom());
+            myholder.neuRaum.setText(timeTableElement.getNewRoom());
 
             if (sp.getBoolean("listColors", true)) {
-                switch (timeTableElement.getTyp()) {
+                switch (timeTableElement.getType()) {
                     case "Entfall":
                         myholder.cardView.setCardBackgroundColor(Color.parseColor("#FF6961"));
                         break;

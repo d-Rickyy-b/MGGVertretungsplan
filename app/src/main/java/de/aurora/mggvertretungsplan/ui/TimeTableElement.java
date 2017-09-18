@@ -6,34 +6,32 @@ package de.aurora.mggvertretungsplan.ui;
 
 public class TimeTableElement {
     private final String hour;
-    private final String fach;
-    private final String typ;
+    private final String subject;
+    private final String type;
     private final String info;
-    private final String raum;
-    private final String neuRaum;
+    private final String room;
+    private final String newRoom;
 
-    public TimeTableElement(String hour, String fach, String neuFach, String raum, String neuRaum, String typ, String info) {
+    public TimeTableElement(String hour, String subject, String newSubject, String room, String newRoom, String type, String info) {
         if (info.length() > 0) {
             info = info.substring(0, 1).toUpperCase() + info.substring(1);
 
-            if (!fach.equals(neuFach) && !neuFach.equals("---") && !neuFach.equals("")) {
-                info = String.format("%s - %s", neuFach, info);
+            if (!subject.equals(newSubject) && !newSubject.equals("---") && !newSubject.equals("")) {
+                info = String.format("%s - %s", newSubject, info);
             }
-        } else if (typ.equals("Entfall")) {
+        } else if (type.equals("Entfall")) {
             info = "Entfällt";
-        } else if (typ.equals("Vertretung")) {
+        } else if (type.equals("Vertretung")) {
             info = "Vertretung";
         } else {
-            info = neuFach;
+            info = newSubject;
         }
 
-        //TODO wenn Entfall, dann neuRaum ausblenden?!
-
         this.hour = hour;
-        this.fach = fach;
-        this.raum = raum;
-        this.neuRaum = neuRaum;
-        this.typ = typ;
+        this.subject = subject;
+        this.room = room;
+        this.newRoom = newRoom;
+        this.type = type;
         this.info = info;
     }
 
@@ -41,24 +39,24 @@ public class TimeTableElement {
         return this.hour;
     }
 
-    String getTyp() {
-        return this.typ;
+    String getType() {
+        return this.type;
     }
 
     String getTitle() {
-        return this.fach;
+        return this.subject;
     }
 
     String getInfo() {
         return this.info;
     }
 
-    String getRaum() {
-        return this.raum;
+    String getRoom() {
+        return this.room;
     }
 
-    String getNeuRaum() {
-        return this.neuRaum;
+    String getNewRoom() {
+        return this.newRoom;
     }
 }
 
