@@ -165,7 +165,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         return super.onCreateOptionsMenu(menu);
     }
 
-    //Aktion die ausgeführt werden soll, wenn action bar item geklickt wurde
+    // Checks which item of the toolbar menu was selected
     public boolean onOptionsItemSelected(MenuItem item) {
         TypedValue typedValue = new TypedValue();
         Theme theme = getTheme();
@@ -216,8 +216,8 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         }
         return super.onOptionsItemSelected(item);
     }
-    //TODO Refactor!
 
+    //TODO Refactor!
     private void serviceProvider() {
         if (sp.getBoolean("notification", true)) {
             AlarmManager(Long.valueOf(sp.getString("AbrufIntervall", "1800000")));
