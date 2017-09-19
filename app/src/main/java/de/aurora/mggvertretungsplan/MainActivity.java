@@ -346,11 +346,6 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         date2 = timeTable.getDay(1).getDate();
         currentDate = new Date();
 
-        // Switch days if the first is later than the second
-        if (date1.after(date2)) {
-            timeTable.switchDays();
-        }
-
         int sixteenHours = 60 * 60 * 16;
         long secondsDiff = (currentDate.getTime() - date1.getTime()) / 1000;
 
