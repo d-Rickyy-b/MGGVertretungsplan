@@ -29,4 +29,14 @@ public class TimeTable {
     public void switchDays() {
         //TODO
     }
+
+    public int getTotalCancellations(){
+        int cancellations = 0;
+
+        for (TimeTableDay day : timeTableDays) {
+            cancellations += day.getCancellations();
+        }
+
+        return cancellations;
+    }
 }
