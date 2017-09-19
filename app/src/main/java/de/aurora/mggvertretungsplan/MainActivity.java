@@ -349,10 +349,6 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         // Switch days if the first is later than the second
         if (date1.after(date2)) {
             timeTable.switchDays();
-
-            Date tmpDate = date1;
-            date1 = date2;
-            date2 = tmpDate;
         }
 
         int sixteenHours = 60 * 60 * 16;
