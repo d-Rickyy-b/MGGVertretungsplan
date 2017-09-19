@@ -62,8 +62,8 @@
 
 
     <!-- Not Added yet :( -->
-    <string name="cancelled">Entfällt</string>
-    <string name="representation">Vertretung</string>
+    <string name="crardInfo_cancelled">Entfällt</string>
+    <string name="cardInfo_representation">Vertretung</string>
     <!--  -->
 
 
