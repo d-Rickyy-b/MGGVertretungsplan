@@ -154,7 +154,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         tableTwo = hilfsMethoden.getArrayList(sp.getString("tableTwo", ""));
 
         sp.edit().putBoolean("AktTagAnzeigen", true).apply();
-        anzeigen(tableOne, tableTwo, firstDate, secondDate, sp.getBoolean("AktTagAnzeigen", true));
+        displayData(tableOne, tableTwo, firstDate, secondDate, sp.getBoolean("AktTagAnzeigen", true));
     }
 
     @Override
@@ -272,7 +272,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
     }
 
 
-    private void anzeigen(TimeTable timeTable, boolean aktTagAnzeigen) {
+    private void displayData(TimeTable timeTable, boolean aktTagAnzeigen) {
         headingsList.clear();
         dayOneList.clear();
         dayTwoList.clear();
@@ -319,8 +319,8 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         secondDate = timeTable.getDay(1).getDateString();
 
         Log.v("Vertretungsplan", "Anzeigen");
-        anzeigen(timeTable, sp.getBoolean("AktTagAnzeigen", true));
-        
+        displayData(timeTable, sp.getBoolean("AktTagAnzeigen", true));
+
         SharedPreferences.Editor editor = sp.edit();
         editor.putString("firstDate", firstDate);
         editor.putString("secondDate", secondDate);
