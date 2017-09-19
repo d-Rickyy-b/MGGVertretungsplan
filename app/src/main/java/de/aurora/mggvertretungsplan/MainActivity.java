@@ -147,7 +147,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
     private void displaySavedData() {
         currentYear = new GregorianCalendar().get(GregorianCalendar.YEAR);
         class_name = sp.getString("KlasseGesamt", "5a");
-        setTitle(String.format("Vertretungsplan (%s)", class_name));
+        setTitle(String.format(getString(R.string.toolbarTitle_WithClass), class_name));
 
         String firstDate = sp.getString("firstDate", "01.01." + currentYear);
         String secondDate = sp.getString("secondDate", "01.01." + currentYear);
@@ -335,7 +335,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
     // Wird aufgerufen wenn die Website heruntergeladen wurde
     public void onTaskComplete(String website_html) {
-        setTitle("Vertretungsplan (" + class_name + ")");
+        setTitle(String.format(getString(R.string.toolbarTitle_WithClass), class_name));
         sp = PreferenceManager.getDefaultSharedPreferences(this);
 
         String firstDate, secondDate;

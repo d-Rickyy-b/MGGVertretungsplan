@@ -2,6 +2,7 @@
 <resources>
 
     <string name="app_name">Vertretungsplan</string>
+    <string name="toolbarTitle_WithClass">Vertretungsplan (%s)</string>
     <string name="version">2.1.1</string>
     <integer name="versionNumber">16</integer>
     <string name="bar_title">@string/app_name</string>
