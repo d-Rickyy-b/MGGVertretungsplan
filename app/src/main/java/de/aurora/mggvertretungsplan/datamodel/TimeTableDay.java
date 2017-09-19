@@ -72,16 +72,19 @@ public class TimeTableDay {
         for (TimeTableElement tte : timeTableElements) {
             //TODO this doesn't work yet!
             ArrayList<String> stringList = new ArrayList<>();
-
+            // zeile.get(0), hilfsMethoden.abkuerzung(zeile.get(2)), hilfsMethoden.abkuerzung(zeile.get(3)), zeile.get(4), zeile.get(5), hilfsMethoden.getType(zeile.get(3), zeile.get(5)), zeile.get(6)
+            // String hour, String subject, String newSubject, String room, String newRoom, String type, String info
             stringList.add(tte.getHour());
+            stringList.add("");
             stringList.add(tte.getSubject());
             stringList.add(tte.getRoom());
             stringList.add(tte.getNewRoom());
             stringList.add(tte.getType());
             stringList.add(tte.getInfo());
+
+            aL.add(stringList);
         }
 
-
-        return new ArrayList<ArrayList<String>>();
+        return aL;
     }
 }
