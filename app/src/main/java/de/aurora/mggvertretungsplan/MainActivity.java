@@ -385,14 +385,15 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
         // CancellationDays cancellationDays = hilfsMethoden.parseTimetable(website_html, class_name);
         TimeTable timeTable = hilfsMethoden.parseTimetable(website_html, class_name);
+        firstDate = timeTable.getDay(0).getDateString();
+        secondDate = timeTable.getDay(1).getDateString();
 
         Log.v("Vertretungsplan", "Anzeigen");
         anzeigen(timeTable, sp.getBoolean("AktTagAnzeigen", true));
-
-        //TODO
-//        SharedPreferences.Editor editor = sp.edit();
-//        editor.putString("firstDate", firstDate);
-//        editor.putString("secondDate", secondDate);
+        
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putString("firstDate", firstDate);
+        editor.putString("secondDate", secondDate);
 //        editor.putString("tableOne", hilfsMethoden.getJSONArray(tableOne).toString());
 //        editor.putString("tableTwo", hilfsMethoden.getJSONArray(tableTwo).toString());
 //        editor.putBoolean("AktTagAnzeigen", true);
