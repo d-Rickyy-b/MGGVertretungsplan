@@ -31,14 +31,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import java.sql.Time;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.Locale;
 
-import de.aurora.mggvertretungsplan.datamodel.CancellationDays;
 import de.aurora.mggvertretungsplan.datamodel.DateHeading;
 import de.aurora.mggvertretungsplan.datamodel.TimeTable;
 import de.aurora.mggvertretungsplan.datamodel.TimeTableElement;
@@ -275,65 +271,6 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         }
     }
 
-
-    //Initialisieren einer ArrayList, Hinzufügen von Items, Adapter an ListView binden
-    private void anzeigen(ArrayList<ArrayList<String>> ersterTag, ArrayList<ArrayList<String>> zweiterTag, String firstDate, String secondDate, boolean aktTagAnzeigen) {
-        headingsList.clear();
-        dayOneList.clear();
-        dayTwoList.clear();
-
-        setTitle(String.format(getString(R.string.toolbarTitle_WithClass), class_name));
-
-        SimpleDateFormat fullDateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.GERMANY);
-        Date date1, date2, currentDate;
-
-        try {
-            date1 = fullDateFormat.parse(firstDate);
-            date2 = fullDateFormat.parse(secondDate);
-            currentDate = new Date();
-        } catch (java.text.ParseException e) {
-            date1 = date2 = currentDate = new Date();
-        }
-
-        // Switch days if the first is later than the second
-        if (date1.after(date2)) {
-            ArrayList<ArrayList<String>> tempList = new ArrayList<>(ersterTag);
-            ersterTag = zweiterTag;
-            zweiterTag = tempList;
-
-            Date tmpDate = date1;
-            date1 = date2;
-            date2 = tmpDate;
-        }
-
-        int sixteenHours = 60 * 60 * 16;
-        long secondsDiff = (currentDate.getTime() - date1.getTime()) / 1000;
-
-        // Displays the current day only when the setting is active
-        // OR when it's not set, but it's before 16:00
-        if (aktTagAnzeigen || ((secondsDiff > 0) && (secondsDiff < sixteenHours))) {
-            //Tag 1
-            headingsList.add(new DateHeading(date1));
-
-            for (ArrayList<String> zeile : ersterTag) {
-                if (zeile.size() == 7) {
-                    TimeTableElement timeTableElement = new TimeTableElement(zeile.get(0), hilfsMethoden.abkuerzung(zeile.get(2)), hilfsMethoden.abkuerzung(zeile.get(3)), zeile.get(4), zeile.get(5), hilfsMethoden.getType(zeile.get(3), zeile.get(5)), zeile.get(6));
-                    dayOneList.add(timeTableElement);
-                }
-            }
-        }
-
-        //Tag 2
-        headingsList.add(new DateHeading(date2));
-
-        for (ArrayList<String> zeile : zweiterTag) {
-            TimeTableElement timeTableElement = new TimeTableElement(zeile.get(0), hilfsMethoden.abkuerzung(zeile.get(2)), hilfsMethoden.abkuerzung(zeile.get(3)), zeile.get(4), zeile.get(5), hilfsMethoden.getType(zeile.get(3), zeile.get(5)), zeile.get(6));
-            dayTwoList.add(timeTableElement);
-        }
-
-        cAdapter.notifyDataSetChanged();
-        mSwipeLayout.setRefreshing(false);
-    }
 
     private void anzeigen(TimeTable timeTable, boolean aktTagAnzeigen) {
         headingsList.clear();
