@@ -27,7 +27,8 @@ public class TimeTable {
     }
 
     public void switchDays() {
-        //TODO
+        TimeTableDay ttd = timeTableDays.remove(0);
+        timeTableDays.add(ttd);
     }
 
     public int getTotalCancellations(){
