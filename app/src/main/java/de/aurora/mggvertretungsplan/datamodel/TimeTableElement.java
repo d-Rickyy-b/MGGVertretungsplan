@@ -6,7 +6,7 @@ import android.graphics.Color;
  * Created by Rico on 26.09.2016.
  */
 
-public class TimeTableElement {
+public final class TimeTableElement {
     private final String hour;
     private final String subject;
     private final String type;
