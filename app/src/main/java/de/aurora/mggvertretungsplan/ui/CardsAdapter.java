@@ -77,6 +77,7 @@ public class CardsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             ClassInfoViewHolder myholder = (ClassInfoViewHolder) holder;
             TimeTableElement timeTableElement;
             int viewType = getItemViewType(position);
+
             if (viewType == TYPE_DAYONE) {
                 timeTableElement = dayOneList.get(position - 1); //TODO Bug
             } else if (viewType == TYPE_DAYTWO) {
@@ -86,7 +87,7 @@ public class CardsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                 }
                 timeTableElement = dayTwoList.get(position - headingList.size() - dayOneListSize);
             } else
-                throw new RuntimeException("there is no matching type!");
+                throw new RuntimeException("There is no matching type!");
 
             myholder.hour.setText(timeTableElement.getHour());
             myholder.title.setText(timeTableElement.getTitle());
