@@ -92,8 +92,8 @@ public class CardsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             myholder.hour.setText(timeTableElement.getHour());
             myholder.title.setText(timeTableElement.getTitle());
             myholder.info.setText(timeTableElement.getInfo());
-            myholder.raum.setText(timeTableElement.getRoom());
-            myholder.neuRaum.setText(timeTableElement.getNewRoom());
+            myholder.room.setText(timeTableElement.getRoom());
+            myholder.newRoom.setText(timeTableElement.getNewRoom());
 
             if (sp.getBoolean("listColors", true)) {
                 myholder.cardView.setCardBackgroundColor(timeTableElement.getColor());
@@ -185,7 +185,7 @@ public class CardsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     }
 
     public class ClassInfoViewHolder extends RecyclerView.ViewHolder {
-        public final TextView title, hour, info, raum, neuRaum;
+        public final TextView title, hour, info, room, newRoom;
         public final CardView cardView;
 
         public ClassInfoViewHolder(View view) {
@@ -194,8 +194,8 @@ public class CardsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             title = view.findViewById(R.id.info_title);
             hour = view.findViewById(R.id.info_hour);
             info = view.findViewById(R.id.info_text);
-            raum = view.findViewById(R.id.info_room);
-            neuRaum = view.findViewById(R.id.info_new_room);
+            room = view.findViewById(R.id.info_room);
+            newRoom = view.findViewById(R.id.info_new_room);
         }
     }
 
