@@ -1,5 +1,7 @@
 package de.aurora.mggvertretungsplan.datamodel;
 
+import android.graphics.Color;
+
 /**
  * Created by Rico on 26.09.2016.
  */
@@ -57,6 +59,17 @@ public class TimeTableElement {
 
     public String getNewRoom() {
         return this.newRoom;
+    }
+
+    public int getColor() {
+        switch (getType()) {
+            case "Entfall":
+                return Color.parseColor("#FF6961");
+            case "Vertretung":
+                return Color.parseColor("#779ECB");
+            default:
+                return Color.parseColor("#F5F5F5");
+        }
     }
 }
 

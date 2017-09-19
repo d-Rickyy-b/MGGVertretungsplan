@@ -96,14 +96,7 @@ public class CardsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             myholder.neuRaum.setText(timeTableElement.getNewRoom());
 
             if (sp.getBoolean("listColors", true)) {
-                switch (timeTableElement.getType()) {
-                    case "Entfall":
-                        myholder.cardView.setCardBackgroundColor(Color.parseColor("#FF6961"));
-                        break;
-                    case "Vertretung":
-                        myholder.cardView.setCardBackgroundColor(Color.parseColor("#779ECB"));
-                        break;
-                }
+                myholder.cardView.setCardBackgroundColor(timeTableElement.getColor());
             } else {
                 myholder.cardView.setCardBackgroundColor(Color.parseColor("#F5F5F5"));
             }
