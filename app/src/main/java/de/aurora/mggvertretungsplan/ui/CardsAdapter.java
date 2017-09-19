@@ -111,7 +111,7 @@ public class CardsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                 dateString = dateHeading.getWholeDate();
             } catch (Exception e) {
                 e.printStackTrace();
-                dateString = "Fehler!";
+                dateString = "Error!";
             }
 
             myholder.heading.setText(dateString);
