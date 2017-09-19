@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
     private final ArrayList<DateHeading> headingsList = new ArrayList<>();
     private SharedPreferences sp;
     private Toolbar toolbar;
-    private String class_name;
+    private String class_name, toolbarTitle_WithClass;
     private int currentYear;
     private SwipeRefreshLayout mSwipeLayout;
     private CardsAdapter cAdapter;
@@ -83,10 +83,11 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         mSwipeLayout.setOnRefreshListener(this);
         mSwipeLayout.setColorSchemeResources(R.color.refresh_progress_1, R.color.refresh_progress_2, R.color.refresh_progress_3);
 
+        toolbarTitle_WithClass = getString(R.string.toolbarTitle_WithClass);
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setAlpha(1);
-        toolbar.setTitle(getString(R.string.app_name));
+        toolbar.setTitle(String.format(toolbarTitle_WithClass, class_name));
         toolbar.showOverflowMenu();
 
         if (Build.VERSION.SDK_INT >= 21) {
@@ -277,10 +278,12 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
             Toast.makeText(getApplicationContext(), getString(R.string.toast_noInternetConnection), Toast.LENGTH_SHORT).show();
         }
     }
-    // Creates the view of the Android App
 
+    // Creates the view of the Android App
     private void displayData(TimeTable timeTable, boolean aktTagAnzeigen) {
         Log.v("Vertretungsplan", "Anzeigen");
+        String toolbarTitle_WithClass = getString(R.string.toolbarTitle_WithClass);
+        toolbar.setTitle(String.format(toolbarTitle_WithClass, class_name));
         headingsList.clear();
         dayOneList.clear();
         dayTwoList.clear();
@@ -350,6 +353,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
     @Override
     public void onResume() {
         super.onResume();
+        toolbar.setTitle(String.format(toolbarTitle_WithClass, class_name));
         updateData();
         serviceProvider();
     }
