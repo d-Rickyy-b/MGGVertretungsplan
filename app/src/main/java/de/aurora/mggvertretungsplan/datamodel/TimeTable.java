@@ -14,9 +14,15 @@ public class TimeTable {
     }
 
     public void addTimeTableDay(TimeTableDay ttd) {
-        //TODO check dates which one is before which one
-        // if date.before ...
-        this.timeTableDays.add(ttd);
+        int index = 0;
+        for (int i = 0; i < timeTableDays.size(); i++){
+            if (ttd.getDate().before(timeTableDays.get(0).getDate())) {
+                break;
+            }
+            index++;
+        }
+
+        this.timeTableDays.add(index, ttd);
     }
 
     public TimeTableDay getDay(int index) {
