@@ -41,6 +41,10 @@ public final class TimeTableElement {
         return this.hour;
     }
 
+    public String getSubject() {
+        return this.subject;
+    }
+
     public String getType() {
         return this.type;
     }
