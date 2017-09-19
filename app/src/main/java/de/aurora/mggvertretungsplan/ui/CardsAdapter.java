@@ -67,7 +67,7 @@ public class CardsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             return new NoInfoViewHolder(itemView);
         }
 
-        throw new RuntimeException("there is no type that matches the type " + viewType + " + make sure your using types correctly");
+        throw new RuntimeException(String.format("There is no type that matches %s | Make sure you're using types correctly!", viewType));
     }
 
 
