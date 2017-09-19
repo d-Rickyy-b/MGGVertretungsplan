@@ -15,7 +15,7 @@ import de.aurora.mggvertretungsplan.hilfsMethoden;
 
 public class TimeTableDay {
     private ArrayList<TimeTableElement> timeTableElements = new ArrayList<>();
-    private Date date;
+    private Date date = new Date();
     private int currentYear;
 
     public TimeTableDay(Date date) {
