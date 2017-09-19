@@ -37,6 +37,7 @@ import java.util.GregorianCalendar;
 
 import de.aurora.mggvertretungsplan.datamodel.DateHeading;
 import de.aurora.mggvertretungsplan.datamodel.TimeTable;
+import de.aurora.mggvertretungsplan.datamodel.TimeTableDay;
 import de.aurora.mggvertretungsplan.datamodel.TimeTableElement;
 import de.aurora.mggvertretungsplan.ui.CardsAdapter;
 import de.aurora.mggvertretungsplan.ui.theming.ThemeManager;
@@ -153,8 +154,14 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         tableOne = hilfsMethoden.getArrayList(sp.getString("tableOne", ""));
         tableTwo = hilfsMethoden.getArrayList(sp.getString("tableTwo", ""));
 
+        TimeTable timeTable = new TimeTable();
+        TimeTableDay ttd = new TimeTableDay(firstDate, tableOne);
+        TimeTableDay ttd2 = new TimeTableDay(secondDate, tableTwo);
+        timeTable.addTimeTableDay(ttd);
+        timeTable.addTimeTableDay(ttd2);
+
         sp.edit().putBoolean("AktTagAnzeigen", true).apply();
-        displayData(tableOne, tableTwo, firstDate, secondDate, sp.getBoolean("AktTagAnzeigen", true));
+        displayData(timeTable, true);
     }
 
     @Override
@@ -270,7 +277,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
             Toast.makeText(getApplicationContext(), getString(R.string.toast_noInternetConnection), Toast.LENGTH_SHORT).show();
         }
     }
-
+    // Creates the view of the Android App
 
     private void displayData(TimeTable timeTable, boolean aktTagAnzeigen) {
         Log.v("Vertretungsplan", "Anzeigen");
@@ -318,15 +325,18 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         firstDate = timeTable.getDay(0).getDateString();
         secondDate = timeTable.getDay(1).getDateString();
 
+        tableOne = timeTable.getDay(0).getArrayList();
+        tableTwo = timeTable.getDay(1).getArrayList();
+
         displayData(timeTable, sp.getBoolean("AktTagAnzeigen", true));
 
         SharedPreferences.Editor editor = sp.edit();
         editor.putString("firstDate", firstDate);
         editor.putString("secondDate", secondDate);
-//        editor.putString("tableOne", hilfsMethoden.getJSONArray(tableOne).toString());
-//        editor.putString("tableTwo", hilfsMethoden.getJSONArray(tableTwo).toString());
-//        editor.putBoolean("AktTagAnzeigen", true);
-//        editor.apply();
+        editor.putString("tableOne", hilfsMethoden.getJSONArray(tableOne).toString());
+        editor.putString("tableTwo", hilfsMethoden.getJSONArray(tableTwo).toString());
+        editor.putBoolean("AktTagAnzeigen", true);
+        editor.apply();
     }
 
 
