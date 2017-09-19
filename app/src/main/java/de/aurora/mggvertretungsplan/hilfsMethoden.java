@@ -20,9 +20,11 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 import de.aurora.mggvertretungsplan.datamodel.CancellationDays;
+import de.aurora.mggvertretungsplan.datamodel.TimeTable;
+import de.aurora.mggvertretungsplan.datamodel.TimeTableDay;
 
 
-class hilfsMethoden {
+public class hilfsMethoden {
 
     // Returns a nicely formatted date for the "last checked" String
     static String getFormattedDate(long currentTimeInMillis) {
@@ -72,7 +74,7 @@ class hilfsMethoden {
     }
 
     // Parses the website
-    static CancellationDays parseTimetable(String website_html, String className) {
+    static CancellationDays parseTimetable(String website_html, String className, int i) {
         ArrayList<ArrayList<String>> tableOne, tableTwo;
 
         website_html = website_html.replace("&auml;", "ä").replace("&ouml;", "ö").replace("&uuml;", "ü");
@@ -105,7 +107,58 @@ class hilfsMethoden {
         tableOne = prepareData(tableOne, className);
         tableTwo = prepareData(tableTwo, className);
 
+        TimeTableDay day1 = new TimeTableDay(datesList.get(0), tableOne);
+        TimeTableDay day2 = new TimeTableDay(datesList.get(1), tableTwo);
+
+        TimeTable timeTable = new TimeTable();
+        timeTable.addTimeTableDay(day1);
+        timeTable.addTimeTableDay(day2);
+
         return new CancellationDays(tableOne, tableTwo, datesList);
+        //return timeTable;
+    }
+
+    static TimeTable parseTimetable(String website_html, String className) {
+        ArrayList<ArrayList<String>> tableOne, tableTwo;
+
+        website_html = website_html.replace("&auml;", "ä").replace("&ouml;", "ö").replace("&uuml;", "ü");
+        Document doc = Jsoup.parse(website_html);
+
+        Elements dates = doc.select("h2.tabber_title");
+
+        ArrayList<String> datesList = new ArrayList<>();
+
+        for (Element date : dates) {
+            datesList.add(date.text()); // The parse the dates on the website
+        }
+
+        try {
+            tableOne = extractTable(doc, 0);
+        } catch (IndexOutOfBoundsException e) {
+            e.printStackTrace();
+            tableOne = new ArrayList<>();
+            tableOne.add(new ArrayList<>(Arrays.asList("", "", "", "", "", "", "")));
+        }
+
+        try {
+            tableTwo = extractTable(doc, 1);
+        } catch (IndexOutOfBoundsException e) {
+            e.printStackTrace();
+            tableTwo = new ArrayList<>();
+            tableTwo.add(new ArrayList<>(Arrays.asList("", "", "", "", "", "", "")));
+        }
+
+        tableOne = prepareData(tableOne, className);
+        tableTwo = prepareData(tableTwo, className);
+
+        TimeTableDay day1 = new TimeTableDay(datesList.get(0), tableOne);
+        TimeTableDay day2 = new TimeTableDay(datesList.get(1), tableTwo);
+
+        TimeTable timeTable = new TimeTable();
+        timeTable.addTimeTableDay(day1);
+        timeTable.addTimeTableDay(day2);
+
+        return timeTable;
     }
 
     // Returns a nicely reworked ArrayList of the cancellations
@@ -289,7 +342,7 @@ class hilfsMethoden {
     }
 
     // Returns the type of a line in the list
-    static String getType(String substituteSubject, String substituteRoom) {
+    public static String getType(String substituteSubject, String substituteRoom) {
         if (isCancellation(substituteSubject, substituteRoom))
             return "Entfall";
         else
@@ -299,7 +352,7 @@ class hilfsMethoden {
 
     // Returns the full name of a subject
     @SuppressLint("DefaultLocale")
-    static String abkuerzung(String abk) {
+    public static String abkuerzung(String abk) {
 
         if (abk == null || abk.equals("")) {
             return "Kein Fach";

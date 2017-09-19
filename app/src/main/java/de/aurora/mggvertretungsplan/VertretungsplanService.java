@@ -16,6 +16,7 @@ import android.util.Log;
 import java.util.ArrayList;
 
 import de.aurora.mggvertretungsplan.datamodel.CancellationDays;
+import de.aurora.mggvertretungsplan.datamodel.TimeTable;
 
 
 public class VertretungsplanService extends Service implements AsyncTaskCompleteListener<String> {
@@ -93,7 +94,9 @@ public class VertretungsplanService extends Service implements AsyncTaskComplete
         sp = PreferenceManager.getDefaultSharedPreferences(this);
         ArrayList<ArrayList<String>> tableOne, tableTwo, tableOne_saved, tableTwo_saved;
 
-        CancellationDays cancellationDays = hilfsMethoden.parseTimetable(website_html, class_name);
+        CancellationDays cancellationDays = hilfsMethoden.parseTimetable(website_html, class_name, 1);
+        //TimeTable timeTable = hilfsMethoden.parseTimetable(website_html, class_name);
+
         tableOne = cancellationDays.getFirstDay();
         tableTwo = cancellationDays.getSecondDay();
 

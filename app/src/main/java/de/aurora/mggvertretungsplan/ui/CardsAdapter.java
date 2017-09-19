@@ -1,9 +1,5 @@
 package de.aurora.mggvertretungsplan.ui;
 
-/**
- * Created by Rico on 26.09.2016.
- */
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -171,7 +167,7 @@ public class CardsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
 
         throw new RuntimeException(String.format("No matching type! Position = %s, dayOneList.size() = %s, " +
-                        "dayTwoList.size() = %s, headingsList.size() = %s", position, dayOneList.size(), dayTwoList.size(), headingList.size()));
+                "dayTwoList.size() = %s, headingsList.size() = %s", position, dayOneList.size(), dayTwoList.size(), headingList.size()));
     }
 
     private void setAnimation(View viewToAnimate, int position) {
