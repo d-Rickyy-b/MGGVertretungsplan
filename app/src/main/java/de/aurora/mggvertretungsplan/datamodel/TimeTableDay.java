@@ -15,6 +15,7 @@ import de.aurora.mggvertretungsplan.hilfsMethoden;
 
 public class TimeTableDay {
     private ArrayList<TimeTableElement> timeTableElements = new ArrayList<>();
+    private ArrayList<ArrayList<String>> timeTableDay_List = new ArrayList<>();
     private Date date = new Date();
     private int currentYear;
 
@@ -26,8 +27,14 @@ public class TimeTableDay {
         SimpleDateFormat fullDateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.GERMANY);
         currentYear = new GregorianCalendar().get(GregorianCalendar.YEAR);
 
+        this.timeTableDay_List = timeTableDay_List;
+
         try {
-            this.date = fullDateFormat.parse(date + currentYear);
+            if (date.length() == 6)
+                this.date = fullDateFormat.parse(date + currentYear);
+            else {
+                this.date = fullDateFormat.parse(date);
+            }
         } catch (ParseException e) {
             e.printStackTrace();
             this.date = new Date();
@@ -67,24 +74,25 @@ public class TimeTableDay {
     }
 
     public ArrayList<ArrayList<String>> getArrayList() {
-        ArrayList<ArrayList<String>> aL = new ArrayList<>();
-
-        for (TimeTableElement tte : timeTableElements) {
-            //TODO this doesn't work yet!
-            ArrayList<String> stringList = new ArrayList<>();
-            // zeile.get(0), hilfsMethoden.abkuerzung(zeile.get(2)), hilfsMethoden.abkuerzung(zeile.get(3)), zeile.get(4), zeile.get(5), hilfsMethoden.getType(zeile.get(3), zeile.get(5)), zeile.get(6)
-            // String hour, String subject, String newSubject, String room, String newRoom, String type, String info
-            stringList.add(tte.getHour());
-            stringList.add("");
-            stringList.add(tte.getSubject());
-            stringList.add(tte.getRoom());
-            stringList.add(tte.getNewRoom());
-            stringList.add(tte.getType());
-            stringList.add(tte.getInfo());
-
-            aL.add(stringList);
-        }
-
-        return aL;
+//        ArrayList<ArrayList<String>> aL = new ArrayList<>();
+//
+//        for (TimeTableElement tte : timeTableElements) {
+//            //TODO this doesn't work yet!
+//            ArrayList<String> stringList = new ArrayList<>();
+//            // zeile.get(0), hilfsMethoden.abkuerzung(zeile.get(2)), hilfsMethoden.abkuerzung(zeile.get(3)), zeile.get(4), zeile.get(5), hilfsMethoden.getType(zeile.get(3), zeile.get(5)), zeile.get(6)
+//            // String hour, String subject, String newSubject, String room, String newRoom, String type, String info
+//            stringList.add(tte.getHour());
+//            stringList.add("");
+//            stringList.add(tte.getSubject());
+//            stringList.add(tte.getRoom());
+//            stringList.add(tte.getNewRoom());
+//            stringList.add(tte.getType());
+//            stringList.add(tte.getInfo());
+//
+//            aL.add(stringList);
+//        }
+//
+//        return aL;
+        return this.timeTableDay_List;
     }
 }
