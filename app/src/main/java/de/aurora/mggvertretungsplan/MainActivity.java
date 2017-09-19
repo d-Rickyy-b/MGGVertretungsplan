@@ -31,6 +31,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -39,6 +40,7 @@ import java.util.Locale;
 
 import de.aurora.mggvertretungsplan.datamodel.CancellationDays;
 import de.aurora.mggvertretungsplan.datamodel.DateHeading;
+import de.aurora.mggvertretungsplan.datamodel.TimeTable;
 import de.aurora.mggvertretungsplan.datamodel.TimeTableElement;
 import de.aurora.mggvertretungsplan.ui.CardsAdapter;
 import de.aurora.mggvertretungsplan.ui.theming.ThemeManager;
@@ -333,6 +335,51 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         mSwipeLayout.setRefreshing(false);
     }
 
+    private void anzeigen(TimeTable timeTable, boolean aktTagAnzeigen) {
+        headingsList.clear();
+        dayOneList.clear();
+        dayTwoList.clear();
+
+        Date date1, date2, currentDate;
+
+        date1 = timeTable.getDay(0).getDate();
+        date2 = timeTable.getDay(1).getDate();
+        currentDate = new Date();
+
+        // Switch days if the first is later than the second
+        if (date1.after(date2)) {
+            timeTable.switchDays();
+
+            Date tmpDate = date1;
+            date1 = date2;
+            date2 = tmpDate;
+        }
+
+        int sixteenHours = 60 * 60 * 16;
+        long secondsDiff = (currentDate.getTime() - date1.getTime()) / 1000;
+
+        // Displays the current day only when the setting is active
+        // OR when it's not set, but it's before 16:00
+        if (aktTagAnzeigen || ((secondsDiff > 0) && (secondsDiff < sixteenHours))) {
+            //Tag 1
+            headingsList.add(new DateHeading(date1));
+
+            for (TimeTableElement element : timeTable.getDay(0).getElements()) {
+                    dayOneList.add(element);
+            }
+        }
+
+        //Tag 2
+        headingsList.add(new DateHeading(date2));
+
+        for (TimeTableElement element : timeTable.getDay(1).getElements()) {
+            dayTwoList.add(element);
+        }
+
+        cAdapter.notifyDataSetChanged();
+        mSwipeLayout.setRefreshing(false);
+    }
+
     // Wird aufgerufen wenn die Website heruntergeladen wurde
     public void onTaskComplete(String website_html) {
         sp = PreferenceManager.getDefaultSharedPreferences(this);
@@ -340,26 +387,25 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         String firstDate, secondDate;
         ArrayList<ArrayList<String>> tableOne, tableTwo;
 
-        CancellationDays cancellationDays = hilfsMethoden.parseTimetable(website_html, class_name);
-        firstDate = cancellationDays.getFirstDate() + currentYear;
-        secondDate = cancellationDays.getSecondDate() + currentYear;
-
-        tableOne = cancellationDays.getFirstDay();
-        tableTwo = cancellationDays.getSecondDay();
+        // CancellationDays cancellationDays = hilfsMethoden.parseTimetable(website_html, class_name);
+        TimeTable timeTable = hilfsMethoden.parseTimetable(website_html, class_name);
+//
+//        tableOne = cancellationDays.getFirstDay();
+//        tableTwo = cancellationDays.getSecondDay();
 
         String AbrufDatum = hilfsMethoden.getFormattedDate(System.currentTimeMillis());
 
         Log.v("Vertretungsplan", "Anzeigen");
-        anzeigen(tableOne, tableTwo, firstDate, secondDate, sp.getBoolean("AktTagAnzeigen", true));
+        anzeigen(timeTable, sp.getBoolean("AktTagAnzeigen", true));
 
-        SharedPreferences.Editor editor = sp.edit();
-        editor.putString("firstDate", firstDate);
-        editor.putString("secondDate", secondDate);
-        editor.putString("AbrufDatum", AbrufDatum);
-        editor.putString("tableOne", hilfsMethoden.getJSONArray(tableOne).toString());
-        editor.putString("tableTwo", hilfsMethoden.getJSONArray(tableTwo).toString());
-        editor.putBoolean("AktTagAnzeigen", true);
-        editor.apply();
+//        SharedPreferences.Editor editor = sp.edit();
+//        editor.putString("firstDate", firstDate);
+//        editor.putString("secondDate", secondDate);
+//        editor.putString("AbrufDatum", AbrufDatum);
+//        editor.putString("tableOne", hilfsMethoden.getJSONArray(tableOne).toString());
+//        editor.putString("tableTwo", hilfsMethoden.getJSONArray(tableTwo).toString());
+//        editor.putBoolean("AktTagAnzeigen", true);
+//        editor.apply();
     }
 
 
