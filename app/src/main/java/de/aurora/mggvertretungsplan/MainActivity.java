@@ -314,7 +314,6 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         String firstDate, secondDate;
         ArrayList<ArrayList<String>> tableOne, tableTwo;
 
-        // CancellationDays cancellationDays = hilfsMethoden.parseTimetable(website_html, class_name);
         TimeTable timeTable = hilfsMethoden.parseTimetable(website_html, class_name);
         firstDate = timeTable.getDay(0).getDateString();
         secondDate = timeTable.getDay(1).getDateString();
