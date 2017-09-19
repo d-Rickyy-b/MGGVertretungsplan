@@ -273,6 +273,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
 
     private void displayData(TimeTable timeTable, boolean aktTagAnzeigen) {
+        Log.v("Vertretungsplan", "Anzeigen");
         headingsList.clear();
         dayOneList.clear();
         dayTwoList.clear();
@@ -318,7 +319,6 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         firstDate = timeTable.getDay(0).getDateString();
         secondDate = timeTable.getDay(1).getDateString();
 
-        Log.v("Vertretungsplan", "Anzeigen");
         displayData(timeTable, sp.getBoolean("AktTagAnzeigen", true));
 
         SharedPreferences.Editor editor = sp.edit();
