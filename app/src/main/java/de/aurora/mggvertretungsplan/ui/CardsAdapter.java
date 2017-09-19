@@ -170,9 +170,8 @@ public class CardsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             return TYPE_DAYTWO;
 
 
-        throw new RuntimeException("No matching type! Position = " + position + ", dayOneList.size() = " +
-                dayOneList.size() + ", dayTwoList.size() = " + dayTwoList.size() +
-                ", headingsList.size() = " + headingList.size() + ";");
+        throw new RuntimeException(String.format("No matching type! Position = %s, dayOneList.size() = %s, " +
+                        "dayTwoList.size() = %s, headingsList.size() = %s", position, dayOneList.size(), dayTwoList.size(), headingList.size()));
     }
 
     private void setAnimation(View viewToAnimate, int position) {
