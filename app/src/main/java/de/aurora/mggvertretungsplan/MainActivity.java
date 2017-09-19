@@ -340,10 +340,8 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         dayOneList.clear();
         dayTwoList.clear();
 
-        Date date1, date2, currentDate;
-
+        Date date1, currentDate;
         date1 = timeTable.getDay(0).getDate();
-        date2 = timeTable.getDay(1).getDate();
         currentDate = new Date();
 
         int sixteenHours = 60 * 60 * 16;
