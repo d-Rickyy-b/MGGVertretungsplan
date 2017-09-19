@@ -67,6 +67,8 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         //TODO wieder entfernen, sobald die Funktion wieder geht
         sp.edit().putBoolean("AktTagAnzeigen", true).apply(); //true!!!
 
+        class_name = sp.getString("KlasseGesamt", "5a");
+
         // If application is called for the first time, intro slides will show up
         if (sp.getBoolean("firstStart", true)) {
             Intent intent = new Intent(getApplicationContext(), de.aurora.mggvertretungsplan.ui.intro.IntroActivity.class);
@@ -145,10 +147,6 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
     // Method to display the saved data
     private void displaySavedData() {
-        currentYear = new GregorianCalendar().get(GregorianCalendar.YEAR);
-        class_name = sp.getString("KlasseGesamt", "5a");
-        setTitle(String.format(getString(R.string.toolbarTitle_WithClass), class_name));
-
         String firstDate = sp.getString("firstDate", "01.01." + currentYear);
         String secondDate = sp.getString("secondDate", "01.01." + currentYear);
 
@@ -282,6 +280,8 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         dayOneList.clear();
         dayTwoList.clear();
 
+        setTitle(String.format(getString(R.string.toolbarTitle_WithClass), class_name));
+
         SimpleDateFormat fullDateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.GERMANY);
         Date date1, date2, currentDate;
 
@@ -335,7 +335,6 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
     // Wird aufgerufen wenn die Website heruntergeladen wurde
     public void onTaskComplete(String website_html) {
-        setTitle(String.format(getString(R.string.toolbarTitle_WithClass), class_name));
         sp = PreferenceManager.getDefaultSharedPreferences(this);
 
         String firstDate, secondDate;
