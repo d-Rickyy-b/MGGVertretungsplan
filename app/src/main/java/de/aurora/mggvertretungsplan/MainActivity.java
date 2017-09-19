@@ -358,7 +358,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         // OR when it's not set, but it's before 16:00
         if (aktTagAnzeigen || ((secondsDiff > 0) && (secondsDiff < sixteenHours))) {
             //Tag 1
-            headingsList.add(new DateHeading(date1));
+            headingsList.add(new DateHeading(timeTable.getDay(0).getDate()));
 
             for (TimeTableElement element : timeTable.getDay(0).getElements()) {
                     dayOneList.add(element);
@@ -366,7 +366,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         }
 
         //Tag 2
-        headingsList.add(new DateHeading(date2));
+        headingsList.add(new DateHeading(timeTable.getDay(1).getDate()));
 
         for (TimeTableElement element : timeTable.getDay(1).getElements()) {
             dayTwoList.add(element);
