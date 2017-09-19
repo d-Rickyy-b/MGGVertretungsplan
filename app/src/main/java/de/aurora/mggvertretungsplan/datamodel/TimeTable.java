@@ -14,6 +14,8 @@ public class TimeTable {
     }
 
     public void addTimeTableDay(TimeTableDay ttd) {
+        //TODO check dates which one is before which one
+        // if date.before ...
         this.timeTableDays.add(ttd);
     }
 
