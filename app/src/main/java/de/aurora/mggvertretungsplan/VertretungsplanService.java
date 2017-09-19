@@ -21,7 +21,7 @@ import de.aurora.mggvertretungsplan.datamodel.CancellationDays;
 public class VertretungsplanService extends Service implements AsyncTaskCompleteListener<String> {
 
     private SharedPreferences sp;
-    private String klasse;
+    private String class_name;
 
     public VertretungsplanService() {
 
@@ -47,7 +47,7 @@ public class VertretungsplanService extends Service implements AsyncTaskComplete
         Log.v("VertretungsplanService", "UpdateData");
         if (isConnectionActive()) {
             sp = PreferenceManager.getDefaultSharedPreferences(this);
-            klasse = sp.getString("KlasseGesamt", "5a");
+            class_name = sp.getString("KlasseGesamt", "5a");
 
             try {
                 new DownloadWebPageTask(this).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, getString(R.string.vertretungsplan_url));
@@ -93,7 +93,7 @@ public class VertretungsplanService extends Service implements AsyncTaskComplete
         sp = PreferenceManager.getDefaultSharedPreferences(this);
         ArrayList<ArrayList<String>> tableOne, tableTwo, tableOne_saved, tableTwo_saved;
 
-        CancellationDays cancellationDays = hilfsMethoden.parseTimetable(website_html, klasse);
+        CancellationDays cancellationDays = hilfsMethoden.parseTimetable(website_html, class_name);
         tableOne = cancellationDays.getFirstDay();
         tableTwo = cancellationDays.getSecondDay();
 
