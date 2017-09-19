@@ -67,7 +67,21 @@ public class TimeTableDay {
     }
 
     public ArrayList<ArrayList<String>> getArrayList() {
-        //TODO implement
+        ArrayList<ArrayList<String>> aL = new ArrayList<>();
+
+        for (TimeTableElement tte : timeTableElements) {
+            //TODO this doesn't work yet!
+            ArrayList<String> stringList = new ArrayList<>();
+
+            stringList.add(tte.getHour());
+            stringList.add(tte.getSubject());
+            stringList.add(tte.getRoom());
+            stringList.add(tte.getNewRoom());
+            stringList.add(tte.getType());
+            stringList.add(tte.getInfo());
+        }
+
+
         return new ArrayList<ArrayList<String>>();
     }
 }
