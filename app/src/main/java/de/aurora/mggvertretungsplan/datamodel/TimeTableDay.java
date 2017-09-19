@@ -65,4 +65,9 @@ public class TimeTableDay {
     public int getCancellations() {
         return this.timeTableElements.size();
     }
+
+    public ArrayList<ArrayList<String>> getArrayList() {
+        //TODO implement
+        return new ArrayList<ArrayList<String>>();
+    }
 }
