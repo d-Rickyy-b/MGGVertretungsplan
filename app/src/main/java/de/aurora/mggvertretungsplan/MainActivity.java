@@ -46,8 +46,8 @@ import static android.os.Build.VERSION.SDK_INT;
 
 public class MainActivity extends AppCompatActivity implements AsyncTaskCompleteListener<String>, SwipeRefreshLayout.OnRefreshListener {
 
-    private final ArrayList<TimeTableElement> dayOneList = new ArrayList<>();
-    private final ArrayList<TimeTableElement> dayTwoList = new ArrayList<>();
+    private ArrayList<TimeTableElement> dayOneList = new ArrayList<>();
+    private ArrayList<TimeTableElement> dayTwoList = new ArrayList<>();
     private final ArrayList<DateHeading> headingsList = new ArrayList<>();
     private SharedPreferences sp;
     private Toolbar toolbar;
@@ -295,23 +295,17 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         int sixteenHours = 60 * 60 * 16;
         long secondsDiff = (currentDate.getTime() - date1.getTime()) / 1000;
 
+        // Day 1
         // Displays the current day only when the setting is active
         // OR when it's not set, but it's before 16:00
         if (aktTagAnzeigen || ((secondsDiff > 0) && (secondsDiff < sixteenHours))) {
-            //Tag 1
             headingsList.add(new DateHeading(timeTable.getDay(0).getDate()));
-
-            for (TimeTableElement element : timeTable.getDay(0).getElements()) {
-                dayOneList.add(element);
-            }
+            dayOneList = timeTable.getDay(0).getElements();
         }
 
-        //Tag 2
+        // Day 2
         headingsList.add(new DateHeading(timeTable.getDay(1).getDate()));
-
-        for (TimeTableElement element : timeTable.getDay(1).getElements()) {
-            dayTwoList.add(element);
-        }
+        dayTwoList = timeTable.getDay(1).getElements();
 
         cAdapter.notifyDataSetChanged();
         mSwipeLayout.setRefreshing(false);
