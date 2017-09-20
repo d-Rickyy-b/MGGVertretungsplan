@@ -49,10 +49,6 @@ public final class TimeTableElement {
         return this.type;
     }
 
-    public String getTitle() {
-        return this.subject;
-    }
-
     public String getInfo() {
         return this.info;
     }
