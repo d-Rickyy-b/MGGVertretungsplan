@@ -62,7 +62,7 @@ public class VertretungsplanService extends Service implements AsyncTaskComplete
     private void notification(String ticker, String titel, String text) {
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         PendingIntent pIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, 0);
-        Log.i("VertretungsplanService", "Notification!");
+        Log.i("VertretungsplanService", "Sending notification!");
 
         //TODO replace deprecated method
         android.support.v7.app.NotificationCompat.Builder notification = (android.support.v7.app.NotificationCompat.Builder) new android.support.v7.app.NotificationCompat.Builder(this)
@@ -99,7 +99,6 @@ public class VertretungsplanService extends Service implements AsyncTaskComplete
         TimeTable timeTable = hilfsMethoden.parseTimetable(website_html, class_name);
         TimeTableDay dayOne = timeTable.getDay(0);
         TimeTableDay dayTwo = timeTable.getDay(1);
-
 
         tableOne_saved = hilfsMethoden.getArrayList(sp.getString("tableOne", ""));
         String dayOne_date = sp.getString("firstDate", "01.01.");
