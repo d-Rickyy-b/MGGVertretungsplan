@@ -79,7 +79,6 @@ public final class TimeTableElement {
         String hour = tte.getHour();
         String subject = tte.getSubject();
         String type = tte.getType();
-        String title = tte.getTitle();
         String info = tte.getInfo();
         String room = tte.getRoom();
         String newRoom = tte.getNewRoom();
