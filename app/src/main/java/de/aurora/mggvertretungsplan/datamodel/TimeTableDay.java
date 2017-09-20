@@ -100,12 +100,12 @@ public class TimeTableDay {
         return this.timeTableDay_List;
     }
 
-    public boolean isSameDay(TimeTableDay ttd){
+    public boolean isSameDay(TimeTableDay ttd) {
         return this.date.getTime() == ttd.getDate().getTime();
     }
 
     // Returns the number of differences between two lists
-    public int getDifferences(TimeTableDay ttd){
+    public int getDifferences(TimeTableDay ttd) {
         int diffs = 0;
 
         diffs += getUniques(this.timeTableElements, ttd.getElements());
@@ -117,20 +117,20 @@ public class TimeTableDay {
 
     // Returns the number of unique items in one list compared to another list.
     // A single list should only contain unique items
-    private int getUniques(ArrayList<TimeTableElement> e1, ArrayList<TimeTableElement> e2){
+    private int getUniques(ArrayList<TimeTableElement> e1, ArrayList<TimeTableElement> e2) {
         int uniques = 0;
 
-        for (TimeTableElement element : e1){
+        for (TimeTableElement element : e1) {
             boolean isUnique = true;
 
-            for (TimeTableElement element_o : e2){
+            for (TimeTableElement element_o : e2) {
                 if (element.equals(element_o)) {
                     isUnique = false;
                     break;
                 }
             }
 
-            if (isUnique){
+            if (isUnique) {
                 uniques += 1;
             }
         }
