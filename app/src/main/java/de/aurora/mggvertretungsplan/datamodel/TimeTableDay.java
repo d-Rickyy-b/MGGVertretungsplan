@@ -18,6 +18,10 @@ public class TimeTableDay {
     private ArrayList<ArrayList<String>> timeTableDay_List = new ArrayList<>();
     private Date date = new Date();
 
+    public TimeTableDay(){
+        // Empty timeTableDay for error handling
+    }
+
     public TimeTableDay(String date, ArrayList<ArrayList<String>> timeTableDay_List) {
         SimpleDateFormat fullDateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.GERMANY);
         int currentYear = new GregorianCalendar().get(GregorianCalendar.YEAR);
