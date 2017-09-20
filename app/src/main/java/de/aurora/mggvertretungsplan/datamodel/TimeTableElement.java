@@ -87,5 +87,10 @@ public final class TimeTableElement {
                 room.equals(this.room) &&
                 newRoom.equals(this.newRoom);
     }
+
+    public String getHash() {
+        return String.format("%s%s%s%s%s%s", getHour(), getSubject(), getType(), getInfo(), getRoom(), getNewRoom());
+    }
+
 }
 
