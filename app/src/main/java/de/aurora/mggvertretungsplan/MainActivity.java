@@ -162,7 +162,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         timeTable.addTimeTableDay(ttd2);
 
         sp.edit().putBoolean("AktTagAnzeigen", true).apply();
-        displayData(timeTable, true);
+        displayData(timeTable, sp.getBoolean("AktTagAnzeigen", true));
     }
 
     @Override
