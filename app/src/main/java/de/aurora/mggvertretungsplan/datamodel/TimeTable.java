@@ -7,7 +7,7 @@ import java.util.ArrayList;
  */
 
 public class TimeTable {
-    private ArrayList<TimeTableDay> timeTableDays = new ArrayList<>();
+    private final ArrayList<TimeTableDay> timeTableDays = new ArrayList<>();
 
     public TimeTable() {
 

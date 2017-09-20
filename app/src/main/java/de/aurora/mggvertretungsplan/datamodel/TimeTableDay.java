@@ -14,7 +14,7 @@ import de.aurora.mggvertretungsplan.hilfsMethoden;
  */
 
 public class TimeTableDay {
-    private ArrayList<TimeTableElement> timeTableElements = new ArrayList<>();
+    private final ArrayList<TimeTableElement> timeTableElements = new ArrayList<>();
     private ArrayList<ArrayList<String>> timeTableDay_List = new ArrayList<>();
     private Date date = new Date();
 
