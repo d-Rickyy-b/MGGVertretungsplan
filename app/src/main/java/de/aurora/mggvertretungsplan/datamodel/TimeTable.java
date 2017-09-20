@@ -15,7 +15,7 @@ public class TimeTable {
 
     public void addTimeTableDay(TimeTableDay ttd) {
         int index = 0;
-        for (int i = 0; i < timeTableDays.size(); i++){
+        for (int i = 0; i < timeTableDays.size(); i++) {
             if (ttd.getDate().before(timeTableDays.get(0).getDate())) {
                 break;
             }
@@ -39,7 +39,7 @@ public class TimeTable {
         timeTableDays.add(ttd);
     }
 
-    public int getTotalCancellations(){
+    public int getTotalCancellations() {
         int cancellations = 0;
 
         for (TimeTableDay day : timeTableDays) {
