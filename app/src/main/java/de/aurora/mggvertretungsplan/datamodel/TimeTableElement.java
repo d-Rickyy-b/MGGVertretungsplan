@@ -14,7 +14,7 @@ public final class TimeTableElement {
     private final String room;
     private final String newRoom;
 
-    public TimeTableElement(String hour, String subject, String newSubject, String room, String newRoom, String type, String info) {
+    TimeTableElement(String hour, String subject, String newSubject, String room, String newRoom, String type, String info) {
         if (info.length() > 0) {
             info = info.substring(0, 1).toUpperCase() + info.substring(1);
 
@@ -76,7 +76,7 @@ public final class TimeTableElement {
         }
     }
 
-    public boolean equals(TimeTableElement tte) {
+    boolean equals(TimeTableElement tte) {
         String hour = tte.getHour();
         String subject = tte.getSubject();
         String type = tte.getType();
