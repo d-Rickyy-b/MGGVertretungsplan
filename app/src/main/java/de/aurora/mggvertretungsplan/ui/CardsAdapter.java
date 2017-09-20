@@ -86,7 +86,7 @@ public class CardsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                 throw new RuntimeException("There is no matching type!");
 
             myholder.hour.setText(timeTableElement.getHour());
-            myholder.title.setText(timeTableElement.getTitle());
+            myholder.title.setText(timeTableElement.getSubject());
             myholder.info.setText(timeTableElement.getInfo());
             myholder.room.setText(timeTableElement.getRoom());
             myholder.newRoom.setText(timeTableElement.getNewRoom());
