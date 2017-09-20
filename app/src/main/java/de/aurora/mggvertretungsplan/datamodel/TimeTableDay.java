@@ -95,6 +95,17 @@ public class TimeTableDay {
 //        return aL;
         return this.timeTableDay_List;
     }
+    // Returns the number of differences between two lists
+    public int getDifferences(TimeTableDay ttd){
+        int diffs = 0;
+
+        diffs += getUniques(this.timeTableElements, ttd.getElements());
+        diffs += getUniques(ttd.getElements(), this.timeTableElements);
+
+        return diffs;
+    }
+
+
     // Returns the number of unique items in one list compared to another list.
     // A single list should only contain unique items
     private int getUniques(ArrayList<TimeTableElement> e1, ArrayList<TimeTableElement> e2){
