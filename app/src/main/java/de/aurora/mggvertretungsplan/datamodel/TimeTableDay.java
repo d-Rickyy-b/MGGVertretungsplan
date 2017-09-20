@@ -95,4 +95,25 @@ public class TimeTableDay {
 //        return aL;
         return this.timeTableDay_List;
     }
+    // Returns the number of unique items in one list compared to another list.
+    // A single list should only contain unique items
+    private int getUniques(ArrayList<TimeTableElement> e1, ArrayList<TimeTableElement> e2){
+        int uniques = 0;
+
+        for (TimeTableElement element : e1){
+            boolean isUnique = true;
+
+            for (TimeTableElement element_o : e2){
+                if (element.equals(element_o)) {
+                    isUnique = false;
+                    break;
+                }
+            }
+
+            if (isUnique){
+                uniques += 1;
+            }
+        }
+        return uniques;
+    }
 }
