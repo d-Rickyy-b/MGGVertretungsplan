@@ -19,6 +19,7 @@ import de.aurora.mggvertretungsplan.datamodel.TimeTable;
 import de.aurora.mggvertretungsplan.datamodel.TimeTableDay;
 
 
+@SuppressWarnings("SameParameterValue")
 public class VertretungsplanService extends Service implements AsyncTaskCompleteListener<String> {
 
     private SharedPreferences sp;

@@ -29,6 +29,7 @@ public class DateHeading {
         return wholeDate.format(date);
     }
 
+    @SuppressWarnings("SameReturnValue")
     public String getTitle() {
         return "DateHeading";
     }
