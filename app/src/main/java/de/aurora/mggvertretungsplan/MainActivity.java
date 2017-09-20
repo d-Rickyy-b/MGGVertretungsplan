@@ -302,7 +302,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
             headingsList.add(new DateHeading(timeTable.getDay(0).getDate()));
 
             for (TimeTableElement element : timeTable.getDay(0).getElements()) {
-                    dayOneList.add(element);
+                dayOneList.add(element);
             }
         }
 

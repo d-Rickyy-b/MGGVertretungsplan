@@ -116,7 +116,7 @@ public class VertretungsplanService extends Service implements AsyncTaskComplete
                 notification("Stundenplan Änderung!", "MGG Vertretungsplan", "Eine Änderung!");
             }
         }
-        //TODO neue Listen speichern?
+            //TODO neue Listen speichern?
 
     }
 
