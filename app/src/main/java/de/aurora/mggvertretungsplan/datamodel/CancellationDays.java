@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * Created by Rico on 16.09.2017.
  */
 
-public class CancellationDays {
+class CancellationDays {
     private final ArrayList<ArrayList<String>> tableOne, tableTwo;
     private final ArrayList<String> datesList;
 
