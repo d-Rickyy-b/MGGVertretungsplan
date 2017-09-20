@@ -42,7 +42,7 @@ public class TimeTableDay {
 
     }
 
-    public void addElement(TimeTableElement tte) {
+    private void addElement(TimeTableElement tte) {
         this.timeTableElements.add(tte);
     }
 
