@@ -107,7 +107,7 @@ public class VertretungsplanService extends Service implements AsyncTaskComplete
         tableTwo_saved = hilfsMethoden.getArrayList(sp.getString("tableTwo", ""));
         String dayTwo_date = sp.getString("secondDate", "01.01.");
         TimeTableDay day2_saved = new TimeTableDay(dayTwo_date, tableTwo_saved);
-        
+
         int diffs_one, diffs_two;
 
         if (dayOne.isSameDay(day1_saved)) {
