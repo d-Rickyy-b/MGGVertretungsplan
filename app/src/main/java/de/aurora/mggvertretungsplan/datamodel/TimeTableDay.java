@@ -95,6 +95,11 @@ public class TimeTableDay {
 //        return aL;
         return this.timeTableDay_List;
     }
+
+    public boolean isSameDay(TimeTableDay ttd){
+        return this.date.getTime() == ttd.getDate().getTime();
+    }
+
     // Returns the number of differences between two lists
     public int getDifferences(TimeTableDay ttd){
         int diffs = 0;
