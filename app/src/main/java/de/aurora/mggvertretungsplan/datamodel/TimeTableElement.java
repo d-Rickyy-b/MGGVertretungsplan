@@ -75,5 +75,21 @@ public final class TimeTableElement {
                 return Color.parseColor("#F5F5F5");
         }
     }
+    public boolean equals(TimeTableElement tte){
+        String hour = tte.getHour();
+        String subject = tte.getSubject();
+        String type = tte.getType();
+        String title = tte.getTitle();
+        String info = tte.getInfo();
+        String room = tte.getRoom();
+        String newRoom = tte.getNewRoom();
+
+        return hour.equals(this.hour) &&
+                subject.equals(this.subject) &&
+                type.equals(this.type) &&
+                info.equals(this.info) &&
+                room.equals(this.room) &&
+                newRoom.equals(this.newRoom);
+    }
 }
 
