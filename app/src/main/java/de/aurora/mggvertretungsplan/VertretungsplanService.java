@@ -102,24 +102,24 @@ public class VertretungsplanService extends Service implements AsyncTaskComplete
 
         tableOne_saved = hilfsMethoden.getArrayList(sp.getString("tableOne", ""));
         String dayOne_date = sp.getString("firstDate", "01.01.");
-        TimeTableDay day1_saved = new TimeTableDay(dayOne_date, tableOne_saved);
+        TimeTableDay dayOne_saved = new TimeTableDay(dayOne_date, tableOne_saved);
 
         tableTwo_saved = hilfsMethoden.getArrayList(sp.getString("tableTwo", ""));
         String dayTwo_date = sp.getString("secondDate", "01.01.");
-        TimeTableDay day2_saved = new TimeTableDay(dayTwo_date, tableTwo_saved);
+        TimeTableDay dayTwo_saved = new TimeTableDay(dayTwo_date, tableTwo_saved);
 
         int diffs_one, diffs_two;
 
-        if (dayOne.isSameDay(day1_saved)) {
-            diffs_one = dayOne.getDifferences(day1_saved);
-        } else if (dayOne.isSameDay(day2_saved)) {
-            diffs_one = dayOne.getDifferences(day2_saved);
+        if (dayOne.isSameDay(dayOne_saved)) {
+            diffs_one = dayOne.getDifferences(dayOne_saved);
+        } else if (dayOne.isSameDay(dayTwo_saved)) {
+            diffs_one = dayOne.getDifferences(dayTwo_saved);
         } else {
             diffs_one = dayOne.getSize();
         }
 
-        if (dayTwo.isSameDay(day2_saved)) {
-            diffs_two = dayTwo.getDifferences(day2_saved);
+        if (dayTwo.isSameDay(dayTwo_saved)) {
+            diffs_two = dayTwo.getDifferences(dayTwo_saved);
         } else {
             diffs_two = dayTwo.getSize();
         }

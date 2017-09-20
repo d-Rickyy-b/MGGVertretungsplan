@@ -315,17 +315,15 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
     public void onTaskComplete(String website_html) {
         sp = PreferenceManager.getDefaultSharedPreferences(this);
 
-        String firstDate, secondDate;
-        ArrayList<ArrayList<String>> tableOne, tableTwo;
-
         TimeTable timeTable = hilfsMethoden.parseTimetable(website_html, class_name);
-        firstDate = timeTable.getDay(0).getDateString();
-        secondDate = timeTable.getDay(1).getDateString();
-
-        tableOne = timeTable.getDay(0).getArrayList();
-        tableTwo = timeTable.getDay(1).getArrayList();
-
         displayData(timeTable, sp.getBoolean("AktTagAnzeigen", true));
+
+        // TODO NullPointerException
+        String firstDate = timeTable.getDay(0).getDateString();
+        String secondDate = timeTable.getDay(1).getDateString();
+
+        ArrayList<ArrayList<String>> tableOne = timeTable.getDay(0).getArrayList();
+        ArrayList<ArrayList<String>> tableTwo = timeTable.getDay(1).getArrayList();
 
         SharedPreferences.Editor editor = sp.edit();
         editor.putString("firstDate", firstDate);
