@@ -34,11 +34,6 @@ public class TimeTable {
         //TODO error
     }
 
-    public void switchDays() {
-        TimeTableDay ttd = timeTableDays.remove(0);
-        timeTableDays.add(ttd);
-    }
-
     public int getTotalCancellations() {
         int cancellations = 0;
 
