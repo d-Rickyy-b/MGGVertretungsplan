@@ -15,8 +15,8 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
-import de.aurora.mggvertretungsplan.datamodel.CancellationDays;
 import de.aurora.mggvertretungsplan.datamodel.TimeTable;
+import de.aurora.mggvertretungsplan.datamodel.TimeTableDay;
 
 
 public class VertretungsplanService extends Service implements AsyncTaskCompleteListener<String> {
@@ -90,33 +90,50 @@ public class VertretungsplanService extends Service implements AsyncTaskComplete
 
 
     public void onTaskComplete(String website_html) {
-        Log.v("VertretungsplanService", "Check auf Vertretungen");
+        Log.v("VertretungsplanService", "Checking for changes");
         sp = PreferenceManager.getDefaultSharedPreferences(this);
-        ArrayList<ArrayList<String>> tableOne, tableTwo, tableOne_saved, tableTwo_saved;
+        ArrayList<ArrayList<String>> tableOne_saved, tableTwo_saved;
 
-        CancellationDays cancellationDays = hilfsMethoden.parseTimetable(website_html, class_name, 1);
-        //TimeTable timeTable = hilfsMethoden.parseTimetable(website_html, class_name);
+        //TODO What if Day is null??
+        TimeTable timeTable = hilfsMethoden.parseTimetable(website_html, class_name);
+        TimeTableDay dayOne = timeTable.getDay(0);
+        TimeTableDay dayTwo = timeTable.getDay(1);
 
-        tableOne = cancellationDays.getFirstDay();
-        tableTwo = cancellationDays.getSecondDay();
 
         tableOne_saved = hilfsMethoden.getArrayList(sp.getString("tableOne", ""));
-        tableTwo_saved = hilfsMethoden.getArrayList(sp.getString("tableTwo", ""));
+        String dayOne_date = sp.getString("firstDate", "01.01.");
+        TimeTableDay day1_saved = new TimeTableDay(dayOne_date, tableOne_saved);
 
-        int changeCount = tableOne.size() + tableTwo.size();
+        tableTwo_saved = hilfsMethoden.getArrayList(sp.getString("tableTwo", ""));
+        String dayTwo_date = sp.getString("secondDate", "01.01.");
+        TimeTableDay day2_saved = new TimeTableDay(dayTwo_date, tableTwo_saved);
+        
+        int diffs_one, diffs_two;
+
+        if (dayOne.isSameDay(day1_saved)) {
+            diffs_one = dayOne.getDifferences(day1_saved);
+        } else if (dayOne.isSameDay(day2_saved)) {
+            diffs_one = dayOne.getDifferences(day2_saved);
+        } else {
+            diffs_one = dayOne.getSize();
+        }
+
+        if (dayTwo.isSameDay(day2_saved)) {
+            diffs_two = dayTwo.getDifferences(day2_saved);
+        } else {
+            diffs_two = dayTwo.getSize();
+        }
+
+        int changeCount = diffs_one + diffs_two;
 
         if (changeCount > 0) {
-            // TODO Testen ob Tabelle 1 = Tabelle 2
-            int count1 = hilfsMethoden.getDifferencesCount(tableOne, tableOne_saved);
-            int count2 = hilfsMethoden.getDifferencesCount(tableTwo, tableTwo_saved);
-            int gesamt = (count1 + count2);
-            if (gesamt > 1) {
-                notification("Stundenplan Änderung!", "MGG Vertretungsplan", gesamt + " Änderungen!");
-            } else if (gesamt == 1) {
+            if (changeCount > 1) {
+                notification("Stundenplan Änderung!", "MGG Vertretungsplan", String.format("%s Änderungen!", changeCount));
+            } else if (changeCount == 1) {
                 notification("Stundenplan Änderung!", "MGG Vertretungsplan", "Eine Änderung!");
             }
-        }
             //TODO neue Listen speichern?
+        }
 
     }
 
