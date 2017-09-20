@@ -75,7 +75,7 @@ public final class TimeTableElement {
                 return Color.parseColor("#F5F5F5");
         }
     }
-    
+
     public boolean equals(TimeTableElement tte) {
         String hour = tte.getHour();
         String subject = tte.getSubject();
