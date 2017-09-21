@@ -263,7 +263,6 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         if (isConnectionActive()) {
             mSwipeLayout.setRefreshing(true);
             class_name = sp.getString("KlasseGesamt", "5a");
-            sp = PreferenceManager.getDefaultSharedPreferences(this);
 
             try {
                 new DownloadWebPageTask(this).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, getString(R.string.vertretungsplan_url));
@@ -311,8 +310,6 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
     // Wird aufgerufen wenn die Website heruntergeladen wurde
     public void onTaskComplete(String website_html) {
-        sp = PreferenceManager.getDefaultSharedPreferences(this);
-
         TimeTable timeTable = hilfsMethoden.parseTimetable(website_html, class_name);
         displayData(timeTable, sp.getBoolean("AktTagAnzeigen", true));
 
