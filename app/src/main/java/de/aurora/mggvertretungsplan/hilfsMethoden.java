@@ -83,6 +83,8 @@ public class hilfsMethoden {
         Element table = doc.select("table").get(index);
         Iterator<Element> rowIterator = table.select("tr").iterator();
 
+        //TODO check if these selectors are present. Otherwise stop parsing and throw error!
+
         ArrayList<ArrayList<String>> tableArrayList = new ArrayList<>();
 
         while (rowIterator.hasNext()) {
