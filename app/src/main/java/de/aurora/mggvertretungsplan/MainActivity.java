@@ -226,16 +226,15 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
     //TODO Refactor!
     private void serviceProvider() {
         if (sp.getBoolean("notification", true)) {
-            AlarmManager(Long.valueOf(sp.getString("AbrufIntervall", "1800000")));
+            startAlarmManager(Long.valueOf(sp.getString("AbrufIntervall", "1800000")));
             Log.v("VertretungsplanService", "serviceProvider, Interval: " + sp.getString("AbrufIntervall", "1800000"));
         } else {
-            AlarmManagerBeenden();
+            endAlarmManager();
         }
     }
 
     //TODO Refactor
-    //AlarmManager Starten! -> Hintergrund Prozess
-    private void AlarmManager(long interval) {
+    private void startAlarmManager(long interval) {
         long firstStart = System.currentTimeMillis() + interval;
 
         Intent intentsOpen = new Intent(this, VertretungsplanService.class);
@@ -245,8 +244,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
     }
 
     //TODO Refactor
-    //beendet AlarmManager
-    private void AlarmManagerBeenden() {
+    private void endAlarmManager() {
         Intent intentsOpen = new Intent(this, VertretungsplanService.class);
         PendingIntent pendingIntent = PendingIntent.getService(this, 0, intentsOpen, 0);
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
