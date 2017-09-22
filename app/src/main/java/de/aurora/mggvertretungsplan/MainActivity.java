@@ -49,8 +49,8 @@ import static android.os.Build.VERSION.SDK_INT;
 public class MainActivity extends AppCompatActivity implements AsyncTaskCompleteListener<String>, SwipeRefreshLayout.OnRefreshListener {
 
     private final ArrayList<DateHeading> headingsList = new ArrayList<>();
-    private ArrayList<TimeTableElement> dayOneList = new ArrayList<>();
-    private ArrayList<TimeTableElement> dayTwoList = new ArrayList<>();
+    private final ArrayList<TimeTableElement> dayOneList = new ArrayList<>();
+    private final ArrayList<TimeTableElement> dayTwoList = new ArrayList<>();
     private SharedPreferences sp;
     private Toolbar toolbar;
     private String class_name, toolbarTitle_WithClass;
@@ -302,12 +302,18 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         // OR when it's not set, but it's before 16:00
         if (aktTagAnzeigen || ((secondsDiff > 0) && (secondsDiff < sixteenHours))) {
             headingsList.add(new DateHeading(timeTable.getDay(0).getDate()));
-            dayOneList = timeTable.getDay(0).getElements();
+
+            for (TimeTableElement element : timeTable.getDay(0).getElements()) {
+                dayOneList.add(element);
+            }
         }
 
         // Day 2
         headingsList.add(new DateHeading(timeTable.getDay(1).getDate()));
-        dayTwoList = timeTable.getDay(1).getElements();
+
+        for (TimeTableElement element : timeTable.getDay(1).getElements()) {
+            dayTwoList.add(element);
+        }
 
         cAdapter.notifyDataSetChanged();
         mSwipeLayout.setRefreshing(false);
