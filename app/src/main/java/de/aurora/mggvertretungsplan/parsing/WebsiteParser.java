@@ -1,4 +1,4 @@
-package de.aurora.mggvertretungsplan;
+package de.aurora.mggvertretungsplan.parsing;
 
 import de.aurora.mggvertretungsplan.datamodel.TimeTable;
 

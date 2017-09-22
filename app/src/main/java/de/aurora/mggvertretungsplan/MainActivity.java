@@ -39,6 +39,8 @@ import de.aurora.mggvertretungsplan.datamodel.DateHeading;
 import de.aurora.mggvertretungsplan.datamodel.TimeTable;
 import de.aurora.mggvertretungsplan.datamodel.TimeTableDay;
 import de.aurora.mggvertretungsplan.datamodel.TimeTableElement;
+import de.aurora.mggvertretungsplan.parsing.MGGParser;
+import de.aurora.mggvertretungsplan.parsing.WebsiteParser;
 import de.aurora.mggvertretungsplan.ui.CardsAdapter;
 import de.aurora.mggvertretungsplan.ui.theming.ThemeManager;
 

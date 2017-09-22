@@ -1,4 +1,4 @@
-package de.aurora.mggvertretungsplan;
+package de.aurora.mggvertretungsplan.parsing;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -20,7 +20,7 @@ import de.aurora.mggvertretungsplan.datamodel.TimeTableDay;
  * Created by Rico on 22.09.2017.
  */
 
-class MGGParser implements WebsiteParser {
+public class MGGParser implements WebsiteParser {
 
     @Override
     public TimeTable parse(String website_html, String className) {

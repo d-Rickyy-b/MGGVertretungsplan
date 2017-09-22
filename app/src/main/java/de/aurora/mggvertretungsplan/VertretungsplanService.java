@@ -17,6 +17,8 @@ import java.util.ArrayList;
 
 import de.aurora.mggvertretungsplan.datamodel.TimeTable;
 import de.aurora.mggvertretungsplan.datamodel.TimeTableDay;
+import de.aurora.mggvertretungsplan.parsing.MGGParser;
+import de.aurora.mggvertretungsplan.parsing.WebsiteParser;
 
 
 @SuppressWarnings("SameParameterValue")
