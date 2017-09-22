@@ -13,6 +13,7 @@ public class TimeTable {
 
     }
 
+    // Adds a day right at the right place via insertionsort
     public void addTimeTableDay(TimeTableDay ttd) {
         int index = 0;
         for (int i = 0; i < timeTableDays.size(); i++) {

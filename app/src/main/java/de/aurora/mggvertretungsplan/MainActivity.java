@@ -115,6 +115,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
     }
 
 
+    // Checks which hardware key was pressed
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         switch (keyCode) {
