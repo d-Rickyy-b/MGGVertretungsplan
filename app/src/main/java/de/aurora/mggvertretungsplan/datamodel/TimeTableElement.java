@@ -37,6 +37,10 @@ public final class TimeTableElement {
         this.info = info;
     }
 
+    public int getHour_I() {
+        return Integer.valueOf(this.getHour());
+    }
+
     public String getHour() {
         return this.hour;
     }
