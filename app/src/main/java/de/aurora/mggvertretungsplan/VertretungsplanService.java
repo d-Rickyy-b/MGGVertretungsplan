@@ -24,6 +24,7 @@ public class VertretungsplanService extends Service implements AsyncTaskComplete
 
     private SharedPreferences sp;
     private String class_name;
+    private WebsiteParser websiteParser;
 
     public VertretungsplanService() {
 
@@ -50,6 +51,7 @@ public class VertretungsplanService extends Service implements AsyncTaskComplete
         if (isConnectionActive()) {
             sp = PreferenceManager.getDefaultSharedPreferences(this);
             class_name = sp.getString("KlasseGesamt", "5a");
+            websiteParser = new MGGParser();
 
             try {
                 new DownloadWebPageTask(this).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, getString(R.string.vertretungsplan_url));
@@ -96,7 +98,7 @@ public class VertretungsplanService extends Service implements AsyncTaskComplete
         ArrayList<ArrayList<String>> tableOne_saved, tableTwo_saved;
 
         //TODO What if Day is null??
-        TimeTable timeTable = hilfsMethoden.parseTimetable(website_html, class_name);
+        TimeTable timeTable = websiteParser.parse(website_html, class_name);
         TimeTableDay dayOne = timeTable.getDay(0);
         TimeTableDay dayTwo = timeTable.getDay(1);
 

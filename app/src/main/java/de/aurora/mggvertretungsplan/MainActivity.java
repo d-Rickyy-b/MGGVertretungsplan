@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
     private int currentYear;
     private SwipeRefreshLayout mSwipeLayout;
     private CardsAdapter cAdapter;
+    private WebsiteParser websiteParser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +63,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         int themeID = sp.getInt("Theme", 0);
         setTheme(ThemeManager.getTheme(themeID));
         super.onCreate(savedInstanceState);
+        this.websiteParser = new MGGParser();
 
         //TODO wieder entfernen, sobald die Funktion wieder geht
         sp.edit().putBoolean("AktTagAnzeigen", true).apply(); //true!!!
@@ -310,7 +312,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
     // Wird aufgerufen wenn die Website heruntergeladen wurde
     public void onTaskComplete(String website_html) {
-        TimeTable timeTable = hilfsMethoden.parseTimetable(website_html, class_name);
+        TimeTable timeTable = websiteParser.parse(website_html, class_name);
         displayData(timeTable, sp.getBoolean("AktTagAnzeigen", true));
 
         // TODO NullPointerException
