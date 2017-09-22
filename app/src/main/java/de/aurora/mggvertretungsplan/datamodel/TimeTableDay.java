@@ -47,7 +47,15 @@ public class TimeTableDay {
     }
 
     private void addElement(TimeTableElement tte) {
-        this.timeTableElements.add(tte);
+        int index = 0;
+        for (int i = 0; i < timeTableElements.size(); i++) {
+            if (tte.getHour_I() < timeTableElements.get(i).getHour_I() ) {
+                break;
+            }
+            index++;
+        }
+
+        this.timeTableElements.add(index, tte);
     }
 
     public Date getDate() {
