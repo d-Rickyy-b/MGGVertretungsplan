@@ -6,7 +6,7 @@ import de.aurora.mggvertretungsplan.datamodel.TimeTable;
  * Created by Rico on 22.09.2017.
  */
 
-interface WebsiteParser {
+public interface WebsiteParser {
 
     TimeTable parse(String website_html, String className);
 
