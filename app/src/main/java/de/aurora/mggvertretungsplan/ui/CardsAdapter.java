@@ -47,24 +47,27 @@ public class CardsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     //Wenn RecyclerView erstellt wird, werden Layouts inflated und gecached.
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        if (viewType == TYPE_DAYONE || viewType == TYPE_DAYTWO) {
-            View itemView = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.view_time_table_card, parent, false);
+        switch (viewType) {
+            case TYPE_DAYONE:
+            case TYPE_DAYTWO:
+                View itemView = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.view_time_table_card, parent, false);
 
-            return new ClassInfoViewHolder(itemView);
-        } else if (viewType == TYPE_HEADER) {
-            View itemView = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.view_date_heading, parent, false);
+                return new ClassInfoViewHolder(itemView);
 
-            return new HeadingsViewHolder(itemView);
-        } else if (viewType == TYPE_NOINFO) {
-            View itemView = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.view_no_info_card, parent, false);
+            case TYPE_HEADER:
+                View itemView1 = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.view_date_heading, parent, false);
 
-            return new NoInfoViewHolder(itemView);
+                return new HeadingsViewHolder(itemView1);
+
+            default:
+            case TYPE_NOINFO:
+                View itemView2 = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.view_no_info_card, parent, false);
+
+                return new NoInfoViewHolder(itemView2);
         }
-
-        throw new RuntimeException(String.format("There is no type that matches %s | Make sure you're using types correctly!", viewType));
     }
 
 
