@@ -4,20 +4,21 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.preference.PreferenceManager;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.TextView;
 
 import java.util.List;
 
 import de.aurora.mggvertretungsplan.R;
 import de.aurora.mggvertretungsplan.datamodel.DateHeading;
 import de.aurora.mggvertretungsplan.datamodel.TimeTableElement;
+import de.aurora.mggvertretungsplan.viewholder.ClassInfoViewHolder;
+import de.aurora.mggvertretungsplan.viewholder.HeadingsViewHolder;
+import de.aurora.mggvertretungsplan.viewholder.NoInfoViewHolder;
 
 /**
  * Created by Rico on 26.09.2016.
@@ -176,39 +177,6 @@ public class CardsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             Animation animation = AnimationUtils.loadAnimation(context, R.anim.slide_up_bottom);
             viewToAnimate.startAnimation(animation);
             lastPosition = position;
-        }
-    }
-
-    public class ClassInfoViewHolder extends RecyclerView.ViewHolder {
-        public final TextView title, hour, info, room, newRoom;
-        public final CardView cardView;
-
-        public ClassInfoViewHolder(View view) {
-            super(view);
-            cardView = view.findViewById(R.id.card_view);
-            title = view.findViewById(R.id.info_title);
-            hour = view.findViewById(R.id.info_hour);
-            info = view.findViewById(R.id.info_text);
-            room = view.findViewById(R.id.info_room);
-            newRoom = view.findViewById(R.id.info_new_room);
-        }
-    }
-
-    public class HeadingsViewHolder extends RecyclerView.ViewHolder {
-        public final TextView heading;
-
-        public HeadingsViewHolder(View view) {
-            super(view);
-            heading = view.findViewById(R.id.heading_textView);
-        }
-    }
-
-    public class NoInfoViewHolder extends RecyclerView.ViewHolder {
-        public final TextView noInfo;
-
-        public NoInfoViewHolder(View view) {
-            super(view);
-            noInfo = view.findViewById(R.id.no_info_textview);
         }
     }
 
