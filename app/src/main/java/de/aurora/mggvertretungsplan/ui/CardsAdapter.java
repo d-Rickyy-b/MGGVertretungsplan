@@ -73,55 +73,65 @@ public class CardsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        if (holder instanceof ClassInfoViewHolder) {
-            ClassInfoViewHolder myholder = (ClassInfoViewHolder) holder;
-            TimeTableElement timeTableElement;
-            int viewType = getItemViewType(position);
+        switch (holder.getItemViewType()){
+            case TYPE_CANCELLATION:
+                ClassInfoViewHolder classInfoViewHolder = (ClassInfoViewHolder) holder;
+                TimeTableElement timeTableElement;
+                int viewType = getItemViewType(position);
+                //int viewType = holder.getItemViewType();
 
-            if (viewType == TYPE_DAYONE) {
-                timeTableElement = dayOneList.get(position - 1); //TODO Bug
-            } else if (viewType == TYPE_DAYTWO) {
-                int dayOneListSize = 1;
-                if (dayOneList.size() > 0) {
-                    dayOneListSize = dayOneList.size();
+                switch (viewType) {
+                    case TYPE_DAYONE:
+                        timeTableElement = dayOneList.get(position - 1); //TODO Bug
+                        break;
+                    case TYPE_DAYTWO:
+                        int dayOneListSize = 1;
+                        if (dayOneList.size() > 0) {
+                            dayOneListSize = dayOneList.size();
+                        }
+                        timeTableElement = dayTwoList.get(position - headingList.size() - dayOneListSize);
+                        break;
+                    default:
+                        throw new RuntimeException("There is no matching type!");
                 }
-                timeTableElement = dayTwoList.get(position - headingList.size() - dayOneListSize);
-            } else
-                throw new RuntimeException("There is no matching type!");
 
-            myholder.hour.setText(timeTableElement.getHour());
-            myholder.title.setText(timeTableElement.getSubject());
-            myholder.info.setText(timeTableElement.getInfo());
-            myholder.room.setText(timeTableElement.getRoom());
-            myholder.newRoom.setText(timeTableElement.getNewRoom());
+                classInfoViewHolder.hour.setText(timeTableElement.getHour());
+                classInfoViewHolder.title.setText(timeTableElement.getSubject());
+                classInfoViewHolder.info.setText(timeTableElement.getInfo());
+                classInfoViewHolder.room.setText(timeTableElement.getRoom());
+                classInfoViewHolder.newRoom.setText(timeTableElement.getNewRoom());
 
-            if (sp.getBoolean("listColors", true)) {
-                myholder.cardView.setCardBackgroundColor(timeTableElement.getColor());
-            } else {
-                myholder.cardView.setCardBackgroundColor(Color.parseColor("#F5F5F5"));
-            }
+                if (sp.getBoolean("listColors", true)) {
+                    classInfoViewHolder.cardView.setCardBackgroundColor(timeTableElement.getColor());
+                } else {
+                    classInfoViewHolder.cardView.setCardBackgroundColor(Color.parseColor("#F5F5F5"));
+                }
 
-            setAnimation(myholder.cardView, position);
+                setAnimation(classInfoViewHolder.cardView, position);
+                break;
 
-        } else if (holder instanceof HeadingsViewHolder) {
-            HeadingsViewHolder myholder = (HeadingsViewHolder) holder;
-            String dateString;
-            try {
-                DateHeading dateHeading = headingList.get(whichHeader(position));
-                dateString = dateHeading.getWholeDate();
-            } catch (Exception e) {
-                e.printStackTrace();
-                dateString = "Error!";
-            }
+            case TYPE_HEADER:
+                HeadingsViewHolder headingsViewHolder = (HeadingsViewHolder) holder;
+                String dateString;
+                try {
+                    DateHeading dateHeading = headingList.get(whichHeader(position));
+                    dateString = dateHeading.getWholeDate();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    dateString = "Error!";
+                }
 
-            myholder.heading.setText(dateString);
+                headingsViewHolder.heading.setText(dateString);
 
-            setAnimation(myholder.heading, position);
-        } else if (holder instanceof NoInfoViewHolder) {
-            NoInfoViewHolder myholder = (NoInfoViewHolder) holder;
-            myholder.noInfo.setText(context.getResources().getString(R.string.card_no_information));
+                setAnimation(headingsViewHolder.heading, position);
+                break;
 
-            setAnimation(myholder.noInfo, position);
+            case TYPE_NOINFO:
+                NoInfoViewHolder noInfoViewHolder = (NoInfoViewHolder) holder;
+                noInfoViewHolder.noInfo.setText(context.getResources().getString(R.string.card_no_information));
+
+                setAnimation(noInfoViewHolder.noInfo, position);
+                break;
         }
 
     }
