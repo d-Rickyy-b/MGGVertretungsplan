@@ -8,6 +8,6 @@ import de.aurora.mggvertretungsplan.datamodel.TimeTable;
 
 interface WebsiteParser {
 
-    public TimeTable parse(String website_html, String className);
+    TimeTable parse(String website_html, String className);
 
 }
