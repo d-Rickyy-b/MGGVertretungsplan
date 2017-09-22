@@ -16,7 +16,7 @@ public class TimeTable {
     public void addTimeTableDay(TimeTableDay ttd) {
         int index = 0;
         for (int i = 0; i < timeTableDays.size(); i++) {
-            if (ttd.getDate().before(timeTableDays.get(0).getDate())) {
+            if (ttd.getDate().before(timeTableDays.get(i).getDate())) {
                 break;
             }
             index++;
