@@ -38,7 +38,13 @@ public final class TimeTableElement {
     }
 
     public int getHour_I() {
-        return Integer.valueOf(this.getHour());
+        int hour_i;
+        try {
+            hour_i = Integer.valueOf(this.getHour().substring(0,1));
+        } catch (NumberFormatException nfe) {
+            hour_i = 1;
+        }
+        return hour_i;
     }
 
     public String getHour() {
