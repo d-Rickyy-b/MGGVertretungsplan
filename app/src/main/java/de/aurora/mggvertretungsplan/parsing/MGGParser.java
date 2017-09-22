@@ -22,50 +22,6 @@ import de.aurora.mggvertretungsplan.datamodel.TimeTableDay;
 
 public class MGGParser implements WebsiteParser {
 
-    @Override
-    public TimeTable parse(String website_html, String className) {
-        ArrayList<ArrayList<String>> tableOne, tableTwo;
-
-        website_html = website_html.replace("&auml;", "ä").replace("&ouml;", "ö").replace("&uuml;", "ü");
-        Document doc = Jsoup.parse(website_html);
-
-        Elements dates = doc.select("h2.tabber_title");
-
-        ArrayList<String> datesList = new ArrayList<>();
-
-        for (Element date : dates) {
-            datesList.add(date.text()); // The parse the dates on the website
-        }
-
-        try {
-            tableOne = extractTable(doc, 0);
-        } catch (IndexOutOfBoundsException e) {
-            e.printStackTrace();
-            tableOne = new ArrayList<>();
-            tableOne.add(new ArrayList<>(Arrays.asList("", "", "", "", "", "", "")));
-        }
-
-        try {
-            tableTwo = extractTable(doc, 1);
-        } catch (IndexOutOfBoundsException e) {
-            e.printStackTrace();
-            tableTwo = new ArrayList<>();
-            tableTwo.add(new ArrayList<>(Arrays.asList("", "", "", "", "", "", "")));
-        }
-
-        tableOne = prepareData(tableOne, className);
-        tableTwo = prepareData(tableTwo, className);
-
-        TimeTableDay day1 = new TimeTableDay(datesList.get(0), tableOne);
-        TimeTableDay day2 = new TimeTableDay(datesList.get(1), tableTwo);
-
-        TimeTable timeTable = new TimeTable();
-        timeTable.addTimeTableDay(day1);
-        timeTable.addTimeTableDay(day2);
-
-        return timeTable;
-    }
-
     public MGGParser() {
 
     }
@@ -149,7 +105,7 @@ public class MGGParser implements WebsiteParser {
                 String strValue2 = o2.get(0);
 
                 if (strValue1.contains("-")) {
-                    String[] parts = strValue1.split("-"); //TODO wenn leerzeichen drin, dann hier auch notwendig
+                    String[] parts = strValue1.split("-");
                     value1 = Integer.valueOf(parts[0]);
                 } else {
                     value1 = Integer.valueOf(strValue1);
@@ -203,6 +159,50 @@ public class MGGParser implements WebsiteParser {
         }
 
         return inputList;
+    }
+
+    @Override
+    public TimeTable parse(String website_html, String className) {
+        ArrayList<ArrayList<String>> tableOne, tableTwo;
+
+        website_html = website_html.replace("&auml;", "ä").replace("&ouml;", "ö").replace("&uuml;", "ü");
+        Document doc = Jsoup.parse(website_html);
+
+        Elements dates = doc.select("h2.tabber_title");
+
+        ArrayList<String> datesList = new ArrayList<>();
+
+        for (Element date : dates) {
+            datesList.add(date.text()); // The parse the dates on the website
+        }
+
+        try {
+            tableOne = extractTable(doc, 0);
+        } catch (IndexOutOfBoundsException e) {
+            e.printStackTrace();
+            tableOne = new ArrayList<>();
+            tableOne.add(new ArrayList<>(Arrays.asList("", "", "", "", "", "", "")));
+        }
+
+        try {
+            tableTwo = extractTable(doc, 1);
+        } catch (IndexOutOfBoundsException e) {
+            e.printStackTrace();
+            tableTwo = new ArrayList<>();
+            tableTwo.add(new ArrayList<>(Arrays.asList("", "", "", "", "", "", "")));
+        }
+
+        tableOne = prepareData(tableOne, className);
+        tableTwo = prepareData(tableTwo, className);
+
+        TimeTableDay day1 = new TimeTableDay(datesList.get(0), tableOne);
+        TimeTableDay day2 = new TimeTableDay(datesList.get(1), tableTwo);
+
+        TimeTable timeTable = new TimeTable();
+        timeTable.addTimeTableDay(day1);
+        timeTable.addTimeTableDay(day2);
+
+        return timeTable;
     }
 
 }

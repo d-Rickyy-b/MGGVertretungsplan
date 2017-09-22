@@ -4,21 +4,8 @@ import android.annotation.SuppressLint;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Iterator;
-import java.util.LinkedHashSet;
-import java.util.Set;
-
-import de.aurora.mggvertretungsplan.datamodel.TimeTable;
-import de.aurora.mggvertretungsplan.datamodel.TimeTableDay;
 
 
 public class hilfsMethoden {

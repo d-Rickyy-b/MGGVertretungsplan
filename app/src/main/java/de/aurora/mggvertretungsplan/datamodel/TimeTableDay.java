@@ -18,7 +18,7 @@ public class TimeTableDay {
     private ArrayList<ArrayList<String>> timeTableDay_List = new ArrayList<>();
     private Date date = new Date();
 
-    public TimeTableDay(){
+    public TimeTableDay() {
         // Empty timeTableDay for error handling
     }
 
