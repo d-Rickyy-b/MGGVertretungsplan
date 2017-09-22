@@ -34,6 +34,10 @@ public class TimeTable {
         //TODO error
     }
 
+    public ArrayList<TimeTableDay> getAllDays() {
+        return this.timeTableDays;
+    }
+
     public int getTotalCancellations() {
         int cancellations = 0;
 
