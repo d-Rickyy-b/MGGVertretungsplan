@@ -26,9 +26,10 @@ import de.aurora.mggvertretungsplan.viewholder.NoInfoViewHolder;
 
 public class CardsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private static final int TYPE_HEADER = 0;
-    private static final int TYPE_DAYONE = 1;
-    private static final int TYPE_DAYTWO = 2;
-    private static final int TYPE_NOINFO = 3;
+    private static final int TYPE_NOINFO = 1;
+    private static final int TYPE_CANCELLATION = 2;
+    private static final int TYPE_DAYONE = 3;
+    private static final int TYPE_DAYTWO = 4;
     private final List<TimeTableElement> dayOneList;
     private final List<TimeTableElement> dayTwoList;
     private final List<DateHeading> headingList;
