@@ -16,16 +16,16 @@ public final class TimeTableElement {
     private final String newSubject;
     private final String room;
     private final String newRoom;
-    private final String info;
     private final int type;
+    private final String info;
 
     public TimeTableElement() {
         this.hour = "";
         this.subject = "";
         this.newSubject = "";
-        this.type = EMPTY;
         this.room = "";
         this.newRoom = "";
+        this.type = EMPTY;
         this.info = "";
     }
 
@@ -33,9 +33,9 @@ public final class TimeTableElement {
         this.hour = hour;
         this.subject = subject;
         this.newSubject = newSubject;
-        this.type = calcType();
         this.room = room;
         this.newRoom = newRoom;
+        this.type = calcType();
 
         if (info.length() > 0) {
             info = info.substring(0, 1).toUpperCase() + info.substring(1);
@@ -72,12 +72,8 @@ public final class TimeTableElement {
         return this.subject;
     }
 
-    public int getType() {
-        return this.type;
-    }
-
-    public String getInfo() {
-        return this.info;
+    public String getNewSubject() {
+        return this.newSubject;
     }
 
     public String getRoom() {
@@ -86,6 +82,14 @@ public final class TimeTableElement {
 
     public String getNewRoom() {
         return this.newRoom;
+    }
+
+    public int getType() {
+        return this.type;
+    }
+
+    public String getInfo() {
+        return this.info;
     }
 
     public int getColor() {
@@ -102,16 +106,18 @@ public final class TimeTableElement {
     boolean equals(TimeTableElement tte) {
         String hour = tte.getHour();
         String subject = tte.getSubject();
-        int type = tte.getType();
+        String newSubject = tte.getNewSubject();
         String room = tte.getRoom();
         String newRoom = tte.getNewRoom();
+        int type = tte.getType();
         String info = tte.getInfo();
 
         return hour.equals(this.hour) &&
                 subject.equals(this.subject) &&
-                type == this.type &&
+                newSubject.equals(this.newSubject) &&
                 room.equals(this.room) &&
                 newRoom.equals(this.newRoom) &&
+                type == this.type &&
                 info.equals(this.info);
     }
 
