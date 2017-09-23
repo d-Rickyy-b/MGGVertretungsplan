@@ -7,40 +7,57 @@ import android.graphics.Color;
  */
 
 public final class TimeTableElement {
+    public static final int EMPTY = -1;
+    public static final int CANCELLATION = 0;
+    public static final int SUBSTITUTION = 1;
+
     private final String hour;
     private final String subject;
-    private final String type;
-    private final String info;
+    private final String newSubject;
     private final String room;
     private final String newRoom;
+    private final String info;
+    private final int type;
 
-    TimeTableElement(String hour, String subject, String newSubject, String room, String newRoom, String type, String info) {
+    public TimeTableElement() {
+        this.hour = "";
+        this.subject = "";
+        this.newSubject = "";
+        this.type = EMPTY;
+        this.room = "";
+        this.newRoom = "";
+        this.info = "";
+    }
+
+    TimeTableElement(String hour, String subject, String newSubject, String room, String newRoom, String info) {
+        this.hour = hour;
+        this.subject = subject;
+        this.newSubject = newSubject;
+        this.type = calcType();
+        this.room = room;
+        this.newRoom = newRoom;
+
         if (info.length() > 0) {
             info = info.substring(0, 1).toUpperCase() + info.substring(1);
 
             if (!subject.equals(newSubject) && !newSubject.equals("---") && !newSubject.equals("")) {
                 info = String.format("%s - %s", newSubject, info);
             }
-        } else if (type.equals("Entfall")) {
+        } else if (type == CANCELLATION) {
             info = "Entfällt";
-        } else if (type.equals("Vertretung")) {
+        } else if (type == SUBSTITUTION) {
             info = "Vertretung";
         } else {
             info = newSubject;
         }
 
-        this.hour = hour;
-        this.subject = subject;
-        this.room = room;
-        this.newRoom = newRoom;
-        this.type = type;
         this.info = info;
     }
 
-    public int getHour_I() {
+    int getHour_I() {
         int hour_i;
         try {
-            hour_i = Integer.valueOf(this.getHour().substring(0,1));
+            hour_i = Integer.valueOf(this.getHour().substring(0, 1));
         } catch (NumberFormatException nfe) {
             hour_i = 1;
         }
@@ -55,7 +72,7 @@ public final class TimeTableElement {
         return this.subject;
     }
 
-    public String getType() {
+    public int getType() {
         return this.type;
     }
 
@@ -72,10 +89,10 @@ public final class TimeTableElement {
     }
 
     public int getColor() {
-        switch (getType()) {
-            case "Entfall":
+        switch (this.type) {
+            case CANCELLATION:
                 return Color.parseColor("#FF6961");
-            case "Vertretung":
+            case SUBSTITUTION:
                 return Color.parseColor("#779ECB");
             default:
                 return Color.parseColor("#F5F5F5");
@@ -85,22 +102,29 @@ public final class TimeTableElement {
     boolean equals(TimeTableElement tte) {
         String hour = tte.getHour();
         String subject = tte.getSubject();
-        String type = tte.getType();
-        String info = tte.getInfo();
+        int type = tte.getType();
         String room = tte.getRoom();
         String newRoom = tte.getNewRoom();
+        String info = tte.getInfo();
 
         return hour.equals(this.hour) &&
                 subject.equals(this.subject) &&
-                type.equals(this.type) &&
-                info.equals(this.info) &&
+                type == this.type &&
                 room.equals(this.room) &&
-                newRoom.equals(this.newRoom);
+                newRoom.equals(this.newRoom) &&
+                info.equals(this.info);
     }
 
-    public String getHash() {
-        return String.format("%s%s%s%s%s%s", getHour(), getSubject(), getType(), getInfo(), getRoom(), getNewRoom());
+    private int calcType() {
+        if (newSubject.equals("---") && newRoom.equals("---"))
+            return CANCELLATION;
+        else
+            return SUBSTITUTION;
     }
+
+//    public String getHash() {
+//        return String.format("%s%s%s%s%s%s", getHour(), getSubject(), getType(), getInfo(), getRoom(), getNewRoom());
+//    }
 
 }
 

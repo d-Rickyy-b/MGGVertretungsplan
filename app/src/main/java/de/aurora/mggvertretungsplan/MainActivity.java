@@ -32,13 +32,10 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.GregorianCalendar;
 
-import de.aurora.mggvertretungsplan.datamodel.DateHeading;
 import de.aurora.mggvertretungsplan.datamodel.TimeTable;
 import de.aurora.mggvertretungsplan.datamodel.TimeTableDay;
-import de.aurora.mggvertretungsplan.datamodel.TimeTableElement;
 import de.aurora.mggvertretungsplan.parsing.MGGParser;
 import de.aurora.mggvertretungsplan.parsing.WebsiteParser;
 import de.aurora.mggvertretungsplan.ui.CardsAdapter;
@@ -47,10 +44,6 @@ import de.aurora.mggvertretungsplan.ui.theming.ThemeManager;
 import static android.os.Build.VERSION.SDK_INT;
 
 public class MainActivity extends AppCompatActivity implements AsyncTaskCompleteListener<String>, SwipeRefreshLayout.OnRefreshListener {
-
-    private final ArrayList<DateHeading> headingsList = new ArrayList<>();
-    private final ArrayList<TimeTableElement> dayOneList = new ArrayList<>();
-    private final ArrayList<TimeTableElement> dayTwoList = new ArrayList<>();
     private SharedPreferences sp;
     private Toolbar toolbar;
     private String class_name, toolbarTitle_WithClass;
@@ -101,7 +94,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         currentYear = new GregorianCalendar().get(GregorianCalendar.YEAR);
 
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
-        cAdapter = new CardsAdapter(dayOneList, dayTwoList, headingsList, this);
+        cAdapter = new CardsAdapter(this);
         recyclerView.setHasFixedSize(true);
 
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
@@ -152,6 +145,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
     // Method to display the saved data
     private void displaySavedData() {
+        TimeTable timeTable = new TimeTable();
         String firstDate = sp.getString("firstDate", "01.01." + currentYear);
         String secondDate = sp.getString("secondDate", "01.01." + currentYear);
 
@@ -160,14 +154,13 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         tableOne = hilfsMethoden.getArrayList(sp.getString("tableOne", ""));
         tableTwo = hilfsMethoden.getArrayList(sp.getString("tableTwo", ""));
 
-        TimeTable timeTable = new TimeTable();
         TimeTableDay ttd = new TimeTableDay(firstDate, tableOne);
         TimeTableDay ttd2 = new TimeTableDay(secondDate, tableTwo);
         timeTable.addTimeTableDay(ttd);
         timeTable.addTimeTableDay(ttd2);
 
         sp.edit().putBoolean("AktTagAnzeigen", true).apply();
-        displayData(timeTable, sp.getBoolean("AktTagAnzeigen", true));
+        displayData(timeTable);
     }
 
     @Override
@@ -282,38 +275,17 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
     }
 
     // Creates the view of the Android App
-    private void displayData(TimeTable timeTable, boolean aktTagAnzeigen) {
+    private void displayData(TimeTable timeTable) {
         Log.v("Vertretungsplan", "Anzeigen");
         String toolbarTitle_WithClass = getString(R.string.toolbarTitle_WithClass);
         toolbar.setTitle(String.format(toolbarTitle_WithClass, class_name));
-        headingsList.clear();
-        dayOneList.clear();
-        dayTwoList.clear();
 
-        Date date1, currentDate;
-        date1 = timeTable.getDay(0).getDate();
-        currentDate = new Date();
+        cAdapter.clearItems();
 
-        int sixteenHours = 60 * 60 * 16;
-        long secondsDiff = (currentDate.getTime() - date1.getTime()) / 1000;
-
-        // Day 1
-        // Displays the current day only when the setting is active
-        // OR when it's not set, but it's before 16:00
-        if (aktTagAnzeigen || ((secondsDiff > 0) && (secondsDiff < sixteenHours))) {
-            headingsList.add(new DateHeading(timeTable.getDay(0).getDate()));
-
-            for (TimeTableElement element : timeTable.getDay(0).getElements()) {
-                dayOneList.add(element);
-            }
+        for (TimeTableDay ttd : timeTable.getAllDays()) {
+            cAdapter.addDay(ttd);
         }
 
-        // Day 2
-        headingsList.add(new DateHeading(timeTable.getDay(1).getDate()));
-
-        for (TimeTableElement element : timeTable.getDay(1).getElements()) {
-            dayTwoList.add(element);
-        }
 
         cAdapter.notifyDataSetChanged();
         mSwipeLayout.setRefreshing(false);
@@ -322,7 +294,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
     // Wird aufgerufen wenn die Website heruntergeladen wurde
     public void onTaskComplete(String website_html) {
         TimeTable timeTable = websiteParser.parse(website_html, class_name);
-        displayData(timeTable, sp.getBoolean("AktTagAnzeigen", true));
+        displayData(timeTable);
 
         // TODO NullPointerException
         String firstDate = timeTable.getDay(0).getDateString();

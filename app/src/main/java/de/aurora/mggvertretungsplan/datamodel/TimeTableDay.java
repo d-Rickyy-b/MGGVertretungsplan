@@ -40,7 +40,7 @@ public class TimeTableDay {
         }
 
         for (ArrayList<String> zeile : timeTableDay_List) {
-            TimeTableElement timeTableElement = new TimeTableElement(zeile.get(0), hilfsMethoden.abkuerzung(zeile.get(2)), hilfsMethoden.abkuerzung(zeile.get(3)), zeile.get(4), zeile.get(5), hilfsMethoden.getType(zeile.get(3), zeile.get(5)), zeile.get(6));
+            TimeTableElement timeTableElement = new TimeTableElement(zeile.get(0), hilfsMethoden.abkuerzung(zeile.get(2)), hilfsMethoden.abkuerzung(zeile.get(3)), zeile.get(4), zeile.get(5), zeile.get(6));
             this.addElement(timeTableElement);
         }
 
@@ -49,7 +49,7 @@ public class TimeTableDay {
     private void addElement(TimeTableElement tte) {
         int index = 0;
         for (int i = 0; i < timeTableElements.size(); i++) {
-            if (tte.getHour_I() < timeTableElements.get(i).getHour_I() ) {
+            if (tte.getHour_I() < timeTableElements.get(i).getHour_I()) {
                 break;
             }
             index++;
