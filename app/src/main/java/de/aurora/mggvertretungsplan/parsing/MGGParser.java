@@ -80,8 +80,7 @@ public class MGGParser implements WebsiteParser {
 
     // Remove double lines
     private static ArrayList<ArrayList<String>> deleteDoubles(ArrayList<ArrayList<String>> inputList) {
-        Set<ArrayList<String>> set = new LinkedHashSet<>();
-        set.addAll(inputList);
+        Set<ArrayList<String>> set = new LinkedHashSet<>(inputList);
         inputList.clear();
         inputList.addAll(set);
         return inputList;
