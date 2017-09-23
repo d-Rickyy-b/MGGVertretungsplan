@@ -175,7 +175,7 @@ public class SettingsIntroSlide extends AppIntroBaseFragment {
 
         setRetainInstance(true);
 
-        if (getArguments() != null && getArguments().size() != 0) {
+        if (getArguments() != null && !getArguments().isEmpty()) {
             drawable = getArguments().getInt(ARG_DRAWABLE);
             title = getArguments().getString(ARG_TITLE);
             titleTypeface = getArguments().containsKey(ARG_TITLE_TYPEFACE) ?

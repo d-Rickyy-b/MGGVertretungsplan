@@ -37,7 +37,7 @@ public final class TimeTableElement {
         this.newRoom = newRoom;
         this.type = calcType();
 
-        if (info.length() > 0) {
+        if (!info.isEmpty()) {
             info = info.substring(0, 1).toUpperCase() + info.substring(1);
 
             if (!subject.equals(newSubject) && !newSubject.equals("---") && !newSubject.equals("")) {

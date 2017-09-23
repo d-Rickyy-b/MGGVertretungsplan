@@ -54,7 +54,7 @@ public class MGGParser implements WebsiteParser {
             }
             //TODO was, wenn size kleiner als benoetigte Elemente (7)?
             //Sollte nie vorkommen, da im HTML immer 7 Elemente sind
-            if (tableRow.size() > 0)
+            if (!tableRow.isEmpty())
                 tableArrayList.add(tableRow);
         }
 
