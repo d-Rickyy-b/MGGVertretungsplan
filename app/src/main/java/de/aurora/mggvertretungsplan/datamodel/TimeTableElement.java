@@ -20,13 +20,13 @@ public final class TimeTableElement {
     private final String info;
 
     public TimeTableElement() {
-        this.hour = "";
-        this.subject = "";
-        this.newSubject = "";
-        this.room = "";
-        this.newRoom = "";
-        this.type = EMPTY;
-        this.info = "";
+        hour = "";
+        subject = "";
+        newSubject = "";
+        room = "";
+        newRoom = "";
+        type = EMPTY;
+        info = "";
     }
 
     TimeTableElement(String hour, String subject, String newSubject, String room, String newRoom, String info) {
@@ -57,7 +57,7 @@ public final class TimeTableElement {
     int getHour_I() {
         int hour_i;
         try {
-            hour_i = Integer.valueOf(this.getHour().substring(0, 1));
+            hour_i = Integer.valueOf(getHour().substring(0, 1));
         } catch (NumberFormatException nfe) {
             hour_i = 1;
         }
@@ -65,35 +65,35 @@ public final class TimeTableElement {
     }
 
     public String getHour() {
-        return this.hour;
+        return hour;
     }
 
     public String getSubject() {
-        return this.subject;
+        return subject;
     }
 
     public String getNewSubject() {
-        return this.newSubject;
+        return newSubject;
     }
 
     public String getRoom() {
-        return this.room;
+        return room;
     }
 
     public String getNewRoom() {
-        return this.newRoom;
+        return newRoom;
     }
 
     public int getType() {
-        return this.type;
+        return type;
     }
 
     public String getInfo() {
-        return this.info;
+        return info;
     }
 
     public int getColor() {
-        switch (this.type) {
+        switch (type) {
             case CANCELLATION:
                 return Color.parseColor("#FF6961");
             case SUBSTITUTION:

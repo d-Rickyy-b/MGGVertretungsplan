@@ -123,13 +123,13 @@ public class CardsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     }
 
     public void clearItems() {
-        this.items.clear();
+        items.clear();
     }
 
     public void addDay(TimeTableDay ttd) {
         Date date = ttd.getDate();
         DateHeading dateHeading = new DateHeading(date);
-        this.items.add(dateHeading);
+        items.add(dateHeading);
 
         // Displays the current day only when the setting is active
         // OR when it's not set, but it's before 16:00
@@ -151,11 +151,11 @@ public class CardsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
         // TODO should be improved in the future
         if (timeTableElements.isEmpty()) {
-            this.items.add(new TimeTableElement());
+            items.add(new TimeTableElement());
         }
 
         for (TimeTableElement tte : timeTableElements) {
-            this.items.add(tte);
+            items.add(tte);
         }
     }
 

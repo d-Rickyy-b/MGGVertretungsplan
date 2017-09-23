@@ -23,7 +23,7 @@ public class TimeTable {
             index++;
         }
 
-        this.timeTableDays.add(index, ttd);
+        timeTableDays.add(index, ttd);
     }
 
     public TimeTableDay getDay(int index) {
@@ -36,7 +36,7 @@ public class TimeTable {
     }
 
     public ArrayList<TimeTableDay> getAllDays() {
-        return this.timeTableDays;
+        return timeTableDays;
     }
 
     public int getTotalCancellations() {

@@ -41,7 +41,7 @@ public class TimeTableDay {
 
         for (ArrayList<String> zeile : timeTableDay_List) {
             TimeTableElement timeTableElement = new TimeTableElement(zeile.get(0), hilfsMethoden.abkuerzung(zeile.get(2)), hilfsMethoden.abkuerzung(zeile.get(3)), zeile.get(4), zeile.get(5), zeile.get(6));
-            this.addElement(timeTableElement);
+            addElement(timeTableElement);
         }
 
     }
@@ -55,33 +55,33 @@ public class TimeTableDay {
             index++;
         }
 
-        this.timeTableElements.add(index, tte);
+        timeTableElements.add(index, tte);
     }
 
     public Date getDate() {
-        return this.date;
+        return date;
     }
 
     public String getDateString() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.GERMANY);
-        return dateFormat.format(this.date);
+        return dateFormat.format(date);
     }
 
     public String getFullDateString() {
         SimpleDateFormat fullDateFormat = new SimpleDateFormat("EEEE, dd.MM.yyyy", Locale.GERMANY);
-        return fullDateFormat.format(this.date);
+        return fullDateFormat.format(date);
     }
 
     public ArrayList<TimeTableElement> getElements() {
-        return this.timeTableElements;
+        return timeTableElements;
     }
 
     public int getSize() {
-        return this.timeTableElements.size();
+        return timeTableElements.size();
     }
 
     public int getCancellations() {
-        return this.timeTableElements.size();
+        return timeTableElements.size();
     }
 
     public ArrayList<ArrayList<String>> getArrayList() {
@@ -104,19 +104,19 @@ public class TimeTableDay {
 //        }
 //
 //        return aL;
-        return this.timeTableDay_List;
+        return timeTableDay_List;
     }
 
     public boolean isSameDay(TimeTableDay ttd) {
-        return this.date.getTime() == ttd.getDate().getTime();
+        return date.getTime() == ttd.getDate().getTime();
     }
 
     // Returns the number of differences between two lists
     public int getDifferences(TimeTableDay ttd) {
         int diffs = 0;
 
-        diffs += getUniques(this.timeTableElements, ttd.getElements());
-        diffs += getUniques(ttd.getElements(), this.timeTableElements);
+        diffs += getUniques(timeTableElements, ttd.getElements());
+        diffs += getUniques(ttd.getElements(), timeTableElements);
 
         return diffs;
     }

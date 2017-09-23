@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         int themeID = sp.getInt("Theme", 0);
         setTheme(ThemeManager.getTheme(themeID));
         super.onCreate(savedInstanceState);
-        this.websiteParser = new MGGParser();
+        websiteParser = new MGGParser();
 
         //TODO wieder entfernen, sobald die Funktion wieder geht
         sp.edit().putBoolean("AktTagAnzeigen", true).apply(); //true!!!

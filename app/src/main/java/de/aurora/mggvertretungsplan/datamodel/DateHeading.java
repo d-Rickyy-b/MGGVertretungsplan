@@ -21,7 +21,7 @@ public class DateHeading {
     }
 
     public Date getDate() {
-        return this.date;
+        return date;
     }
 
     public String getWholeDate() {
