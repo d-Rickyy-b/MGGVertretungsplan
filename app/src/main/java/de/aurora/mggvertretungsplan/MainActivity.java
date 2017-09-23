@@ -24,6 +24,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
+import android.text.Spanned;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.KeyEvent;
@@ -39,9 +40,8 @@ import de.aurora.mggvertretungsplan.datamodel.TimeTableDay;
 import de.aurora.mggvertretungsplan.parsing.MGGParser;
 import de.aurora.mggvertretungsplan.parsing.WebsiteParser;
 import de.aurora.mggvertretungsplan.ui.CardsAdapter;
+import de.aurora.mggvertretungsplan.ui.intro.IntroActivity;
 import de.aurora.mggvertretungsplan.ui.theming.ThemeManager;
-
-import static android.os.Build.VERSION.SDK_INT;
 
 public class MainActivity extends AppCompatActivity implements AsyncTaskCompleteListener<String>, SwipeRefreshLayout.OnRefreshListener {
     private SharedPreferences sp;
@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
         // If application is called for the first time, intro slides will show up
         if (sp.getBoolean("firstStart", true)) {
-            Intent intent = new Intent(getApplicationContext(), de.aurora.mggvertretungsplan.ui.intro.IntroActivity.class);
+            Intent intent = new Intent(getApplicationContext(), IntroActivity.class);
             startActivity(intent);
 
             SharedPreferences.Editor editor = sp.edit();
@@ -196,8 +196,8 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
                 feedbackIntent.launchUrl(this, Uri.parse(getString(R.string.feedback_url)));
                 break;
             case R.id.action_info:
-                android.text.Spanned informationText;
-                if (SDK_INT >= 24) {
+                Spanned informationText;
+                if (Build.VERSION.SDK_INT >= 24) {
                     informationText = Html.fromHtml("Programmiert von Rico Jambor<br><br>Bei Fehlern entweder eine Email an:<br><b>rico.jambor@gmail.com</b><br><br>Oder per Telegram an:<br><center><b>@d_Rickyy_b</b></center>", Html.FROM_HTML_MODE_LEGACY);
                 } else {
                     informationText = Html.fromHtml("Programmiert von Rico Jambor<br><br>Bei Fehlern entweder eine Email an:<br><b>rico.jambor@gmail.com</b><br><br>Oder per Telegram an:<br><center><b>@d_Rickyy_b</b></center>");
@@ -330,5 +330,5 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
    /*
      * Code by Rico Jambor
-	 */
+    */
 }

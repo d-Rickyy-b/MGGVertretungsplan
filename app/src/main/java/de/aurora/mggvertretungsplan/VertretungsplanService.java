@@ -11,6 +11,7 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
+import android.support.v7.app.NotificationCompat;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -21,7 +22,6 @@ import de.aurora.mggvertretungsplan.parsing.MGGParser;
 import de.aurora.mggvertretungsplan.parsing.WebsiteParser;
 
 
-@SuppressWarnings("SameParameterValue")
 public class VertretungsplanService extends Service implements AsyncTaskCompleteListener<String> {
 
     private SharedPreferences sp;
@@ -69,7 +69,7 @@ public class VertretungsplanService extends Service implements AsyncTaskComplete
         Log.i("VertretungsplanService", "Sending notification!");
 
         //TODO replace deprecated method
-        android.support.v7.app.NotificationCompat.Builder notification = (android.support.v7.app.NotificationCompat.Builder) new android.support.v7.app.NotificationCompat.Builder(this)
+        NotificationCompat.Builder notification = (NotificationCompat.Builder) new NotificationCompat.Builder(this)
                 .setContentTitle(titel)
                 .setContentText(text)
                 .setTicker(ticker)
