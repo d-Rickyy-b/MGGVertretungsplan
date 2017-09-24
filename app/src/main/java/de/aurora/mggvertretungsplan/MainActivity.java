@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
         displaySavedData();
         updateData();
-        serviceProvider();
+        serviceHandler();
     }
 
 
@@ -219,30 +219,28 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
     }
 
     //TODO Refactor!
-    private void serviceProvider() {
+    private void serviceHandler() {
+        Intent intentsOpen = new Intent(this, BackgroundService.class);
+        PendingIntent pendingIntent = PendingIntent.getService(this, 0, intentsOpen, 0);
+        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+
         if (sp.getBoolean("notification", true)) {
-            startAlarmManager(Long.valueOf(sp.getString("AbrufIntervall", "1800000")));
-            Log.v("BackgroundService", "serviceProvider, Interval: " + sp.getString("AbrufIntervall", "1800000"));
+            String interval_s = sp.getString("AbrufIntervall", "1800000");
+            long interval = Long.valueOf(interval_s);
+            Log.d("MainActivity", String.format("Scheduling BackgroundService - Interval: %s", interval_s));
+            startAlarmManager(alarmManager, pendingIntent, interval);
         } else {
-            endAlarmManager();
+            Log.d("MainActivity", "Cancelling BackgroundService");
+            endAlarmManager(alarmManager, pendingIntent);
         }
     }
 
-    //TODO Refactor
-    private void startAlarmManager(long interval) {
+    private void startAlarmManager(AlarmManager alarmManager, PendingIntent pendingIntent, long interval) {
         long firstStart = System.currentTimeMillis() + interval;
-
-        Intent intentsOpen = new Intent(this, BackgroundService.class);
-        PendingIntent pendingIntent = PendingIntent.getService(this, 0, intentsOpen, 0);
-        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, firstStart, interval, pendingIntent);
     }
 
-    //TODO Refactor
-    private void endAlarmManager() {
-        Intent intentsOpen = new Intent(this, BackgroundService.class);
-        PendingIntent pendingIntent = PendingIntent.getService(this, 0, intentsOpen, 0);
-        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+    private void endAlarmManager(AlarmManager alarmManager, PendingIntent pendingIntent) {
         alarmManager.cancel(pendingIntent);
     }
 
