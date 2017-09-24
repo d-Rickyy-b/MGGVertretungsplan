@@ -1,9 +1,7 @@
 package de.aurora.mggvertretungsplan;
 
 import android.os.AsyncTask;
-import android.util.Log;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -21,24 +19,34 @@ class DownloadWebPageTask extends AsyncTask<String, String, String> {
     }
 
     protected String doInBackground(String... urls) {
-        String response = "";
-        for (String url_string : urls) {
-            try {
-                URL url = new URL(url_string);
-                HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-                try {
-                    InputStream in = new BufferedInputStream(urlConnection.getInputStream());
-                    response = readStream(in);
-                } catch (IOException ioException) {
-                    Log.e("DownloadWebPageTask", ioException.getMessage());
-                } finally {
-                    urlConnection.disconnect();
-                }
-            } catch (Exception exception) {
-                Log.e("DownloadWebPageTask", exception.getMessage());
+        try {
+            return downloadURL(urls[0]);
+        } catch (IOException e) {
+            return "";
+        }
+    }
+
+    private String downloadURL(String urlString) throws IOException {
+        InputStream is = null;
+
+        try {
+            URL url = new URL(urlString);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setReadTimeout(10000);
+            conn.setConnectTimeout(15000);
+            conn.setRequestMethod("GET");
+            conn.setDoInput(true);
+            // Starts the query
+            conn.connect();
+            int responseCode = conn.getResponseCode();
+            is = conn.getInputStream();
+
+            return readStream(is);
+        } finally {
+            if (is != null) {
+                is.close();
             }
         }
-        return response;
     }
 
     @Override
@@ -47,12 +55,12 @@ class DownloadWebPageTask extends AsyncTask<String, String, String> {
     }
 
     private String readStream(InputStream is) throws IOException {
+
         StringBuilder sb = new StringBuilder();
         BufferedReader r = new BufferedReader(new InputStreamReader(is), 1000);
         for (String line = r.readLine(); line != null; line = r.readLine()) {
             sb.append(line);
         }
-        is.close();
         return sb.toString();
     }
 }

@@ -287,6 +287,11 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
     // Wird aufgerufen wenn die Website heruntergeladen wurde
     public void onTaskComplete(String website_html) {
+        if (website_html.equals("")) {
+            Toast.makeText(getApplicationContext(), getString(R.string.downloadException), Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         TimeTable timeTable = websiteParser.parse(website_html, class_name);
         displayData(timeTable);
 

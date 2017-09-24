@@ -6,6 +6,7 @@
     <string name="version">2.1.1</string>
     <integer name="versionNumber">16</integer>
     <string name="bar_title">@string/app_name</string>
+    <string name="downloadException">Es ist ein Fehler beim Herunterladen aufgetreten!</string>
 
     <string name="action_settings">Einstellungen</string>
     <string name="action_feedback">Feedback</string>
