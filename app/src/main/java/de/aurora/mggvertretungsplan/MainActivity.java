@@ -46,7 +46,7 @@ import de.aurora.mggvertretungsplan.ui.theming.ThemeManager;
 public class MainActivity extends AppCompatActivity implements AsyncTaskCompleteListener<String>, SwipeRefreshLayout.OnRefreshListener {
     private SharedPreferences sp;
     private Toolbar toolbar;
-    private String class_name, toolbarTitle_WithClass;
+    private String class_name;
     private int currentYear;
     private SwipeRefreshLayout mSwipeLayout;
     private CardsAdapter cAdapter;
@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         mSwipeLayout.setOnRefreshListener(this);
         mSwipeLayout.setColorSchemeResources(R.color.refresh_progress_1, R.color.refresh_progress_2, R.color.refresh_progress_3);
 
-        toolbarTitle_WithClass = getString(R.string.toolbarTitle_WithClass);
+        String toolbarTitle_WithClass = getString(R.string.toolbarTitle_WithClass);
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setAlpha(1);
