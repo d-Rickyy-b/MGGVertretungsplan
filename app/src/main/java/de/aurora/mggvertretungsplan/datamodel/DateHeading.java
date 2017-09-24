@@ -9,7 +9,7 @@ import java.util.Locale;
  */
 
 public class DateHeading {
-    private final Date date;
+    private Date date;
 
     public DateHeading(Date date) {
         this.date = date;
