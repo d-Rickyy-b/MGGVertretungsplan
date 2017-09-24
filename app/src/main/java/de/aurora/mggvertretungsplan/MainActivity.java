@@ -282,7 +282,6 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
             cAdapter.addDay(ttd);
         }
 
-
         cAdapter.notifyDataSetChanged();
         mSwipeLayout.setRefreshing(false);
     }
@@ -291,7 +290,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
     public void onTaskComplete(String website_html) {
         TimeTable timeTable = websiteParser.parse(website_html, class_name);
         displayData(timeTable);
-
+        
         // TODO NullPointerException
         String firstDate = timeTable.getDay(0).getDateString();
         String secondDate = timeTable.getDay(1).getDateString();
@@ -313,14 +312,6 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         if (requestCode == 0) {
             recreate();
         }
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        toolbar.setTitle(String.format(toolbarTitle_WithClass, class_name));
-        updateData();
-        serviceProvider();
     }
 
    /*
