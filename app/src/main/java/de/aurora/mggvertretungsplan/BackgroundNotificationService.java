@@ -121,13 +121,13 @@ public class BackgroundNotificationService extends Service implements AsyncTaskC
         } else if (dayOne.isSameDay(dayTwo_saved)) {
             diffs_one = dayOne.getDifferences(dayTwo_saved);
         } else {
-            diffs_one = dayOne.getSize();
+            diffs_one = dayOne.getCancellations();
         }
 
         if (dayTwo.isSameDay(dayTwo_saved)) {
             diffs_two = dayTwo.getDifferences(dayTwo_saved);
         } else {
-            diffs_two = dayTwo.getSize();
+            diffs_two = dayTwo.getCancellations();
         }
 
         int changeCount = diffs_one + diffs_two;

@@ -96,10 +96,6 @@ public class TimeTableDay {
         return timeTableElements;
     }
 
-    public int getSize() {
-        return timeTableElements.size();
-    }
-
     public int getCancellations() {
         return timeTableElements.size();
     }
