@@ -1,6 +1,7 @@
 package de.aurora.mggvertretungsplan;
 
 import android.annotation.SuppressLint;
+import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -24,7 +25,7 @@ public class hilfsMethoden {
             JSONArray jsonArray = new JSONArray(jsonArraytext);
             return getArrayList(jsonArray);
         } catch (JSONException jsonException) {
-            jsonException.printStackTrace();
+            Log.e("Vertretungsplan_utility", jsonException.getMessage());
             return new ArrayList<>();
         }
     }
@@ -44,7 +45,7 @@ public class hilfsMethoden {
                 resultList.add(row);
             }
         } catch (JSONException jsonException) {
-            jsonException.printStackTrace();
+            Log.e("Vertretungsplan_utility", jsonException.getMessage());
             return new ArrayList<>();
         }
 

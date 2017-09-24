@@ -1,5 +1,7 @@
 package de.aurora.mggvertretungsplan.parsing;
 
+import android.util.Log;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -71,7 +73,7 @@ public class MGGParser implements WebsiteParser {
                     classList.add(element);
                 }
             } catch (IndexOutOfBoundsException e) {
-                e.printStackTrace();
+                Log.e("Vertretungsplan_parser", e.getMessage());
             }
         }
 
@@ -178,7 +180,7 @@ public class MGGParser implements WebsiteParser {
         try {
             tableOne = extractTable(doc, 0);
         } catch (IndexOutOfBoundsException e) {
-            e.printStackTrace();
+            Log.e("Vertretungsplan_parser", e.getMessage());
             tableOne = new ArrayList<>();
             tableOne.add(new ArrayList<>(Arrays.asList("", "", "", "", "", "", "")));
         }
@@ -186,7 +188,7 @@ public class MGGParser implements WebsiteParser {
         try {
             tableTwo = extractTable(doc, 1);
         } catch (IndexOutOfBoundsException e) {
-            e.printStackTrace();
+            Log.e("Vertretungsplan_parser", e.getMessage());
             tableTwo = new ArrayList<>();
             tableTwo.add(new ArrayList<>(Arrays.asList("", "", "", "", "", "", "")));
         }

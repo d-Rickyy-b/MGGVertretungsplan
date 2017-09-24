@@ -1,5 +1,7 @@
 package de.aurora.mggvertretungsplan.datamodel;
 
+import android.util.Log;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -35,7 +37,7 @@ public class TimeTableDay {
                 this.date = fullDateFormat.parse(date);
             }
         } catch (ParseException e) {
-            e.printStackTrace();
+            Log.e("Vertretungsplan_TTD", e.getMessage());
             this.date = new Date();
         }
 

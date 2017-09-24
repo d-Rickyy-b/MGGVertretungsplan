@@ -58,7 +58,7 @@ public class VertretungsplanService extends Service implements AsyncTaskComplete
             try {
                 new DownloadWebPageTask(this).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, getString(R.string.vertretungsplan_url));
             } catch (Exception e) {
-                e.printStackTrace();
+                Log.e(String.format("%s_service", getString(R.string.app_name)), e.getMessage());
             }
         }
     }
