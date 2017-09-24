@@ -55,13 +55,12 @@ public class CardsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                 View v2 = inflater.inflate(R.layout.view_date_heading, parent, false);
                 return new HeadingsViewHolder(v2);
 
-            default:
             case TYPE_NOINFO:
+            default:
                 View v3 = inflater.inflate(R.layout.view_no_info_card, parent, false);
                 return new NoInfoViewHolder(v3);
         }
     }
-
 
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
@@ -80,6 +79,7 @@ public class CardsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         }
     }
 
+    // Methods to configure the used viewholders
     private void configureCancellationViewholder(RecyclerView.ViewHolder holder, int position) {
         ClassInfoViewHolder classInfoViewHolder = (ClassInfoViewHolder) holder;
         TimeTableElement timeTableElement = (TimeTableElement) items.get(position);
