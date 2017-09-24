@@ -9,9 +9,10 @@ import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
-import android.support.v7.app.NotificationCompat;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -65,12 +66,18 @@ public class BackgroundService extends Service implements AsyncTaskCompleteListe
             PendingIntent pIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, 0);
             Log.d("BackgroundService", "Sending notification!");
 
+            int color;
+            if (Build.VERSION.SDK_INT >= 23)
+                color = getResources().getColor(R.color.accentColor, getTheme());
+            else
+                color = getResources().getColor(R.color.accentColor);
+
             //TODO replace deprecated method
-            NotificationCompat.Builder notification = (NotificationCompat.Builder) new NotificationCompat.Builder(this)
+            NotificationCompat.Builder notification = new NotificationCompat.Builder(this, "")
                     .setContentTitle(titel)
                     .setContentText(text)
                     .setTicker(ticker)
-                    .setColor(getResources().getColor(R.color.accentColor))
+                    .setColor(color)
                     .setSmallIcon(R.drawable.ic_notification)
                     .setContentIntent(pIntent)
                     .setAutoCancel(true);
