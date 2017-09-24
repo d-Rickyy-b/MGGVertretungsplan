@@ -293,6 +293,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
     // Wird aufgerufen wenn die Website heruntergeladen wurde
     public void onTaskComplete(String website_html) {
+        Log.v("MainActivity", "Async DownloadTask complete!");
         if (website_html.equals("")) {
             mSwipeLayout.setRefreshing(false);
             Toast.makeText(getApplicationContext(), getString(R.string.downloadException), Toast.LENGTH_SHORT).show();
