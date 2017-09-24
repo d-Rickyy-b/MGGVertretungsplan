@@ -30,8 +30,7 @@
 
         <SwitchPreference
             android:defaultValue="true"
-            android:enabled="false"
-            android:key="AktTagAnzeigen"
+            android:key="displayCurrentDay"
             android:summary="@string/settings_past_days_summary"
             android:title="@string/settings_past_days_title" />
 

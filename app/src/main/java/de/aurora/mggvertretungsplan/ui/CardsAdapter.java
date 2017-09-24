@@ -128,30 +128,30 @@ public class CardsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     public void addDay(TimeTableDay ttd) {
         Date date = ttd.getDate();
-        DateHeading dateHeading = new DateHeading(date);
-        items.add(dateHeading);
+
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+        boolean displayCurrentDay = sp.getBoolean("displayCurrentDay", true);
 
         // Displays the current day only when the setting is active
         // OR when it's not set, but it's before 16:00
-//        Date currentDate = new Date();
-//        int sixteenHours = 60 * 60 * 16;
-//        long secondsDiff = (currentDate.getTime() - date.getTime()) / 1000;
+        Date currentDate = new Date();
+        int sixteenHrsInSecs = 60 * 60 * 16;
+        long secondsDiff = (date.getTime() - currentDate.getTime()) / 1000; // Difference between today and future date. If negative: date in the past. If positive: date in the future
 
-//        if ((aktTagAnzeigen || ((secondsDiff > 0) && (secondsDiff < sixteenHours)))) {
-//            this.items.add(dateHeading);
-//
-//            for (TimeTableElement tte : timeTableElements) {
-//                this.items.add(tte);
-//            }
-//        }
-        //sp.getBoolean("AktTagAnzeigen", true)
-
+        // If the setting for displaying old days is deactivated, they will be removed here.
+        if (!displayCurrentDay && (secondsDiff < sixteenHrsInSecs)) {
+            return;
+        }
 
         ArrayList<TimeTableElement> timeTableElements = ttd.getElements();
+
+        DateHeading dateHeading = new DateHeading(date);
+        items.add(dateHeading);
 
         // TODO should be improved in the future
         if (timeTableElements.isEmpty()) {
             items.add(new TimeTableElement());
+            return;
         }
 
         for (TimeTableElement tte : timeTableElements) {

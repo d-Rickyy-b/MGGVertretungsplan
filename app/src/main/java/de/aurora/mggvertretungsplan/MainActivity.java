@@ -60,9 +60,6 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         super.onCreate(savedInstanceState);
         websiteParser = new MGGParser();
 
-        //TODO wieder entfernen, sobald die Funktion wieder geht
-        sp.edit().putBoolean("AktTagAnzeigen", true).apply(); //true!!!
-
         class_name = sp.getString("KlasseGesamt", "5a");
 
         // If application is called for the first time, intro slides will show up
@@ -159,7 +156,6 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         timeTable.addTimeTableDay(ttd);
         timeTable.addTimeTableDay(ttd2);
 
-        sp.edit().putBoolean("AktTagAnzeigen", true).apply();
         displayData(timeTable);
     }
 
@@ -308,7 +304,6 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         editor.putString("secondDate", secondDate);
         editor.putString("tableOne", hilfsMethoden.getJSONArray(tableOne).toString());
         editor.putString("tableTwo", hilfsMethoden.getJSONArray(tableTwo).toString());
-        editor.putBoolean("AktTagAnzeigen", true);
         editor.apply();
     }
 
