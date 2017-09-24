@@ -222,7 +222,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
     private void serviceProvider() {
         if (sp.getBoolean("notification", true)) {
             startAlarmManager(Long.valueOf(sp.getString("AbrufIntervall", "1800000")));
-            Log.v("BackgroundNotificationService", "serviceProvider, Interval: " + sp.getString("AbrufIntervall", "1800000"));
+            Log.v("BackgroundService", "serviceProvider, Interval: " + sp.getString("AbrufIntervall", "1800000"));
         } else {
             endAlarmManager();
         }

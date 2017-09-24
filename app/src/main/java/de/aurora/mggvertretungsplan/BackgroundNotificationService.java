@@ -47,7 +47,7 @@ public class BackgroundNotificationService extends Service implements AsyncTaskC
     }
 
     private void updateData() {
-        Log.d("BackgroundNotificationService", "UpdateData");
+        Log.d("BackgroundService", "UpdateData");
         if (isConnectionActive()) {
             sp = PreferenceManager.getDefaultSharedPreferences(this);
 
@@ -63,7 +63,7 @@ public class BackgroundNotificationService extends Service implements AsyncTaskC
         if (sp.getBoolean("notification", true)) {
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             PendingIntent pIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, 0);
-            Log.d("BackgroundNotificationService", "Sending notification!");
+            Log.d("BackgroundService", "Sending notification!");
 
             //TODO replace deprecated method
             NotificationCompat.Builder notification = (NotificationCompat.Builder) new NotificationCompat.Builder(this)
@@ -93,7 +93,7 @@ public class BackgroundNotificationService extends Service implements AsyncTaskC
 
 
     public void onTaskComplete(String website_html) {
-        Log.d("BackgroundNotificationService", "Checking for changes");
+        Log.d("BackgroundService", "Checking for changes");
         WebsiteParser websiteParser = new MGGParser();
         String class_name = sp.getString("KlasseGesamt", "5a");
 
