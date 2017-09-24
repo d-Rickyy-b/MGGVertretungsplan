@@ -221,7 +221,6 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         return super.onOptionsItemSelected(item);
     }
 
-    //TODO Refactor!
     private void serviceHandler() {
         Intent intentsOpen = new Intent(this, BackgroundService.class);
         PendingIntent pendingIntent = PendingIntent.getService(this, 0, intentsOpen, 0);
