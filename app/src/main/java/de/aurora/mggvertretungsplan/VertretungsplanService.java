@@ -60,25 +60,27 @@ public class VertretungsplanService extends Service implements AsyncTaskComplete
     }
 
     private void notification(String ticker, String titel, String text) {
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-        PendingIntent pIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, 0);
-        Log.d("VertretungsplanService", "Sending notification!");
+        if (sp.getBoolean("notification", true)) {
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            PendingIntent pIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, 0);
+            Log.d("VertretungsplanService", "Sending notification!");
 
-        //TODO replace deprecated method
-        NotificationCompat.Builder notification = (NotificationCompat.Builder) new NotificationCompat.Builder(this)
-                .setContentTitle(titel)
-                .setContentText(text)
-                .setTicker(ticker)
-                .setColor(getResources().getColor(R.color.accentColor))
-                .setSmallIcon(R.drawable.ic_notification)
-                .setContentIntent(pIntent)
-                .setAutoCancel(true);
+            //TODO replace deprecated method
+            NotificationCompat.Builder notification = (NotificationCompat.Builder) new NotificationCompat.Builder(this)
+                    .setContentTitle(titel)
+                    .setContentText(text)
+                    .setTicker(ticker)
+                    .setColor(getResources().getColor(R.color.accentColor))
+                    .setSmallIcon(R.drawable.ic_notification)
+                    .setContentIntent(pIntent)
+                    .setAutoCancel(true);
 
-        //.setVibrate(new long[]{0,300,200,300})
-        //.setLights(Color.WHITE, 1000, 5000)
+            //.setVibrate(new long[]{0,300,200,300})
+            //.setLights(Color.WHITE, 1000, 5000)
 
-        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        notificationManager.notify(0, notification.build());
+            NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+            notificationManager.notify(0, notification.build());
+        }
     }
 
     // Checks for an active connection
