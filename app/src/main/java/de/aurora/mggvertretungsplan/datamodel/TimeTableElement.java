@@ -6,7 +6,7 @@ import android.graphics.Color;
  * Created by Rico on 26.09.2016.
  */
 
-public final class TimeTableElement {
+public class TimeTableElement {
     public static final int EMPTY = -1;
     public static final int CANCELLATION = 0;
     public static final int SUBSTITUTION = 1;
