@@ -32,8 +32,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.Locale;
 
 import de.aurora.mggvertretungsplan.datamodel.TimeTable;
 import de.aurora.mggvertretungsplan.datamodel.TimeTableDay;
@@ -227,7 +230,11 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         if (sp.getBoolean("notification", true)) {
             String interval_s = sp.getString("AbrufIntervall", "1800000");
             long interval = Long.valueOf(interval_s);
-            Log.d("MainActivity", String.format("Scheduling BackgroundService - Interval: %s", interval_s));
+
+            Date date = new Date(System.currentTimeMillis() + interval);
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss", Locale.GERMANY);
+
+            Log.d("MainActivity", String.format("Scheduling BackgroundService - Interval: %s - Next start: %s", interval_s, dateFormat.format(date)));
             startAlarmManager(alarmManager, pendingIntent, interval);
         } else {
             Log.d("MainActivity", "Cancelling BackgroundService");
