@@ -290,7 +290,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
     public void onTaskComplete(String website_html) {
         TimeTable timeTable = websiteParser.parse(website_html, class_name);
         displayData(timeTable);
-        
+
         // TODO NullPointerException
         String firstDate = timeTable.getDay(0).getDateString();
         String secondDate = timeTable.getDay(1).getDateString();
