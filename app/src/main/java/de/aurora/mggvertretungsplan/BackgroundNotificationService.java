@@ -22,11 +22,11 @@ import de.aurora.mggvertretungsplan.parsing.MGGParser;
 import de.aurora.mggvertretungsplan.parsing.WebsiteParser;
 
 
-public class VertretungsplanService extends Service implements AsyncTaskCompleteListener<String> {
+public class BackgroundNotificationService extends Service implements AsyncTaskCompleteListener<String> {
 
     private SharedPreferences sp;
 
-    public VertretungsplanService() {
+    public BackgroundNotificationService() {
 
     }
 
@@ -47,7 +47,7 @@ public class VertretungsplanService extends Service implements AsyncTaskComplete
     }
 
     private void updateData() {
-        Log.d("VertretungsplanService", "UpdateData");
+        Log.d("BackgroundNotificationService", "UpdateData");
         if (isConnectionActive()) {
             sp = PreferenceManager.getDefaultSharedPreferences(this);
 
@@ -63,7 +63,7 @@ public class VertretungsplanService extends Service implements AsyncTaskComplete
         if (sp.getBoolean("notification", true)) {
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             PendingIntent pIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, 0);
-            Log.d("VertretungsplanService", "Sending notification!");
+            Log.d("BackgroundNotificationService", "Sending notification!");
 
             //TODO replace deprecated method
             NotificationCompat.Builder notification = (NotificationCompat.Builder) new NotificationCompat.Builder(this)
@@ -93,7 +93,7 @@ public class VertretungsplanService extends Service implements AsyncTaskComplete
 
 
     public void onTaskComplete(String website_html) {
-        Log.d("VertretungsplanService", "Checking for changes");
+        Log.d("BackgroundNotificationService", "Checking for changes");
         WebsiteParser websiteParser = new MGGParser();
         String class_name = sp.getString("KlasseGesamt", "5a");
 

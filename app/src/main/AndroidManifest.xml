@@ -47,7 +47,7 @@
             android:name="de.aurora.mggvertretungsplan.ui.intro.IntroActivity"
             android:theme="@style/AppTheme.Light.NoActionBar" />
 
-        <service android:name=".VertretungsplanService" />
+        <service android:name=".BackgroundNotificationService" />
 
         <receiver android:name=".BootUpReceiver">
             <intent-filter>
