@@ -49,7 +49,7 @@ public class VertretungsplanService extends Service implements AsyncTaskComplete
     }
 
     private void updateData() {
-        Log.v("VertretungsplanService", "UpdateData");
+        Log.d("VertretungsplanService", "UpdateData");
         if (isConnectionActive()) {
             sp = PreferenceManager.getDefaultSharedPreferences(this);
             class_name = sp.getString("KlasseGesamt", "5a");
@@ -66,7 +66,7 @@ public class VertretungsplanService extends Service implements AsyncTaskComplete
     private void notification(String ticker, String titel, String text) {
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         PendingIntent pIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, 0);
-        Log.i("VertretungsplanService", "Sending notification!");
+        Log.d("VertretungsplanService", "Sending notification!");
 
         //TODO replace deprecated method
         NotificationCompat.Builder notification = (NotificationCompat.Builder) new NotificationCompat.Builder(this)
@@ -95,7 +95,7 @@ public class VertretungsplanService extends Service implements AsyncTaskComplete
 
 
     public void onTaskComplete(String website_html) {
-        Log.v("VertretungsplanService", "Checking for changes");
+        Log.d("VertretungsplanService", "Checking for changes");
         sp = PreferenceManager.getDefaultSharedPreferences(this);
         ArrayList<ArrayList<String>> tableOne_saved, tableTwo_saved;
 
