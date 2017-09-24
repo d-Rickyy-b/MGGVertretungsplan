@@ -44,6 +44,18 @@ public class TimeTableDay {
 
     }
 
+    private void addElement(TimeTableElement tte) {
+        int index = 0;
+        for (int i = 0; i < timeTableElements.size(); i++) {
+            if (tte.getHour_I() < timeTableElements.get(i).getHour_I()) {
+                break;
+            }
+            index++;
+        }
+
+        timeTableElements.add(index, tte);
+    }
+
     // Returns the number of unique items in one list compared to another list.
     // A single list should only contain unique items
     private static int getUniques(ArrayList<TimeTableElement> e1, ArrayList<TimeTableElement> e2) {
@@ -66,18 +78,6 @@ public class TimeTableDay {
         return uniques;
     }
 
-    private void addElement(TimeTableElement tte) {
-        int index = 0;
-        for (int i = 0; i < timeTableElements.size(); i++) {
-            if (tte.getHour_I() < timeTableElements.get(i).getHour_I()) {
-                break;
-            }
-            index++;
-        }
-
-        timeTableElements.add(index, tte);
-    }
-
     public Date getDate() {
         return date;
     }
@@ -96,17 +96,13 @@ public class TimeTableDay {
         return timeTableElements;
     }
 
-    public int getCancellations() {
-        return timeTableElements.size();
-    }
-
     public ArrayList<ArrayList<String>> getArrayList() {
         //TODO implement another way instead of saving the list
         return timeTableDay_List;
     }
 
-    public boolean isSameDay(TimeTableDay ttd) {
-        return date.getTime() == ttd.getDate().getTime();
+    public int getCancellations() {
+        return timeTableElements.size();
     }
 
     // Returns the number of differences between two lists
@@ -117,5 +113,9 @@ public class TimeTableDay {
         diffs += getUniques(ttd.getElements(), timeTableElements);
 
         return diffs;
+    }
+
+    public boolean isSameDay(TimeTableDay ttd) {
+        return date.getTime() == ttd.getDate().getTime();
     }
 }
