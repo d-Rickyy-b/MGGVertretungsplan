@@ -15,23 +15,9 @@ public class DateHeading {
         this.date = date;
     }
 
-    public String getDay_name() {
-        SimpleDateFormat dayOfWeekFormat = new SimpleDateFormat("EEEE", Locale.GERMANY);
-        return dayOfWeekFormat.format(date);
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
     public String getWholeDate() {
         SimpleDateFormat wholeDate = new SimpleDateFormat("EEEE, dd.MM.yyyy", Locale.GERMANY);
         return wholeDate.format(date);
-    }
-
-    @SuppressWarnings("SameReturnValue")
-    public String getTitle() {
-        return "DateHeading";
     }
 
 }
