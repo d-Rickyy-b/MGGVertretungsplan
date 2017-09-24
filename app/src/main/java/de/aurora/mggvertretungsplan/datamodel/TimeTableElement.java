@@ -128,6 +128,10 @@ public class TimeTableElement {
             return SUBSTITUTION;
     }
 
+    @Override
+    public String toString() {
+        return String.format("%s | %s | %s | %s | %s | %s", hour, subject, newSubject, room, newRoom, info);
+    }
 //    public String getHash() {
 //        return String.format("%s%s%s%s%s%s", getHour(), getSubject(), getType(), getInfo(), getRoom(), getNewRoom());
 //    }

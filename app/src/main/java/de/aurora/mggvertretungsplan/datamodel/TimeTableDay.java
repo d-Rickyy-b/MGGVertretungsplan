@@ -118,4 +118,14 @@ public class TimeTableDay {
     public boolean isSameDay(TimeTableDay ttd) {
         return date.getTime() == ttd.getDate().getTime();
     }
+
+    public String toString() {
+        String result = "";
+        result += getFullDateString() + "\n";
+        for (TimeTableElement tte : timeTableElements) {
+            result += tte.toString() + "\n";
+        }
+
+        return result;
+    }
 }

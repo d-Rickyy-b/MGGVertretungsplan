@@ -48,4 +48,15 @@ public class TimeTable {
 
         return cancellations;
     }
+
+    @Override
+    public String toString() {
+        String result = "";
+
+        for (TimeTableDay ttd : timeTableDays) {
+            result += ttd.toString();
+        }
+
+        return result;
+    }
 }
