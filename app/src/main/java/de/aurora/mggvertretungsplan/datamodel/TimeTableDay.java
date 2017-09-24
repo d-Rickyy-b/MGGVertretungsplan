@@ -48,6 +48,28 @@ public class TimeTableDay {
 
     }
 
+    // Returns the number of unique items in one list compared to another list.
+    // A single list should only contain unique items
+    private static int getUniques(ArrayList<TimeTableElement> e1, ArrayList<TimeTableElement> e2) {
+        int uniques = 0;
+
+        for (TimeTableElement element : e1) {
+            boolean isUnique = true;
+
+            for (TimeTableElement element_o : e2) {
+                if (element.equals(element_o)) {
+                    isUnique = false;
+                    break;
+                }
+            }
+
+            if (isUnique) {
+                uniques += 1;
+            }
+        }
+        return uniques;
+    }
+
     private void addElement(TimeTableElement tte) {
         int index = 0;
         for (int i = 0; i < timeTableElements.size(); i++) {
@@ -87,25 +109,7 @@ public class TimeTableDay {
     }
 
     public ArrayList<ArrayList<String>> getArrayList() {
-//        ArrayList<ArrayList<String>> aL = new ArrayList<>();
-//
-//        for (TimeTableElement tte : timeTableElements) {
-//            //TODO this doesn't work yet!
-//            ArrayList<String> stringList = new ArrayList<>();
-//            // zeile.get(0), hilfsMethoden.abkuerzung(zeile.get(2)), hilfsMethoden.abkuerzung(zeile.get(3)), zeile.get(4), zeile.get(5), hilfsMethoden.getType(zeile.get(3), zeile.get(5)), zeile.get(6)
-//            // String hour, String subject, String newSubject, String room, String newRoom, String type, String info
-//            stringList.add(tte.getHour());
-//            stringList.add("");
-//            stringList.add(tte.getSubject());
-//            stringList.add(tte.getRoom());
-//            stringList.add(tte.getNewRoom());
-//            stringList.add(tte.getType());
-//            stringList.add(tte.getInfo());
-//
-//            aL.add(stringList);
-//        }
-//
-//        return aL;
+        //TODO implement another way instead of saving the list
         return timeTableDay_List;
     }
 
@@ -121,28 +125,5 @@ public class TimeTableDay {
         diffs += getUniques(ttd.getElements(), timeTableElements);
 
         return diffs;
-    }
-
-
-    // Returns the number of unique items in one list compared to another list.
-    // A single list should only contain unique items
-    private int getUniques(ArrayList<TimeTableElement> e1, ArrayList<TimeTableElement> e2) {
-        int uniques = 0;
-
-        for (TimeTableElement element : e1) {
-            boolean isUnique = true;
-
-            for (TimeTableElement element_o : e2) {
-                if (element.equals(element_o)) {
-                    isUnique = false;
-                    break;
-                }
-            }
-
-            if (isUnique) {
-                uniques += 1;
-            }
-        }
-        return uniques;
     }
 }
