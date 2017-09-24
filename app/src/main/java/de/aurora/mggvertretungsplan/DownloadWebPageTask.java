@@ -1,6 +1,7 @@
 package de.aurora.mggvertretungsplan;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -29,12 +30,12 @@ class DownloadWebPageTask extends AsyncTask<String, String, String> {
                     InputStream in = new BufferedInputStream(urlConnection.getInputStream());
                     response = readStream(in);
                 } catch (IOException ioException) {
-                    ioException.printStackTrace();
+                    Log.e("DownloadWebPageTask", ioException.getMessage());
                 } finally {
                     urlConnection.disconnect();
                 }
             } catch (Exception exception) {
-                exception.printStackTrace();
+                Log.e("DownloadWebPageTask", exception.getMessage());
             }
         }
         return response;
