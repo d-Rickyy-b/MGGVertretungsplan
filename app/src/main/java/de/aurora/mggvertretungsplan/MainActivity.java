@@ -271,7 +271,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
     // Creates the view of the Android App
     private void displayData(TimeTable timeTable) {
-        Log.v("Vertretungsplan", "Anzeigen");
+        Log.v("MainActivity", "Display data on screen");
         String toolbarTitle_WithClass = getString(R.string.toolbarTitle_WithClass);
         toolbar.setTitle(String.format(toolbarTitle_WithClass, class_name));
 
