@@ -132,12 +132,12 @@ public class CardsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
         boolean displayCurrentDay = sp.getBoolean("displayCurrentDay", true);
 
-        // Displays the current day only when the setting is active
-        // OR when it's not set, but it's before 16:00
         Date currentDate = new Date();
         int sixteenHrsInSecs = 60 * 60 * 16;
         long secondsDiff = (date.getTime() - currentDate.getTime()) / 1000; // Difference between today and future date. If negative: date in the past. If positive: date in the future
 
+        // Displays the current day only when the setting is active
+        // OR when it's not set, but it's before 16:00
         // If the setting for displaying old days is deactivated, they will be removed here.
         if (!displayCurrentDay && (secondsDiff < sixteenHrsInSecs)) {
             return;
