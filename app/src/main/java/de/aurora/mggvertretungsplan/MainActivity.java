@@ -60,8 +60,6 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         super.onCreate(savedInstanceState);
         websiteParser = new MGGParser();
 
-        class_name = sp.getString("KlasseGesamt", "5a");
-
         // If application is called for the first time, intro slides will show up
         if (sp.getBoolean("firstStart", true)) {
             Intent intent = new Intent(getApplicationContext(), IntroActivity.class);
@@ -71,6 +69,8 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
             editor.putBoolean("firstStart", false);
             editor.apply();
         }
+
+        class_name = sp.getString("KlasseGesamt", "5a");
 
         setContentView(R.layout.layout_main);
         mSwipeLayout = findViewById(R.id.swipe_refresh_layout);
