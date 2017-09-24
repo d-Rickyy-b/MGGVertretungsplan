@@ -25,8 +25,6 @@ import de.aurora.mggvertretungsplan.parsing.WebsiteParser;
 public class VertretungsplanService extends Service implements AsyncTaskCompleteListener<String> {
 
     private SharedPreferences sp;
-    private String class_name;
-    private WebsiteParser websiteParser;
 
     public VertretungsplanService() {
 
@@ -52,8 +50,6 @@ public class VertretungsplanService extends Service implements AsyncTaskComplete
         Log.d("VertretungsplanService", "UpdateData");
         if (isConnectionActive()) {
             sp = PreferenceManager.getDefaultSharedPreferences(this);
-            class_name = sp.getString("KlasseGesamt", "5a");
-            websiteParser = new MGGParser();
 
             try {
                 new DownloadWebPageTask(this).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, getString(R.string.vertretungsplan_url));
@@ -96,6 +92,9 @@ public class VertretungsplanService extends Service implements AsyncTaskComplete
 
     public void onTaskComplete(String website_html) {
         Log.d("VertretungsplanService", "Checking for changes");
+        WebsiteParser websiteParser = new MGGParser();
+        String class_name = sp.getString("KlasseGesamt", "5a");
+
         sp = PreferenceManager.getDefaultSharedPreferences(this);
         ArrayList<ArrayList<String>> tableOne_saved, tableTwo_saved;
 
