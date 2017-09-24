@@ -14,7 +14,7 @@ public class TimeTable {
     }
 
     // Adds a day right at the right place via insertionsort
-    public void addTimeTableDay(TimeTableDay ttd) {
+    public void addDay(TimeTableDay ttd) {
         int index = 0;
         for (int i = 0; i < timeTableDays.size(); i++) {
             if (ttd.getDate().before(timeTableDays.get(i).getDate())) {

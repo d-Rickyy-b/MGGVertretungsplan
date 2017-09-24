@@ -200,8 +200,8 @@ public class MGGParser implements WebsiteParser {
         TimeTableDay day2 = new TimeTableDay(datesList.get(1), tableTwo);
 
         TimeTable timeTable = new TimeTable();
-        timeTable.addTimeTableDay(day1);
-        timeTable.addTimeTableDay(day2);
+        timeTable.addDay(day1);
+        timeTable.addDay(day2);
 
         return timeTable;
     }

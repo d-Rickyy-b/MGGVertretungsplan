@@ -154,8 +154,8 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
         TimeTableDay ttd = new TimeTableDay(firstDate, tableOne);
         TimeTableDay ttd2 = new TimeTableDay(secondDate, tableTwo);
-        timeTable.addTimeTableDay(ttd);
-        timeTable.addTimeTableDay(ttd2);
+        timeTable.addDay(ttd);
+        timeTable.addDay(ttd2);
 
         displayData(timeTable);
     }
