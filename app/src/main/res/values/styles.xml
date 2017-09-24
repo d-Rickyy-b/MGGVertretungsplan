@@ -1,10 +1,12 @@
 <resources>
 
+    <!-- Drop down menu style of main layout -->
     <style name="DropDownMenuTheme" parent="@style/Widget.AppCompat.Light.ListView.DropDown">
         <item name="android:textColorPrimary">@android:color/black</item>
         <item name="android:background">@android:color/white</item>
     </style>
 
+    <!-- Base Theme -->
     <style name="AppTheme.Light" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -26,18 +28,12 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <!-- Colored themes, changable in settings -->
     <style name="BlueTheme" parent="AppTheme.Light">
         <item name="colorPrimary">#64b5f6</item>
         <item name="colorPrimaryDark">#2286c3</item>
         <item name="colorAccent">#4d2c91</item>
     </style>
-
-    <style name="AppTheme.Light.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
-
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="PinkTheme" parent="AppTheme.Light">
         <item name="colorPrimary">#f06292</item>
@@ -56,4 +52,11 @@
         <item name="colorPrimaryDark">#c66900</item>
         <item name="colorAccent">#9c64a6</item>
     </style>
+    <!-- -->
+
+    <style name="AppTheme.Light.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
 </resources>
