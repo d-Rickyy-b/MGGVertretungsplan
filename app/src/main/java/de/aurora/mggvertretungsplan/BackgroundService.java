@@ -80,6 +80,7 @@ public class BackgroundService extends Service implements AsyncTaskCompleteListe
 
             NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
             notificationManager.notify(0, notification.build());
+            Log.d("BackgroundService", "Notification sent");
         }
     }
 
@@ -131,8 +132,10 @@ public class BackgroundService extends Service implements AsyncTaskCompleteListe
         }
 
         int changeCount = diffs_one + diffs_two;
+        Log.d("BackgroundService", String.format("Changes found: %s", changeCount));
 
         if (changeCount > 0) {
+            Log.d("BackgroundService", "Sending a notification");
             if (changeCount > 1) {
                 notification("Stundenplan Änderung!", "MGG Vertretungsplan", String.format("%s Änderungen!", changeCount));
             } else if (changeCount == 1) {
