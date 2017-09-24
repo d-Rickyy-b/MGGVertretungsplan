@@ -52,20 +52,6 @@ public class hilfsMethoden {
         return resultList;
     }
 
-    // Returns if a certain line is a cancellation
-    private static boolean isCancellation(String substituteSubject, String substituteRoom) {
-        return substituteSubject.equals("---") && substituteRoom.equals("---");
-    }
-
-    // Returns the type of a line in the list
-    public static String getType(String substituteSubject, String substituteRoom) {
-        if (isCancellation(substituteSubject, substituteRoom))
-            return "Entfall";
-        else
-            return "Vertretung";
-    }
-
-
     // Returns the full name of a subject
     @SuppressLint("DefaultLocale")
     public static String abkuerzung(String abk) {
