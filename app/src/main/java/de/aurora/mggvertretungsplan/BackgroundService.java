@@ -108,11 +108,9 @@ public class BackgroundService extends Service implements AsyncTaskCompleteListe
         sp = PreferenceManager.getDefaultSharedPreferences(this);
         ArrayList<ArrayList<String>> tableOne_saved, tableTwo_saved;
 
-        //TODO What if Day is null??
         TimeTable timeTable = websiteParser.parse(website_html, class_name);
-        TimeTableDay dayOne = timeTable.getDay(0);
-        TimeTableDay dayTwo = timeTable.getDay(1);
 
+        TimeTable timeTable_saved = new TimeTable();
         tableOne_saved = hilfsMethoden.getArrayList(sp.getString("tableOne", ""));
         String dayOne_date = sp.getString("firstDate", "01.01.");
         TimeTableDay dayOne_saved = new TimeTableDay(dayOne_date, tableOne_saved);
@@ -121,31 +119,18 @@ public class BackgroundService extends Service implements AsyncTaskCompleteListe
         String dayTwo_date = sp.getString("secondDate", "01.01.");
         TimeTableDay dayTwo_saved = new TimeTableDay(dayTwo_date, tableTwo_saved);
 
-        int diffs_one, diffs_two;
+        timeTable_saved.addDay(dayOne_saved);
+        timeTable_saved.addDay(dayTwo_saved);
 
-        // TODO - fixed to 2 days
-        if (dayOne.isSameDay(dayOne_saved)) {
-            diffs_one = dayOne.getDifferences(dayOne_saved);
-        } else if (dayOne.isSameDay(dayTwo_saved)) {
-            diffs_one = dayOne.getDifferences(dayTwo_saved);
-        } else {
-            diffs_one = dayOne.getCancellations();
-        }
+        if (timeTable.getTotalCancellations() > 0) {
+            // Compare new data with old data
 
-        if (dayTwo.isSameDay(dayTwo_saved)) {
-            diffs_two = dayTwo.getDifferences(dayTwo_saved);
-        } else {
-            diffs_two = dayTwo.getCancellations();
-        }
+            int totalDiffs = timeTable.getTotalDifferences(timeTable_saved);
+            Log.d("BackgroundService", String.format("Total differences: %s", totalDiffs));
 
-        int changeCount = diffs_one + diffs_two;
-        Log.d("BackgroundService", String.format("Changes found: %s", changeCount));
-
-        if (changeCount > 0) {
-            Log.d("BackgroundService", "Sending a notification");
-            if (changeCount > 1) {
-                notification("Stundenplan Änderung!", "MGG Vertretungsplan", String.format("%s Änderungen!", changeCount));
-            } else if (changeCount == 1) {
+            if (totalDiffs > 1) {
+                notification("Stundenplan Änderung!", "MGG Vertretungsplan", String.format("%s Änderungen!", totalDiffs));
+            } else if (totalDiffs == 1) {
                 notification("Stundenplan Änderung!", "MGG Vertretungsplan", "Eine Änderung!");
             }
             //TODO Save downloaded data
