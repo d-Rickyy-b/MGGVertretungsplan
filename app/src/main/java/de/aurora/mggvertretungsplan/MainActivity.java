@@ -232,7 +232,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
     private void startAlarmManager(long interval) {
         long firstStart = System.currentTimeMillis() + interval;
 
-        Intent intentsOpen = new Intent(this, BackgroundNotificationService.class);
+        Intent intentsOpen = new Intent(this, BackgroundService.class);
         PendingIntent pendingIntent = PendingIntent.getService(this, 0, intentsOpen, 0);
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, firstStart, interval, pendingIntent);
@@ -240,7 +240,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
     //TODO Refactor
     private void endAlarmManager() {
-        Intent intentsOpen = new Intent(this, BackgroundNotificationService.class);
+        Intent intentsOpen = new Intent(this, BackgroundService.class);
         PendingIntent pendingIntent = PendingIntent.getService(this, 0, intentsOpen, 0);
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
         alarmManager.cancel(pendingIntent);

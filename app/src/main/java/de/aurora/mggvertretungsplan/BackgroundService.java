@@ -22,11 +22,11 @@ import de.aurora.mggvertretungsplan.parsing.MGGParser;
 import de.aurora.mggvertretungsplan.parsing.WebsiteParser;
 
 
-public class BackgroundNotificationService extends Service implements AsyncTaskCompleteListener<String> {
+public class BackgroundService extends Service implements AsyncTaskCompleteListener<String> {
 
     private SharedPreferences sp;
 
-    public BackgroundNotificationService() {
+    public BackgroundService() {
 
     }
 

@@ -20,7 +20,7 @@ public class BootUpReceiver extends BroadcastReceiver {
                 long interval = (long) Integer.valueOf(sp.getString("AbrufIntervall", "1800000"));
                 long firstStart = System.currentTimeMillis() + DateUtils.MINUTE_IN_MILLIS * 30;
 
-                Intent intentsOpen = new Intent(context, BackgroundNotificationService.class);
+                Intent intentsOpen = new Intent(context, BackgroundService.class);
                 PendingIntent pendingIntent = PendingIntent.getService(context, 0, intentsOpen, 0);
                 AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
                 alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, firstStart, interval, pendingIntent);
