@@ -102,6 +102,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
         displaySavedData();
         updateData();
+        serviceProvider();
     }
 
 
