@@ -113,6 +113,7 @@ public class VertretungsplanService extends Service implements AsyncTaskComplete
 
         int diffs_one, diffs_two;
 
+        // TODO - fixed to 2 days
         if (dayOne.isSameDay(dayOne_saved)) {
             diffs_one = dayOne.getDifferences(dayOne_saved);
         } else if (dayOne.isSameDay(dayTwo_saved)) {
@@ -135,7 +136,7 @@ public class VertretungsplanService extends Service implements AsyncTaskComplete
             } else if (changeCount == 1) {
                 notification("Stundenplan Änderung!", "MGG Vertretungsplan", "Eine Änderung!");
             }
-            //TODO neue Listen speichern?
+            //TODO Save downloaded data
         }
 
     }
