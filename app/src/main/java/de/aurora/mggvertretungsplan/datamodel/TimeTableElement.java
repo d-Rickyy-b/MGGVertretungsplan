@@ -42,14 +42,17 @@ public class TimeTableElement {
             info = info.substring(0, 1).toUpperCase() + info.substring(1);
 
             if (!subject.equals(newSubject) && !newSubject.equals("---") && !newSubject.equals("")) {
-                info = String.format("%s - %s", newSubject, info);
+                info = String.format("%s - %s", this.newSubject, info);
             }
         } else if (type == CANCELLATION) {
             info = "Entfällt";
         } else if (type == SUBSTITUTION) {
-            info = "Vertretung";
+            if (!subject.equals(newSubject) && !newSubject.equals("---") && !newSubject.isEmpty()) {
+                info = String.format("%s - %s", this.newSubject, "Vertretung");
+            } else
+                info = "Vertretung";
         } else {
-            info = newSubject;
+            info = this.newSubject;
         }
 
         this.info = info;
