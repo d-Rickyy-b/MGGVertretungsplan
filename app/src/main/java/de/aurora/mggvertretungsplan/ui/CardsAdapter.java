@@ -16,6 +16,7 @@ import java.util.Date;
 
 import de.aurora.mggvertretungsplan.R;
 import de.aurora.mggvertretungsplan.datamodel.DateHeading;
+import de.aurora.mggvertretungsplan.datamodel.TimeTable;
 import de.aurora.mggvertretungsplan.datamodel.TimeTableDay;
 import de.aurora.mggvertretungsplan.datamodel.TimeTableElement;
 import de.aurora.mggvertretungsplan.ui.viewholder.ClassInfoViewHolder;
@@ -124,6 +125,11 @@ public class CardsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     public void clearItems() {
         items.clear();
+    }
+
+    public void addDays(TimeTable timeTable) {
+        for (TimeTableDay ttd : timeTable.getAllDays())
+            addDay(ttd);
     }
 
     public void addDay(TimeTableDay ttd) {
