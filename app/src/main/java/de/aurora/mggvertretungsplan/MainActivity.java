@@ -278,7 +278,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
     // Creates the view of the Android App
     private void displayData(TimeTable timeTable) {
-        Log.v("MainActivity", "Display data on screen");
+        Log.d("MainActivity", "Display data on screen");
         String toolbarTitle_WithClass = getString(R.string.toolbarTitle_WithClass);
         toolbar.setTitle(String.format(toolbarTitle_WithClass, class_name));
 
@@ -294,7 +294,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
     // Wird aufgerufen wenn die Website heruntergeladen wurde
     public void onTaskComplete(String website_html) {
-        Log.v("MainActivity", "Async DownloadTask complete!");
+        Log.d("MainActivity", "Async DownloadTask complete!");
         if (website_html.equals("")) {
             mSwipeLayout.setRefreshing(false);
             Toast.makeText(getApplicationContext(), getString(R.string.downloadException), Toast.LENGTH_SHORT).show();

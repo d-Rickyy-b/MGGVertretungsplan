@@ -102,6 +102,10 @@ public class BackgroundService extends Service implements AsyncTaskCompleteListe
 
 
     public void onTaskComplete(String website_html) {
+        if (website_html.equals("")) {
+            return;
+        }
+
         Log.d("BackgroundService", "Checking for changes");
         WebsiteParser websiteParser = new MGGParser();
         String class_name = sp.getString("KlasseGesamt", "5a");
@@ -110,6 +114,9 @@ public class BackgroundService extends Service implements AsyncTaskCompleteListe
         ArrayList<ArrayList<String>> tableOne_saved, tableTwo_saved;
 
         TimeTable timeTable = websiteParser.parse(website_html, class_name);
+
+        if (timeTable == null)
+            return;
 
         TimeTable timeTable_saved = new TimeTable();
         tableOne_saved = hilfsMethoden.getArrayList(sp.getString("tableOne", ""));
