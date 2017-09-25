@@ -123,25 +123,21 @@ public class BackgroundService extends Service implements AsyncTaskCompleteListe
         timeTable_saved.addDay(dayOne_saved);
         timeTable_saved.addDay(dayTwo_saved);
 
-        if (timeTable.getTotalCancellations() > 0) {
-            // Compare new data with old data
+        // Compare new data with old data
+        int totalDiffs = timeTable.getTotalDifferences(timeTable_saved);
+        Log.d("BackgroundService", String.format("Total differences: %s", totalDiffs));
 
-            int totalDiffs = timeTable.getTotalDifferences(timeTable_saved);
-            Log.d("BackgroundService", String.format("Total differences: %s", totalDiffs));
+        String ticker = getResources().getString(R.string.notification_cancellations_ticker);
+        String title = getResources().getString(R.string.notification_cancellations_title);
+        String infoOne = getResources().getString(R.string.notification_cancellations_infoOne);
+        String infoMany = getResources().getString(R.string.notification_cancellations_infoMany);
 
-            String ticker = getResources().getString(R.string.notification_cancellations_ticker);
-            String title = getResources().getString(R.string.notification_cancellations_title);
-            String infoOne = getResources().getString(R.string.notification_cancellations_infoOne);
-            String infoMany = getResources().getString(R.string.notification_cancellations_infoMany);
-
-            if (totalDiffs > 1) {
-                notification(ticker, title, String.format(infoMany, totalDiffs));
-            } else if (totalDiffs == 1) {
-                notification(ticker, title, infoOne);
-            }
-            //TODO Save downloaded data
+        if (totalDiffs > 1) {
+            notification(ticker, title, String.format(infoMany, totalDiffs));
+        } else if (totalDiffs == 1) {
+            notification(ticker, title, infoOne);
         }
-
+        //TODO Save downloaded data
     }
 
 }
