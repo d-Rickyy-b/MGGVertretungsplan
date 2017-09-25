@@ -18,7 +18,7 @@
     <string name="placeholder_title">Titel</string>
     <string name="placeholder_summary">Summary</string>
     <string name="infoTitle">Info</string>
-    <string name="card_no_information">Keine Informationen!</string>
+    <string name="card_no_information">Keine Ausfälle!</string>
 
     <!-- Intro Slides Strings -->
     <string name="slide_welcome_title">Willkommen</string>
