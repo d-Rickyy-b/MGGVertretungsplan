@@ -58,85 +58,6 @@ public class TimeTableElement {
         this.info = info;
     }
 
-    int getHour_I() {
-        int hour_i;
-        try {
-            hour_i = Integer.valueOf(getHour().substring(0, 1));
-        } catch (NumberFormatException nfe) {
-            hour_i = 1;
-        }
-        return hour_i;
-    }
-
-    public String getHour() {
-        return hour;
-    }
-
-    public String getSubject() {
-        return subject;
-    }
-
-    public String getNewSubject() {
-        return newSubject;
-    }
-
-    public String getRoom() {
-        return room;
-    }
-
-    public String getNewRoom() {
-        return newRoom;
-    }
-
-    public int getType() {
-        return type;
-    }
-
-    public String getInfo() {
-        return info;
-    }
-
-    public int getColor() {
-        switch (type) {
-            case CANCELLATION:
-                return Color.parseColor("#FF6961");
-            case SUBSTITUTION:
-                return Color.parseColor("#779ECB");
-            default:
-                return Color.parseColor("#F5F5F5");
-        }
-    }
-
-    boolean equals(TimeTableElement tte) {
-        String hour = tte.getHour();
-        String subject = tte.getSubject();
-        String newSubject = tte.getNewSubject();
-        String room = tte.getRoom();
-        String newRoom = tte.getNewRoom();
-        int type = tte.getType();
-        String info = tte.getInfo();
-
-        return hour.equals(this.hour) &&
-                subject.equals(this.subject) &&
-                newSubject.equals(this.newSubject) &&
-                room.equals(this.room) &&
-                newRoom.equals(this.newRoom) &&
-                type == this.type &&
-                info.equals(this.info);
-    }
-
-    private int calcType() {
-        if (newSubject.equals("---") && newRoom.equals("---"))
-            return CANCELLATION;
-        else
-            return SUBSTITUTION;
-    }
-
-    @Override
-    public String toString() {
-        return String.format("%s | %s | %s | %s | %s | %s", hour, subject, newSubject, room, newRoom, info);
-    }
-
     // Returns the full name of a subject abbreviation
     @SuppressLint("DefaultLocale")
     private static String getFullSubject(String abbr) {
@@ -215,6 +136,85 @@ public class TimeTableElement {
                     return abbr;
             }
         }
+    }
+
+    int getHour_I() {
+        int hour_i;
+        try {
+            hour_i = Integer.valueOf(getHour().substring(0, 1));
+        } catch (NumberFormatException nfe) {
+            hour_i = 1;
+        }
+        return hour_i;
+    }
+
+    public String getHour() {
+        return hour;
+    }
+
+    public String getSubject() {
+        return subject;
+    }
+
+    public String getNewSubject() {
+        return newSubject;
+    }
+
+    public String getRoom() {
+        return room;
+    }
+
+    public String getNewRoom() {
+        return newRoom;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public String getInfo() {
+        return info;
+    }
+
+    public int getColor() {
+        switch (type) {
+            case CANCELLATION:
+                return Color.parseColor("#FF6961");
+            case SUBSTITUTION:
+                return Color.parseColor("#779ECB");
+            default:
+                return Color.parseColor("#F5F5F5");
+        }
+    }
+
+    boolean equals(TimeTableElement tte) {
+        String hour = tte.getHour();
+        String subject = tte.getSubject();
+        String newSubject = tte.getNewSubject();
+        String room = tte.getRoom();
+        String newRoom = tte.getNewRoom();
+        int type = tte.getType();
+        String info = tte.getInfo();
+
+        return hour.equals(this.hour) &&
+                subject.equals(this.subject) &&
+                newSubject.equals(this.newSubject) &&
+                room.equals(this.room) &&
+                newRoom.equals(this.newRoom) &&
+                type == this.type &&
+                info.equals(this.info);
+    }
+
+    private int calcType() {
+        if (newSubject.equals("---") && newRoom.equals("---"))
+            return CANCELLATION;
+        else
+            return SUBSTITUTION;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s | %s | %s | %s | %s | %s", hour, subject, newSubject, room, newRoom, info);
     }
 
 //    public String getHash() {
