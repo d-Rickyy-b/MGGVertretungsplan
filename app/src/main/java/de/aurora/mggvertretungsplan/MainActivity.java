@@ -307,19 +307,20 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
         displayData(timeTable);
 
-        // TODO NullPointerException
-        String firstDate = timeTable.getDay(0).getDateString();
-        String secondDate = timeTable.getDay(1).getDateString();
+        try {
+            SharedPreferences.Editor editor = sp.edit();
 
-        ArrayList<ArrayList<String>> tableOne = timeTable.getDay(0).getArrayList();
-        ArrayList<ArrayList<String>> tableTwo = timeTable.getDay(1).getArrayList();
+            int i = 0;
+            for (TimeTableDay ttd : timeTable.getAllDays()) {
+                editor.putString("Date" + i, ttd.getDateString());
+                editor.putString("table" + i, hilfsMethoden.getJSONArray(ttd.getArrayList()).toString());
+                i++;
+            }
 
-        SharedPreferences.Editor editor = sp.edit();
-        editor.putString("firstDate", firstDate);
-        editor.putString("secondDate", secondDate);
-        editor.putString("tableOne", hilfsMethoden.getJSONArray(tableOne).toString());
-        editor.putString("tableTwo", hilfsMethoden.getJSONArray(tableTwo).toString());
-        editor.apply();
+            editor.apply();
+        } catch (NullPointerException npe) {
+            Log.d("MainActivity", "NullPointerException - Day or table not present.");
+        }
     }
 
 

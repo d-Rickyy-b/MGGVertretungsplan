@@ -8,9 +8,6 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -155,44 +152,32 @@ public class MGGParser implements WebsiteParser {
 
     @Override
     public TimeTable parse(String website_html, String className) {
-        ArrayList<ArrayList<String>> tableOne, tableTwo;
+        ArrayList<String> datesList = new ArrayList<>();
+        TimeTable timeTable = new TimeTable();
 
         website_html = website_html.replace("&auml;", "ä").replace("&ouml;", "ö").replace("&uuml;", "ü");
         Document doc = Jsoup.parse(website_html);
 
         Elements dates = doc.select("h2.tabber_title");
 
-        ArrayList<String> datesList = new ArrayList<>();
-
         for (Element date : dates) {
             datesList.add(date.text()); // The parse the dates on the website
         }
 
-        try {
-            tableOne = extractTable(doc, 0);
-        } catch (IndexOutOfBoundsException e) {
-            Log.e("MGGparser", e.getMessage());
-            tableOne = new ArrayList<>();
-            tableOne.add(new ArrayList<>(Arrays.asList("", "", "", "", "", "", "")));
+        for (int i = 0; i < dates.size(); i++) {
+            try {
+                ArrayList<ArrayList<String>> table = extractTable(doc, i);
+                table = prepareData(table, className);
+
+                if (table != null) {
+                    TimeTableDay day = new TimeTableDay(datesList.get(i), table);
+                    timeTable.addDay(day);
+                }
+            } catch (IndexOutOfBoundsException e) {
+                Log.e("MGGparser", "parse(): There is probably no content to excract!");
+                Log.e("MGGparser", e.getMessage());
+            }
         }
-
-        try {
-            tableTwo = extractTable(doc, 1);
-        } catch (IndexOutOfBoundsException e) {
-            Log.e("MGGparser", e.getMessage());
-            tableTwo = new ArrayList<>();
-            tableTwo.add(new ArrayList<>(Arrays.asList("", "", "", "", "", "", "")));
-        }
-
-        tableOne = prepareData(tableOne, className);
-        tableTwo = prepareData(tableTwo, className);
-
-        TimeTableDay day1 = new TimeTableDay(datesList.get(0), tableOne);
-        TimeTableDay day2 = new TimeTableDay(datesList.get(1), tableTwo);
-
-        TimeTable timeTable = new TimeTable();
-        timeTable.addDay(day1);
-        timeTable.addDay(day2);
 
         return timeTable;
     }

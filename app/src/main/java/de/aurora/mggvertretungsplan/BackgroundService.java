@@ -111,7 +111,7 @@ public class BackgroundService extends Service implements AsyncTaskCompleteListe
         String class_name = sp.getString("KlasseGesamt", "5a");
 
         sp = PreferenceManager.getDefaultSharedPreferences(this);
-        ArrayList<ArrayList<String>> tableOne_saved, tableTwo_saved;
+        ArrayList<ArrayList<String>> table;
 
         TimeTable timeTable = websiteParser.parse(website_html, class_name);
 
@@ -119,16 +119,16 @@ public class BackgroundService extends Service implements AsyncTaskCompleteListe
             return;
 
         TimeTable timeTable_saved = new TimeTable();
-        tableOne_saved = hilfsMethoden.getArrayList(sp.getString("tableOne", ""));
-        String dayOne_date = sp.getString("firstDate", "01.01.");
-        TimeTableDay dayOne_saved = new TimeTableDay(dayOne_date, tableOne_saved);
 
-        tableTwo_saved = hilfsMethoden.getArrayList(sp.getString("tableTwo", ""));
-        String dayTwo_date = sp.getString("secondDate", "01.01.");
-        TimeTableDay dayTwo_saved = new TimeTableDay(dayTwo_date, tableTwo_saved);
+        for (int i = 0; i < timeTable.getCount(); i++) {
+            table = hilfsMethoden.getArrayList(sp.getString("table" + i, ""));
+            String date = sp.getString("Date" + i, "01.01.");
 
-        timeTable_saved.addDay(dayOne_saved);
-        timeTable_saved.addDay(dayTwo_saved);
+            if (table != null && !table.isEmpty()) {
+                TimeTableDay day = new TimeTableDay(date, table);
+                timeTable_saved.addDay(day);
+            }
+        }
 
         // Compare new data with old data
         int totalDiffs = timeTable.getTotalDifferences(timeTable_saved);
