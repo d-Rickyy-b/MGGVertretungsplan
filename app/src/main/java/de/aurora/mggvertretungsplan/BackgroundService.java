@@ -70,6 +70,7 @@ public class BackgroundService extends Service implements AsyncTaskCompleteListe
             if (Build.VERSION.SDK_INT >= 23)
                 color = getResources().getColor(R.color.accentColor, getTheme());
             else
+                //noinspection deprecation
                 color = getResources().getColor(R.color.accentColor);
 
             //TODO replace deprecated method
