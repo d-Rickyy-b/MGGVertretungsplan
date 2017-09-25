@@ -55,7 +55,7 @@ public class BackgroundService extends Service implements AsyncTaskCompleteListe
             try {
                 new DownloadWebPageTask(this).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, getString(R.string.vertretungsplan_url));
             } catch (Exception e) {
-                Log.e(String.format("%s_service", getString(R.string.app_name)), e.getMessage());
+                Log.e("BackgroundService", e.getMessage());
             }
         }
     }
