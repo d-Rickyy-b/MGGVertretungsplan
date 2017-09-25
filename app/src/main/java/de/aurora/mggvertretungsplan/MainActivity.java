@@ -148,7 +148,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         int count = sp.getInt("count", timeTable.getCount());
 
         for (int i = 0; i < count; i++) {
-            table = hilfsMethoden.getArrayList(sp.getString("table" + i, ""));
+            table = JsonUtilities.getArrayList(sp.getString("table" + i, ""));
             String date = sp.getString("Date" + i, "01.01.");
 
             if (table != null && !table.isEmpty()) {
@@ -314,7 +314,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
             int i = 0;
             for (TimeTableDay ttd : timeTable.getAllDays()) {
                 editor.putString("Date" + i, ttd.getDateString());
-                editor.putString("table" + i, hilfsMethoden.getJSONArray(ttd.getArrayList()).toString());
+                editor.putString("table" + i, JsonUtilities.getJSONArray(ttd.getArrayList()).toString());
                 i++;
             }
 

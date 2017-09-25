@@ -8,7 +8,7 @@ import org.json.JSONException;
 import java.util.ArrayList;
 
 
-public class hilfsMethoden {
+public class JsonUtilities {
 
     // Returns a JSON Array of a given ArrayList
     static JSONArray getJSONArray(ArrayList<ArrayList<String>> inputlist) {

@@ -122,7 +122,7 @@ public class BackgroundService extends Service implements AsyncTaskCompleteListe
         int count = sp.getInt("count", timeTable.getCount());
 
         for (int i = 0; i < count; i++) {
-            table = hilfsMethoden.getArrayList(sp.getString("table" + i, ""));
+            table = JsonUtilities.getArrayList(sp.getString("table" + i, ""));
             String date = sp.getString("Date" + i, "01.01.");
 
             if (table != null && !table.isEmpty()) {
