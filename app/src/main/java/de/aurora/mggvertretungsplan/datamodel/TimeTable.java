@@ -38,6 +38,10 @@ public class TimeTable {
         //TODO error
     }
 
+    public int getCount() {
+        return timeTableDays.size();
+    }
+
     public ArrayList<TimeTableDay> getAllDays() {
         return timeTableDays;
     }
