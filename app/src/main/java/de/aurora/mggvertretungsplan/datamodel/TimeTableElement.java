@@ -152,7 +152,6 @@ public class TimeTableElement {
                 case "PH":
                     return "Physik";
                 case "CH":
-                case "4CH1":
                     return "Chemie";
                 case "L":
                     return "Latein";
