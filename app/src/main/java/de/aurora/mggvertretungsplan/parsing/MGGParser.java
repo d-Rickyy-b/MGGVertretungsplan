@@ -29,7 +29,6 @@ public class MGGParser implements WebsiteParser {
     private static ArrayList<ArrayList<String>> prepareData(ArrayList<ArrayList<String>> tabelle, String className) {
         tabelle = getRightClass(tabelle, className);
         tabelle = deleteDoubles(tabelle);
-        sort(tabelle);
         tabelle = mergeCancellations(tabelle);
 
         return tabelle;
@@ -82,40 +81,6 @@ public class MGGParser implements WebsiteParser {
         inputList.clear();
         inputList.addAll(set);
         return inputList;
-    }
-
-    // Sort List after hour
-    private static void sort(ArrayList<ArrayList<String>> inputlist) {
-        Collections.sort(inputlist, new Comparator<ArrayList<String>>() {
-            @Override
-            public int compare(ArrayList<String> o1, ArrayList<String> o2) {
-                int value1, value2;
-                String strValue1 = o1.get(0);
-                String strValue2 = o2.get(0);
-
-                if (strValue1.contains("-")) {
-                    String[] parts = strValue1.split("-");
-                    value1 = Integer.valueOf(parts[0]);
-                } else {
-                    value1 = Integer.valueOf(strValue1);
-                }
-
-                if (strValue2.contains("-")) {
-                    String[] parts = strValue2.split("-");
-                    value2 = Integer.valueOf(parts[0]);
-                } else {
-                    value2 = Integer.valueOf(strValue2);
-                }
-
-                if (value1 < value2) {
-                    return -1;
-                } else if (value1 == value2) {
-                    return 0;
-                } else { //if (value1 > value2){
-                    return 1;
-                }
-            }
-        });
     }
 
     // Merges cancellations together (3. & 4. -> 3-4)
