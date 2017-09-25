@@ -147,18 +147,19 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
     // Method to display the saved data
     private void displaySavedData() {
         TimeTable timeTable = new TimeTable();
-        String firstDate = sp.getString("firstDate", "01.01." + currentYear);
-        String secondDate = sp.getString("secondDate", "01.01." + currentYear);
+        ArrayList<ArrayList<String>> table;
 
-        ArrayList<ArrayList<String>> tableOne, tableTwo;
+        int count = sp.getInt("count", timeTable.getCount());
 
-        tableOne = hilfsMethoden.getArrayList(sp.getString("tableOne", ""));
-        tableTwo = hilfsMethoden.getArrayList(sp.getString("tableTwo", ""));
+        for (int i = 0; i < count; i++) {
+            table = hilfsMethoden.getArrayList(sp.getString("table" + i, ""));
+            String date = sp.getString("Date" + i, "01.01.");
 
-        TimeTableDay ttd = new TimeTableDay(firstDate, tableOne);
-        TimeTableDay ttd2 = new TimeTableDay(secondDate, tableTwo);
-        timeTable.addDay(ttd);
-        timeTable.addDay(ttd2);
+            if (table != null && !table.isEmpty()) {
+                TimeTableDay day = new TimeTableDay(date, table);
+                timeTable.addDay(day);
+            }
+        }
 
         displayData(timeTable);
     }
