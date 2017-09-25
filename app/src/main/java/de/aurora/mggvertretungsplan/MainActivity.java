@@ -285,8 +285,12 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
         cAdapter.clearItems();
 
-        for (TimeTableDay ttd : timeTable.getAllDays()) {
-            cAdapter.addDay(ttd);
+        if (timeTable.getCount() == 0) {
+            //TODO add "no data" card! issue #29
+        } else {
+            for (TimeTableDay ttd : timeTable.getAllDays()) {
+                cAdapter.addDay(ttd);
+            }
         }
 
         cAdapter.notifyDataSetChanged();
