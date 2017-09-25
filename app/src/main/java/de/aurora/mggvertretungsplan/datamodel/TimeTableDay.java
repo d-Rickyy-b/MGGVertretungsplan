@@ -45,7 +45,6 @@ public class TimeTableDay {
     // Returns the number of unique items in one list compared to another list.
     // A single list should only contain unique items
     private static int getUniques(ArrayList<TimeTableElement> e1, ArrayList<TimeTableElement> e2) {
-        // TODO This method has a bug with getting uniques when changes to an existing date have been made
         int uniques = 0;
 
         for (TimeTableElement element : e1) {
