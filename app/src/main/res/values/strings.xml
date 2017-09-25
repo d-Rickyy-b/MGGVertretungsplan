@@ -68,6 +68,10 @@
     <string name="cardInfo_representation">Vertretung</string>
     <!--  -->
 
+    <string name="notification_cancellations_title">MGG Vertretungsplan</string>
+    <string name="notification_cancellations_ticker">Stundenplan Änderung!</string>
+    <string name="notification_cancellations_infoOne">"Eine Änderung!"</string>
+    <string name="notification_cancellations_infoMany">"%s Änderungen!"</string>
 
     <string-array name="Klassenstufe_List">
         <item>5</item>

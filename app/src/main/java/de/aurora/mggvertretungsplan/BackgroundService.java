@@ -129,10 +129,15 @@ public class BackgroundService extends Service implements AsyncTaskCompleteListe
             int totalDiffs = timeTable.getTotalDifferences(timeTable_saved);
             Log.d("BackgroundService", String.format("Total differences: %s", totalDiffs));
 
+            String ticker = getResources().getString(R.string.notification_cancellations_ticker);
+            String title = getResources().getString(R.string.notification_cancellations_title);
+            String infoOne = getResources().getString(R.string.notification_cancellations_infoOne);
+            String infoMany = getResources().getString(R.string.notification_cancellations_infoMany);
+
             if (totalDiffs > 1) {
-                notification("Stundenplan Änderung!", "MGG Vertretungsplan", String.format("%s Änderungen!", totalDiffs));
+                notification(ticker, title, String.format(infoOne, totalDiffs));
             } else if (totalDiffs == 1) {
-                notification("Stundenplan Änderung!", "MGG Vertretungsplan", "Eine Änderung!");
+                notification(ticker, title, infoMany);
             }
             //TODO Save downloaded data
         }
