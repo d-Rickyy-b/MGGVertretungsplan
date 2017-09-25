@@ -109,9 +109,10 @@ public class TimeTableDay {
     // Returns the number of differences between two lists
     public int getDifferences(TimeTableDay ttd) {
         int diffs = 0;
-
-        diffs += getUniques(timeTableElements, ttd.getElements());
-        diffs += getUniques(ttd.getElements(), timeTableElements);
+        if (getCancellations() >= ttd.getCancellations())
+            diffs += getUniques(timeTableElements, ttd.getElements());
+        else
+            diffs += getUniques(ttd.getElements(), timeTableElements);
 
         return diffs;
     }
