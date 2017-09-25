@@ -72,7 +72,7 @@ public class BackgroundService extends Service implements AsyncTaskCompleteListe
             else
                 //noinspection deprecation
                 color = getResources().getColor(R.color.accentColor);
-            
+
             NotificationCompat.Builder notification = new NotificationCompat.Builder(this, "")
                     .setContentTitle(titel)
                     .setContentText(text)
