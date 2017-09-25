@@ -139,8 +139,8 @@ public class CardsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         boolean displayCurrentDay = sp.getBoolean("displayCurrentDay", true);
 
         Date currentDate = new Date();
-        int sixteenHrsInSecs = 60 * 60 * 16;
-        long secondsDiff = ((date.getTime() + sixteenHrsInSecs) - currentDate.getTime()) / 1000; // Difference between today and future date. If negative: date in the past. If positive: date in the future
+        int sixteenHrsInMillisecs = 60 * 60 * 16 * 1000;
+        long secondsDiff = ((date.getTime() + sixteenHrsInMillisecs) - currentDate.getTime()) / 1000; // Difference between today and future date. If negative: date in the past. If positive: date in the future
 
         // Displays the current day only when the setting is active
         // OR when it's not set, but it's before 16:00
