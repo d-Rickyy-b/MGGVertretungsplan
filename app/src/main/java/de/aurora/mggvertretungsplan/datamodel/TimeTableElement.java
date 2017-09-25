@@ -30,7 +30,7 @@ public class TimeTableElement {
     }
 
     TimeTableElement(String hour, String subject, String newSubject, String room, String newRoom, String info) {
-        this.hour = hour;
+        this.hour = hour.replace(" - ", "-");
         this.subject = subject;
         this.newSubject = newSubject;
         this.room = room;

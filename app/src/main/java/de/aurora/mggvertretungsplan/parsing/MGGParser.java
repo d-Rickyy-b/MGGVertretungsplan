@@ -32,7 +32,6 @@ public class MGGParser implements WebsiteParser {
     private static ArrayList<ArrayList<String>> prepareData(ArrayList<ArrayList<String>> tabelle, String className) {
         tabelle = getRightClass(tabelle, className);
         tabelle = deleteDoubles(tabelle);
-        tabelle = removeBlanks(tabelle);
         sort(tabelle);
         tabelle = mergeCancellations(tabelle);
 
@@ -85,14 +84,6 @@ public class MGGParser implements WebsiteParser {
         Set<ArrayList<String>> set = new LinkedHashSet<>(inputList);
         inputList.clear();
         inputList.addAll(set);
-        return inputList;
-    }
-
-    // Remove blank lines
-    private static ArrayList<ArrayList<String>> removeBlanks(ArrayList<ArrayList<String>> inputList) {
-        for (ArrayList<String> row : inputList) {
-            row.set(0, row.get(0).replace(" - ", "-"));
-        }
         return inputList;
     }
 
