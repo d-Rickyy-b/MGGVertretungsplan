@@ -119,8 +119,9 @@ public class BackgroundService extends Service implements AsyncTaskCompleteListe
             return;
 
         TimeTable timeTable_saved = new TimeTable();
+        int count = sp.getInt("count", timeTable.getCount());
 
-        for (int i = 0; i < timeTable.getCount(); i++) {
+        for (int i = 0; i < count; i++) {
             table = hilfsMethoden.getArrayList(sp.getString("table" + i, ""));
             String date = sp.getString("Date" + i, "01.01.");
 

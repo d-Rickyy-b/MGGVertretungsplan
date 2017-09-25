@@ -317,6 +317,8 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
                 i++;
             }
 
+            editor.putInt("count", timeTable.getCount());
+
             editor.apply();
         } catch (NullPointerException npe) {
             Log.d("MainActivity", "NullPointerException - Day or table not present.");
