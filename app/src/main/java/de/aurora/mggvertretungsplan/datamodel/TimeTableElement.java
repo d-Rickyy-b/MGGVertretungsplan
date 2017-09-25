@@ -134,15 +134,19 @@ public class TimeTableElement {
         return String.format("%s | %s | %s | %s | %s | %s", hour, subject, newSubject, room, newRoom, info);
     }
 
-    // Returns the full name of a subject
+    // Returns the full name of a subject abbreviation
     @SuppressLint("DefaultLocale")
-    private static String getFullSubject(String abk) {
+    private static String getFullSubject(String abbr) {
 
-        if (abk == null || abk.equals("")) {
+        String pattern = "[0-9]+([a-zA-Z]+)[0-9]+";
+        if (abbr.matches(pattern)) {
+            abbr = abbr.replaceAll(pattern, "$1");
+        }
+
+        if (abbr == null || abbr.equals("")) {
             return "Kein Fach";
         } else {
-            abk = abk.toUpperCase();
-            switch (abk) {
+            switch (abbr.toUpperCase()) {
                 case "D":
                     return "Deutsch";
                 case "PH":
@@ -166,6 +170,7 @@ public class TimeTableElement {
                     return "kath. Religion";
                 case "ETH":
                     return "Ethik";
+                case "M":
                 case "MA":
                     return "Mathe";
                 case "EK":
@@ -205,7 +210,7 @@ public class TimeTableElement {
                 case "PHIL":
                     return "Philosophie";
                 default:
-                    return abk;
+                    return abbr;
             }
         }
     }
