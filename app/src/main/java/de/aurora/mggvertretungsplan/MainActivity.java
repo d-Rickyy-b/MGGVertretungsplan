@@ -302,6 +302,9 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         }
 
         TimeTable timeTable = websiteParser.parse(website_html, class_name);
+        if (timeTable == null)
+            return;
+
         displayData(timeTable);
 
         // TODO NullPointerException
