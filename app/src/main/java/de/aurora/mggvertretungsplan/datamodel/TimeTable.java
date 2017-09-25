@@ -68,7 +68,7 @@ public class TimeTable {
             for (TimeTableDay saved_ttd : savedDays) {
 
                 if (ttd.isSameDay(saved_ttd)) {
-                    Log.d("BackgroundService", String.format("Dates are the same - %s | %s", ttd.getDateString(), saved_ttd.getDateString()));
+                    Log.d("TimeTable", String.format("Dates are the same - %s | %s", ttd.getDateString(), saved_ttd.getDateString()));
                     Log.d("BackgroundService", String.format("%s", ttd.toString()));
                     Log.d("BackgroundService", String.format("%s", saved_ttd.toString()));
                     differences += ttd.getDifferences(saved_ttd);
