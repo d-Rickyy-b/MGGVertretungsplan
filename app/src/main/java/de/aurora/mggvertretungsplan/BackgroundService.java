@@ -135,9 +135,9 @@ public class BackgroundService extends Service implements AsyncTaskCompleteListe
             String infoMany = getResources().getString(R.string.notification_cancellations_infoMany);
 
             if (totalDiffs > 1) {
-                notification(ticker, title, String.format(infoOne, totalDiffs));
+                notification(ticker, title, String.format(infoMany, totalDiffs));
             } else if (totalDiffs == 1) {
-                notification(ticker, title, infoMany);
+                notification(ticker, title, infoOne);
             }
             //TODO Save downloaded data
         }
