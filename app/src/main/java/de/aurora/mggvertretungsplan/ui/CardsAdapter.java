@@ -18,9 +18,9 @@ import de.aurora.mggvertretungsplan.R;
 import de.aurora.mggvertretungsplan.datamodel.DateHeading;
 import de.aurora.mggvertretungsplan.datamodel.TimeTableDay;
 import de.aurora.mggvertretungsplan.datamodel.TimeTableElement;
-import de.aurora.mggvertretungsplan.viewholder.ClassInfoViewHolder;
-import de.aurora.mggvertretungsplan.viewholder.HeadingsViewHolder;
-import de.aurora.mggvertretungsplan.viewholder.NoInfoViewHolder;
+import de.aurora.mggvertretungsplan.ui.viewholder.ClassInfoViewHolder;
+import de.aurora.mggvertretungsplan.ui.viewholder.HeadingsViewHolder;
+import de.aurora.mggvertretungsplan.ui.viewholder.NoInfoViewHolder;
 
 /**
  * Created by Rico on 26.09.2016.

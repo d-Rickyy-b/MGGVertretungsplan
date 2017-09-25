@@ -1,4 +1,4 @@
-package de.aurora.mggvertretungsplan.viewholder;
+package de.aurora.mggvertretungsplan.ui.viewholder;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
