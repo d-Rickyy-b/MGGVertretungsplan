@@ -139,7 +139,7 @@ public class MGGParser implements WebsiteParser {
                     timeTable.addDay(day);
                 }
             } catch (IndexOutOfBoundsException e) {
-                Log.e("MGGparser", "parse(): There is probably no content to excract!");
+                Log.e("MGGparser", "parse(): There is probably no content to extract!");
                 Log.e("MGGparser", e.getMessage());
             }
         }
