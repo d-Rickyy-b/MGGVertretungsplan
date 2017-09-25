@@ -49,8 +49,7 @@ public class MGGParser implements WebsiteParser {
             while (colIterator.hasNext()) {
                 tableRow.add(colIterator.next().text());
             }
-            //TODO was, wenn size kleiner als benoetigte Elemente (7)?
-            //Sollte nie vorkommen, da im HTML immer 7 Elemente sind
+
             if (!tableRow.isEmpty())
                 tableArrayList.add(tableRow);
         }
@@ -103,7 +102,7 @@ public class MGGParser implements WebsiteParser {
 
                 if (identical) {
                     String neuStunde;
-                    //TODO prüfen ob Stunde > als 2 Zeichen | Ansonsten passiert folgendes: 5-6-8 (bei 5-6 und 8)
+                    //TODO check if hour already > than 2 chars | Otherwise this happens: 5-6-8 (for 5-6 and 8)
                     neuStunde = String.format("%s-%s", inputList.get(i - 1).get(0), inputList.get(i).get(0));
                     inputList.get(i - 1).set(0, neuStunde);
                     inputList.remove(i);
