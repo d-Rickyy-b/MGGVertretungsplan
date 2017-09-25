@@ -1,5 +1,6 @@
 package de.aurora.mggvertretungsplan.datamodel;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 
 /**
@@ -31,8 +32,8 @@ public class TimeTableElement {
 
     TimeTableElement(String hour, String subject, String newSubject, String room, String newRoom, String info) {
         this.hour = hour.replace(" - ", "-");
-        this.subject = subject;
-        this.newSubject = newSubject;
+        this.subject = getFullSubject(subject);
+        this.newSubject = getFullSubject(newSubject);
         this.room = room;
         this.newRoom = newRoom;
         this.type = calcType();
@@ -132,6 +133,83 @@ public class TimeTableElement {
     public String toString() {
         return String.format("%s | %s | %s | %s | %s | %s", hour, subject, newSubject, room, newRoom, info);
     }
+
+    // Returns the full name of a subject
+    @SuppressLint("DefaultLocale")
+    private static String getFullSubject(String abk) {
+
+        if (abk == null || abk.equals("")) {
+            return "Kein Fach";
+        } else {
+            abk = abk.toUpperCase();
+            switch (abk) {
+                case "D":
+                    return "Deutsch";
+                case "PH":
+                    return "Physik";
+                case "CH":
+                case "4CH1":
+                    return "Chemie";
+                case "L":
+                    return "Latein";
+                case "S":
+                    return "Spanisch";
+                case "E":
+                    return "Englisch";
+                case "INF":
+                    return "Informatik";
+                case "LIT":
+                    return "Literatur";
+                case "EVR":
+                    return "ev. Religion";
+                case "KAR":
+                    return "kath. Religion";
+                case "ETH":
+                    return "Ethik";
+                case "MA":
+                    return "Mathe";
+                case "EK":
+                    return "Erdkunde";
+                case "BIO":
+                    return "Biologie";
+                case "MU":
+                    return "Musik";
+                case "SP":
+                    return "Sport";
+                case "SW":
+                    return "Sport weibl.";
+                case "SM":
+                    return "Sport männl.";
+                case "G":
+                    return "Geschichte";
+                case "F":
+                    return "Französisch";
+                case "NWT":
+                    return "Naturwissenschaft u. Technik";
+                case "GK":
+                    return "Gemeinschaftskunde";
+                case "SF":
+                    return "Seminarkurs";
+                case "NP":
+                    return "Naturphänomene";
+                case "WI":
+                    return "Wirtschaft";
+                case "METH":
+                    return "METH";
+                case "BK":
+                    return "Bildende Kunst";
+                case "LRS":
+                    return "LRS";
+                case "PSY":
+                    return "Psychologie";
+                case "PHIL":
+                    return "Philosophie";
+                default:
+                    return abk;
+            }
+        }
+    }
+
 //    public String getHash() {
 //        return String.format("%s%s%s%s%s%s", getHour(), getSubject(), getType(), getInfo(), getRoom(), getNewRoom());
 //    }

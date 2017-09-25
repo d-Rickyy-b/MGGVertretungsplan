@@ -9,8 +9,6 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 
-import de.aurora.mggvertretungsplan.hilfsMethoden;
-
 /**
  * Created by Rico on 19.09.2017.
  */
@@ -38,7 +36,7 @@ public class TimeTableDay {
         }
 
         for (ArrayList<String> zeile : timeTableDay_List) {
-            TimeTableElement timeTableElement = new TimeTableElement(zeile.get(0), hilfsMethoden.abkuerzung(zeile.get(2)), hilfsMethoden.abkuerzung(zeile.get(3)), zeile.get(4), zeile.get(5), zeile.get(6));
+            TimeTableElement timeTableElement = new TimeTableElement(zeile.get(0), zeile.get(2), zeile.get(3), zeile.get(4), zeile.get(5), zeile.get(6));
             addElement(timeTableElement);
         }
 
@@ -130,4 +128,5 @@ public class TimeTableDay {
 
         return result;
     }
+
 }

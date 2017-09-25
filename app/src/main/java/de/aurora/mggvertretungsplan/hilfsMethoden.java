@@ -1,6 +1,5 @@
 package de.aurora.mggvertretungsplan;
 
-import android.annotation.SuppressLint;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -52,79 +51,4 @@ public class hilfsMethoden {
         return resultList;
     }
 
-    // Returns the full name of a subject
-    @SuppressLint("DefaultLocale")
-    public static String abkuerzung(String abk) {
-
-        if (abk == null || abk.equals("")) {
-            return "Kein Fach";
-        } else {
-            abk = abk.toUpperCase();
-            switch (abk) {
-                case "D":
-                    return "Deutsch";
-                case "PH":
-                    return "Physik";
-                case "CH":
-                case "4CH1":
-                    return "Chemie";
-                case "L":
-                    return "Latein";
-                case "S":
-                    return "Spanisch";
-                case "E":
-                    return "Englisch";
-                case "INF":
-                    return "Informatik";
-                case "LIT":
-                    return "Literatur";
-                case "EVR":
-                    return "ev. Religion";
-                case "KAR":
-                    return "kath. Religion";
-                case "ETH":
-                    return "Ethik";
-                case "MA":
-                    return "Mathe";
-                case "EK":
-                    return "Erdkunde";
-                case "BIO":
-                    return "Biologie";
-                case "MU":
-                    return "Musik";
-                case "SP":
-                    return "Sport";
-                case "SW":
-                    return "Sport weibl.";
-                case "SM":
-                    return "Sport männl.";
-                case "G":
-                    return "Geschichte";
-                case "F":
-                    return "Französisch";
-                case "NWT":
-                    return "Naturwissenschaft u. Technik";
-                case "GK":
-                    return "Gemeinschaftskunde";
-                case "SF":
-                    return "Seminarkurs";
-                case "NP":
-                    return "Naturphänomene";
-                case "WI":
-                    return "Wirtschaft";
-                case "METH":
-                    return "METH";
-                case "BK":
-                    return "Bildende Kunst";
-                case "LRS":
-                    return "LRS";
-                case "PSY":
-                    return "Psychologie";
-                case "PHIL":
-                    return "Philosophie";
-                default:
-                    return abk;
-            }
-        }
-    }
 }       
