@@ -60,8 +60,10 @@ public class TimeTable {
         for (TimeTableDay ttd : timeTableDays) {
             boolean sameDaySaved = false;
             int sixteenHrsInSecs = 60 * 60 * 16;
-            if (currentDate.getTime() > ttd.getDate().getTime() + sixteenHrsInSecs)
+            if (currentDate.getTime() > ttd.getDate().getTime() + sixteenHrsInSecs) {
+                Log.d("BackgroundService", String.format("Date in the past: %s", ttd.getDateString()));
                 continue;
+            }
 
             for (TimeTableDay saved_ttd : savedDays) {
 
