@@ -35,7 +35,6 @@ import android.widget.Toast;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.Locale;
 
 import de.aurora.mggvertretungsplan.datamodel.TimeTable;
@@ -50,7 +49,6 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
     private SharedPreferences sp;
     private Toolbar toolbar;
     private String class_name;
-    private int currentYear;
     private SwipeRefreshLayout mSwipeLayout;
     private CardsAdapter cAdapter;
     private WebsiteParser websiteParser;
@@ -90,8 +88,6 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         if (Build.VERSION.SDK_INT >= 21) {
             toolbar.setElevation(25);
         }
-
-        currentYear = new GregorianCalendar().get(GregorianCalendar.YEAR);
 
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
         cAdapter = new CardsAdapter(this);
