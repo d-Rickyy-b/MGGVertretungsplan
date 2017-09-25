@@ -180,7 +180,7 @@ public class MGGParser implements WebsiteParser {
         try {
             tableOne = extractTable(doc, 0);
         } catch (IndexOutOfBoundsException e) {
-            Log.e("Vertretungsplan_parser", e.getMessage());
+            Log.e("MGGparser", e.getMessage());
             tableOne = new ArrayList<>();
             tableOne.add(new ArrayList<>(Arrays.asList("", "", "", "", "", "", "")));
         }
@@ -188,7 +188,7 @@ public class MGGParser implements WebsiteParser {
         try {
             tableTwo = extractTable(doc, 1);
         } catch (IndexOutOfBoundsException e) {
-            Log.e("Vertretungsplan_parser", e.getMessage());
+            Log.e("MGGparser", e.getMessage());
             tableTwo = new ArrayList<>();
             tableTwo.add(new ArrayList<>(Arrays.asList("", "", "", "", "", "", "")));
         }
