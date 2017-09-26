@@ -130,6 +130,8 @@ public class CardsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     public void addDays(TimeTable timeTable) {
         for (TimeTableDay ttd : timeTable.getAllDays())
             addDay(ttd);
+
+        //TODO if (items.isEmpty()) || if - issue #29
     }
 
     public void addDay(TimeTableDay ttd) {

@@ -280,13 +280,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         toolbar.setTitle(String.format(toolbarTitle_WithClass, class_name));
 
         cAdapter.clearItems();
-
-        if (timeTable.getCount() == 0) {
-            //TODO add "no data" card! issue #29
-        } else {
-            cAdapter.addDays(timeTable);
-        }
-
+        cAdapter.addDays(timeTable);
         cAdapter.notifyDataSetChanged();
         mSwipeLayout.setRefreshing(false);
     }
