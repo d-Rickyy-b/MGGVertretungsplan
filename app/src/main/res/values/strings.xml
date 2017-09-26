@@ -73,7 +73,7 @@
     <string name="notification_cancellations_infoOne">"Eine Änderung!"</string>
     <string name="notification_cancellations_infoMany">"%s Änderungen!"</string>
 
-    <string-array name="Klassenstufe_List">
+    <string-array name="ClassLayer_List">
         <item>5</item>
         <item>6</item>
         <item>7</item>
@@ -84,7 +84,7 @@
         <item>K2</item>
     </string-array>
 
-    <string-array name="Klassen_List">
+    <string-array name="Class_List">
         <item>a</item>
         <item>b</item>
         <item>c</item>

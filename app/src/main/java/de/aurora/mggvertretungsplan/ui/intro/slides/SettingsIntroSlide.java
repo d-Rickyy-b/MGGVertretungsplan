@@ -114,13 +114,13 @@ public class SettingsIntroSlide extends AppIntroBaseFragment {
             }
         }
 
-        //Stufe:
+        // ClassLayer:
         stufeSpinner = v.findViewById(R.id.slide_class_spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
-                getActivity().getApplicationContext(), R.array.Klassenstufe_List, android.R.layout.simple_spinner_item);
+                getActivity().getApplicationContext(), R.array.ClassLayer_List, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(R.layout.view_spinner_dropdown_item);
         stufeSpinner.setAdapter(adapter);
-        stufeSpinner.setSelection(getPositionFromString(getResources().getStringArray(R.array.Klassenstufe_List), sp.getString("Klassenstufe", "5")));
+        stufeSpinner.setSelection(getPositionFromString(getResources().getStringArray(R.array.ClassLayer_List), sp.getString("Klassenstufe", "5")));
 
         stufeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             Adapter initializedAdapter = null;
@@ -148,13 +148,13 @@ public class SettingsIntroSlide extends AppIntroBaseFragment {
             }
         });
 
-        //Klasse:
+        // Class:
         classSpinner = v.findViewById(R.id.slide_class_spinner2);
         ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(
-                getActivity().getApplicationContext(), R.array.Klassen_List, android.R.layout.simple_spinner_item);
+                getActivity().getApplicationContext(), R.array.Class_List, android.R.layout.simple_spinner_item);
         adapter2.setDropDownViewResource(R.layout.view_spinner_dropdown_item);
         classSpinner.setAdapter(adapter2);
-        classSpinner.setSelection(getPositionFromString(getResources().getStringArray(R.array.Klassen_List), sp.getString("Klasse", "a")));
+        classSpinner.setSelection(getPositionFromString(getResources().getStringArray(R.array.Class_List), sp.getString("Klasse", "a")));
 
         if (stufeSpinner.getSelectedItem().toString().equals("K1") || stufeSpinner.getSelectedItem().toString().equals("K2")) {
             classSpinner.setActivated(false);
