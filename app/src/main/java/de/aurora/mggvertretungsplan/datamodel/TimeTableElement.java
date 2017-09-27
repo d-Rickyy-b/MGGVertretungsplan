@@ -142,13 +142,14 @@ public class TimeTableElement {
     }
 
     int getHour_I() {
-        int hour_i;
         try {
-            hour_i = Integer.valueOf(getHour().substring(0, 1));
+            if (getHour().matches("^([0-9]{1,2})$"))
+                return Integer.valueOf(getHour());
+            else
+                return Integer.valueOf(getHour().replaceAll("^([0-9]{1,2}).*", "$1"));
         } catch (NumberFormatException nfe) {
-            hour_i = 1;
+            return 12;
         }
-        return hour_i;
     }
 
     public String getHour() {
