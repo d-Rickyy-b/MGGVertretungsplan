@@ -29,15 +29,6 @@ public class TimeTable {
         timeTableDays.add(index, ttd);
     }
 
-    public TimeTableDay getDay(int index) {
-        if (index <= (timeTableDays.size() - 1)) {
-            return timeTableDays.get(index);
-        }
-
-        return null;
-        //TODO error
-    }
-
     public int getCount() {
         return timeTableDays.size();
     }
