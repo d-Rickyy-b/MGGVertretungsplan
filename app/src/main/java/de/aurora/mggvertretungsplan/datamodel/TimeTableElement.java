@@ -225,9 +225,5 @@ public class TimeTableElement {
         return String.format("%s | %s | %s | %s | %s | %s", hour, subject, newSubject, room, newRoom, info);
     }
 
-//    public String getHash() {
-//        return String.format("%s%s%s%s%s%s", getHour(), getSubject(), getType(), getInfo(), getRoom(), getNewRoom());
-//    }
-
 }
 
