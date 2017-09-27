@@ -15,14 +15,11 @@ import java.util.Locale;
 
 public class TimeTableDay {
     private final ArrayList<TimeTableElement> timeTableElements = new ArrayList<>();
-    private ArrayList<ArrayList<String>> timeTableDay_List = new ArrayList<>();
     private Date date = new Date();
 
     public TimeTableDay(String date, ArrayList<ArrayList<String>> timeTableDay_List) {
         SimpleDateFormat fullDateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.GERMANY);
         int currentYear = new GregorianCalendar().get(GregorianCalendar.YEAR);
-
-        this.timeTableDay_List = timeTableDay_List;
 
         try {
             if (date.length() == 6)
@@ -36,7 +33,7 @@ public class TimeTableDay {
         }
 
         for (ArrayList<String> zeile : timeTableDay_List) {
-            TimeTableElement timeTableElement = new TimeTableElement(zeile.get(0), zeile.get(2), zeile.get(3), zeile.get(4), zeile.get(5), zeile.get(6));
+            TimeTableElement timeTableElement = new TimeTableElement(zeile.get(0), zeile.get(1), zeile.get(2), zeile.get(3), zeile.get(4), zeile.get(5), zeile.get(6));
             addElement(timeTableElement);
         }
 
@@ -95,8 +92,20 @@ public class TimeTableDay {
     }
 
     public ArrayList<ArrayList<String>> getArrayList() {
-        //TODO implement another way instead of saving the list
-        return timeTableDay_List;
+        ArrayList<ArrayList<String>> elements = new ArrayList<>();
+
+        for (TimeTableElement tte : timeTableElements) {
+            ArrayList<String> line = new ArrayList<>();
+            line.add(tte.getHour());
+            line.add(tte.getClass_name());
+            line.add(tte.getSubject());
+            line.add(tte.getNewSubject());
+            line.add(tte.getRoom());
+            line.add(tte.getNewRoom());
+            line.add(tte.getInfo());
+            elements.add(line);
+        }
+        return elements;
     }
 
     public int getCancellations() {

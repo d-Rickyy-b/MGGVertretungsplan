@@ -13,6 +13,7 @@ public class TimeTableElement {
     public static final int SUBSTITUTION = 1;
 
     private final String hour;
+    private final String class_name;
     private final String subject;
     private final String newSubject;
     private final String room;
@@ -22,6 +23,7 @@ public class TimeTableElement {
 
     public TimeTableElement() {
         hour = "";
+        class_name = "";
         subject = "";
         newSubject = "";
         room = "";
@@ -30,8 +32,9 @@ public class TimeTableElement {
         info = "";
     }
 
-    TimeTableElement(String hour, String subject, String newSubject, String room, String newRoom, String info) {
+    TimeTableElement(String hour, String class_name, String subject, String newSubject, String room, String newRoom, String info) {
         this.hour = hour.replace(" - ", "-");
+        this.class_name = class_name;
         this.subject = getFullSubject(subject);
         this.newSubject = getFullSubject(newSubject);
         this.room = room;
@@ -150,6 +153,10 @@ public class TimeTableElement {
 
     public String getHour() {
         return hour;
+    }
+
+    public String getClass_name() {
+        return this.class_name;
     }
 
     public String getSubject() {
