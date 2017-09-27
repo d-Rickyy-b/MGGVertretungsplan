@@ -143,15 +143,15 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
     // Method to display the saved data
     private void displaySavedData() {
         TimeTable timeTable = new TimeTable();
-        ArrayList<ArrayList<String>> table;
 
         int count = sp.getInt("count", timeTable.getCount());
 
         for (int i = 0; i < count; i++) {
+            ArrayList<ArrayList<String>> table;
             table = JsonUtilities.getArrayList(sp.getString("table" + i, ""));
             String date = sp.getString("Date" + i, "01.01.");
 
-            if (table != null && !table.isEmpty()) {
+            if (table != null) {
                 TimeTableDay day = new TimeTableDay(date, table);
                 timeTable.addDay(day);
             }
