@@ -90,6 +90,7 @@ public class TimeTableElement {
                     return "Informatik";
                 case "LIT":
                     return "Literatur";
+                case "EV":
                 case "EVR":
                     return "ev. Religion";
                 case "KAR":
