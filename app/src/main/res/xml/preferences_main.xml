@@ -6,16 +6,16 @@
 
         <ListPreference
             android:defaultValue="5"
-            android:entries="@array/Klassenstufe_List"
-            android:entryValues="@array/Klassenstufe_List"
+            android:entries="@array/ClassLayer_List"
+            android:entryValues="@array/ClassLayer_List"
             android:key="Klassenstufe"
             android:summary="@string/settings_chooseClassLayer_desc"
             android:title="@string/settings_chooseClassLayer_title" />
 
         <ListPreference
             android:defaultValue="0"
-            android:entries="@array/Klassen_List"
-            android:entryValues="@array/Klassen_List"
+            android:entries="@array/Class_List"
+            android:entryValues="@array/Class_List"
             android:key="Klasse"
             android:summary="@string/settings_chooseClass_desc"
             android:title="@string/settings_chooseClass_title" />
