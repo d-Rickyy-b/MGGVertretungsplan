@@ -320,6 +320,16 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
 
     @Override
+    public void onResume() {
+        super.onResume();
+        toolbar = findViewById(R.id.toolbar);
+        String toolbarTitle_WithClass = getString(R.string.toolbarTitle_WithClass);
+
+        class_name = sp.getString("KlasseGesamt", "5a");
+        toolbar.setTitle(String.format(toolbarTitle_WithClass, class_name));
+    }
+
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         if (requestCode == 0) {
             recreate();
