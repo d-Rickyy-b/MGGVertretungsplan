@@ -65,7 +65,7 @@ public class TimeTableElement {
     @SuppressLint("DefaultLocale")
     private static String getFullSubject(String abbr) {
 
-        String pattern = "[0-9]+([a-zA-Z]+)[0-9]+";
+        String pattern = "[0-9]+([a-zA-Z]+)[0-9]*";
         if (abbr.matches(pattern)) {
             abbr = abbr.replaceAll(pattern, "$1");
         }
