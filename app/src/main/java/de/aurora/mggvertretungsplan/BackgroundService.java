@@ -28,6 +28,7 @@ import de.aurora.mggvertretungsplan.parsing.WebsiteParser;
 public class BackgroundService extends Service implements AsyncTaskCompleteListener<String> {
 
     private SharedPreferences sp;
+    WebsiteParser websiteParser;
     private final static String CHANNEL_NAME = "default";
 
     public BackgroundService() {
@@ -40,8 +41,8 @@ public class BackgroundService extends Service implements AsyncTaskCompleteListe
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        websiteParser = new MGGParser();
         updateData();
-        //TODO Vibration zu Permissions hinzufügen
         stopSelf();
         return START_STICKY;
     }
@@ -52,7 +53,7 @@ public class BackgroundService extends Service implements AsyncTaskCompleteListe
             sp = PreferenceManager.getDefaultSharedPreferences(this);
 
             try {
-                new DownloadWebPageTask(this).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, getString(R.string.vertretungsplan_url));
+                new DownloadWebPageTask(this).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, websiteParser.getTimeTable_url());
             } catch (Exception e) {
                 Log.e("BackgroundService", e.getMessage());
             }
@@ -114,7 +115,6 @@ public class BackgroundService extends Service implements AsyncTaskCompleteListe
         }
 
         Log.d("BackgroundService", "Checking for changes");
-        WebsiteParser websiteParser = new MGGParser();
         String class_name = sp.getString("KlasseGesamt", "5a");
 
         sp = PreferenceManager.getDefaultSharedPreferences(this);
