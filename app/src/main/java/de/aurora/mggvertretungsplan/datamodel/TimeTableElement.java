@@ -2,6 +2,7 @@ package de.aurora.mggvertretungsplan.datamodel;
 
 import android.annotation.SuppressLint;
 import android.graphics.Color;
+import android.util.Log;
 
 /**
  * Created by Rico on 26.09.2016.
@@ -143,12 +144,14 @@ public class TimeTableElement {
     }
 
     int getHour_I() {
+        String hour = getHour();
         try {
-            if (getHour().matches("^([0-9]{1,2})$"))
-                return Integer.valueOf(getHour());
+            if (hour.matches("^([0-9]{1,2})$"))
+                return Integer.parseInt(hour);
             else
-                return Integer.valueOf(getHour().replaceAll("^([0-9]{1,2}).*", "$1"));
+                return Integer.parseInt(hour.replaceAll("^([0-9]{1,2}).*", "$1"));
         } catch (NumberFormatException nfe) {
+            Log.e("TimeTableElement", String.format("Hour doesn't match pattern: %s", hour));
             return 12;
         }
     }
