@@ -21,6 +21,8 @@ import de.aurora.mggvertretungsplan.datamodel.TimeTableDay;
 
 public class MGGParser implements WebsiteParser {
 
+    private static final String timeTable_url = "http://www.mgg.karlsruhe.de/index.php/vertretungsplan";
+
     public MGGParser() {
 
     }
@@ -112,6 +114,10 @@ public class MGGParser implements WebsiteParser {
         }
 
         return inputList;
+    }
+
+    public String getTimeTable_url() {
+        return timeTable_url;
     }
 
     @Override

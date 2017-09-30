@@ -10,4 +10,5 @@ public interface WebsiteParser {
 
     TimeTable parse(String website_html, String className);
 
+    String getTimeTable_url();
 }

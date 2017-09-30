@@ -275,7 +275,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
             class_name = sp.getString("KlasseGesamt", "5a");
 
             try {
-                new DownloadWebPageTask(this).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, getString(R.string.vertretungsplan_url));
+                new DownloadWebPageTask(this).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, websiteParser.getTimeTable_url());
             } catch (Exception e) {
                 mSwipeLayout.setRefreshing(false);
                 Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
