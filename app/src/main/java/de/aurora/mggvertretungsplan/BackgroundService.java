@@ -76,7 +76,7 @@ public class BackgroundService extends Service implements AsyncTaskCompleteListe
 
             if (Build.VERSION.SDK_INT > 26) {
                 NotificationChannel channel = new NotificationChannel(CHANNEL_NAME, "Default Channel", NotificationManager.IMPORTANCE_DEFAULT);
-                channel.setDescription("Benachrichtigungen über Änderungen des Vertretungsplans");
+                channel.setDescription("Notifications about changes of the timetable");
                 channel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
                 notificationManager.createNotificationChannel(channel);
             }
