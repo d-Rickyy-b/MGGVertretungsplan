@@ -56,7 +56,7 @@ public class TimeTable {
             boolean sameDaySaved = false;
             int sixteenHrsInMillisecs = 60 * 60 * 16 * 1000;
             if (currentDate.getTime() > ttd.getDate().getTime() + sixteenHrsInMillisecs) {
-                Log.d("BackgroundService", String.format("Date in the past: %s", ttd.getDateString()));
+                Log.d("BackgroundService", String.format("Date in the past: %s, ignoring!", ttd.getDateString()));
                 continue;
             }
 
