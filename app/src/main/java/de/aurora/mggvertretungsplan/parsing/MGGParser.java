@@ -31,7 +31,6 @@ public class MGGParser implements WebsiteParser {
     private static ArrayList<ArrayList<String>> prepareData(ArrayList<ArrayList<String>> tabelle, String className) {
         tabelle = getRightClass(tabelle, className);
         tabelle = deleteDoubles(tabelle);
-        tabelle = mergeCancellations(tabelle);
 
         return tabelle;
     }
@@ -84,38 +83,6 @@ public class MGGParser implements WebsiteParser {
         return inputList;
     }
 
-    // Merges cancellations together (3. & 4. -> 3-4)
-    private static ArrayList<ArrayList<String>> mergeCancellations(ArrayList<ArrayList<String>> inputList) {
-        if (inputList.size() <= 1) {
-            return inputList;
-        }
-
-        for (int i = 1; i < inputList.size(); i++) {
-            boolean identical = true;
-            ArrayList<String> zeile = inputList.get(i);
-
-            if (!zeile.get(0).equals(inputList.get(i - 1).get(0))) {
-                for (int j = 1; j < zeile.size(); j++) {
-                    if (!zeile.get(j).equals(inputList.get(i - 1).get(j))) {
-                        identical = false;
-                        break;
-                    }
-                }
-
-                if (identical) {
-                    String neuStunde;
-                    //TODO check if hour already > than 2 chars | Otherwise this happens: 5-6-8 (for 5-6 and 8)
-                    neuStunde = String.format("%s-%s", inputList.get(i - 1).get(0), inputList.get(i).get(0));
-                    inputList.get(i - 1).set(0, neuStunde);
-                    inputList.remove(i);
-                    i--;
-                }
-            }
-        }
-
-        return inputList;
-    }
-
     public String getTimeTable_url() {
         return timeTable_url;
     }
@@ -134,6 +101,7 @@ public class MGGParser implements WebsiteParser {
             datesList.add(date.text()); // The parse the dates on the website
         }
 
+        // For each date extract the timetable
         for (int i = 0; i < dates.size(); i++) {
             try {
                 ArrayList<ArrayList<String>> table = extractTable(doc, i);

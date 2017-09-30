@@ -37,6 +37,7 @@ public class TimeTableDay {
             addElement(timeTableElement);
         }
 
+        mergeConsecutiveCancellations();
     }
 
     // Returns the number of unique items in one list compared to another list.
@@ -114,6 +115,24 @@ public class TimeTableDay {
 
     // Returns the number of differences between two lists
     public int getDifferences(TimeTableDay ttd) {
+        /*ArrayList<TimeTableElement> aL = new ArrayList<>();
+
+        for (TimeTableElement tte : getElements()) {
+            boolean dayExists = false;
+            for (TimeTableElement tte2 : ttd.getElements()) {
+                if (tte.equals(tte2)) {
+                    aL.remove(tte);
+                    dayExists = true;
+                }
+            }
+
+            if (!dayExists) {
+                aL.add(tte);
+            }
+        }
+
+        return aL.size();*/
+
         int diffs = 0;
         if (getCancellations() >= ttd.getCancellations())
             diffs += getUniques(timeTableElements, ttd.getElements());
@@ -125,6 +144,45 @@ public class TimeTableDay {
 
     public boolean isSameDay(TimeTableDay ttd) {
         return date.getTime() == ttd.getDate().getTime();
+    }
+
+    // Merges cancellations together (3. & 4. -> 3-4)
+    private void mergeConsecutiveCancellations() {
+        if (getCancellations() <= 1) {
+            return;
+        }
+
+        for (int i = 1; i < getCancellations(); i++) {
+            TimeTableElement tte = timeTableElements.get(i - 1);
+            TimeTableElement tte2 = timeTableElements.get(i);
+
+            if (tte.getHour().length() <= 2 && tte2.getHour().length() <= 2 &&
+                    tte.getHour_I() == (tte2.getHour_I() - 1)) {
+                if (tte.getType() == tte2.getType() &&
+                        tte.getRoom().equals(tte2.getRoom()) &&
+                        tte.getNewRoom().equals(tte2.getNewRoom()) &&
+                        tte.getSubject().equals(tte2.getSubject()) &&
+                        tte.getNewSubject().equals(tte2.getNewSubject())) {
+
+                    String newTime = String.format("%s-%s", tte.getHour(), tte2.getHour());
+                    String newInfo;
+
+                    if (tte.getInfo().equals(tte2.getInfo()))
+                        newInfo = tte.getInfo();
+                    else
+                        newInfo = String.format("%s - %s", tte.getInfo(), tte2.getInfo());
+
+                    TimeTableElement replacement = new TimeTableElement(newTime, tte.getClass_name(), tte.getSubject(), tte.getNewSubject(), tte.getRoom(), tte.getNewRoom(), newInfo);
+
+                    timeTableElements.remove(tte);
+                    timeTableElements.remove(tte2);
+                    addElement(replacement);
+
+                    i--;
+                }
+
+            }
+        }
     }
 
     public String toString() {
