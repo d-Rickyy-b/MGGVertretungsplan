@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         recyclerView.setAdapter(cAdapter);
 
         displaySavedData();
-        updateData();
+        downloadTimeTable();
         serviceHandler();
     }
 
@@ -133,7 +133,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
     // When swiped to refresh
     public void onRefresh() {
-        updateData();
+        downloadTimeTable();
     }
 
     @Override
@@ -269,7 +269,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
     }
 
     // Get saved class, Check for connection, start downloading the timetable
-    private void updateData() {
+    private void downloadTimeTable() {
         if (isConnectionActive()) {
             mSwipeLayout.setRefreshing(true);
             class_name = sp.getString("KlasseGesamt", "5a");
