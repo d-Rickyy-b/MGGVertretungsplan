@@ -34,6 +34,7 @@
     <string name="settings_name">Einstellungen</string>
     <string name="toast_settings_saved">Einstellungen übernommen!</string>
     <string name="toast_noInternetConnection">Keine Internetverbindung!</string>
+    <string name="toast_errorOccurred">Ein Fehler ist aufgetreten!</string>
 
     <!-- Class SettingsActivity Section -->
     <string name="settings_section_class">Klasse</string>

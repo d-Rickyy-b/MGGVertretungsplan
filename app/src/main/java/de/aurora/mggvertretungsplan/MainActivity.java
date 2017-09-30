@@ -282,7 +282,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
             }
         } else {
             mSwipeLayout.setRefreshing(false);
-            Toast.makeText(getApplicationContext(), getString(R.string.toast_noInternetConnection), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), R.string.toast_noInternetConnection, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -303,7 +303,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         Log.d("MainActivity", "Async DownloadTask complete!");
         if (website_html.equals("")) {
             mSwipeLayout.setRefreshing(false);
-            Toast.makeText(getApplicationContext(), getString(R.string.downloadException), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), R.string.downloadException, Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -327,6 +327,8 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
             editor.apply();
         } catch (NullPointerException npe) {
+            mSwipeLayout.setRefreshing(false);
+            Toast.makeText(this, R.string.toast_errorOccurred, Toast.LENGTH_LONG).show();
             Log.d("MainActivity", "NullPointerException - Day or table not present.");
         }
     }
