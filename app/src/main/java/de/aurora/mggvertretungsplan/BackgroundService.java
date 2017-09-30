@@ -118,7 +118,7 @@ public class BackgroundService extends Service implements AsyncTaskCompleteListe
             return;
 
         TimeTable timeTable_saved = new TimeTable();
-        int count = sp.getInt("count", timeTable.getCount());
+        int count = sp.getInt("TT_Changes_Count", timeTable.getCount());
 
         for (int i = 0; i < count; i++) {
             table = JsonUtilities.getArrayList(sp.getString("table" + i, ""));

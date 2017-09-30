@@ -144,7 +144,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
     private void displaySavedData() {
         TimeTable timeTable = new TimeTable();
 
-        int count = sp.getInt("count", timeTable.getCount());
+        int count = sp.getInt("TT_Changes_Count", timeTable.getCount());
 
         for (int i = 0; i < count; i++) {
             ArrayList<ArrayList<String>> table;
@@ -310,7 +310,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
                 i++;
             }
 
-            editor.putInt("count", timeTable.getCount());
+            editor.putInt("TT_Changes_Count", timeTable.getCount());
 
             editor.apply();
         } catch (NullPointerException npe) {
