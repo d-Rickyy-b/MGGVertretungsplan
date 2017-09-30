@@ -74,7 +74,7 @@ public class BackgroundService extends Service implements AsyncTaskCompleteListe
 
             NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-            if (Build.VERSION.SDK_INT > 26) {
+            if (Build.VERSION.SDK_INT >= 26) {
                 NotificationChannel channel = new NotificationChannel(CHANNEL_NAME, "Default Channel", NotificationManager.IMPORTANCE_DEFAULT);
                 channel.setDescription("Notifications about changes of the timetable");
                 channel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
@@ -88,7 +88,8 @@ public class BackgroundService extends Service implements AsyncTaskCompleteListe
                     .setColor(color)
                     .setSmallIcon(R.drawable.ic_notification)
                     .setContentIntent(pIntent)
-                    .setAutoCancel(true);
+                    .setAutoCancel(true)
+                    .setChannelId(CHANNEL_NAME);
 
             //.setVibrate(new long[]{0,300,200,300})
             //.setLights(Color.WHITE, 1000, 5000)
