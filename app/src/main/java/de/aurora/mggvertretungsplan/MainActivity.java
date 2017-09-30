@@ -176,7 +176,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
                 chromeTabsBuilder.setToolbarColor(color);
                 chromeTabsBuilder.setShowTitle(true);
                 CustomTabsIntent websiteIntent = chromeTabsBuilder.build();
-                websiteIntent.launchUrl(this, Uri.parse(getString(R.string.vertretungsplan_url)));
+                websiteIntent.launchUrl(this, Uri.parse(websiteParser.getTimeTable_url()));
                 break;
             case R.id.action_feedback:
                 CustomTabsIntent.Builder chromeTabsFeedbackBuilder = new CustomTabsIntent.Builder();
