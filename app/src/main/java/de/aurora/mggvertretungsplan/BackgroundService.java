@@ -1,5 +1,7 @@
 package de.aurora.mggvertretungsplan;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
@@ -26,6 +28,7 @@ import de.aurora.mggvertretungsplan.parsing.WebsiteParser;
 public class BackgroundService extends Service implements AsyncTaskCompleteListener<String> {
 
     private SharedPreferences sp;
+    private final static String CHANNEL_NAME = "default";
 
     public BackgroundService() {
 
@@ -58,8 +61,8 @@ public class BackgroundService extends Service implements AsyncTaskCompleteListe
 
     private void notification(String ticker, String titel, String text) {
         if (sp.getBoolean("notification", true)) {
-            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-            PendingIntent pIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, 0);
+            Intent intent = new Intent(this, MainActivity.class);
+            PendingIntent pIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
             Log.d("BackgroundService", "Sending notification!");
 
             int color;
@@ -69,7 +72,16 @@ public class BackgroundService extends Service implements AsyncTaskCompleteListe
                 //noinspection deprecation
                 color = getResources().getColor(R.color.accentColor);
 
-            NotificationCompat.Builder notification = new NotificationCompat.Builder(this, "")
+            NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+            if (Build.VERSION.SDK_INT > 26) {
+                NotificationChannel channel = new NotificationChannel(CHANNEL_NAME, "Default Channel", NotificationManager.IMPORTANCE_DEFAULT);
+                channel.setDescription("Benachrichtigungen über Änderungen des Vertretungsplans");
+                channel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
+                notificationManager.createNotificationChannel(channel);
+            }
+
+            NotificationCompat.Builder notification = new NotificationCompat.Builder(this, CHANNEL_NAME)
                     .setContentTitle(titel)
                     .setContentText(text)
                     .setTicker(ticker)
@@ -81,7 +93,6 @@ public class BackgroundService extends Service implements AsyncTaskCompleteListe
             //.setVibrate(new long[]{0,300,200,300})
             //.setLights(Color.WHITE, 1000, 5000)
 
-            NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
             notificationManager.notify(0, notification.build());
             Log.d("BackgroundService", "Notification sent");
         }
