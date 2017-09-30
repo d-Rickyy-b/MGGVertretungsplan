@@ -268,7 +268,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         return activeNetwork != null && activeNetwork.isConnected();
     }
 
-    // überprüfen ob Klasse ausgewählt, ob Internetverbinding besteht, gibt Befehl zum Runterladen
+    // Get saved class, Check for connection, start downloading the timetable
     private void updateData() {
         if (isConnectionActive()) {
             mSwipeLayout.setRefreshing(true);
@@ -298,7 +298,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         mSwipeLayout.setRefreshing(false);
     }
 
-    // Wird aufgerufen wenn die Website heruntergeladen wurde
+    // Gets called, when website was downloaded
     public void onTaskComplete(String website_html) {
         Log.d("MainActivity", "Async DownloadTask complete!");
         if (website_html.equals("")) {
