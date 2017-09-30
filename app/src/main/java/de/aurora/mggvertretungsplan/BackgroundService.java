@@ -43,10 +43,6 @@ public class BackgroundService extends Service implements AsyncTaskCompleteListe
         return START_STICKY;
     }
 
-    @Override
-    public void onDestroy() {
-    }
-
     private void updateData() {
         Log.d("BackgroundService", "UpdateData");
         if (isConnectionActive()) {
