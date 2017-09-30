@@ -104,7 +104,6 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         serviceHandler();
     }
 
-
     // Checks which hardware key was pressed
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -117,7 +116,6 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         }
         return false;
     }
-
 
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
@@ -133,31 +131,26 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         return true;
     }
 
-
     // When swiped to refresh
     public void onRefresh() {
         updateData();
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        toolbar = findViewById(R.id.toolbar);
+        String toolbarTitle_WithClass = getString(R.string.toolbarTitle_WithClass);
 
-    // Method to display the saved data
-    private void displaySavedData() {
-        TimeTable timeTable = new TimeTable();
+        class_name = sp.getString("KlasseGesamt", "5a");
+        toolbar.setTitle(String.format(toolbarTitle_WithClass, class_name));
+    }
 
-        int count = sp.getInt("TT_Changes_Count", timeTable.getCount());
-
-        for (int i = 0; i < count; i++) {
-            ArrayList<ArrayList<String>> table;
-            table = JsonUtilities.getArrayList(sp.getString("table" + i, ""));
-            String date = sp.getString("Date" + i, "01.01.");
-
-            if (table != null) {
-                TimeTableDay day = new TimeTableDay(date, table);
-                timeTable.addDay(day);
-            }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        if (requestCode == 0) {
+            recreate();
         }
-
-        displayData(timeTable);
     }
 
     @Override
@@ -217,6 +210,26 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    // Method to display the saved data
+    private void displaySavedData() {
+        TimeTable timeTable = new TimeTable();
+
+        int count = sp.getInt("TT_Changes_Count", timeTable.getCount());
+
+        for (int i = 0; i < count; i++) {
+            ArrayList<ArrayList<String>> table;
+            table = JsonUtilities.getArrayList(sp.getString("table" + i, ""));
+            String date = sp.getString("Date" + i, "01.01.");
+
+            if (table != null) {
+                TimeTableDay day = new TimeTableDay(date, table);
+                timeTable.addDay(day);
+            }
+        }
+
+        displayData(timeTable);
     }
 
     private void serviceHandler() {
@@ -315,24 +328,6 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
             editor.apply();
         } catch (NullPointerException npe) {
             Log.d("MainActivity", "NullPointerException - Day or table not present.");
-        }
-    }
-
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        toolbar = findViewById(R.id.toolbar);
-        String toolbarTitle_WithClass = getString(R.string.toolbarTitle_WithClass);
-
-        class_name = sp.getString("KlasseGesamt", "5a");
-        toolbar.setTitle(String.format(toolbarTitle_WithClass, class_name));
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        if (requestCode == 0) {
-            recreate();
         }
     }
 
