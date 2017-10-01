@@ -203,21 +203,7 @@ public class TimeTableElement {
     }
 
     boolean equals(TimeTableElement tte) {
-        String hour = tte.getHour();
-        String subject = tte.getSubject();
-        String newSubject = tte.getNewSubject();
-        String room = tte.getRoom();
-        String newRoom = tte.getNewRoom();
-        int type = tte.getType();
-        String info = tte.getInfo();
-
-        return hour.equals(this.hour) &&
-                subject.equals(this.subject) &&
-                newSubject.equals(this.newSubject) &&
-                room.equals(this.room) &&
-                newRoom.equals(this.newRoom) &&
-                type == this.type &&
-                info.equals(this.info);
+        return getDiffAmount(tte) == 0;
     }
 
     int getDiffAmount(TimeTableElement tte) {
