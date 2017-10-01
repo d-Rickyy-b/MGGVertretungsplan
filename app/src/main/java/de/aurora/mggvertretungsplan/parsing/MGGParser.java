@@ -1,5 +1,6 @@
 package de.aurora.mggvertretungsplan.parsing;
 
+import android.os.AsyncTask;
 import android.util.Log;
 
 import org.jsoup.Jsoup;
@@ -12,6 +13,8 @@ import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+import de.aurora.mggvertretungsplan.AsyncTaskCompleteListener;
+import de.aurora.mggvertretungsplan.DownloadWebPageTask;
 import de.aurora.mggvertretungsplan.datamodel.TimeTable;
 import de.aurora.mggvertretungsplan.datamodel.TimeTableDay;
 
@@ -88,11 +91,16 @@ public class MGGParser implements WebsiteParser {
         return timeTable_url;
     }
 
+    public void startDownload(AsyncTaskCompleteListener<String> callback) {
+        new DownloadWebPageTask(callback).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, timeTable_url);
+    }
+
     @Override
     public TimeTable parse(String website_html, String className) {
         ArrayList<String> datesList = new ArrayList<>();
         TimeTable timeTable = new TimeTable();
 
+        // TODO this takes a shitload of time to finish. Maybe remove - there doesn't seem to be a lot of escaped umlauts?
         website_html = website_html.replace("&auml;", "ä").replace("&ouml;", "ö").replace("&uuml;", "ü");
         Document doc = Jsoup.parse(website_html);
 

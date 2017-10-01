@@ -1,5 +1,6 @@
 package de.aurora.mggvertretungsplan.parsing;
 
+import de.aurora.mggvertretungsplan.AsyncTaskCompleteListener;
 import de.aurora.mggvertretungsplan.datamodel.TimeTable;
 
 /**
@@ -7,6 +8,8 @@ import de.aurora.mggvertretungsplan.datamodel.TimeTable;
  */
 
 public interface WebsiteParser {
+
+    void startDownload(AsyncTaskCompleteListener<String> callback);
 
     TimeTable parse(String website_html, String className);
 

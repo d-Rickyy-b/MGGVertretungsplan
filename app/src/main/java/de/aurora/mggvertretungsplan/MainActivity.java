@@ -11,7 +11,6 @@ import android.content.res.Resources.Theme;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -273,7 +272,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
             class_name = sp.getString("KlasseGesamt", "5a");
 
             try {
-                new DownloadWebPageTask(this).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, websiteParser.getTimeTable_url());
+                websiteParser.startDownload(this);
             } catch (Exception e) {
                 mSwipeLayout.setRefreshing(false);
                 Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();

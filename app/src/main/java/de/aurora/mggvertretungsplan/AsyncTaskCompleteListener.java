@@ -1,5 +1,5 @@
 package de.aurora.mggvertretungsplan;
 
-interface AsyncTaskCompleteListener<T> {
+public interface AsyncTaskCompleteListener<T> {
     void onTaskComplete(T result);
 }

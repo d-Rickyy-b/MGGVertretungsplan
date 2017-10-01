@@ -10,7 +10,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 
-class DownloadWebPageTask extends AsyncTask<String, String, String> {
+public class DownloadWebPageTask extends AsyncTask<String, String, String> {
 
     private final AsyncTaskCompleteListener<String> callback;
 

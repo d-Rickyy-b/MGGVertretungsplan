@@ -10,7 +10,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
@@ -53,7 +52,7 @@ public class BackgroundService extends Service implements AsyncTaskCompleteListe
             sp = PreferenceManager.getDefaultSharedPreferences(this);
 
             try {
-                new DownloadWebPageTask(this).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, websiteParser.getTimeTable_url());
+                websiteParser.startDownload(this);
             } catch (Exception e) {
                 Log.e("BackgroundService", e.getMessage());
             }
