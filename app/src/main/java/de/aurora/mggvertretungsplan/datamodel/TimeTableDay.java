@@ -115,7 +115,7 @@ public class TimeTableDay {
                     dayExists = true;
                     break;
                 } else if (tte.getDiffAmount(tte2) == 1) {
-                    Log.d("TTD", "This shouldn't ever happen");
+                    Log.e("TTD", "This shouldn't ever happen");
                     dayExists = false;
                     break;
                 }
