@@ -41,6 +41,7 @@ import de.aurora.mggvertretungsplan.datamodel.TimeTableDay;
 import de.aurora.mggvertretungsplan.parsing.MGGParser;
 import de.aurora.mggvertretungsplan.parsing.WebsiteParser;
 import de.aurora.mggvertretungsplan.ui.CardsAdapter;
+import de.aurora.mggvertretungsplan.ui.EmptyAdapter;
 import de.aurora.mggvertretungsplan.ui.intro.IntroActivity;
 import de.aurora.mggvertretungsplan.ui.theming.ThemeManager;
 
@@ -49,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
     private Toolbar toolbar;
     private String class_name;
     private SwipeRefreshLayout mSwipeLayout;
+    private RecyclerView recyclerView;
     private CardsAdapter cAdapter;
     private WebsiteParser websiteParser;
 
@@ -89,7 +91,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
         cAdapter = new CardsAdapter(this);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
-        RecyclerView recyclerView = findViewById(R.id.recycler_view);
+        recyclerView = findViewById(R.id.recycler_view);
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(mLayoutManager);
@@ -289,9 +291,15 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         String toolbarTitle_WithClass = getString(R.string.toolbarTitle_WithClass);
         toolbar.setTitle(String.format(toolbarTitle_WithClass, class_name));
 
-        cAdapter.clearItems();
-        cAdapter.addDays(timeTable);
-        cAdapter.notifyDataSetChanged();
+        if (timeTable.getCount() == 0) {
+            recyclerView.setAdapter(new EmptyAdapter(getString(R.string.no_data_to_display)));
+        } else {
+            recyclerView.setAdapter(cAdapter);
+            cAdapter.clearItems();
+            cAdapter.addDays(timeTable);
+            cAdapter.notifyDataSetChanged();
+        }
+
         mSwipeLayout.setRefreshing(false);
     }
 
