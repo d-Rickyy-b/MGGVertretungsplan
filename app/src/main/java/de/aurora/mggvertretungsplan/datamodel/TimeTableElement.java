@@ -4,6 +4,9 @@ import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.util.Log;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 /**
  * Created by Rico on 26.09.2016.
  */
@@ -215,6 +218,9 @@ public class TimeTableElement {
                 newRoom.equals(this.newRoom) &&
                 type == this.type &&
                 info.equals(this.info);
+    }
+    ArrayList<String> getElementAsList() {
+        return new ArrayList<>(Arrays.asList(hour, class_name, subject, newSubject, room, newRoom, info));
     }
 
     private int calcType() {
