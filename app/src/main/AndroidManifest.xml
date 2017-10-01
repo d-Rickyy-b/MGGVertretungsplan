@@ -15,7 +15,8 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="false"
-        android:theme="@style/AppTheme.Light">
+        android:theme="@style/AppTheme.Light"
+        android:fullBackupContent="@xml/backup_descriptor">
 
         <activity
             android:name=".MainActivity"
