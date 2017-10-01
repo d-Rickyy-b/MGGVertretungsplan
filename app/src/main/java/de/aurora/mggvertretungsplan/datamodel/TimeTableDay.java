@@ -96,15 +96,7 @@ public class TimeTableDay {
         ArrayList<ArrayList<String>> elements = new ArrayList<>();
 
         for (TimeTableElement tte : timeTableElements) {
-            ArrayList<String> line = new ArrayList<>();
-            line.add(tte.getHour());
-            line.add(tte.getClass_name());
-            line.add(tte.getSubject());
-            line.add(tte.getNewSubject());
-            line.add(tte.getRoom());
-            line.add(tte.getNewRoom());
-            line.add(tte.getInfo());
-            elements.add(line);
+            elements.add(tte.getElementAsList());
         }
         return elements;
     }
