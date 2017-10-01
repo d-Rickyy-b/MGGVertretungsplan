@@ -30,8 +30,7 @@ public class SettingsIntroSlide extends AppIntroBaseFragment {
     private static final String DATA_CLASS = "de.aurora.mggvertretungsplan.ui.intro.slides.InputDemoSlide_classSpinner";
     private static final String DATA_STUFE = "de.aurora.mggvertretungsplan.ui.intro.slides.InputDemoSlide_stufeSpinner";
 
-    private AppCompatSpinner stufeSpinner;
-    private AppCompatSpinner classSpinner;
+    private AppCompatSpinner stufeSpinner, classSpinner;
     private SwitchCompat notificationsSwitch;
     private SharedPreferences sp;
 

@@ -16,7 +16,7 @@ public class EmptyAdapter extends RecyclerView.Adapter<EmptyAdapter.ViewHolder> 
 
     private String mMessage;
 
-    public EmptyAdapter(String message){
+    public EmptyAdapter(String message) {
         mMessage = message;
     }
 
@@ -25,7 +25,7 @@ public class EmptyAdapter extends RecyclerView.Adapter<EmptyAdapter.ViewHolder> 
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_empty, parent, false);
         ViewHolder viewHolder = new ViewHolder(view);
 
-        if(mMessage != null){
+        if (mMessage != null) {
             viewHolder.mMessageView.setText(mMessage);
         }
 
@@ -33,7 +33,8 @@ public class EmptyAdapter extends RecyclerView.Adapter<EmptyAdapter.ViewHolder> 
     }
 
     @Override
-    public void onBindViewHolder(EmptyAdapter.ViewHolder holder, int position) {}
+    public void onBindViewHolder(EmptyAdapter.ViewHolder holder, int position) {
+    }
 
     @Override
     public int getItemCount() {
