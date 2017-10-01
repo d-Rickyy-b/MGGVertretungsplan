@@ -37,6 +37,7 @@ public class TimeTable {
         return timeTableDays;
     }
 
+    @SuppressWarnings("unused")
     public int getTotalCancellations() {
         int cancellations = 0;
 

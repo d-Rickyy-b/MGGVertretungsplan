@@ -8,9 +8,10 @@ import org.json.JSONException;
 import java.util.ArrayList;
 
 
-public class JsonUtilities {
+class JsonUtilities {
 
     // Returns a JSON Array of a given ArrayList
+    @SuppressWarnings("StaticMethodOnlyUsedInOneClass")
     static JSONArray getJSONArray(ArrayList<ArrayList<String>> inputlist) {
         return new JSONArray(inputlist);
     }

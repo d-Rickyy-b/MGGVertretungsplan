@@ -38,7 +38,7 @@ public class DownloadWebPageTask extends AsyncTask<String, String, String> {
             conn.setDoInput(true);
             // Starts the query
             conn.connect();
-            int responseCode = conn.getResponseCode();
+            // int responseCode = conn.getResponseCode();
             is = conn.getInputStream();
 
             return readStream(is);

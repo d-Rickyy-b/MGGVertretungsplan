@@ -26,9 +26,9 @@ import de.aurora.mggvertretungsplan.parsing.WebsiteParser;
 
 public class BackgroundService extends Service implements AsyncTaskCompleteListener<String> {
 
-    private SharedPreferences sp;
-    WebsiteParser websiteParser;
     private final static String CHANNEL_NAME = "default";
+    private WebsiteParser websiteParser;
+    private SharedPreferences sp;
 
     public BackgroundService() {
 
@@ -67,10 +67,10 @@ public class BackgroundService extends Service implements AsyncTaskCompleteListe
 
             int color;
             if (Build.VERSION.SDK_INT >= 23)
-                color = getResources().getColor(R.color.accentColor, getTheme());
+                color = getResources().getColor(R.color.colorAccent, getTheme());
             else
                 //noinspection deprecation
-                color = getResources().getColor(R.color.accentColor);
+                color = getResources().getColor(R.color.colorAccent);
 
             NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 

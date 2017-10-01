@@ -9,6 +9,7 @@ import java.util.Locale;
  */
 
 public class DateHeading {
+    @SuppressWarnings("CanBeFinal")
     private Date date;
 
     public DateHeading(Date date) {
