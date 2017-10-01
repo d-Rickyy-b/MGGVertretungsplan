@@ -296,21 +296,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         mSwipeLayout.setRefreshing(false);
     }
 
-    // Gets called, when website was downloaded
-    public void onTaskComplete(String website_html) {
-        Log.d("MainActivity", "Async DownloadTask complete!");
-        if (website_html.equals("")) {
-            mSwipeLayout.setRefreshing(false);
-            Toast.makeText(getApplicationContext(), R.string.downloadException, Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        TimeTable timeTable = websiteParser.parse(website_html, class_name);
-        if (timeTable == null)
-            return;
-
-        displayData(timeTable);
-
+    private void saveData(TimeTable timeTable) {
         try {
             SharedPreferences.Editor editor = sp.edit();
 
@@ -329,6 +315,23 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
             Toast.makeText(this, R.string.toast_errorOccurred, Toast.LENGTH_LONG).show();
             Log.d("MainActivity", "NullPointerException - Day or table not present.");
         }
+    }
+
+    // Gets called, when website was downloaded
+    public void onTaskComplete(String website_html) {
+        Log.d("MainActivity", "Async DownloadTask complete!");
+        if (website_html.equals("")) {
+            mSwipeLayout.setRefreshing(false);
+            Toast.makeText(getApplicationContext(), R.string.downloadException, Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        TimeTable timeTable = websiteParser.parse(website_html, class_name);
+        if (timeTable == null)
+            return;
+
+        displayData(timeTable);
+        saveData(timeTable);
     }
 
    /*
