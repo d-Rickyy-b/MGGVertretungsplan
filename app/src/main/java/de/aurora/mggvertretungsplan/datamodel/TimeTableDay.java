@@ -129,6 +129,7 @@ public class TimeTableDay {
         return diffs;
     }
 
+    // Checks if this and the given day are at the same date
     public boolean isSameDay(TimeTableDay ttd) {
         return date.getTime() == ttd.getDate().getTime();
     }
@@ -172,6 +173,7 @@ public class TimeTableDay {
         }
     }
 
+    @Override
     public String toString() {
         String result = "";
         result += getFullDateString() + "\n";
