@@ -13,7 +13,7 @@ android {
         applicationId "de.aurora.mggvertretungsplan"
         minSdkVersion 15
         targetSdkVersion 26
-        versionCode 16
+        versionCode 17
         versionName "3.0.2"
         multiDexEnabled true
     }
