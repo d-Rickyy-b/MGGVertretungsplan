@@ -40,28 +40,6 @@ public class TimeTableDay {
         mergeConsecutiveCancellations();
     }
 
-    // Returns the number of unique items in one list compared to another list.
-    // A single list should only contain unique items
-    private static int getUniques(ArrayList<TimeTableElement> e1, ArrayList<TimeTableElement> e2) {
-        int uniques = 0;
-
-        for (TimeTableElement element : e1) {
-            boolean isUnique = true;
-
-            for (TimeTableElement element_o : e2) {
-                if (element.equals(element_o)) {
-                    isUnique = false;
-                    break;
-                }
-            }
-
-            if (isUnique) {
-                uniques += 1;
-            }
-        }
-        return uniques;
-    }
-
     private void addElement(TimeTableElement tte) {
         int index = 0;
         for (int i = 0; i < timeTableElements.size(); i++) {
@@ -107,29 +85,46 @@ public class TimeTableDay {
 
     // Returns the number of differences between two lists
     public int getDifferences(TimeTableDay ttd) {
-        /*ArrayList<TimeTableElement> aL = new ArrayList<>();
+        // TODO Refactor in own method to avoid duplicate code
+        int diffs = 0;
+
+        ArrayList<TimeTableElement> savedElements = ttd.getElements();
 
         for (TimeTableElement tte : getElements()) {
             boolean dayExists = false;
-            for (TimeTableElement tte2 : ttd.getElements()) {
+            for (TimeTableElement tte2 : savedElements) {
                 if (tte.equals(tte2)) {
-                    aL.remove(tte);
                     dayExists = true;
+                    break;
+                } else if (tte.getDiffAmount(tte2) == 1) {
+                    savedElements.remove(tte2);
+                    dayExists = false;
+                    break;
                 }
             }
 
             if (!dayExists) {
-                aL.add(tte);
+                diffs++;
             }
         }
 
-        return aL.size();*/
+        for (TimeTableElement tte : savedElements) {
+            boolean dayExists = false;
+            for (TimeTableElement tte2 : getElements()) {
+                if (tte.equals(tte2)) {
+                    dayExists = true;
+                    break;
+                } else if (tte.getDiffAmount(tte2) == 1) {
+                    Log.d("TTD", "This shouldn't ever happen");
+                    dayExists = false;
+                    break;
+                }
+            }
 
-        int diffs = 0;
-        if (getCancellations() >= ttd.getCancellations())
-            diffs += getUniques(timeTableElements, ttd.getElements());
-        else
-            diffs += getUniques(ttd.getElements(), timeTableElements);
+            if (!dayExists) {
+                diffs++;
+            }
+        }
 
         return diffs;
     }
