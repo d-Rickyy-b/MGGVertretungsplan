@@ -152,7 +152,27 @@ public class BackgroundService extends Service implements AsyncTaskCompleteListe
         } else if (totalDiffs == 1) {
             notification(ticker, title, infoOne);
         }
-        //TODO Save downloaded data
+
+        saveData(timeTable);
+    }
+
+    private void saveData(TimeTable timeTable) {
+        try {
+            SharedPreferences.Editor editor = sp.edit();
+
+            int i = 0;
+            for (TimeTableDay ttd : timeTable.getAllDays()) {
+                editor.putString("Date" + i, ttd.getDateString());
+                editor.putString("table" + i, JsonUtilities.getJSONArray(ttd.getArrayList()).toString());
+                i++;
+            }
+
+            editor.putInt("TT_Changes_Count", timeTable.getDaysCount());
+
+            editor.apply();
+        } catch (NullPointerException npe) {
+            Log.d("MainActivity", "NullPointerException - Day or table not present.");
+        }
     }
 
 }
