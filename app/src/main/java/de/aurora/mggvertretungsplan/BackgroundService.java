@@ -34,6 +34,7 @@ public class BackgroundService extends Service implements AsyncTaskCompleteListe
 
     }
 
+    @Override
     public IBinder onBind(Intent intent) {
         return null;
     }
