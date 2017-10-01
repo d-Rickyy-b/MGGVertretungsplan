@@ -215,7 +215,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
     private void displaySavedData() {
         TimeTable timeTable = new TimeTable();
 
-        int count = sp.getInt("TT_Changes_Count", timeTable.getCount());
+        int count = sp.getInt("TT_Changes_Count", timeTable.getDaysCount());
 
         for (int i = 0; i < count; i++) {
             ArrayList<ArrayList<String>> table;
@@ -291,7 +291,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         String toolbarTitle_WithClass = getString(R.string.toolbarTitle_WithClass);
         toolbar.setTitle(String.format(toolbarTitle_WithClass, class_name));
 
-        if (timeTable.getCount() == 0) {
+        if (timeTable.getDaysCount() == 0) {
             recyclerView.setAdapter(new EmptyAdapter(getString(R.string.no_data_to_display)));
         } else {
             recyclerView.setAdapter(cAdapter);
@@ -314,7 +314,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
                 i++;
             }
 
-            editor.putInt("TT_Changes_Count", timeTable.getCount());
+            editor.putInt("TT_Changes_Count", timeTable.getDaysCount());
 
             editor.apply();
         } catch (NullPointerException npe) {

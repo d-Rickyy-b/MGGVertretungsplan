@@ -29,7 +29,7 @@ public class TimeTable {
         timeTableDays.add(index, ttd);
     }
 
-    public int getCount() {
+    public int getDaysCount() {
         return timeTableDays.size();
     }
 
