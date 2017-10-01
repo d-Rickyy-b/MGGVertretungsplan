@@ -83,6 +83,7 @@ public class MGGParser implements WebsiteParser {
         return inputList;
     }
 
+    @Override
     public String getTimeTable_url() {
         return timeTable_url;
     }
