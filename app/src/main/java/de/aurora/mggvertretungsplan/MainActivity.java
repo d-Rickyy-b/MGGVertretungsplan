@@ -78,24 +78,22 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         mSwipeLayout.setOnRefreshListener(this);
         mSwipeLayout.setColorSchemeResources(R.color.refresh_progress_1, R.color.refresh_progress_2, R.color.refresh_progress_3);
 
-        String toolbarTitle_WithClass = getString(R.string.toolbarTitle_WithClass);
         toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
         toolbar.setAlpha(1);
-        toolbar.setTitle(String.format(toolbarTitle_WithClass, class_name));
+        toolbar.setTitle(String.format(getString(R.string.toolbarTitle_WithClass), class_name));
         toolbar.showOverflowMenu();
+        setSupportActionBar(toolbar);
 
         if (Build.VERSION.SDK_INT >= 21) {
             toolbar.setElevation(25);
         }
 
-        RecyclerView recyclerView = findViewById(R.id.recycler_view);
         cAdapter = new CardsAdapter(this);
-        recyclerView.setHasFixedSize(true);
-
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
-        recyclerView.setLayoutManager(mLayoutManager);
+        RecyclerView recyclerView = findViewById(R.id.recycler_view);
 
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(cAdapter);
 
