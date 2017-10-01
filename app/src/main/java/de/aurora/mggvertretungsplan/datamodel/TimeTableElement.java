@@ -219,6 +219,20 @@ public class TimeTableElement {
                 type == this.type &&
                 info.equals(this.info);
     }
+
+    int getDiffAmount(TimeTableElement tte) {
+        int diffs = 0;
+        ArrayList<String> list1 = getElementAsList();
+        ArrayList<String> list2 = tte.getElementAsList();
+
+        for (int i = 0; i < list1.size(); i++) {
+            if (!list1.get(i).equals(list2.get(i)))
+                diffs++;
+        }
+
+        return diffs;
+    }
+
     ArrayList<String> getElementAsList() {
         return new ArrayList<>(Arrays.asList(hour, class_name, subject, newSubject, room, newRoom, info));
     }
