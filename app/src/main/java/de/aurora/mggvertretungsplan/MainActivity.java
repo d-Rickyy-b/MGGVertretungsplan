@@ -291,7 +291,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         String toolbarTitle_WithClass = getString(R.string.toolbarTitle_WithClass);
         toolbar.setTitle(String.format(toolbarTitle_WithClass, class_name));
 
-        if (timeTable.getDaysCount() == 0) {
+        if (timeTable.getDaysCount() == 0 || (sp.getBoolean("", true) && timeTable.getFutureDaysCount() == 0)) {
             recyclerView.setAdapter(new EmptyAdapter(getString(R.string.no_data_to_display)));
         } else {
             recyclerView.setAdapter(cAdapter);
