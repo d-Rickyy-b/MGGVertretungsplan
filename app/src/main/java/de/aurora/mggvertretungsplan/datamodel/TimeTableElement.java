@@ -78,9 +78,9 @@ public class TimeTableElement {
                     return "Literatur";
                 case "EV":
                 case "EVR":
-                    return "ev. Religion";
+                    return "Ev. Religion";
                 case "KAR":
-                    return "kath. Religion";
+                    return "Kath. Religion";
                 case "ET":
                 case "ETH":
                     return "Ethik";
