@@ -30,7 +30,7 @@
 
         <SwitchPreference
             android:defaultValue="true"
-            android:key="displayCurrentDay"
+            android:key="displayPastDays"
             android:summary="@string/settings_past_days_summary"
             android:title="@string/settings_past_days_title" />
 
