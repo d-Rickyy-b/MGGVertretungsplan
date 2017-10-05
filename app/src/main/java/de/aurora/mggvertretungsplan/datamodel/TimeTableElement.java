@@ -44,24 +44,6 @@ public class TimeTableElement {
         this.room = room;
         this.newRoom = newRoom;
         this.type = calcType();
-
-        if (!info.isEmpty()) {
-            info = info.substring(0, 1).toUpperCase() + info.substring(1);
-
-            if (!subject.equals(newSubject) && !newSubject.equals("---") && !newSubject.equals("")) {
-                info = String.format("%s - %s", this.newSubject, info);
-            }
-        } else if (type == CANCELLATION) {
-            info = "Entfällt";
-        } else if (type == SUBSTITUTION) {
-            if (!subject.equals(newSubject) && !newSubject.equals("---") && !newSubject.isEmpty()) {
-                info = String.format("%s - %s", this.newSubject, "Vertretung");
-            } else
-                info = "Vertretung";
-        } else {
-            info = this.newSubject;
-        }
-
         this.info = info;
     }
 
@@ -189,7 +171,25 @@ public class TimeTableElement {
     }
 
     public String getInfo() {
-        return info;
+        String info_e;
+        if (!info.isEmpty()) {
+            info_e = info.substring(0, 1).toUpperCase() + info.substring(1);
+
+            if (!subject.equals(newSubject) && !newSubject.equals("---") && !newSubject.equals("")) {
+                info_e = String.format("%s - %s", this.newSubject, info);
+            }
+        } else if (type == CANCELLATION) {
+            info_e = "Entfällt";
+        } else if (type == SUBSTITUTION) {
+            if (!subject.equals(newSubject) && !newSubject.equals("---") && !newSubject.isEmpty()) {
+                info_e = String.format("%s - %s", this.newSubject, "Vertretung");
+            } else
+                info_e = "Vertretung";
+        } else {
+            info_e = this.newSubject;
+        }
+
+        return info_e;
     }
 
     public int getColor() {
@@ -221,7 +221,7 @@ public class TimeTableElement {
     }
 
     ArrayList<String> getElementAsList() {
-        return new ArrayList<>(Arrays.asList(hour, class_name, subject, newSubject, room, newRoom, info));
+        return new ArrayList<>(Arrays.asList(hour, class_name, subject, newSubject, room, newRoom, getInfo()));
     }
 
     private int calcType() {
