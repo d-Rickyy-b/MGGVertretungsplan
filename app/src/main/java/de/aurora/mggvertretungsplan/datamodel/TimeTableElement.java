@@ -49,12 +49,14 @@ public class TimeTableElement {
 
     // Returns the full name of a subject abbreviation
     @SuppressLint("DefaultLocale")
-    private static String getFullSubject(String abbr) {
-
+    private static String getFullSubject(String subj) {
         String pattern = "[0-9]+([a-zA-Z]+)[0-9]*";
-        if (abbr.matches(pattern)) {
-            abbr = abbr.replaceAll(pattern, "$1");
-        }
+        String abbr;
+
+        if (subj.matches(pattern)) {
+            abbr = subj.replaceAll(pattern, "$1");
+        } else
+            abbr = subj;
 
         if (abbr == null || abbr.equals("")) {
             return "Kein Fach";
