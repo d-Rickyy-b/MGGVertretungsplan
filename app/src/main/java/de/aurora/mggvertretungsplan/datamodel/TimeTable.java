@@ -33,6 +33,18 @@ public class TimeTable {
         return timeTableDays.size();
     }
 
+    public int getFutureDaysCount() {
+        int futureDays = 0;
+
+        for (TimeTableDay ttd: timeTableDays) {
+            if (ttd.getDate().getTime() + 16*60*60*1000 >= (new Date()).getTime()) {
+                futureDays++;
+            }
+        }
+
+        return futureDays;
+    }
+
     public ArrayList<TimeTableDay> getAllDays() {
         return timeTableDays;
     }
