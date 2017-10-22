@@ -31,12 +31,12 @@
 
         <activity
             android:name=".SettingsActivity"
-            android:label="Einstellungen"
+            android:label="@string/settings_name"
             android:theme="@style/AppTheme.Light.NoActionBar" />
 
         <activity
             android:name=".SettingsNotificationActivity"
-            android:label="Einstellungen"
+            android:label="@string/settings_notification_title"
             android:theme="@style/AppTheme.Light.NoActionBar">
             <intent-filter>
                 <action android:name=".EINSTELLUNGEN" />
