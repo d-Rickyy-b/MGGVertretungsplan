@@ -36,8 +36,9 @@ public class TimeTable {
     public int getFutureDaysCount() {
         int futureDays = 0;
 
-        for (TimeTableDay ttd: timeTableDays) {
-            if (ttd.getDate().getTime() + 16*60*60*1000 >= (new Date()).getTime()) {
+        for (TimeTableDay ttd : timeTableDays) {
+            int sixteenHrsInMillis = 16 * 60 * 60 * 1000;
+            if (ttd.getDate().getTime() + sixteenHrsInMillis >= (new Date()).getTime()) {
                 futureDays++;
             }
         }
