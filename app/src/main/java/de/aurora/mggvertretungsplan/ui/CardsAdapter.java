@@ -87,7 +87,7 @@ public class CardsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
         classInfoViewHolder.hour.setText(timeTableElement.getHour());
         classInfoViewHolder.title.setText(timeTableElement.getSubject());
-        classInfoViewHolder.info.setText(timeTableElement.getInfo());
+        classInfoViewHolder.info.setText(timeTableElement.getInfoForDisplay());
         classInfoViewHolder.room.setText(timeTableElement.getRoom());
         classInfoViewHolder.newRoom.setText(timeTableElement.getNewRoom());
 

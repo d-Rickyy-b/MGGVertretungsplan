@@ -173,6 +173,21 @@ public class TimeTableElement {
     }
 
     public String getInfo() {
+        return this.info;
+    }
+
+    public int getColor() {
+        switch (type) {
+            case CANCELLATION:
+                return Color.parseColor("#FF6961");
+            case SUBSTITUTION:
+                return Color.parseColor("#779ECB");
+            default:
+                return Color.parseColor("#F5F5F5");
+        }
+    }
+
+    public String getInfoForDisplay() {
         String info_e;
         if (!info.isEmpty()) {
             info_e = info.substring(0, 1).toUpperCase() + info.substring(1);
@@ -192,17 +207,6 @@ public class TimeTableElement {
         }
 
         return info_e;
-    }
-
-    public int getColor() {
-        switch (type) {
-            case CANCELLATION:
-                return Color.parseColor("#FF6961");
-            case SUBSTITUTION:
-                return Color.parseColor("#779ECB");
-            default:
-                return Color.parseColor("#F5F5F5");
-        }
     }
 
     boolean equals(TimeTableElement tte) {
