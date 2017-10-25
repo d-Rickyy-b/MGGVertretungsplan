@@ -39,12 +39,12 @@ before_install:
 # for gradle output style
 #  - chmod +x gradlew
 #  - export TERM=dumb
-  - export PATH=${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
+#  - export PATH=${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
 #  - android update sdk --no-ui --filter build-tools-23.0.2,android-23
 #  - sudo cp -R /usr/local/android-sdk-25.2.3 ${ANDROID_HOME}
 #  - sudo ls -ltr ${ANDROID_HOME}
-  - sudo touch ${ANDROID_HOME}/licenses/android-sdk-license
-  - sudo chown travis:travis -R ${ANDROID_HOME}
+#  - sudo touch ${ANDROID_HOME}/licenses/android-sdk-license
+#  - sudo chown travis:travis -R ${ANDROID_HOME}
   - mkdir "$ANDROID_HOME/licenses" || true
   - echo -e "8933bad161af4178b1185d1a37fbf41ea5269c55" > "$ANDROID_HOME/licenses/android-sdk-license"
   - echo -e "84831b9409646a918e30573bab4c9c91346d8abd" > "$ANDROID_HOME/licenses/android-sdk-preview-license"
