@@ -299,8 +299,6 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
             cAdapter.addDays(timeTable);
             cAdapter.notifyDataSetChanged();
         }
-
-        mSwipeLayout.setRefreshing(false);
     }
 
     private void saveData(TimeTable timeTable) {
@@ -318,7 +316,6 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
             editor.apply();
         } catch (NullPointerException npe) {
-            mSwipeLayout.setRefreshing(false);
             Toast.makeText(this, R.string.toast_errorOccurred, Toast.LENGTH_LONG).show();
             Log.d("MainActivity", "NullPointerException - Day or table not present.");
         }
@@ -327,8 +324,9 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
     // Gets called, when website was downloaded
     public void onTaskComplete(String website_html) {
         Log.d("MainActivity", "Async DownloadTask complete!");
+        mSwipeLayout.setRefreshing(false);
+
         if (website_html.equals("")) {
-            mSwipeLayout.setRefreshing(false);
             Toast.makeText(getApplicationContext(), R.string.downloadException, Toast.LENGTH_SHORT).show();
             return;
         }
