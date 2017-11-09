@@ -229,8 +229,9 @@ public class TimeTableElement {
         return diffs;
     }
 
+    // Returns the TTE object as ArrayList
     ArrayList<String> getElementAsList() {
-        return new ArrayList<>(Arrays.asList(hour, class_name, subject, newSubject, room, newRoom, getInfo()));
+        return new ArrayList<>(Arrays.asList(hour, class_name, subject, newSubject, room, newRoom, info));
     }
 
     private int calcType() {
