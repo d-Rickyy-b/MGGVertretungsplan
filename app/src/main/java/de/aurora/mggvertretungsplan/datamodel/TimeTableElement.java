@@ -131,6 +131,8 @@ public class TimeTableElement {
         }
     }
 
+    // Method to get the hour as integer value.
+    // Needed, because 'hour' can have values such as "1-2" which can't be converted to an integer
     int getHour_I() {
         String hour = getHour();
         try {
@@ -213,6 +215,7 @@ public class TimeTableElement {
         return getDiffAmount(tte) == 0;
     }
 
+    // Returns the number of differences between two elements
     int getDiffAmount(TimeTableElement tte) {
         int diffs = 0;
         ArrayList<String> list1 = getElementAsList();
