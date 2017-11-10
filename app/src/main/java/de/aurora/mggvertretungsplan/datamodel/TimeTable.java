@@ -11,9 +11,10 @@ import java.util.Date;
 
 public class TimeTable {
     private final ArrayList<TimeTableDay> timeTableDays = new ArrayList<>();
+    private final String class_name;
 
-    public TimeTable() {
-
+    public TimeTable(String class_name) {
+        this.class_name = class_name;
     }
 
     // Adds a day right at the right place via insertionsort
@@ -80,7 +81,7 @@ public class TimeTable {
                     Log.d("TimeTable", String.format("Dates are the same - %s | %s", ttd.getDateString(), saved_ttd.getDateString()));
                     Log.d("BackgroundService", String.format("%s", ttd.toString()));
                     Log.d("BackgroundService", String.format("%s", saved_ttd.toString()));
-                    differences += ttd.getDifferences(saved_ttd);
+                    differences += ttd.getDifferences(saved_ttd, class_name);
                     sameDaySaved = true;
                     break;
                 }

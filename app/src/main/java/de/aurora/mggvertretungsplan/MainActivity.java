@@ -213,7 +213,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
     // Method to display the saved data
     private void displaySavedData() {
-        TimeTable timeTable = new TimeTable();
+        TimeTable timeTable = new TimeTable(class_name);
 
         int count = sp.getInt("TT_Changes_Count", timeTable.getDaysCount());
 

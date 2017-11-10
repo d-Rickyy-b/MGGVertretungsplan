@@ -44,7 +44,7 @@ public class TimeTableElement {
         this.room = room;
         this.newRoom = newRoom;
         this.type = calcType();
-        this.info = info;
+        this.info = info.replace("&auml;", "ä").replace("&ouml;", "ö").replace("&uuml;", "ü");
     }
 
     // Returns the full name of a subject abbreviation
