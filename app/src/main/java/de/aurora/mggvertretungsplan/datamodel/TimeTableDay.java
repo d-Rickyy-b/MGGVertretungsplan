@@ -66,8 +66,20 @@ public class TimeTableDay {
         return fullDateFormat.format(date);
     }
 
+    @Deprecated
     public ArrayList<TimeTableElement> getElements() {
         return timeTableElements;
+    }
+
+    public ArrayList<TimeTableElement> getElements(String className) {
+        ArrayList<TimeTableElement> elementsOfClass = new ArrayList<>();
+
+        for (TimeTableElement tte : timeTableElements) {
+            if (tte.getClass_name().contains(className))
+                elementsOfClass.add(tte);
+        }
+
+        return elementsOfClass;
     }
 
     public ArrayList<ArrayList<String>> getArrayList() {
@@ -84,13 +96,13 @@ public class TimeTableDay {
     }
 
     // Returns the number of differences between two lists
-    public int getDifferences(TimeTableDay ttd) {
+    public int getDifferences(TimeTableDay ttd, String className) {
         // TODO Refactor in own method to avoid duplicate code
         int diffs = 0;
 
-        ArrayList<TimeTableElement> savedElements = ttd.getElements();
+        ArrayList<TimeTableElement> savedElements = ttd.getElements(className);
 
-        for (TimeTableElement tte : getElements()) {
+        for (TimeTableElement tte : getElements(className)) {
             boolean dayExists = false;
             for (TimeTableElement tte2 : savedElements) {
                 if (tte.equals(tte2)) {
@@ -110,7 +122,7 @@ public class TimeTableDay {
 
         for (TimeTableElement tte : savedElements) {
             boolean dayExists = false;
-            for (TimeTableElement tte2 : getElements()) {
+            for (TimeTableElement tte2 : getElements(className)) {
                 if (tte.equals(tte2)) {
                     dayExists = true;
                     break;
