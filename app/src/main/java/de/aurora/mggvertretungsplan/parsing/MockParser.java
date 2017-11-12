@@ -26,8 +26,8 @@ public class MockParser implements WebsiteParser {
 
     @Override
     public TimeTable parse(String website_html, String className) {
-        TimeTable timeTable1 = new TimeTable();
-        TimeTable timeTable2 = new TimeTable();
+        TimeTable timeTable1 = new TimeTable("K1");
+        TimeTable timeTable2 = new TimeTable("K1");
         String date1 = "02.10.";
         String date2 = "02.10.";
 

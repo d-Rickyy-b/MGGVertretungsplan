@@ -31,8 +31,7 @@ public class MGGParser implements WebsiteParser {
     }
 
     // Returns a nicely reworked ArrayList of the cancellations
-    private static ArrayList<ArrayList<String>> prepareData(ArrayList<ArrayList<String>> tabelle, String className) {
-        tabelle = getRightClass(tabelle, className);
+    private static ArrayList<ArrayList<String>> prepareData(ArrayList<ArrayList<String>> tabelle) {
         tabelle = deleteDoubles(tabelle);
 
         return tabelle;

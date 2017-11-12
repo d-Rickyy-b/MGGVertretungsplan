@@ -149,7 +149,8 @@ public class CardsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             return;
         }
 
-        ArrayList<TimeTableElement> timeTableElements = ttd.getElements();
+        String className = sp.getString("KlasseGesamt", "5a");
+        ArrayList<TimeTableElement> timeTableElements = ttd.getElements(className);
 
         DateHeading dateHeading = new DateHeading(date);
         items.add(dateHeading);
