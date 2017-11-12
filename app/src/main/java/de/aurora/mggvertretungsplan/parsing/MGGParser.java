@@ -31,8 +31,7 @@ public class MGGParser implements WebsiteParser {
     }
 
     // Returns a nicely reworked ArrayList of the cancellations
-    private static ArrayList<ArrayList<String>> prepareData(ArrayList<ArrayList<String>> tabelle, String className) {
-        tabelle = getRightClass(tabelle, className);
+    private static ArrayList<ArrayList<String>> prepareData(ArrayList<ArrayList<String>> tabelle) {
         tabelle = deleteDoubles(tabelle);
 
         return tabelle;
@@ -98,7 +97,7 @@ public class MGGParser implements WebsiteParser {
     @Override
     public TimeTable parse(String website_html, String className) {
         ArrayList<String> datesList = new ArrayList<>();
-        TimeTable timeTable = new TimeTable();
+        TimeTable timeTable = new TimeTable(className);
 
         // TODO this takes a shitload of time to finish. Maybe remove - there doesn't seem to be a lot of escaped umlauts?
         website_html = website_html.replace("&auml;", "ä").replace("&ouml;", "ö").replace("&uuml;", "ü");
@@ -114,7 +113,7 @@ public class MGGParser implements WebsiteParser {
         for (int i = 0; i < dates.size(); i++) {
             try {
                 ArrayList<ArrayList<String>> table = extractTable(doc, i);
-                table = prepareData(table, className);
+                table = prepareData(table);
 
                 if (table != null) {
                     TimeTableDay day = new TimeTableDay(datesList.get(i), table);
