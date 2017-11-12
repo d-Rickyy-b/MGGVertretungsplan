@@ -13,7 +13,7 @@ public class BootUpReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        if (intent.getAction().equals("android.intent.action.BOOT_COMPLETED")) {
+        if ("android.intent.action.BOOT_COMPLETED".equals(intent.getAction())) {
             SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
 
             if (sp.getBoolean("notification", true)) {
