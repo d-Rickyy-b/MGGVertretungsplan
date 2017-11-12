@@ -10,7 +10,7 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:id="@+id/empty_item_message"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:text="@string/no_data_to_display"/>
 
 </FrameLayout>
