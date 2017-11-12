@@ -160,9 +160,7 @@ public class CardsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             return;
         }
 
-        for (TimeTableElement tte : timeTableElements) {
-            items.add(tte);
-        }
+        items.addAll(timeTableElements);
     }
 
     @Override
