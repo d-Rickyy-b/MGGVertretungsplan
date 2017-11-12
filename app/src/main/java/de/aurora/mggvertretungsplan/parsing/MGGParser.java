@@ -24,7 +24,7 @@ import de.aurora.mggvertretungsplan.datamodel.TimeTableDay;
 
 public class MGGParser implements WebsiteParser {
 
-    private static final String timeTable_url = "http://www.mgg.karlsruhe.de/index.php/vertretungsplan";
+    private static final String timeTable_url = "http://www.mgg.karlsruhe.de/stupla/stupla.php";
 
     public MGGParser() {
 
