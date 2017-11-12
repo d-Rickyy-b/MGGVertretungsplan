@@ -39,7 +39,7 @@ public class MGGParser implements WebsiteParser {
 
     // Extracts the two tables from the html code
     private static ArrayList<ArrayList<String>> extractTable(Document doc, int index) {
-        Element table = doc.select("table").get(index);
+        Element table = doc.select("table.mon_list").get(index);
         Iterator<Element> rowIterator = table.select("tr").iterator();
 
         //TODO check if these selectors are present. Otherwise stop parsing and throw error!
@@ -100,11 +100,11 @@ public class MGGParser implements WebsiteParser {
         TimeTable timeTable = new TimeTable(className);
 
         // TODO this takes a shitload of time to finish. Maybe remove - there doesn't seem to be a lot of escaped umlauts?
-        website_html = website_html.replace("&auml;", "ä").replace("&ouml;", "ö").replace("&uuml;", "ü");
+        website_html = website_html.replace("&auml;", "ä").replace("&ouml;", "ö").replace("&uuml;", "ü").replace(" ", "");
         Document doc = Jsoup.parse(website_html);
 
-        Elements dates = doc.select("h2.tabber_title");
-
+        Elements dates = doc.select("div.mon_title");
+        
         for (Element date : dates) {
             datesList.add(date.text()); // The parse the dates on the website
         }
