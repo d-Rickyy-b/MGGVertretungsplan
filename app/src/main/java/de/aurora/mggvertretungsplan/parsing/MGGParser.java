@@ -25,7 +25,8 @@ import de.aurora.mggvertretungsplan.datamodel.TimeTableDay;
 
 public class MGGParser implements WebsiteParser {
 
-    private static final String timeTable_url = "http://www.mgg.karlsruhe.de/stupla/stupla.php";
+    private static final String timeTable_url = "https://www.mgg.karlsruhe.de/stupla/stupla.php";
+    private static final String timeTable_url_2 = "https://www.mgg.karlsruhe.de/stupla/stuplamorgen.php";
 
     public MGGParser() {
 
@@ -94,8 +95,8 @@ public class MGGParser implements WebsiteParser {
         return timeTable_url;
     }
 
-    public void startDownload(AsyncTaskCompleteListener<String> callback) {
-        new DownloadWebPageTask(callback).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, timeTable_url);
+    public void startDownload(AsyncTaskCompleteListener<ArrayList<String>> callback) {
+        new DownloadWebPageTask(callback).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, timeTable_url, timeTable_url_2);
     }
 
     @Override
