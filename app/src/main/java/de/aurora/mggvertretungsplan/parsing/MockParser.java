@@ -20,8 +20,8 @@ public class MockParser implements WebsiteParser {
 
     private final static String timeTable_url = "http://example.com";
 
-    public void startDownload(AsyncTaskCompleteListener<String> callback) {
-        callback.onTaskComplete("Empty");
+    public void startDownload(AsyncTaskCompleteListener<ArrayList<String>> callback) {
+        callback.onTaskComplete(new ArrayList<String>());
     }
 
     @Override
@@ -62,6 +62,12 @@ public class MockParser implements WebsiteParser {
         Log.d("MockParser", String.format("Diffs: %s", diffs));
 
         return new TimeTable();
+    }
+
+    @Override
+    public TimeTable parse(ArrayList<String> websites, String className) {
+        // TODO fix any time in the future - Good luck with this future Rico
+        return null;
     }
 
     @Override
