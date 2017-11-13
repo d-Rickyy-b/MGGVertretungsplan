@@ -9,6 +9,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -53,8 +54,11 @@ public class MGGParser implements WebsiteParser {
                 tableRow.add(colIterator.next().text());
             }
 
-            if (!tableRow.isEmpty())
+            if (!tableRow.isEmpty()) {
+                Collections.swap(tableRow, 2, 4);
+                Collections.swap(tableRow, 3, 5);
                 tableArrayList.add(tableRow);
+            }
         }
 
         return tableArrayList;
