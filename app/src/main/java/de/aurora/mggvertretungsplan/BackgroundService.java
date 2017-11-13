@@ -75,6 +75,9 @@ public class BackgroundService extends Service implements AsyncTaskCompleteListe
 
             NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
+            if (notificationManager == null)
+                return;
+
             if (Build.VERSION.SDK_INT >= 26) {
                 NotificationChannel channel = new NotificationChannel(CHANNEL_NAME, "Default Channel", NotificationManager.IMPORTANCE_DEFAULT);
                 channel.setDescription("Notifications about changes of the timetable");
