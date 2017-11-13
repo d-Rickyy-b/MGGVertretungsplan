@@ -14,7 +14,7 @@ import de.aurora.mggvertretungsplan.R;
 
 public class EmptyAdapter extends RecyclerView.Adapter<EmptyAdapter.ViewHolder> {
 
-    private String mMessage;
+    private final String mMessage;
 
     public EmptyAdapter(String message) {
         mMessage = message;
