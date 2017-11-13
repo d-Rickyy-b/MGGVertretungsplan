@@ -13,9 +13,6 @@ public interface WebsiteParser {
 
     void startDownload(AsyncTaskCompleteListener<ArrayList<String>> callback);
 
-    @Deprecated
-    TimeTable parse(String website_html, String className);
-
     TimeTable parse(ArrayList<String> websites, String className);
 
     String getTimeTable_url();

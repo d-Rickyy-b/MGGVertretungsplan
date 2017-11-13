@@ -22,14 +22,6 @@ public class LimaCityParser implements WebsiteParser {
     }
 
     @Override
-    public TimeTable parse(String website_html, String className) {
-        WebsiteParser mggParser = new MGGParser();
-        //return mggParser.parse(website_html, className);
-        //TODO Fix this any time in the future
-        return null;
-    }
-
-    @Override
     public TimeTable parse(ArrayList<String> websites, String className) {
         //TODO Fix this any time in the future
         return null;

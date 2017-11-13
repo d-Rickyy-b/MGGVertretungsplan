@@ -99,38 +99,6 @@ public class MGGParser implements WebsiteParser {
         new DownloadWebPageTask(callback).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, timeTable_url, timeTable_url_2);
     }
 
-    @Override
-    public TimeTable parse(String website_html, String className) {
-        ArrayList<String> datesList = new ArrayList<>();
-        TimeTable timeTable = new TimeTable(className);
-
-        // TODO this takes a shitload of time to finish. Maybe remove - there doesn't seem to be a lot of escaped umlauts?
-        website_html = website_html.replace("&auml;", "ä").replace("&ouml;", "ö").replace("&uuml;", "ü").replace(" ", "");
-        Document doc = Jsoup.parse(website_html);
-
-        Elements dates = doc.select("div.mon_title");
-        
-        for (Element date : dates) {
-            datesList.add(date.text()); // The parse the dates on the website
-        }
-
-        // There is only one
-        try {
-            ArrayList<ArrayList<String>> table = extractTable(doc, 0);
-            table = prepareData(table);
-
-            if (table != null) {
-                TimeTableDay day = new TimeTableDay(datesList.get(0), table);
-                timeTable.addDay(day);
-            }
-        } catch (IndexOutOfBoundsException e) {
-            Log.e("MGGparser", "parse(): There is probably no content to extract!");
-            Log.e("MGGparser", e.getMessage());
-        }
-
-        return timeTable;
-    }
-
     private TimeTableDay parseDay(String website, int index) {
         ArrayList<String> datesList = new ArrayList<>();
 

@@ -108,7 +108,7 @@ public class BackgroundService extends Service implements AsyncTaskCompleteListe
         return activeNetwork != null && activeNetwork.isConnected();
     }
 
-    
+
     public void onTaskComplete(ArrayList<String> websites) {
         if (websites.isEmpty()) {
             return;
