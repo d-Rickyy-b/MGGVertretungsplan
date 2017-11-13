@@ -45,7 +45,7 @@ import de.aurora.mggvertretungsplan.ui.EmptyAdapter;
 import de.aurora.mggvertretungsplan.ui.intro.IntroActivity;
 import de.aurora.mggvertretungsplan.ui.theming.ThemeManager;
 
-public class MainActivity extends AppCompatActivity implements AsyncTaskCompleteListener<String>, SwipeRefreshLayout.OnRefreshListener {
+public class MainActivity extends AppCompatActivity implements AsyncTaskCompleteListener<ArrayList<String>>, SwipeRefreshLayout.OnRefreshListener {
     private SharedPreferences sp;
     private Toolbar toolbar;
     private String class_name;
@@ -322,16 +322,17 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
     }
 
     // Gets called, when website was downloaded
-    public void onTaskComplete(String website_html) {
+    public void onTaskComplete(ArrayList<String> websites) {
         Log.d("MainActivity", "Async DownloadTask complete!");
         mSwipeLayout.setRefreshing(false);
 
-        if (website_html.equals("")) {
+        if (websites.isEmpty()) {
+            recyclerView.setAdapter(new EmptyAdapter(getString(R.string.no_data_to_display)));
             Toast.makeText(getApplicationContext(), R.string.downloadException, Toast.LENGTH_SHORT).show();
             return;
         }
 
-        TimeTable timeTable = websiteParser.parse(website_html, class_name);
+        TimeTable timeTable = websiteParser.parse(websites, class_name);
         if (timeTable == null)
             return;
 
