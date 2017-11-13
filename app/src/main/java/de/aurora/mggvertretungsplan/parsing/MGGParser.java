@@ -65,23 +65,6 @@ public class MGGParser implements WebsiteParser {
         return tableArrayList;
     }
 
-    // Remove all lines which don't contain the right class
-    private static ArrayList<ArrayList<String>> getRightClass(ArrayList<ArrayList<String>> inputList, String className) {
-        ArrayList<ArrayList<String>> classList = new ArrayList<>();
-
-        for (ArrayList<String> element : inputList) {
-            try {
-                if (element.get(1).contains(className)) {
-                    classList.add(element);
-                }
-            } catch (IndexOutOfBoundsException e) {
-                Log.e("Vertretungsplan_parser", e.getMessage());
-            }
-        }
-
-        return classList;
-    }
-
     // Remove double lines
     private static ArrayList<ArrayList<String>> deleteDoubles(ArrayList<ArrayList<String>> inputList) {
         Set<ArrayList<String>> set = new LinkedHashSet<>(inputList);
