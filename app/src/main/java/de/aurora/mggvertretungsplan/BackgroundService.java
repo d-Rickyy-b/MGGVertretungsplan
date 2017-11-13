@@ -24,7 +24,7 @@ import de.aurora.mggvertretungsplan.parsing.MGGParser;
 import de.aurora.mggvertretungsplan.parsing.WebsiteParser;
 
 
-public class BackgroundService extends Service implements AsyncTaskCompleteListener<String> {
+public class BackgroundService extends Service implements AsyncTaskCompleteListener<ArrayList<String>> {
 
     private final static String CHANNEL_NAME = "default";
     private WebsiteParser websiteParser;
@@ -108,24 +108,24 @@ public class BackgroundService extends Service implements AsyncTaskCompleteListe
         return activeNetwork != null && activeNetwork.isConnected();
     }
 
-
-    public void onTaskComplete(String website_html) {
-        if (website_html.equals("")) {
+    
+    public void onTaskComplete(ArrayList<String> websites) {
+        if (websites.isEmpty()) {
             return;
         }
 
         Log.d("BackgroundService", "Checking for changes");
+        sp = PreferenceManager.getDefaultSharedPreferences(this);
         String class_name = sp.getString("KlasseGesamt", "5a");
 
-        sp = PreferenceManager.getDefaultSharedPreferences(this);
         ArrayList<ArrayList<String>> table;
 
-        TimeTable timeTable = websiteParser.parse(website_html, class_name);
+        TimeTable timeTable = websiteParser.parse(websites, class_name);
 
         if (timeTable == null)
             return;
 
-        TimeTable timeTable_saved = new TimeTable();
+        TimeTable timeTable_saved = new TimeTable(class_name);
         int count = sp.getInt("TT_Changes_Count", timeTable.getDaysCount());
 
         for (int i = 0; i < count; i++) {
