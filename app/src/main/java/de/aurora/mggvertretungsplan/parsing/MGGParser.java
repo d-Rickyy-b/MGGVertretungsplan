@@ -133,4 +133,48 @@ public class MGGParser implements WebsiteParser {
         return timeTable;
     }
 
+    private TimeTableDay parseDay(String website, int index) {
+        ArrayList<String> datesList = new ArrayList<>();
+
+        // TODO this takes a shitload of time to finish. Maybe remove - there doesn't seem to be a lot of escaped umlauts?
+        website = website.replace("&auml;", "ä").replace("&ouml;", "ö").replace("&uuml;", "ü").replace(" ", "");
+        Document doc = Jsoup.parse(website);
+
+        Elements dates = doc.select("div.mon_title");
+
+        for (Element date : dates) {
+            datesList.add(date.text()); // The parse the dates on the website
+        }
+
+        TimeTableDay day;
+        try {
+            ArrayList<ArrayList<String>> table = extractTable(doc, 0);
+            table = prepareData(table);
+
+            if (table != null) {
+                day = new TimeTableDay(datesList.get(index), table);
+            } else
+                day = new TimeTableDay(datesList.get(index), new ArrayList<ArrayList<String>>());
+        } catch (IndexOutOfBoundsException e) {
+            Log.e("MGGparser", "parseDay(): There is probably no content to extract!");
+            Log.e("MGGparser", e.getMessage());
+            day = new TimeTableDay(datesList.get(index), new ArrayList<ArrayList<String>>());
+        }
+
+        return day;
+    }
+
+    @Override
+    public TimeTable parse(ArrayList<String> websites, String className) {
+        TimeTable timeTable = new TimeTable(className);
+        int index = 0;
+
+        for (String website : websites) {
+            TimeTableDay day = parseDay(website, index);
+            timeTable.addDay(day);
+            index++;
+        }
+
+        return timeTable;
+    }
 }
