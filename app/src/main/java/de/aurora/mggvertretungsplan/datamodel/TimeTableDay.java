@@ -66,11 +66,6 @@ public class TimeTableDay {
         return fullDateFormat.format(date);
     }
 
-    @Deprecated
-    public ArrayList<TimeTableElement> getElements() {
-        return timeTableElements;
-    }
-
     public ArrayList<TimeTableElement> getElements(String className) {
         ArrayList<TimeTableElement> elementsOfClass = new ArrayList<>();
 

@@ -24,7 +24,7 @@ import de.aurora.mggvertretungsplan.parsing.MGGParser;
 import de.aurora.mggvertretungsplan.parsing.WebsiteParser;
 
 
-public class BackgroundService extends Service implements AsyncTaskCompleteListener<String> {
+public class BackgroundService extends Service implements AsyncTaskCompleteListener<ArrayList<String>> {
 
     private final static String CHANNEL_NAME = "default";
     private WebsiteParser websiteParser;
@@ -75,6 +75,9 @@ public class BackgroundService extends Service implements AsyncTaskCompleteListe
 
             NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
+            if (notificationManager == null)
+                return;
+
             if (Build.VERSION.SDK_INT >= 26) {
                 NotificationChannel channel = new NotificationChannel(CHANNEL_NAME, "Default Channel", NotificationManager.IMPORTANCE_DEFAULT);
                 channel.setDescription("Notifications about changes of the timetable");
@@ -109,23 +112,23 @@ public class BackgroundService extends Service implements AsyncTaskCompleteListe
     }
 
 
-    public void onTaskComplete(String website_html) {
-        if (website_html.equals("")) {
+    public void onTaskComplete(ArrayList<String> websites) {
+        if (websites.isEmpty()) {
             return;
         }
 
         Log.d("BackgroundService", "Checking for changes");
+        sp = PreferenceManager.getDefaultSharedPreferences(this);
         String class_name = sp.getString("KlasseGesamt", "5a");
 
-        sp = PreferenceManager.getDefaultSharedPreferences(this);
         ArrayList<ArrayList<String>> table;
 
-        TimeTable timeTable = websiteParser.parse(website_html, class_name);
+        TimeTable timeTable = websiteParser.parse(websites, class_name);
 
         if (timeTable == null)
             return;
 
-        TimeTable timeTable_saved = new TimeTable();
+        TimeTable timeTable_saved = new TimeTable(class_name);
         int count = sp.getInt("TT_Changes_Count", timeTable.getDaysCount());
 
         for (int i = 0; i < count; i++) {
@@ -144,13 +147,10 @@ public class BackgroundService extends Service implements AsyncTaskCompleteListe
 
         String ticker = getResources().getString(R.string.notification_cancellations_ticker);
         String title = getResources().getString(R.string.notification_cancellations_title);
-        String infoOne = getResources().getString(R.string.notification_cancellations_infoOne);
-        String infoMany = getResources().getString(R.string.notification_cancellations_infoMany);
+        String info = getResources().getQuantityString(R.plurals.notification_cancellations_info, totalDiffs);
 
-        if (totalDiffs > 1) {
-            notification(ticker, title, String.format(infoMany, totalDiffs));
-        } else if (totalDiffs == 1) {
-            notification(ticker, title, infoOne);
+        if (totalDiffs >= 1) {
+            notification(ticker, title, String.format(info, totalDiffs));
         }
 
         saveData(timeTable);

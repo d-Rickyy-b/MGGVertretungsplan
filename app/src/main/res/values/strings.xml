@@ -3,7 +3,6 @@
 
     <string name="app_name">Vertretungsplan</string>
     <string name="toolbarTitle_WithClass">Vertretungsplan (%s)</string>
-    <string name="version">3.0.2</string>
     <string name="bar_title">@string/app_name</string>
     <string name="downloadException">Es ist ein Fehler beim Herunterladen aufgetreten!</string>
 
@@ -67,8 +66,13 @@
 
     <string name="notification_cancellations_title">MGG Vertretungsplan</string>
     <string name="notification_cancellations_ticker">Stundenplan Änderung!</string>
-    <string name="notification_cancellations_infoOne">"Eine Änderung!"</string>
-    <string name="notification_cancellations_infoMany">"%s Änderungen!"</string>
+    <string name="notification_cancellations_infoOne">Eine Änderung!</string>
+    <string name="notification_cancellations_infoMany">%s Änderungen!</string>
+
+    <plurals name="notification_cancellations_info">
+        <item quantity="one">%d Änderung!</item>
+        <item quantity="many">%s Änderungen!</item>
+    </plurals>
 
     <string-array name="ClassLayer_List">
         <item>5</item>

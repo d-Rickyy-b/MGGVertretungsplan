@@ -44,7 +44,7 @@ public class TimeTableElement {
         this.room = room;
         this.newRoom = newRoom;
         this.type = calcType();
-        this.info = info;
+        this.info = info.trim();
     }
 
     // Returns the full name of a subject abbreviation
@@ -191,7 +191,7 @@ public class TimeTableElement {
 
     public String getInfoForDisplay() {
         String info_e;
-        if (!info.isEmpty()) {
+        if (!info.isEmpty() && !" ".equals(info)) {
             info_e = info.substring(0, 1).toUpperCase() + info.substring(1);
 
             if (!subject.equals(newSubject) && !newSubject.equals("---") && !newSubject.equals("")) {

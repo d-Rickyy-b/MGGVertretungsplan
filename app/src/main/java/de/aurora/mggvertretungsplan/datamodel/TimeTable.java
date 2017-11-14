@@ -13,11 +13,6 @@ public class TimeTable {
     private final ArrayList<TimeTableDay> timeTableDays = new ArrayList<>();
     private final String className;
 
-    @Deprecated
-    public TimeTable() {
-        className = "5a";
-    }
-
     public TimeTable(String className) {
         this.className = className;
     }

@@ -9,6 +9,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -24,7 +25,8 @@ import de.aurora.mggvertretungsplan.datamodel.TimeTableDay;
 
 public class MGGParser implements WebsiteParser {
 
-    private static final String timeTable_url = "http://www.mgg.karlsruhe.de/index.php/vertretungsplan";
+    private static final String timeTable_url = "https://www.mgg.karlsruhe.de/stupla/stupla.php";
+    private static final String timeTable_url_2 = "https://www.mgg.karlsruhe.de/stupla/stuplamorgen.php";
 
     public MGGParser() {
 
@@ -39,7 +41,7 @@ public class MGGParser implements WebsiteParser {
 
     // Extracts the two tables from the html code
     private static ArrayList<ArrayList<String>> extractTable(Document doc, int index) {
-        Element table = doc.select("table").get(index);
+        Element table = doc.select("table.mon_list").get(index);
         Iterator<Element> rowIterator = table.select("tr").iterator();
 
         //TODO check if these selectors are present. Otherwise stop parsing and throw error!
@@ -53,28 +55,14 @@ public class MGGParser implements WebsiteParser {
                 tableRow.add(colIterator.next().text());
             }
 
-            if (!tableRow.isEmpty())
+            if (!tableRow.isEmpty()) {
+                Collections.swap(tableRow, 2, 4);
+                Collections.swap(tableRow, 3, 5);
                 tableArrayList.add(tableRow);
-        }
-
-        return tableArrayList;
-    }
-
-    // Remove all lines which don't contain the right class
-    private static ArrayList<ArrayList<String>> getRightClass(ArrayList<ArrayList<String>> inputList, String className) {
-        ArrayList<ArrayList<String>> classList = new ArrayList<>();
-
-        for (ArrayList<String> element : inputList) {
-            try {
-                if (element.get(1).contains(className)) {
-                    classList.add(element);
-                }
-            } catch (IndexOutOfBoundsException e) {
-                Log.e("Vertretungsplan_parser", e.getMessage());
             }
         }
 
-        return classList;
+        return tableArrayList;
     }
 
     // Remove double lines
@@ -90,42 +78,52 @@ public class MGGParser implements WebsiteParser {
         return timeTable_url;
     }
 
-    public void startDownload(AsyncTaskCompleteListener<String> callback) {
-        new DownloadWebPageTask(callback).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, timeTable_url);
+    public void startDownload(AsyncTaskCompleteListener<ArrayList<String>> callback) {
+        new DownloadWebPageTask(callback).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, timeTable_url, timeTable_url_2);
     }
 
-    @Override
-    public TimeTable parse(String website_html, String className) {
+    private TimeTableDay parseDay(String website, int index) {
         ArrayList<String> datesList = new ArrayList<>();
-        TimeTable timeTable = new TimeTable(className);
 
         // TODO this takes a shitload of time to finish. Maybe remove - there doesn't seem to be a lot of escaped umlauts?
-        website_html = website_html.replace("&auml;", "ä").replace("&ouml;", "ö").replace("&uuml;", "ü");
-        Document doc = Jsoup.parse(website_html);
+        website = website.replace("&auml;", "ä").replace("&ouml;", "ö").replace("&uuml;", "ü").replace(" ", "");
+        Document doc = Jsoup.parse(website);
 
-        Elements dates = doc.select("h2.tabber_title");
+        Elements dates = doc.select("div.mon_title");
 
         for (Element date : dates) {
             datesList.add(date.text()); // The parse the dates on the website
         }
 
-        // For each date extract the timetable
-        for (int i = 0; i < dates.size(); i++) {
-            try {
-                ArrayList<ArrayList<String>> table = extractTable(doc, i);
-                table = prepareData(table);
+        TimeTableDay day;
+        try {
+            ArrayList<ArrayList<String>> table = extractTable(doc, 0);
+            table = prepareData(table);
 
-                if (table != null) {
-                    TimeTableDay day = new TimeTableDay(datesList.get(i), table);
-                    timeTable.addDay(day);
-                }
-            } catch (IndexOutOfBoundsException e) {
-                Log.e("MGGparser", "parse(): There is probably no content to extract!");
-                Log.e("MGGparser", e.getMessage());
-            }
+            if (table != null) {
+                day = new TimeTableDay(datesList.get(index), table);
+            } else
+                day = new TimeTableDay(datesList.get(index), new ArrayList<ArrayList<String>>());
+        } catch (IndexOutOfBoundsException e) {
+            Log.e("MGGparser", "parseDay(): There is probably no content to extract!");
+            Log.e("MGGparser", e.getMessage());
+            day = new TimeTableDay(datesList.get(index), new ArrayList<ArrayList<String>>());
+        }
+
+        return day;
+    }
+
+    @Override
+    public TimeTable parse(ArrayList<String> websites, String className) {
+        TimeTable timeTable = new TimeTable(className);
+        int index = 0;
+
+        for (String website : websites) {
+            TimeTableDay day = parseDay(website, index);
+            timeTable.addDay(day);
+            index++;
         }
 
         return timeTable;
     }
-
 }

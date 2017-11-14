@@ -6,6 +6,6 @@
     android:layout_height="wrap_content"
     android:ellipsize="marquee"
     android:gravity="center"
-    android:maxLines="1"
+    android:singleLine="true"
     android:padding="10dp"
     android:textColor="@android:color/black" />
