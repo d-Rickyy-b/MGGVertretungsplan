@@ -196,7 +196,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
                 AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.AlertDialogTheme);
                 builder
                         .setIcon(R.drawable.ic_info_outline_black)
-                        .setTitle("MGG Vertretungsplan v" + getString(R.string.version))
+                        .setTitle("MGG Vertretungsplan v" + BuildConfig.VERSION_NAME)
                         .setMessage(informationText)
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {

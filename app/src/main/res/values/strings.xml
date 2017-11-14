@@ -3,7 +3,6 @@
 
     <string name="app_name">Vertretungsplan</string>
     <string name="toolbarTitle_WithClass">Vertretungsplan (%s)</string>
-    <string name="version">3.1.0</string>
     <string name="bar_title">@string/app_name</string>
     <string name="downloadException">Es ist ein Fehler beim Herunterladen aufgetreten!</string>
 
