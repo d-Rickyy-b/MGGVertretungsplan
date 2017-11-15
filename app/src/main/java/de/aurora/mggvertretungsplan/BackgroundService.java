@@ -149,7 +149,7 @@ public class BackgroundService extends Service implements AsyncTaskCompleteListe
         }
 
         // Compare new data with old data
-        int totalDiffs = timeTable.getTotalDifferences(timeTable_saved);
+        int totalDiffs = timeTable.getTotalDifferences(timeTable_saved, class_name);
         Log.d("BackgroundService", String.format("Total differences: %s", totalDiffs));
 
         String ticker = getResources().getString(R.string.notification_cancellations_ticker);

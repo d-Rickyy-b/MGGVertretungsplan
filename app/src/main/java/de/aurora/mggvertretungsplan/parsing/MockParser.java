@@ -58,7 +58,7 @@ public class MockParser implements WebsiteParser {
         timeTable1.addDay(ttd1);
         timeTable2.addDay(ttd2);
 
-        int diffs = timeTable1.getTotalDifferences(timeTable2);
+        int diffs = timeTable1.getTotalDifferences(timeTable2, "K1");
         Log.d("MockParser", String.format("Diffs: %s", diffs));
 
         return new TimeTable(className);

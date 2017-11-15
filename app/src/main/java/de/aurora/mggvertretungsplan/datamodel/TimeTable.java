@@ -52,17 +52,17 @@ public class TimeTable {
     }
 
     @SuppressWarnings("unused")
-    public int getTotalCancellations() {
+    public int getTotalCancellations(String className) {
         int cancellations = 0;
 
         for (TimeTableDay day : timeTableDays) {
-            cancellations += day.getCancellations();
+            cancellations += day.getCancellations(className);
         }
 
         return cancellations;
     }
 
-    public int getTotalDifferences(TimeTable savedTimeTable) {
+    public int getTotalDifferences(TimeTable savedTimeTable, String className) {
         int differences = 0;
         Date currentDate = new Date();
         ArrayList<TimeTableDay> savedDays = savedTimeTable.getAllDays();
@@ -88,7 +88,7 @@ public class TimeTable {
             }
 
             if (!sameDaySaved)
-                differences += ttd.getCancellations();
+                differences += ttd.getCancellations(className);
         }
 
         return differences;

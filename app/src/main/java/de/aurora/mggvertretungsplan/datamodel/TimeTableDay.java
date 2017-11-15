@@ -86,8 +86,8 @@ public class TimeTableDay {
         return elements;
     }
 
-    public int getCancellations() {
-        return timeTableElements.size();
+    public int getCancellations(String className) {
+        return getElements(className).size();
     }
 
     // Returns the number of differences between two lists
@@ -143,17 +143,18 @@ public class TimeTableDay {
 
     // Merges cancellations together (3. & 4. -> 3-4)
     private void mergeConsecutiveCancellations() {
-        if (getCancellations() <= 1) {
+        if (timeTableElements.size() <= 1) {
             return;
         }
 
-        for (int i = 1; i < getCancellations(); i++) {
+        for (int i = 1; i < timeTableElements.size(); i++) {
             TimeTableElement tte = timeTableElements.get(i - 1);
             TimeTableElement tte2 = timeTableElements.get(i);
 
             if (tte.getHour().length() <= 2 && tte2.getHour().length() <= 2 &&
                     tte.getHour_I() == (tte2.getHour_I() - 1)) {
                 if (tte.getType() == tte2.getType() &&
+                        tte.getClass_name().equals(tte2.getClass_name()) &&
                         tte.getRoom().equals(tte2.getRoom()) &&
                         tte.getNewRoom().equals(tte2.getNewRoom()) &&
                         tte.getSubject().equals(tte2.getSubject()) &&
