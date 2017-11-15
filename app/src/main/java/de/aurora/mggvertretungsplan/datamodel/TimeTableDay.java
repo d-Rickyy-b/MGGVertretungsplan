@@ -86,6 +86,16 @@ public class TimeTableDay {
         return elements;
     }
 
+    public ArrayList<ArrayList<String>> getArrayList(String className) {
+        ArrayList<ArrayList<String>> elements = new ArrayList<>();
+
+        for (TimeTableElement tte : getElements(className)) {
+            elements.add(tte.getElementAsList());
+        }
+
+        return elements;
+    }
+
     public int getCancellations(String className) {
         return getElements(className).size();
     }
