@@ -13,6 +13,7 @@ import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
+import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
@@ -34,6 +35,7 @@ public class BackgroundService extends Service implements AsyncTaskCompleteListe
 
     }
 
+    @Nullable
     @Override
     public IBinder onBind(Intent intent) {
         return null;
@@ -111,7 +113,7 @@ public class BackgroundService extends Service implements AsyncTaskCompleteListe
         return activeNetwork != null && activeNetwork.isConnected();
     }
 
-
+    @Override
     public void onTaskComplete(ArrayList<String> websites) {
         if (websites.isEmpty()) {
             return;
@@ -147,10 +149,13 @@ public class BackgroundService extends Service implements AsyncTaskCompleteListe
 
         String ticker = getResources().getString(R.string.notification_cancellations_ticker);
         String title = getResources().getString(R.string.notification_cancellations_title);
-        String info = getResources().getQuantityString(R.plurals.notification_cancellations_info, totalDiffs);
+        String infoOne = getResources().getString(R.string.notification_cancellations_infoOne);
+        String infoMany = getResources().getString(R.string.notification_cancellations_infoMany);
 
-        if (totalDiffs >= 1) {
-            notification(ticker, title, String.format(info, totalDiffs));
+        if (totalDiffs == 1) {
+            notification(ticker, title, String.format(infoOne, totalDiffs));
+        } else if (totalDiffs > 1) {
+            notification(ticker, title, String.format(infoMany, totalDiffs));
         }
 
         saveData(timeTable);
@@ -171,7 +176,7 @@ public class BackgroundService extends Service implements AsyncTaskCompleteListe
 
             editor.apply();
         } catch (NullPointerException npe) {
-            Log.d("MainActivity", "NullPointerException - Day or table not present.");
+            Log.d("BackgroundService", "NullPointerException - Day or table not present.");
         }
     }
 

@@ -66,8 +66,8 @@
 
     <string name="notification_cancellations_title">MGG Vertretungsplan</string>
     <string name="notification_cancellations_ticker">Stundenplan Änderung!</string>
-    <string name="notification_cancellations_infoOne">Eine Änderung!</string>
-    <string name="notification_cancellations_infoMany">%s Änderungen!</string>
+    <string name="notification_cancellations_infoOne">%d Änderung!</string>
+    <string name="notification_cancellations_infoMany">%d Änderungen!</string>
 
     <plurals name="notification_cancellations_info">
         <item quantity="one">%d Änderung!</item>
