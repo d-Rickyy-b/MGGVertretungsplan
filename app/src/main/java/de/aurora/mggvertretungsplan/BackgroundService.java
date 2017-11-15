@@ -147,10 +147,13 @@ public class BackgroundService extends Service implements AsyncTaskCompleteListe
 
         String ticker = getResources().getString(R.string.notification_cancellations_ticker);
         String title = getResources().getString(R.string.notification_cancellations_title);
-        String info = getResources().getQuantityString(R.plurals.notification_cancellations_info, totalDiffs);
+        String infoOne = getResources().getString(R.string.notification_cancellations_infoOne);
+        String infoMany = getResources().getString(R.string.notification_cancellations_infoMany);
 
-        if (totalDiffs >= 1) {
-            notification(ticker, title, String.format(info, totalDiffs));
+        if (totalDiffs == 1) {
+            notification(ticker, title, String.format(infoOne, totalDiffs));
+        } else if (totalDiffs > 1) {
+            notification(ticker, title, String.format(infoMany, totalDiffs));
         }
 
         saveData(timeTable);
