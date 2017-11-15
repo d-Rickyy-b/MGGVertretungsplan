@@ -57,6 +57,11 @@ public class BackgroundService extends Service implements AsyncTaskCompleteListe
             } catch (Exception e) {
                 Log.e("BackgroundService", e.getMessage());
             }
+        } else {
+            Log.d("BackgroundService", "No internet Connection. Scheduling next alarm in 10 mins.");
+            long tenMinsInMillis = 60 * 10 * 1000;
+            ServiceScheduler serviceScheduler = new ServiceScheduler();
+            serviceScheduler.setAlarmManager(getApplicationContext(), tenMinsInMillis);
         }
     }
 
