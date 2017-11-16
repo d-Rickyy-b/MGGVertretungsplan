@@ -56,8 +56,7 @@ public class MGGParser implements WebsiteParser {
             }
 
             if (!tableRow.isEmpty()) {
-                Collections.swap(tableRow, 2, 4);
-                Collections.swap(tableRow, 3, 5);
+                Collections.swap(tableRow, 3, 4);
                 tableArrayList.add(tableRow);
             }
         }
