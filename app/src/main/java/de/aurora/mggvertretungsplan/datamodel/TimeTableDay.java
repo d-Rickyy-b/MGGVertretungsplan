@@ -102,48 +102,46 @@ public class TimeTableDay {
 
     // Returns the number of differences between two lists
     public int getDifferences(TimeTableDay ttd, String className) {
-        // TODO Refactor in own method to avoid duplicate code
-        int diffs = 0;
-
         ArrayList<TimeTableElement> savedElements = ttd.getElements(className);
+        ArrayList<TimeTableElement> newElements = this.getElements(className);
 
-        for (TimeTableElement tte : getElements(className)) {
-            boolean dayExists = false;
-            for (TimeTableElement tte2 : savedElements) {
-                if (tte.equals(tte2)) {
-                    dayExists = true;
-                    break;
-                } else if (tte.getDiffAmount(tte2) == 1) {
-                    savedElements.remove(tte2);
-                    dayExists = false;
-                    break;
-                }
-            }
+        // Remove same elements, which are contained in both lists
+        for (int i = 0; i < newElements.size(); i++) {
+            TimeTableElement element1 = newElements.get(i);
+            for (int j = 0; j < savedElements.size(); j++) {
+                TimeTableElement element2 = savedElements.get(j);
 
-            if (!dayExists) {
-                diffs++;
-            }
-        }
-
-        for (TimeTableElement tte : savedElements) {
-            boolean dayExists = false;
-            for (TimeTableElement tte2 : getElements(className)) {
-                if (tte.equals(tte2)) {
-                    dayExists = true;
-                    break;
-                } else if (tte.getDiffAmount(tte2) == 1) {
-                    Log.e("TTD", "This shouldn't ever happen");
-                    dayExists = false;
+                if (element1.equals(element2)) {
+                    newElements.remove(i);
+                    savedElements.remove(j);
+                    i--;
                     break;
                 }
             }
+        }
 
-            if (!dayExists) {
-                diffs++;
+        // Remove similar elements, which are contained in both lists
+        for (int i = 0; i < newElements.size(); i++) {
+            TimeTableElement element1 = newElements.get(i);
+            for (int j = 0; j < savedElements.size(); j++) {
+                TimeTableElement element2 = savedElements.get(j);
+
+                if (element1.getDiffAmount(element2) == 1) {
+                    // This else part catches elements where only one part (hour, subject, etc.) has changed
+                    // Without it, every *change* of an existing element would be counted twice
+                    savedElements.remove(j);
+                    break;
+                }
             }
         }
 
-        return diffs;
+        // savedElements now contains only those elements which are no longer in the TimeTable
+        // newElements now only contains those elements which are new (not saved yet) or have changed in a single part
+        int changesToOldCancellations = savedElements.size();
+        int newCancellations = newElements.size();
+        int totalChanges = changesToOldCancellations + newCancellations;
+
+        return totalChanges;
     }
 
     // Checks if this and the given day are at the same date
@@ -186,7 +184,6 @@ public class TimeTableDay {
 
                     i--;
                 }
-
             }
         }
     }
