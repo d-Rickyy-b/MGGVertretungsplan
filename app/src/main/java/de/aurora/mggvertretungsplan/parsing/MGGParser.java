@@ -77,8 +77,7 @@ public class MGGParser implements WebsiteParser {
     private TimeTableDay parseDay(String website, int index) {
         ArrayList<String> datesList = new ArrayList<>();
 
-        // TODO this takes a shitload of time to finish. Maybe remove - there doesn't seem to be a lot of escaped umlauts?
-        website = website.replace("&auml;", "ä").replace("&ouml;", "ö").replace("&uuml;", "ü").replace(" ", "");
+        website = website.replace("&nbsp;", "");
         Document doc = Jsoup.parse(website);
 
         Elements dates = doc.select("div.mon_title");
