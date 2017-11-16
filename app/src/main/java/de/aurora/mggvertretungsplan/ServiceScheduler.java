@@ -46,7 +46,7 @@ public class ServiceScheduler {
             String interval_s = sp.getString("AbrufIntervall", "1800000");
             long interval = Long.valueOf(interval_s);
 
-            Date date = new Date(System.currentTimeMillis() + interval);
+            Date date = new Date(System.currentTimeMillis() + firstStartFromNow);
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss", Locale.GERMANY);
 
             Log.d("ServiceScheduler", String.format("Scheduling BackgroundService - Interval: %s - Next start: %s", interval_s, dateFormat.format(date)));
