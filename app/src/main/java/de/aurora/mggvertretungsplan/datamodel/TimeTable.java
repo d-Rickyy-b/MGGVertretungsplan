@@ -57,7 +57,7 @@ public class TimeTable {
         int cancellations = 0;
 
         for (TimeTableDay day : timeTableDays) {
-            cancellations += day.getCancellations(className);
+            cancellations += day.getElementsCount(className);
         }
 
         return cancellations;
@@ -89,7 +89,7 @@ public class TimeTable {
             }
 
             if (!sameDaySaved)
-                differences += ttd.getCancellations(className);
+                differences += ttd.getElementsCount(className);
         }
 
         return differences;

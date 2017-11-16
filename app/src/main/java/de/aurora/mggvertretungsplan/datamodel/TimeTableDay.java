@@ -96,7 +96,7 @@ public class TimeTableDay {
         return elements;
     }
 
-    public int getCancellations(String className) {
+    public int getElementsCount(String className) {
         return getElements(className).size();
     }
 
