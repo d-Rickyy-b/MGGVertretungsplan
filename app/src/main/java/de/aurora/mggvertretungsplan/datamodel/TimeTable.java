@@ -17,7 +17,7 @@ public class TimeTable {
         this.className = className;
     }
 
-    // Adds a day right at the right place via insertionsort
+    // Adds a day to the right place via insertionsort
     public void addDay(TimeTableDay ttd) {
         int index = 0;
         for (int i = 0; i < timeTableDays.size(); i++) {
@@ -34,6 +34,7 @@ public class TimeTable {
         return timeTableDays.size();
     }
 
+    // Returns the number of days, which date is in the future
     public int getFutureDaysCount() {
         int futureDays = 0;
 
