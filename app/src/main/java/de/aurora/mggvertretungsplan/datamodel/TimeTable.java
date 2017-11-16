@@ -69,26 +69,26 @@ public class TimeTable {
         ArrayList<TimeTableDay> savedDays = savedTimeTable.getAllDays();
 
         for (TimeTableDay ttd : timeTableDays) {
-            boolean sameDaySaved = false;
+            boolean newDay = true;
             int sixteenHrsInMillisecs = 60 * 60 * 16 * 1000;
+
             if (currentDate.getTime() > ttd.getDate().getTime() + sixteenHrsInMillisecs) {
                 Log.d("BackgroundService", String.format("Date in the past: %s, ignoring!", ttd.getDateString()));
                 continue;
             }
 
             for (TimeTableDay saved_ttd : savedDays) {
-
                 if (ttd.isSameDay(saved_ttd)) {
                     Log.d("TimeTable", String.format("Dates are the same - %s | %s", ttd.getDateString(), saved_ttd.getDateString()));
                     Log.d("BackgroundService", String.format("%s", ttd.toString()));
                     Log.d("BackgroundService", String.format("%s", saved_ttd.toString()));
                     differences += ttd.getDifferences(saved_ttd, className);
-                    sameDaySaved = true;
+                    newDay = false;
                     break;
                 }
             }
 
-            if (!sameDaySaved)
+            if (newDay)
                 differences += ttd.getElementsCount(className);
         }
 
