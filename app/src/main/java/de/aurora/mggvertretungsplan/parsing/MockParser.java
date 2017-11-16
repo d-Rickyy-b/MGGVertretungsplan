@@ -21,15 +21,15 @@ public class MockParser implements WebsiteParser {
     private final static String timeTable_url = "http://example.com";
 
     public void startDownload(AsyncTaskCompleteListener<ArrayList<String>> callback) {
-        callback.onTaskComplete(new ArrayList<String>());
+        callback.onTaskComplete(new ArrayList<>(Arrays.asList("Test")));
     }
 
     @Override
     public TimeTable parse(ArrayList<String> websites, String className) {
         TimeTable timeTable1 = new TimeTable("K1");
         TimeTable timeTable2 = new TimeTable("K1");
-        String date1 = "02.10.";
-        String date2 = "02.10.";
+        String date1 = "31.12.";
+        String date2 = "31.12.";
 
         ArrayList<ArrayList<String>> day1 = new ArrayList<>();
         day1.add(new ArrayList<>(Arrays.asList("1", "K1", "4BK", "---", "BK3", "---", "")));
