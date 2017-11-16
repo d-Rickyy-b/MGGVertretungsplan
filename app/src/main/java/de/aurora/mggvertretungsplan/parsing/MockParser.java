@@ -32,6 +32,9 @@ public class MockParser implements WebsiteParser {
         String date2 = "31.12.";
 
         ArrayList<ArrayList<String>> day1 = new ArrayList<>();
+        day1.add(new ArrayList<>(Arrays.asList("3-4", "K1", "G", "---", "H202", "---", "")));
+        day1.add(new ArrayList<>(Arrays.asList("3-4", "K1", "G", "---", "H105", "---", "")));
+
         day1.add(new ArrayList<>(Arrays.asList("1", "K1", "4BK", "---", "BK3", "---", "")));
         day1.add(new ArrayList<>(Arrays.asList("2", "K1", "D", "D", "H208", "H210", "Raumänderung")));
         day1.add(new ArrayList<>(Arrays.asList("3", "K1", "E", "BIO", "S121", "S320", "")));
@@ -41,6 +44,9 @@ public class MockParser implements WebsiteParser {
         day1.add(new ArrayList<>(Arrays.asList("9", "K1", "D", "---", "S020", "---", ""))); // Row will be removed
 
         ArrayList<ArrayList<String>> day2 = new ArrayList<>();
+        day2.add(new ArrayList<>(Arrays.asList("3-4", "K1", "G", "---", "H105", "---", "")));
+        day2.add(new ArrayList<>(Arrays.asList("3-4", "K1", "G", "---", "H202", "---", "")));
+
         day2.add(new ArrayList<>(Arrays.asList("2", "K1", "4BK", "---", "BK3", "---", ""))); // 1 -> 2
         day2.add(new ArrayList<>(Arrays.asList("2", "K1", "D", "D", "H208", "H209", "Raumänderung"))); // H208 -> H209
         day2.add(new ArrayList<>(Arrays.asList("3", "K1", "D", "BIO", "S121", "S320", ""))); // E -> D
