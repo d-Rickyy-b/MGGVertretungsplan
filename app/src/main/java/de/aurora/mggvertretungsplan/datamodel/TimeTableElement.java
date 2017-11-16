@@ -244,7 +244,7 @@ public class TimeTableElement {
 
     @Override
     public String toString() {
-        return String.format("%s | %s | %s | %s | %s | %s", hour, subject, newSubject, room, newRoom, info);
+        return String.format("%s | %s | %s | %s | %s | %s | %s", hour, class_name, subject, newSubject, room, newRoom, info);
     }
 
 }
