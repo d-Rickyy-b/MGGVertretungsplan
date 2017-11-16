@@ -68,9 +68,11 @@ public class TimeTableDay {
 
     public ArrayList<TimeTableElement> getElements(String className) {
         ArrayList<TimeTableElement> elementsOfClass = new ArrayList<>();
+        Grade grade = new Grade(className);
 
         for (TimeTableElement tte : timeTableElements) {
-            if (tte.getClass_name().contains(className))
+            String elementClassName = tte.getClass_name();
+            if (grade.matches(elementClassName) || elementClassName.contains(className))
                 elementsOfClass.add(tte);
         }
 
