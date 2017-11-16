@@ -230,10 +230,15 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
     }
 
     private boolean isConnectionActive() {
-        final ConnectivityManager conMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        final NetworkInfo activeNetwork = conMgr.getActiveNetworkInfo();
+        try {
+            final ConnectivityManager conMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+            final NetworkInfo activeNetwork = conMgr.getActiveNetworkInfo();
 
-        return activeNetwork != null && activeNetwork.isConnected();
+            return null != activeNetwork && activeNetwork.isConnected();
+        } catch (NullPointerException e){
+            Log.e("MainActivity", e.getMessage());
+            return false;
+        }
     }
 
     // Get saved class, Check for connection, start downloading the timetable
