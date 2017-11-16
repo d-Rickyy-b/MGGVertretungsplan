@@ -71,7 +71,7 @@
 
     <plurals name="notification_cancellations_info">
         <item quantity="one">%d Änderung!</item>
-        <item quantity="many">%s Änderungen!</item>
+        <item quantity="many">%d Änderungen!</item>
     </plurals>
 
     <string-array name="ClassLayer_List">
