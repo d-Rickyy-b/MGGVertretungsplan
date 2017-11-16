@@ -32,13 +32,6 @@ public class MGGParser implements WebsiteParser {
 
     }
 
-    // Returns a nicely reworked ArrayList of the cancellations
-    private static ArrayList<ArrayList<String>> prepareData(ArrayList<ArrayList<String>> tabelle) {
-        tabelle = deleteDoubles(tabelle);
-
-        return tabelle;
-    }
-
     // Extracts the two tables from the html code
     private static ArrayList<ArrayList<String>> extractTable(Document doc, int index) {
         Element table = doc.select("table.mon_list").get(index);
@@ -97,7 +90,7 @@ public class MGGParser implements WebsiteParser {
         TimeTableDay day;
         try {
             ArrayList<ArrayList<String>> table = extractTable(doc, 0);
-            table = prepareData(table);
+            table = deleteDoubles(table);
 
             if (table != null) {
                 day = new TimeTableDay(datesList.get(index), table);
