@@ -27,6 +27,7 @@ public class ServiceScheduler {
         AlarmManager alarmManager = getAlarmManager(context);
 
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, firstStart, interval, pendingIntent);
+        Log.d("ServiceScheduler", "Alarm scheduled!");
     }
 
     private void unscheduleService(Context context) {

@@ -125,11 +125,13 @@ public class BackgroundService extends Service implements AsyncTaskCompleteListe
 
     @Override
     public void onTaskComplete(ArrayList<String> websites) {
+        Log.d("BackgroundService", "Checking for changes");
+
         if (websites.isEmpty()) {
+            Log.d("BackgroundService", "ArrayList is empty");
             return;
         }
 
-        Log.d("BackgroundService", "Checking for changes");
         sp = PreferenceManager.getDefaultSharedPreferences(this);
         String class_name = sp.getString("KlasseGesamt", "5a");
 
@@ -155,7 +157,7 @@ public class BackgroundService extends Service implements AsyncTaskCompleteListe
 
         // Compare new data with old data
         int totalDiffs = timeTable.getTotalDifferences(timeTable_saved, class_name);
-        Log.d("BackgroundService", String.format("Total differences: %s", totalDiffs));
+        Log.d("BackgroundService", String.format("Total differences: %d", totalDiffs));
 
         String ticker = getResources().getString(R.string.notification_cancellations_ticker);
         String title = getResources().getString(R.string.notification_cancellations_title);
