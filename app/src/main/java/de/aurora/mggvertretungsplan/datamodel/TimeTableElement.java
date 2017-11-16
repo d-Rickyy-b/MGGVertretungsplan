@@ -195,7 +195,7 @@ public class TimeTableElement {
         if (!info.isEmpty() && !" ".equals(info)) {
             info_e = info.substring(0, 1).toUpperCase() + info.substring(1);
 
-            if (!subject.equals(newSubject) && !newSubject.equals("---") && !newSubject.equals("")) {
+            if (!subject.equals(newSubject) && !newSubject.equals("---") && !newSubject.isEmpty()) {
                 info_e = String.format("%s - %s", this.newSubject, info);
             }
         } else if (type == CANCELLATION) {
