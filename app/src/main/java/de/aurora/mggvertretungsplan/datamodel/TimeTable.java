@@ -73,15 +73,15 @@ public class TimeTable {
             int sixteenHrsInMillisecs = 60 * 60 * 16 * 1000;
 
             if (currentDate.getTime() > ttd.getDate().getTime() + sixteenHrsInMillisecs) {
-                Log.d("BackgroundService", String.format("Date in the past: %s, ignoring!", ttd.getDateString()));
+                Log.d("TimeTable", String.format("Date in the past: %s, ignoring!", ttd.getDateString()));
                 continue;
             }
 
             for (TimeTableDay saved_ttd : savedDays) {
                 if (ttd.isSameDay(saved_ttd)) {
                     Log.d("TimeTable", String.format("Dates are the same - %s | %s", ttd.getDateString(), saved_ttd.getDateString()));
-                    Log.d("BackgroundService", String.format("%s", ttd.toString()));
-                    Log.d("BackgroundService", String.format("%s", saved_ttd.toString()));
+                    Log.d("TimeTable", String.format("%s", ttd.toString()));
+                    Log.d("TimeTable", String.format("%s", saved_ttd.toString()));
                     differences += ttd.getDifferences(saved_ttd, className);
                     newDay = false;
                     break;
