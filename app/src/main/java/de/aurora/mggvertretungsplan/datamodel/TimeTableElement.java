@@ -127,7 +127,7 @@ public class TimeTableElement {
                 case "PHIL":
                     return "Philosophie";
                 default:
-                    return abbr;
+                    return subj;
             }
         }
     }
