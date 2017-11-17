@@ -92,6 +92,7 @@ public class TimeTableElement {
                     return "Mathe";
                 case "EK":
                     return "Erdkunde";
+                case "BI":
                 case "BIO":
                     return "Biologie";
                 case "MU":
