@@ -14,7 +14,7 @@ public class Grade {
 
     public Grade(String grade) {
         Log.d("Grade", String.format("Creating new Grade object for class: %s", grade));
-        if (grade.equals("K1") || grade.equals("K2")) {
+        if ("K1".equals(grade) || "K2".equals(grade)) {
             classLayer = grade;
             classTitle = "";
         } else {
