@@ -235,7 +235,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
             final NetworkInfo activeNetwork = conMgr.getActiveNetworkInfo();
 
             return null != activeNetwork && activeNetwork.isConnected();
-        } catch (NullPointerException e){
+        } catch (NullPointerException e) {
             Log.e("MainActivity", e.getMessage());
             return false;
         }
