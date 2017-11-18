@@ -88,8 +88,11 @@ public class TimeTable {
                 }
             }
 
-            if (newDay)
-                differences += ttd.getElementsCount(className);
+            if (newDay) {
+                int dayDiffs = ttd.getElementsCount(className);
+                differences += dayDiffs;
+                Log.d("TimeTable", String.format("New Day found - %d cancellations for %s", dayDiffs, className));
+            }
         }
 
         return differences;
