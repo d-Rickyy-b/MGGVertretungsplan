@@ -60,4 +60,9 @@ public class Grade {
 
         return false;
     }
+
+    @Override
+    public String toString() {
+        return String.format("%s%s", classLayer, classTitle);
+    }
 }
