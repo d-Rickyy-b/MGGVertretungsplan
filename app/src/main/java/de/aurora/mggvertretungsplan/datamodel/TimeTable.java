@@ -80,8 +80,8 @@ public class TimeTable {
             for (TimeTableDay saved_ttd : savedDays) {
                 if (ttd.isSameDay(saved_ttd)) {
                     Log.d("TimeTable", String.format("Dates are the same - %s | %s", ttd.getDateString(), saved_ttd.getDateString()));
-                    Log.d("TimeTable", String.format("%s", ttd.toString()));
-                    Log.d("TimeTable", String.format("%s", saved_ttd.toString()));
+                    Log.d("TimeTable", String.format("%s", ttd.getElements(className).toString()));
+                    Log.d("TimeTable", String.format("%s", saved_ttd.getElements(className).toString()));
                     differences += ttd.getDifferences(saved_ttd, className);
                     newDay = false;
                     break;
