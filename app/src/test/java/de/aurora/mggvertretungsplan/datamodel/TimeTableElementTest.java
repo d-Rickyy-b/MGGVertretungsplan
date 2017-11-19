@@ -36,6 +36,18 @@ public class TimeTableElementTest extends TestCase {
     }
 
     @Test
+    public void testGetType() throws Exception {
+        TimeTableElement tte = new TimeTableElement(hour, class_name, subject, newSubject, room, newRoom, info);
+        assertEquals(TimeTableElement.SUBSTITUTION, tte.getType());
+
+        TimeTableElement tte2 = new TimeTableElement(hour, class_name, subject, "---", room, "---", info);
+        assertEquals(TimeTableElement.CANCELLATION, tte2.getType());
+
+        TimeTableElement emptyElement = new TimeTableElement();
+        assertEquals(TimeTableElement.EMPTY, emptyElement.getType());
+    }
+
+    @Test
     public void testGetInfoForDisplay() throws Exception {
         TimeTableElement tte = new TimeTableElement(hour, class_name, subject, newSubject, room, newRoom, "Raumänderung");
 
