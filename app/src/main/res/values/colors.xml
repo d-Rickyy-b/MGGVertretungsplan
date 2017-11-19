@@ -21,6 +21,7 @@
 
     <color name="cardCancellation">#FF6961</color>
     <color name="cardSubstitution">#779ECB</color>
+    <color name="cardNoColor">#F5F5F5</color>
 
     <!-- Colors shown in the color picker in the settings -->
     <array name="theme_picker">
