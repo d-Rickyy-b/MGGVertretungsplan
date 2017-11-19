@@ -2,7 +2,6 @@ package de.aurora.mggvertretungsplan.ui;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.preference.PreferenceManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -92,9 +91,23 @@ public class CardsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         classInfoViewHolder.newRoom.setText(timeTableElement.getNewRoom());
 
         if (sp.getBoolean("listColors", true)) {
-            classInfoViewHolder.cardView.setCardBackgroundColor(timeTableElement.getColor());
+            int color;
+
+            switch (timeTableElement.getType()) {
+                case TimeTableElement.CANCELLATION:
+                    color = context.getResources().getColor(R.color.cardCancellation);
+                    break;
+                case TimeTableElement.SUBSTITUTION:
+                    color = context.getResources().getColor(R.color.cardSubstitution);
+                    break;
+                default:
+                    color = context.getResources().getColor(R.color.cardCancellation);
+            }
+
+            classInfoViewHolder.cardView.setCardBackgroundColor(color);
         } else {
-            classInfoViewHolder.cardView.setCardBackgroundColor(Color.parseColor("#F5F5F5"));
+            int noColor = context.getResources().getColor(R.color.cardNoColor);
+            classInfoViewHolder.cardView.setCardBackgroundColor(noColor);
         }
 
         setAnimation(classInfoViewHolder.cardView, position);
