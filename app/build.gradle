@@ -36,6 +36,10 @@ android {
 
 dependencies {
     implementation 'com.android.support:support-v4:26.1.0'
+    // Required -- JUnit 4 framework
+    testCompile 'junit:junit:4.12'
+    testCompile 'org.mockito:mockito-core:2.7.22'
+
     implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation 'com.android.support:design:26.1.0'
     implementation 'com.android.support:recyclerview-v7:26.1.0'
