@@ -21,8 +21,10 @@ public class Grade {
             try {
                 Matcher matcher = Pattern.compile("([0-9]+)([a-fA-F])").matcher(grade);
 
-                if (!matcher.find())
+                if (!matcher.find()) {
+                    initializeOnException();
                     return;
+                }
 
                 classLayer = matcher.group(1);
                 classTitle = matcher.group(2);
