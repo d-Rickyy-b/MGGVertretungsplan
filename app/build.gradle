@@ -32,6 +32,10 @@ android {
             versionNameSuffix "-debug"
         }
     }
+
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
 }
 
 dependencies {
