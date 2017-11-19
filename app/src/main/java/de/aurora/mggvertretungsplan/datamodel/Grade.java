@@ -20,13 +20,21 @@ public class Grade {
         } else {
             try {
                 Matcher matcher = Pattern.compile("([0-9]+)([a-fA-F])").matcher(grade);
-                matcher.find();
+
+                if (!matcher.find())
+                    return;
+
                 classLayer = matcher.group(1);
                 classTitle = matcher.group(2);
             } catch (IllegalStateException e) {
+                initializeOnException();
                 Log.e("Grade", String.format("IllegalStateException: %s", e.getMessage()));
             } catch (IndexOutOfBoundsException e) {
+                initializeOnException();
                 Log.e("Grade", String.format("IndexOutOfBoundsException: %s", e.getMessage()));
+            } catch (NullPointerException e) {
+                initializeOnException();
+                Log.e("Grade", String.format("NullPointerException: %s", e.getMessage()));
             }
         }
     }
@@ -64,5 +72,10 @@ public class Grade {
     @Override
     public String toString() {
         return String.format("%s%s", classLayer, classTitle);
+    }
+
+    private void initializeOnException() {
+        classLayer = "5";
+        classTitle = "a";
     }
 }
