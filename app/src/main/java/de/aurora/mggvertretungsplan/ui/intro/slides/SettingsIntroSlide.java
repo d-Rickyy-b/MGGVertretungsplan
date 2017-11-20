@@ -39,11 +39,11 @@ public class SettingsIntroSlide extends AppIntroBaseFragment {
     private int drawable, bgColor, titleColor, descColor;
 
 
-    public static SettingsIntroSlide newInstance(CharSequence title, CharSequence description, int bgColor, int titleColor, int descColor) {
+    public static SettingsIntroSlide newInstance(String title, String description, int bgColor, int titleColor, int descColor) {
         SettingsIntroSlide slide = new SettingsIntroSlide();
         Bundle args = new Bundle();
-        args.putString(ARG_TITLE, title.toString());
-        args.putString(ARG_DESC, description.toString());
+        args.putString(ARG_TITLE, title);
+        args.putString(ARG_DESC, description);
         args.putInt(ARG_BG_COLOR, bgColor);
         args.putInt(ARG_TITLE_COLOR, titleColor);
         args.putInt(ARG_DESC_COLOR, descColor);
