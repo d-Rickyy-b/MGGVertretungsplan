@@ -213,18 +213,32 @@ public class SettingsIntroSlide extends AppIntroBaseFragment {
 
     public void saveData() {
         String klasseGesamt, klasse, stufe;
+        boolean notify;
 
-        if (stufeSpinner.getSelectedItem().toString().equals("K1") || stufeSpinner.getSelectedItem().toString().equals("K2")) {
-            klasseGesamt = stufeSpinner.getSelectedItem().toString();
+        // Check if one or both spinners are null, if they are initialize with standard values
+        if (stufeSpinner == null || classSpinner == null) {
+            stufe = "5";
+            klasse = "a";
+            klasseGesamt = "5a";
         } else {
-            klasseGesamt = stufeSpinner.getSelectedItem().toString() + classSpinner.getSelectedItem().toString();
+            if ("K1".equals(stufeSpinner.getSelectedItem().toString()) || "K2".equals(stufeSpinner.getSelectedItem().toString())) {
+                klasseGesamt = stufeSpinner.getSelectedItem().toString();
+            } else {
+                klasseGesamt = stufeSpinner.getSelectedItem().toString() + classSpinner.getSelectedItem().toString();
+            }
+
+            stufe = stufeSpinner.getSelectedItem().toString();
+            klasse = classSpinner.getSelectedItem().toString();
         }
 
-        stufe = stufeSpinner.getSelectedItem().toString();
-        klasse = classSpinner.getSelectedItem().toString();
+        // When notificationsSwitch is null or notificationsSwitch is checked, set notify to true
+        notify = ((notificationsSwitch == null) || notificationsSwitch.isChecked());
 
+        // Refresh sp, just in case it got somehow removed
+        sp = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
         SharedPreferences.Editor editor = sp.edit();
-        editor.putBoolean("notification", notificationsSwitch.isChecked());
+        
+        editor.putBoolean("notification", notify);
         editor.putString("KlasseGesamt", klasseGesamt);
         editor.putString("Klassenstufe", stufe);
         editor.putString("Klasse", klasse);
