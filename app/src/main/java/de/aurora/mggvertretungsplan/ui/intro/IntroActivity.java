@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.ColorInt;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.util.TypedValue;
 
 import com.github.paolorotolo.appintro.AppIntro;
@@ -45,8 +46,12 @@ public class IntroActivity extends AppIntro {
     @Override
     public void onDonePressed(Fragment currentFragment) {
         super.onDonePressed(currentFragment);
-        SettingsIntroSlide slide = (SettingsIntroSlide) getSlides().get(1);
-        slide.saveData();
+        try {
+            SettingsIntroSlide slide = (SettingsIntroSlide) getSlides().get(1);
+            slide.saveData();
+        } catch (Exception e) {
+            Log.e("IntroActivity", e.getMessage());
+        }
         finish();
     }
 }
