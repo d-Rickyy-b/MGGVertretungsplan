@@ -86,10 +86,14 @@ public class MGGParser implements WebsiteParser {
             datesList.add(date.text()); // The parse the dates on the website
         }
 
-        TimeTableDay day;
+        TimeTableDay day = null;
         try {
             ArrayList<ArrayList<String>> table = extractTable(doc, 0);
             table = deleteDoubles(table);
+
+            if (index >= datesList.size()) {
+                return day;
+            }
 
             if (table != null) {
                 day = new TimeTableDay(datesList.get(index), table);
@@ -98,7 +102,6 @@ public class MGGParser implements WebsiteParser {
         } catch (IndexOutOfBoundsException e) {
             Log.e("MGGparser", "parseDay(): There is probably no content to extract!");
             Log.e("MGGparser", e.getMessage());
-            day = new TimeTableDay(datesList.get(index), new ArrayList<ArrayList<String>>());
         }
 
         return day;
@@ -110,8 +113,18 @@ public class MGGParser implements WebsiteParser {
         int index = 0;
 
         for (String website : websites) {
+            try {
             TimeTableDay day = parseDay(website, index);
+
+                if (null == day) {
+                    index++;
+                    continue;
+                }
+
             timeTable.addDay(day);
+            } catch (Exception e) {
+                Log.e("MGGParser", e.getMessage());
+            }
             index++;
         }
 
