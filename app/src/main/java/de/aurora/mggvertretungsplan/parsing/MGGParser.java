@@ -83,7 +83,7 @@ public class MGGParser implements WebsiteParser {
         Elements dates = doc.select("div.mon_title");
 
         for (Element date : dates) {
-            datesList.add(date.text()); // The parse the dates on the website
+            datesList.add(date.text()); // parse the dates on the website
         }
 
         TimeTableDay day = null;
@@ -114,14 +114,14 @@ public class MGGParser implements WebsiteParser {
 
         for (String website : websites) {
             try {
-            TimeTableDay day = parseDay(website, index);
+                TimeTableDay day = parseDay(website, index);
 
                 if (null == day) {
                     index++;
                     continue;
                 }
 
-            timeTable.addDay(day);
+                timeTable.addDay(day);
             } catch (Exception e) {
                 Log.e("MGGParser", e.getMessage());
             }
