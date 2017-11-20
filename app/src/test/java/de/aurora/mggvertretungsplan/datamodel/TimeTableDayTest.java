@@ -7,10 +7,11 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
+import java.util.GregorianCalendar;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by Rico on 20.11.2017.
@@ -41,13 +42,18 @@ public class TimeTableDayTest {
         ArrayList<ArrayList<String>> testList = new ArrayList<>();
 
         Calendar calendar = Calendar.getInstance();
-        calendar.set(2018, 0, 1);
+        int currentYear = new GregorianCalendar().get(GregorianCalendar.YEAR);
+        calendar.set(currentYear, 0, 1);
 
-        TimeTableDay ttd = new TimeTableDay("01.01.2018", testList);
+        TimeTableDay ttd = new TimeTableDay("01.01." + currentYear, testList);
 
         SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
 
         assertEquals(format.format(calendar.getTime()), ttd.getDateString());
+
+        TimeTableDay ttd2 = new TimeTableDay("01.01.", testList);
+
+        assertEquals(format.format(calendar.getTime()), ttd2.getDateString());
     }
 
     @Test
@@ -245,7 +251,6 @@ public class TimeTableDayTest {
         day7List.add(new ArrayList<>(Arrays.asList("4", className, "M", "M", "S121", "H308", "")));
         day7List.add(new ArrayList<>(Arrays.asList("8-9", className, "GK", "S", "S121", "H308", "")));
         TimeTableDay day7 = new TimeTableDay("01.01.2018", day7List);
-
 
 
         assertEquals(0, day1.getDifferences(day1, className));
