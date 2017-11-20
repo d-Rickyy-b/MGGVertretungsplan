@@ -109,7 +109,7 @@ public class MGGParser implements WebsiteParser {
 
     @Override
     public TimeTable parse(ArrayList<String> websites, String className) {
-        TimeTable timeTable = new TimeTable(className);
+        TimeTable timeTable = new TimeTable();
         int index = 0;
 
         for (String website : websites) {

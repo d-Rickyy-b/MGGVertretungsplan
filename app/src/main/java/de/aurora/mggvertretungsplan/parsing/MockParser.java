@@ -26,8 +26,8 @@ public class MockParser implements WebsiteParser {
 
     @Override
     public TimeTable parse(ArrayList<String> websites, String className) {
-        TimeTable timeTable1 = new TimeTable("K1");
-        TimeTable timeTable2 = new TimeTable("K1");
+        TimeTable timeTable1 = new TimeTable();
+        TimeTable timeTable2 = new TimeTable();
         String date1 = "31.12.";
         String date2 = "31.12.";
 
@@ -67,7 +67,7 @@ public class MockParser implements WebsiteParser {
         int diffs = timeTable1.getTotalDifferences(timeTable2, "K1");
         Log.d("MockParser", String.format("Diffs: %s", diffs));
 
-        return new TimeTable(className);
+        return new TimeTable();
     }
 
     @Override

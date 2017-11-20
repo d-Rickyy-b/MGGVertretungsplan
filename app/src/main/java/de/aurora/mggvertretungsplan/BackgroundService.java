@@ -142,7 +142,7 @@ public class BackgroundService extends Service implements AsyncTaskCompleteListe
         if (timeTable == null)
             return;
 
-        TimeTable timeTable_saved = new TimeTable(class_name);
+        TimeTable timeTable_saved = new TimeTable();
         int count = sp.getInt("TT_Changes_Count", timeTable.getDaysCount());
 
         for (int i = 0; i < count; i++) {

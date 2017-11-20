@@ -11,10 +11,9 @@ import java.util.Date;
 
 public class TimeTable {
     private final ArrayList<TimeTableDay> timeTableDays = new ArrayList<>();
-    private final String className;
 
-    public TimeTable(String className) {
-        this.className = className;
+    public TimeTable() {
+
     }
 
     // Adds a day to the right place via insertionsort
