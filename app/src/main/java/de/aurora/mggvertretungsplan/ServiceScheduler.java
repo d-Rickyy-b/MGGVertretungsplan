@@ -24,7 +24,7 @@ public class ServiceScheduler {
         long firstStart = System.currentTimeMillis() + firstStartFromNow;
         Intent intentsOpen = new Intent(context, BackgroundService.class);
         PendingIntent pendingIntent = PendingIntent.getService(context, 0, intentsOpen, PendingIntent.FLAG_UPDATE_CURRENT);
-        AlarmManager alarmManager = getAlarmManager(context);
+        AlarmManager alarmManager = (AlarmManager) context.getSystemService(ALARM_SERVICE);
 
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, firstStart, interval, pendingIntent);
         Log.d("ServiceScheduler", "Alarm scheduled!");
@@ -32,7 +32,7 @@ public class ServiceScheduler {
 
     private void unscheduleService(Context context) {
         Log.d("ServiceScheduler", "Cancel service execution!");
-        AlarmManager alarmManager = getAlarmManager(context);
+        AlarmManager alarmManager = (AlarmManager) context.getSystemService(ALARM_SERVICE);
         Intent intentsOpen = new Intent(context, BackgroundService.class);
         PendingIntent pendingIntent = PendingIntent.getService(context, 0, intentsOpen, PendingIntent.FLAG_UPDATE_CURRENT);
 
@@ -57,11 +57,5 @@ public class ServiceScheduler {
             unscheduleService(context);
         }
     }
-
-
-    private AlarmManager getAlarmManager(Context context) {
-        return (AlarmManager) context.getSystemService(ALARM_SERVICE);
-    }
-
 
 }
