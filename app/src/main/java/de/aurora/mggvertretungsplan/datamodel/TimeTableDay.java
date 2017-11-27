@@ -157,34 +157,40 @@ public class TimeTableDay {
             return;
         }
 
-        for (int i = 1; i < timeTableElements.size(); i++) {
-            TimeTableElement tte = timeTableElements.get(i - 1);
-            TimeTableElement tte2 = timeTableElements.get(i);
+        for (int i = 0; i < timeTableElements.size() - 1; i++) {
+            TimeTableElement tte = timeTableElements.get(i);
 
-            if (tte.getHour().length() <= 2 && tte2.getHour().length() <= 2 &&
-                    tte.getHour_I() == (tte2.getHour_I() - 1)) {
-                if (tte.getType() == tte2.getType() &&
-                        tte.getClass_name().equals(tte2.getClass_name()) &&
-                        tte.getRoom().equals(tte2.getRoom()) &&
-                        tte.getNewRoom().equals(tte2.getNewRoom()) &&
-                        tte.getSubject().equals(tte2.getSubject()) &&
-                        tte.getNewSubject().equals(tte2.getNewSubject())) {
+            for (int j = i + 1; j < timeTableElements.size(); j++) {
+                TimeTableElement tte2 = timeTableElements.get(j);
 
-                    String newTime = String.format("%s-%s", tte.getHour(), tte2.getHour());
-                    String newInfo;
+                if (tte.getHour().length() <= 2 && tte2.getHour().length() <= 2 &&
+                        tte.getHour_I() == (tte2.getHour_I() - 1)) {
+                    if (tte.getType() == tte2.getType() &&
+                            tte.getClass_name().equals(tte2.getClass_name()) &&
+                            tte.getRoom().equals(tte2.getRoom()) &&
+                            tte.getNewRoom().equals(tte2.getNewRoom()) &&
+                            tte.getSubject().equals(tte2.getSubject()) &&
+                            tte.getNewSubject().equals(tte2.getNewSubject())) {
 
-                    if (tte.getInfo().equals(tte2.getInfo()))
-                        newInfo = tte.getInfo();
-                    else
-                        newInfo = String.format("%s - %s", tte.getInfo(), tte2.getInfo());
+                        String newTime = String.format("%s-%s", tte.getHour(), tte2.getHour());
+                        String newInfo;
 
-                    TimeTableElement replacement = new TimeTableElement(newTime, tte.getClass_name(), tte.getSubject(), tte.getNewSubject(), tte.getRoom(), tte.getNewRoom(), newInfo);
+                        if (tte.getInfo().equals(tte2.getInfo()))
+                            newInfo = tte.getInfo();
+                        else if (tte.getInfo().isEmpty() || tte2.getInfo().isEmpty())
+                            newInfo = String.format("%s%s", tte.getInfo(), tte2.getInfo());
+                        else
+                            newInfo = String.format("%s - %s", tte.getInfo(), tte2.getInfo());
 
-                    timeTableElements.remove(tte);
-                    timeTableElements.remove(tte2);
-                    addElement(replacement);
+                        TimeTableElement replacement = new TimeTableElement(newTime, tte.getClass_name(), tte.getSubject(), tte.getNewSubject(), tte.getRoom(), tte.getNewRoom(), newInfo);
 
-                    i--;
+                        timeTableElements.remove(tte);
+                        timeTableElements.remove(tte2);
+                        addElement(replacement);
+
+                        i--;
+                        break;
+                    }
                 }
             }
         }
