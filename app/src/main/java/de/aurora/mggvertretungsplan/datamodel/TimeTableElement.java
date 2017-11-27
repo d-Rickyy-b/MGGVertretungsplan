@@ -40,8 +40,8 @@ public class TimeTableElement {
         this.class_name = class_name;
         this.subject = getFullSubject(subject);
         this.newSubject = getFullSubject(newSubject);
-        this.room = room;
-        this.newRoom = newRoom;
+        this.room = (room.isEmpty() ? "---" : room);
+        this.newRoom = (newRoom.isEmpty() ? "---" : newRoom);
         this.type = calcType();
         this.info = info.trim();
     }
