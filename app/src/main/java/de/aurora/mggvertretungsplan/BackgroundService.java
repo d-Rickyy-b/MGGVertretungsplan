@@ -43,6 +43,7 @@ public class BackgroundService extends Service implements AsyncTaskCompleteListe
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        Log.d("BackgroundService", "Start Service");
         websiteParser = new MGGParser();
         updateData();
         stopSelf();
