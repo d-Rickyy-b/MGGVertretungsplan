@@ -275,6 +275,48 @@ public class TimeTableDayTest {
     }
 
     @Test
+    public void mergeConsecutiveCancellations() throws Exception {
+        ArrayList<ArrayList<String>> dayList = new ArrayList<>();
+        String className = "K1";
+
+        // Basic data
+        dayList.add(new ArrayList<>(Arrays.asList("3", className, "G", "---", "H202", "---", "")));
+        dayList.add(new ArrayList<>(Arrays.asList("4", className, "G", "---", "H202", "---", "")));
+        dayList.add(new ArrayList<>(Arrays.asList("1", className, "4BK", "---", "BK3", "---", "")));
+        dayList.add(new ArrayList<>(Arrays.asList("2", className, "D", "D", "H208", "H210", "Raumänderung")));
+        dayList.add(new ArrayList<>(Arrays.asList("3", className, "E", "BIO", "S121", "S320", "")));
+        dayList.add(new ArrayList<>(Arrays.asList("5 - 6", className, "INF", "---", "S020", "---", "")));
+        TimeTableDay day1 = new TimeTableDay("01.01.2018", dayList);
+
+        assertEquals(5, day1.getElements(className).size());
+        dayList.clear();
+
+        dayList.add(new ArrayList<>(Arrays.asList("3", className, "G", "---", "H202", "---", "")));
+        dayList.add(new ArrayList<>(Arrays.asList("4", className, "G", "---", "H202", "---", "")));
+        dayList.add(new ArrayList<>(Arrays.asList("4", className, "G", "---", "H202", "---", "")));
+        dayList.add(new ArrayList<>(Arrays.asList("1", className, "4BK", "---", "BK3", "---", "")));
+        dayList.add(new ArrayList<>(Arrays.asList("2", className, "D", "D", "H208", "H210", "Raumänderung")));
+        dayList.add(new ArrayList<>(Arrays.asList("3", className, "E", "BIO", "S121", "S320", "")));
+        dayList.add(new ArrayList<>(Arrays.asList("5 - 6", className, "INF", "---", "S020", "---", "")));
+        TimeTableDay day2 = new TimeTableDay("01.01.2018", dayList);
+
+        assertEquals(6, day2.getElements(className).size());
+        dayList.clear();
+
+        dayList.add(new ArrayList<>(Arrays.asList("3", className, "G", "---", "H202", "---", "")));
+        dayList.add(new ArrayList<>(Arrays.asList("4", className, "G", "---", "H202", "---", "")));
+        dayList.add(new ArrayList<>(Arrays.asList("1", className, "4BK", "D", "BK3", "H105", "statt 02.01")));
+        dayList.add(new ArrayList<>(Arrays.asList("2", className, "4BK", "D", "BK3", "H105", "statt 02.01")));
+        dayList.add(new ArrayList<>(Arrays.asList("3", className, "E", "BIO", "S121", "S320", "")));
+        dayList.add(new ArrayList<>(Arrays.asList("5 - 6", className, "INF", "---", "S020", "---", "")));
+        TimeTableDay day3 = new TimeTableDay("01.01.2018", dayList);
+
+        assertEquals(4, day3.getElements(className).size());
+        assertEquals("statt 02.01", day3.getElements(className).get(0).getInfo());
+        dayList.clear();
+    }
+
+    @Test
     public void testToString() throws Exception {
     }
 
