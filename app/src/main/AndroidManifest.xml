@@ -30,12 +30,12 @@
         </activity>
 
         <activity
-            android:name=".SettingsActivity"
+            android:name="de.aurora.mggvertretungsplan.SettingsActivity"
             android:label="@string/settings_name"
             android:theme="@style/AppTheme.Light.NoActionBar" />
 
         <activity
-            android:name=".SettingsNotificationActivity"
+            android:name="de.aurora.mggvertretungsplan.SettingsNotificationActivity"
             android:label="@string/settings_notification_title"
             android:theme="@style/AppTheme.Light.NoActionBar">
             <intent-filter>
@@ -48,9 +48,9 @@
             android:name="de.aurora.mggvertretungsplan.ui.intro.IntroActivity"
             android:theme="@style/AppTheme.Light.NoActionBar" />
 
-        <service android:name=".BackgroundService" />
+        <service android:name="de.aurora.mggvertretungsplan.BackgroundService" />
 
-        <receiver android:name=".BootUpReceiver">
+        <receiver android:name="de.aurora.mggvertretungsplan.BootUpReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
