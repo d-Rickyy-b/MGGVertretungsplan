@@ -33,21 +33,22 @@ import java.util.ArrayList;
 
 import de.aurora.mggvertretungsplan.datamodel.TimeTable;
 import de.aurora.mggvertretungsplan.datamodel.TimeTableDay;
+import de.aurora.mggvertretungsplan.parsing.BaseParser;
 import de.aurora.mggvertretungsplan.parsing.MGGParser;
-import de.aurora.mggvertretungsplan.parsing.WebsiteParser;
+import de.aurora.mggvertretungsplan.parsing.ParsingCompleteListener;
 import de.aurora.mggvertretungsplan.ui.CardsAdapter;
 import de.aurora.mggvertretungsplan.ui.EmptyAdapter;
 import de.aurora.mggvertretungsplan.ui.intro.IntroActivity;
 import de.aurora.mggvertretungsplan.ui.theming.ThemeManager;
 
-public class MainActivity extends AppCompatActivity implements AsyncTaskCompleteListener<ArrayList<String>>, SwipeRefreshLayout.OnRefreshListener {
+public class MainActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener, ParsingCompleteListener {
     private SharedPreferences sp;
     private Toolbar toolbar;
     private String class_name;
     private SwipeRefreshLayout mSwipeLayout;
     private RecyclerView recyclerView;
     private CardsAdapter cAdapter;
-    private WebsiteParser websiteParser;
+    private BaseParser websiteParser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -248,7 +249,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
             class_name = sp.getString("KlasseGesamt", "5a");
 
             try {
-                websiteParser.startDownload(this);
+                websiteParser.startParsing(this);
             } catch (Exception e) {
                 mSwipeLayout.setRefreshing(false);
                 Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -295,20 +296,17 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         }
     }
 
-    // Gets called, when website was downloaded
-    public void onTaskComplete(ArrayList<String> websites) {
-        Log.d("MainActivity", "Async DownloadTask complete!");
+    // Gets called, when website was downloaded and parsed by the parser
+    @Override
+    public void onParsingComplete(TimeTable timeTable) {
+        Log.d("MainActivity", "Parsing complete!");
         mSwipeLayout.setRefreshing(false);
 
-        if (websites.isEmpty()) {
+        if (timeTable == null) {
             recyclerView.setAdapter(new EmptyAdapter(getString(R.string.no_data_to_display)));
             Toast.makeText(getApplicationContext(), R.string.downloadException, Toast.LENGTH_SHORT).show();
             return;
         }
-
-        TimeTable timeTable = websiteParser.parse(websites, class_name);
-        if (timeTable == null)
-            return;
 
         displayData(timeTable);
         saveData(timeTable);

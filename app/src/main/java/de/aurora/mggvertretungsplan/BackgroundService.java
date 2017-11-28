@@ -21,14 +21,15 @@ import java.util.ArrayList;
 
 import de.aurora.mggvertretungsplan.datamodel.TimeTable;
 import de.aurora.mggvertretungsplan.datamodel.TimeTableDay;
+import de.aurora.mggvertretungsplan.parsing.BaseParser;
 import de.aurora.mggvertretungsplan.parsing.MGGParser;
-import de.aurora.mggvertretungsplan.parsing.WebsiteParser;
+import de.aurora.mggvertretungsplan.parsing.ParsingCompleteListener;
 
 
-public class BackgroundService extends Service implements AsyncTaskCompleteListener<ArrayList<String>> {
+public class BackgroundService extends Service implements ParsingCompleteListener {
 
     private final static String CHANNEL_NAME = "default";
-    private WebsiteParser websiteParser;
+    private BaseParser websiteParser;
     private SharedPreferences sp;
 
     public BackgroundService() {
@@ -56,7 +57,7 @@ public class BackgroundService extends Service implements AsyncTaskCompleteListe
             sp = PreferenceManager.getDefaultSharedPreferences(this);
 
             try {
-                websiteParser.startDownload(this);
+                websiteParser.startParsing(this);
             } catch (Exception e) {
                 Log.e("BackgroundService", e.getMessage());
             }
@@ -125,11 +126,11 @@ public class BackgroundService extends Service implements AsyncTaskCompleteListe
     }
 
     @Override
-    public void onTaskComplete(ArrayList<String> websites) {
-        Log.d("BackgroundService", "Checking for changes");
+    public void onParsingComplete(TimeTable timeTable) {
+        Log.d("BackgroundService", "Parsing complete - Checking for changes");
 
-        if (websites.isEmpty()) {
-            Log.d("BackgroundService", "ArrayList is empty");
+        if (timeTable == null) {
+            Log.d("BackgroundService", "TimeTable is null");
             return;
         }
 
@@ -137,11 +138,6 @@ public class BackgroundService extends Service implements AsyncTaskCompleteListe
         String class_name = sp.getString("KlasseGesamt", "5a");
 
         ArrayList<ArrayList<String>> table;
-
-        TimeTable timeTable = websiteParser.parse(websites, class_name);
-
-        if (timeTable == null)
-            return;
 
         TimeTable timeTable_saved = new TimeTable();
         int count = sp.getInt("TT_Changes_Count", timeTable.getDaysCount());

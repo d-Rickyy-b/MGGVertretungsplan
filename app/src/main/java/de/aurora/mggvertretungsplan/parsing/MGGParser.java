@@ -1,6 +1,5 @@
 package de.aurora.mggvertretungsplan.parsing;
 
-import android.os.AsyncTask;
 import android.util.Log;
 
 import org.jsoup.Jsoup;
@@ -14,8 +13,6 @@ import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-import de.aurora.mggvertretungsplan.AsyncTaskCompleteListener;
-import de.aurora.mggvertretungsplan.DownloadWebPageTask;
 import de.aurora.mggvertretungsplan.datamodel.TimeTable;
 import de.aurora.mggvertretungsplan.datamodel.TimeTableDay;
 
@@ -23,14 +20,11 @@ import de.aurora.mggvertretungsplan.datamodel.TimeTableDay;
  * Created by Rico on 22.09.2017.
  */
 
-public class MGGParser implements WebsiteParser {
+public class MGGParser extends BaseParser {
+    private ParsingCompleteListener callback;
 
     private static final String timeTable_url = "https://www.mgg.karlsruhe.de/stupla/stupla.php";
     private static final String timeTable_url_2 = "https://www.mgg.karlsruhe.de/stupla/stuplamorgen.php";
-
-    public MGGParser() {
-
-    }
 
     // Extracts the two tables from the html code
     private static ArrayList<ArrayList<String>> extractTable(Document doc, int index) {
@@ -70,10 +64,6 @@ public class MGGParser implements WebsiteParser {
         return timeTable_url;
     }
 
-    public void startDownload(AsyncTaskCompleteListener<ArrayList<String>> callback) {
-        new DownloadWebPageTask(callback).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, timeTable_url, timeTable_url_2);
-    }
-
     private TimeTableDay parseDay(String website, int index) {
         ArrayList<String> datesList = new ArrayList<>();
 
@@ -108,7 +98,7 @@ public class MGGParser implements WebsiteParser {
     }
 
     @Override
-    public TimeTable parse(ArrayList<String> websites, String className) {
+    public TimeTable parse(ArrayList<String> websites) {
         TimeTable timeTable = new TimeTable();
         int index = 0;
 
@@ -129,5 +119,16 @@ public class MGGParser implements WebsiteParser {
         }
 
         return timeTable;
+    }
+
+    @Override
+    public void startParsing(ParsingCompleteListener callback) {
+        this.callback = callback;
+        downloadWebsite(timeTable_url, timeTable_url_2);
+    }
+    @Override
+    public void onTaskComplete(ArrayList<String> websites) {
+        TimeTable timeTable = parse(websites);
+        this.callback.onParsingComplete(timeTable);
     }
 }
