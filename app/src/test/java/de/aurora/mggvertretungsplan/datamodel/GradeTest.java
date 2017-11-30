@@ -67,15 +67,15 @@ public class GradeTest {
 
         assertFalse(grade.toString().equals(grade2.toString()));
 
-        grade = new Grade("5a");
-        grade2 = new Grade("");
+        Grade grade3 = new Grade("5a");
+        Grade grade4 = new Grade("");
 
-        assertEquals(grade.toString(), grade2.toString());
+        assertEquals(grade3.toString(), grade4.toString());
 
-        grade = new Grade("K1");
-        grade2 = new Grade("K1");
+        Grade grade5 = new Grade("K1");
+        Grade grade6 = new Grade("K1");
 
-        assertEquals(grade.toString(), grade2.toString());
+        assertEquals(grade5.toString(), grade6.toString());
     }
 
 
