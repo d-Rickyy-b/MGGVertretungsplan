@@ -54,6 +54,7 @@ public class Grade {
                 String inputClassLayer = matcher.group(1);
                 String inputClassTitle = matcher.group(2);
 
+                //noinspection SimplifiableIfStatement
                 if (null == inputClassLayer || null == inputClassTitle) {
                     return false;
                 }
