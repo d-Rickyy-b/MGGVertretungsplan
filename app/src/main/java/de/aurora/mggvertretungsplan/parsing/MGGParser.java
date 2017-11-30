@@ -27,8 +27,8 @@ public class MGGParser extends BaseParser {
     private static final String timeTable_url_2 = "https://www.mgg.karlsruhe.de/stupla/stuplamorgen.php";
 
     // Extracts the two tables from the html code
-    private static ArrayList<ArrayList<String>> extractTable(Document doc, int index) {
-        Element table = doc.select("table.mon_list").get(index);
+    private static ArrayList<ArrayList<String>> extractTable(Document doc) {
+        Element table = doc.select("table.mon_list").get(0);
         Iterator<Element> rowIterator = table.select("tr").iterator();
 
         //TODO check if these selectors are present. Otherwise stop parsing and throw error!
@@ -78,7 +78,7 @@ public class MGGParser extends BaseParser {
 
         TimeTableDay day = null;
         try {
-            ArrayList<ArrayList<String>> table = extractTable(doc, 0);
+            ArrayList<ArrayList<String>> table = extractTable(doc);
             table = deleteDoubles(table);
 
             if (index >= datesList.size()) {
