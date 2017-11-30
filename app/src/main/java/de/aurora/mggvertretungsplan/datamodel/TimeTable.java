@@ -99,12 +99,12 @@ public class TimeTable {
 
     @Override
     public String toString() {
-        String result = "";
+        StringBuilder result = new StringBuilder();
 
         for (TimeTableDay ttd : timeTableDays) {
-            result += ttd.toString();
+            result.append(ttd.toString());
         }
 
-        return result;
+        return result.toString();
     }
 }
