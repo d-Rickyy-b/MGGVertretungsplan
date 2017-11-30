@@ -26,6 +26,11 @@ public class ServiceScheduler {
         PendingIntent pendingIntent = PendingIntent.getService(context, 0, intentsOpen, PendingIntent.FLAG_UPDATE_CURRENT);
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(ALARM_SERVICE);
 
+        if (null == alarmManager) {
+            Log.e("ServiceScheduler", "Couldn't get AlarmManager instance");
+            return;
+        }
+
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, firstStart, interval, pendingIntent);
         Log.d("ServiceScheduler", "Alarm scheduled!");
     }
@@ -33,6 +38,12 @@ public class ServiceScheduler {
     private void unscheduleService(Context context) {
         Log.d("ServiceScheduler", "Cancel service execution!");
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(ALARM_SERVICE);
+
+        if (null == alarmManager) {
+            Log.e("ServiceScheduler", "Couldn't get AlarmManager instance");
+            return;
+        }
+
         Intent intentsOpen = new Intent(context, BackgroundService.class);
         PendingIntent pendingIntent = PendingIntent.getService(context, 0, intentsOpen, PendingIntent.FLAG_UPDATE_CURRENT);
 
