@@ -45,7 +45,7 @@ public class BackgroundService extends Service implements ParsingCompleteListene
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.d("BackgroundService", "Start Service");
-        websiteParser = new MGGParser();
+        websiteParser = new MGGParser(this);
         updateData();
         stopSelf();
         return START_STICKY;
@@ -57,7 +57,7 @@ public class BackgroundService extends Service implements ParsingCompleteListene
             sp = PreferenceManager.getDefaultSharedPreferences(this);
 
             try {
-                websiteParser.startParsing(this);
+                websiteParser.startParsing();
             } catch (Exception e) {
                 Log.e("BackgroundService", e.getMessage());
             }

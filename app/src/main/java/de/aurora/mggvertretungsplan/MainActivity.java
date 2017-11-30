@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         int themeID = sp.getInt("Theme", 0);
         setTheme(ThemeManager.getTheme(themeID));
         super.onCreate(savedInstanceState);
-        websiteParser = new MGGParser();
+        websiteParser = new MGGParser(this);
 
         // If application is called for the first time, intro slides will show up
         if (sp.getBoolean("firstStart", true)) {
@@ -249,7 +249,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             class_name = sp.getString("KlasseGesamt", "5a");
 
             try {
-                websiteParser.startParsing(this);
+                websiteParser.startParsing();
             } catch (Exception e) {
                 mSwipeLayout.setRefreshing(false);
                 Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();

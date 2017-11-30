@@ -23,7 +23,10 @@ import de.aurora.mggvertretungsplan.datamodel.TimeTableDay;
 public class MGGParser extends BaseParser {
     private static final String timeTable_url = "https://www.mgg.karlsruhe.de/stupla/stupla.php";
     private static final String timeTable_url_2 = "https://www.mgg.karlsruhe.de/stupla/stuplamorgen.php";
-    private ParsingCompleteListener callback;
+
+    public MGGParser(ParsingCompleteListener callback) {
+        super(callback);
+    }
 
     // Extracts the two tables from the html code
     private static ArrayList<ArrayList<String>> extractTable(Document doc) {
@@ -96,7 +99,8 @@ public class MGGParser extends BaseParser {
         return day;
     }
 
-    private TimeTable parse(ArrayList<String> websites) {
+    @Override
+    public TimeTable parse(ArrayList<String> websites) {
         TimeTable timeTable = new TimeTable();
         int index = 0;
 
@@ -120,14 +124,8 @@ public class MGGParser extends BaseParser {
     }
 
     @Override
-    public void startParsing(ParsingCompleteListener callback) {
-        this.callback = callback;
+    public void startParsing() {
         downloadWebsite(timeTable_url, timeTable_url_2);
     }
 
-    @Override
-    public void onTaskComplete(ArrayList<String> websites) {
-        TimeTable timeTable = parse(websites);
-        this.callback.onParsingComplete(timeTable);
-    }
 }
