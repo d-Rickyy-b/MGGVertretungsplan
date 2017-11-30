@@ -102,9 +102,9 @@ public class TimeTable {
         StringBuilder result = new StringBuilder();
 
         for (TimeTableDay ttd : timeTableDays) {
-            result.append(ttd.toString());
+            result.append(ttd.toString()).append("\n");
         }
 
-        return result.toString();
+        return result.toString().trim();
     }
 }

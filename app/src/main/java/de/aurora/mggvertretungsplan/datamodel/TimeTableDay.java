@@ -198,13 +198,13 @@ public class TimeTableDay {
     @Override
     public String toString() {
         StringBuilder result = new StringBuilder();
-        result.append(getFullDateString() + "\n");
+        result.append(getFullDateString());
 
         for (TimeTableElement tte : timeTableElements) {
-            result.append(tte.toString() + "\n");
+            result.append("\n").append(tte.toString());
         }
 
-        return result.toString();
+        return result.toString().trim();
     }
 
 }
