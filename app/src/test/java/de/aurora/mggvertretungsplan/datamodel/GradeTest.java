@@ -1,21 +1,22 @@
 package de.aurora.mggvertretungsplan.datamodel;
 
-import junit.framework.TestCase;
-
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.List;
 
+import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertFalse;
+import static junit.framework.Assert.assertNotNull;
+
 /**
  * Created by Rico on 18.11.2017.
  */
-public class GradeTest extends TestCase {
+public class GradeTest {
 
     @Before
     public void setUp() throws Exception {
-        super.setUp();
     }
 
     @Test

@@ -1,21 +1,23 @@
 package de.aurora.mggvertretungsplan.datamodel;
 
-import junit.framework.TestCase;
-
 import org.junit.Before;
 import org.junit.Test;
+
+import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertFalse;
+import static junit.framework.Assert.assertTrue;
 
 /**
  * Created by Rico on 18.11.2017.
  */
-public class TimeTableElementTest extends TestCase {
-    String hour;
-    String class_name;
-    String subject;
-    String newSubject;
-    String room;
-    String newRoom;
-    String info;
+public class TimeTableElementTest {
+    private String hour;
+    private String class_name;
+    private String subject;
+    private String newSubject;
+    private String room;
+    private String newRoom;
+    private String info;
 
     @Before
     public void setUp() throws Exception {
@@ -80,11 +82,11 @@ public class TimeTableElementTest extends TestCase {
 
         assertEquals(1, tte.getDiffAmount(tte2));
 
-        tte2 = new TimeTableElement(hour, class_name, subject, "D", room, "H208", info);
+        TimeTableElement tte3 = new TimeTableElement(hour, class_name, subject, "D", room, "H208", info);
 
-        assertEquals(2, tte.getDiffAmount(tte2));
+        assertEquals(2, tte.getDiffAmount(tte3));
 
-        tte2 = new TimeTableElement(hour, class_name, subject, "D", room, "H208", "Raumänderung");
+        //tte2 = new TimeTableElement(hour, class_name, subject, "D", room, "H208", "Raumänderung");
     }
 
     @Test

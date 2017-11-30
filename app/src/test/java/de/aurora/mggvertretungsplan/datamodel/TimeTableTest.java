@@ -9,7 +9,7 @@ import java.util.Arrays;
  * Created by Rico on 20.11.2017.
  */
 public class TimeTableTest extends TestCase {
-    TimeTable timeTable;
+    private TimeTable timeTable;
 
     public void setUp() throws Exception {
         super.setUp();

@@ -1,20 +1,19 @@
 package de.aurora.mggvertretungsplan.datamodel;
 
-import junit.framework.TestCase;
-
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Date;
 
+import static org.junit.Assert.assertEquals;
+
 /**
  * Created by Rico on 19.11.2017.
  */
-public class DateHeadingTest extends TestCase {
+public class DateHeadingTest {
 
     @Before
     public void setUp() throws Exception {
-        super.setUp();
     }
 
     @Test
@@ -23,9 +22,9 @@ public class DateHeadingTest extends TestCase {
         DateHeading dateHeading = new DateHeading(date);
         assertEquals("Freitag, 20.01.2017", dateHeading.getWholeDate());
 
-        date = new Date(120, 1, 29);
-        dateHeading = new DateHeading(date);
-        assertEquals("Samstag, 29.02.2020", dateHeading.getWholeDate());
+        Date date2 = new Date(120, 1, 29);
+        DateHeading dateHeading2 = new DateHeading(date2);
+        assertEquals("Samstag, 29.02.2020", dateHeading2.getWholeDate());
     }
 
 }
