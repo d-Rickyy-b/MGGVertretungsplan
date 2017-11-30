@@ -6,7 +6,6 @@ import java.util.ArrayList;
 
 import de.aurora.mggvertretungsplan.AsyncTaskCompleteListener;
 import de.aurora.mggvertretungsplan.DownloadWebPageTask;
-import de.aurora.mggvertretungsplan.datamodel.TimeTable;
 
 /**
  * Created by Rico on 28.11.2017.
@@ -20,8 +19,6 @@ public abstract class BaseParser implements AsyncTaskCompleteListener<ArrayList<
     }
 
     public abstract void startParsing(ParsingCompleteListener callback);
-
-    public abstract TimeTable parse(ArrayList<String> websites);
 
     public abstract void onTaskComplete(ArrayList<String> websites);
 
