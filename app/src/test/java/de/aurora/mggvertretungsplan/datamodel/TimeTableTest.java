@@ -146,7 +146,7 @@ public class TimeTableTest extends TestCase {
         TimeTableDay ttd = new TimeTableDay("31.12.", arrayLists);
 
         timeTable.addDay(ttd);
-        assertEquals(ttd.getFullDateString() + "\n", timeTable.toString());
+        assertEquals(ttd.getFullDateString(), timeTable.toString());
 
         ArrayList<ArrayList<String>> dayList = new ArrayList<>();
         dayList.add(new ArrayList<>(Arrays.asList("1", "K1", "D", "---", "H202", "---", "")));
@@ -163,7 +163,7 @@ public class TimeTableTest extends TestCase {
         result += day2 + "\n";
         result += "1 | K1 | Deutsch | --- | H202 | --- | \n";
         result += "2 | 7a | Englisch | --- | H105 | --- | \n";
-        result += "3 | 5c | Geschichte | --- | M315 | --- | Test\n";
+        result += "3 | 5c | Geschichte | --- | M315 | --- | Test";
 
         assertEquals(result, timeTable.toString());
     }

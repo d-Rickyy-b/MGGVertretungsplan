@@ -333,7 +333,7 @@ public class TimeTableDayTest {
         result += day + "\n";
         result += "1 | K1 | Deutsch | --- | H202 | --- | \n";
         result += "2 | 7a | Englisch | --- | H105 | --- | \n";
-        result += "3 | 5c | Geschichte | --- | M315 | --- | Test\n";
+        result += "3 | 5c | Geschichte | --- | M315 | --- | Test";
         assertEquals(result, ttd.toString());
     }
 
