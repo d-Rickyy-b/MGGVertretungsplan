@@ -141,9 +141,8 @@ public class TimeTableDay {
         // newElements now only contains those elements which are new (not saved yet) or have changed in a single part
         int changesToOldCancellations = savedElements.size();
         int newCancellations = newElements.size();
-        int totalChanges = changesToOldCancellations + newCancellations;
 
-        return totalChanges;
+        return changesToOldCancellations + newCancellations;
     }
 
     // Checks if this and the given day are at the same date
