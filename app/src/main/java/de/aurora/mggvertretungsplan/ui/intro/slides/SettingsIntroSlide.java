@@ -237,7 +237,7 @@ public class SettingsIntroSlide extends AppIntroBaseFragment {
         // Refresh sp, just in case it got somehow removed
         sp = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
         SharedPreferences.Editor editor = sp.edit();
-        
+
         editor.putBoolean("notification", notify);
         editor.putString("KlasseGesamt", klasseGesamt);
         editor.putString("Klassenstufe", stufe);
