@@ -4,6 +4,7 @@ import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 import de.aurora.mggvertretungsplan.AsyncTaskCompleteListener;
 import de.aurora.mggvertretungsplan.datamodel.TimeTable;
@@ -21,7 +22,7 @@ public class MockParser implements WebsiteParser {
     private final static String timeTable_url = "http://example.com";
 
     public void startDownload(AsyncTaskCompleteListener<ArrayList<String>> callback) {
-        callback.onTaskComplete(new ArrayList<>(Arrays.asList("Test")));
+        callback.onTaskComplete(new ArrayList<>(Collections.singletonList("Test")));
     }
 
     @Override
