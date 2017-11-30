@@ -7,7 +7,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.Locale;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -28,13 +30,13 @@ public class TimeTableDayTest {
         Calendar calendar = Calendar.getInstance();
         calendar.set(2018, 0, 1);
 
-        //SimpleDateFormat fullDateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.GERMANY);
-        //Date date = fullDateFormat.parse("01.01.2018");
+        SimpleDateFormat fullDateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.GERMANY);
+        Date date = fullDateFormat.parse("01.01.2018");
 
         TimeTableDay ttd = new TimeTableDay("01.01.2018", testList);
 
-        //assertEquals(date, ttd.getDate());
-        assertEquals(calendar, ttd.getDate());
+        assertEquals(date, ttd.getDate());
+        //assertEquals(calendar, ttd.getDate());
     }
 
     @Test
@@ -318,6 +320,21 @@ public class TimeTableDayTest {
 
     @Test
     public void testToString() throws Exception {
+        ArrayList<ArrayList<String>> dayList = new ArrayList<>();
+        dayList.add(new ArrayList<>(Arrays.asList("1", "K1", "D", "---", "H202", "---", "")));
+        dayList.add(new ArrayList<>(Arrays.asList("2", "7a", "E", "---", "H105", "---", "")));
+        dayList.add(new ArrayList<>(Arrays.asList("3", "5c", "G", "---", "M315", "---", "Test")));
+        TimeTableDay ttd = new TimeTableDay("31.12.", dayList);
+
+        String result = "";
+
+        String day = ttd.getFullDateString();
+
+        result += day + "\n";
+        result += "1 | K1 | Deutsch | --- | H202 | --- | \n";
+        result += "2 | 7a | Englisch | --- | H105 | --- | \n";
+        result += "3 | 5c | Geschichte | --- | M315 | --- | Test\n";
+        assertEquals(result, ttd.toString());
     }
 
 }
