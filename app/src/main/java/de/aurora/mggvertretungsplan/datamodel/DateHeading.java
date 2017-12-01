@@ -11,14 +11,24 @@ import java.util.Locale;
 public class DateHeading {
     @SuppressWarnings("CanBeFinal")
     private Date date;
+    private String week;
+
+    public DateHeading(Date date, String week) {
+        this.date = date;
+        this.week = week;
+    }
 
     public DateHeading(Date date) {
-        this.date = date;
+        this(date, "A");
     }
 
     public String getWholeDate() {
         SimpleDateFormat wholeDate = new SimpleDateFormat("EEEE, dd.MM.yyyy", Locale.GERMANY);
         return wholeDate.format(date);
+    }
+
+    public String getWeek() {
+        return this.week;
     }
 
 }

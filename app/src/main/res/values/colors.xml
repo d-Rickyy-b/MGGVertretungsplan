@@ -31,4 +31,6 @@
         <item name="green">#9ccc65</item>
         <item name="orange">#ff9800</item>
     </array>
+
+    <color name="tagBackground">#00bcce</color>
 </resources>
