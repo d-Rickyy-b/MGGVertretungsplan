@@ -3,6 +3,9 @@ package de.aurora.mggvertretungsplan.datamodel;
 import android.annotation.SuppressLint;
 import android.util.Log;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -236,5 +239,19 @@ public class TimeTableElement {
         return String.format("%s | %s | %s | %s | %s | %s | %s", hour, class_name, subject, newSubject, room, newRoom, info);
     }
 
+    public JSONObject toJSON() throws JSONException {
+        JSONObject jsonObject = new JSONObject();
+
+        jsonObject.put("hour", hour);
+        jsonObject.put("class_name", class_name);
+        jsonObject.put("subject", subject);
+        jsonObject.put("newSubject", newSubject);
+        jsonObject.put("room", room);
+        jsonObject.put("newRoom", newRoom);
+        jsonObject.put("info", info);
+        //jsonObject.put("isNew", isNew);
+
+        return jsonObject;
+    }
 }
 

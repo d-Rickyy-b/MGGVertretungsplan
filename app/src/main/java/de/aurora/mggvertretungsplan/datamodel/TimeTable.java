@@ -2,6 +2,9 @@ package de.aurora.mggvertretungsplan.datamodel;
 
 import android.util.Log;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -106,5 +109,15 @@ public class TimeTable {
         }
 
         return result.toString().trim();
+    }
+
+    public JSONArray toJSON() throws JSONException {
+        JSONArray jsonArray = new JSONArray();
+
+        for (TimeTableDay ttd : timeTableDays) {
+            jsonArray.put(ttd.toJSON());
+        }
+
+        return jsonArray;
     }
 }

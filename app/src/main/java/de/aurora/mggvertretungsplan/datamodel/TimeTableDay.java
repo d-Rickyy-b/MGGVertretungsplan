@@ -2,6 +2,10 @@ package de.aurora.mggvertretungsplan.datamodel;
 
 import android.util.Log;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -207,4 +211,17 @@ public class TimeTableDay {
         return result.toString().trim();
     }
 
+    public JSONObject toJSON() throws JSONException {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("date", getDateString());
+
+        JSONArray jsonArray = new JSONArray();
+
+        for (TimeTableElement tte : timeTableElements) {
+            jsonArray.put(tte.toJSON());
+        }
+
+        jsonObject.put("elements", jsonArray);
+        return jsonObject;
+    }
 }
