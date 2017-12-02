@@ -22,19 +22,7 @@ public class TimeTableDay {
     private Date date = new Date();
 
     public TimeTableDay(String date, ArrayList<ArrayList<String>> timeTableDay_List) {
-        SimpleDateFormat fullDateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.GERMANY);
-        int currentYear = new GregorianCalendar().get(GregorianCalendar.YEAR);
-
-        try {
-            if (date.length() == 6)
-                this.date = fullDateFormat.parse(date + currentYear);
-            else {
-                this.date = fullDateFormat.parse(date);
-            }
-        } catch (ParseException e) {
-            Log.e("Vertretungsplan_TTD", e.getMessage());
-            this.date = new Date();
-        }
+        setDate(date);
 
         for (ArrayList<String> zeile : timeTableDay_List) {
             TimeTableElement timeTableElement = new TimeTableElement(zeile.get(0), zeile.get(1), zeile.get(2), zeile.get(3), zeile.get(4), zeile.get(5), zeile.get(6));
@@ -58,6 +46,22 @@ public class TimeTableDay {
 
     public Date getDate() {
         return date;
+    }
+
+    private void setDate(String date) {
+        SimpleDateFormat fullDateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.GERMANY);
+        int currentYear = new GregorianCalendar().get(GregorianCalendar.YEAR);
+
+        try {
+            if (date.length() == 6)
+                this.date = fullDateFormat.parse(date + currentYear);
+            else {
+                this.date = fullDateFormat.parse(date);
+            }
+        } catch (ParseException e) {
+            Log.e("TimeTableDay", e.getMessage());
+            this.date = new Date();
+        }
     }
 
     public String getDateString() {
