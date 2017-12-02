@@ -4,6 +4,7 @@ import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -17,6 +18,18 @@ public class TimeTable {
 
     public TimeTable() {
 
+    }
+
+    public TimeTable(JSONArray jsonArray) {
+        for (int i = 0; i < jsonArray.length(); i++) {
+            try {
+                JSONObject jsonDay = (JSONObject) jsonArray.get(i);
+                TimeTableDay ttd = new TimeTableDay(jsonDay);
+                addDay(ttd);
+            } catch (JSONException e) {
+                Log.e("TimeTable", e.getMessage());
+            }
+        }
     }
 
     // Adds a day to the right place via insertionsort

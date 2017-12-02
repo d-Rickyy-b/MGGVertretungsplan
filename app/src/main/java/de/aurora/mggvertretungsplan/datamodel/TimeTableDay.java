@@ -32,6 +32,23 @@ public class TimeTableDay {
         mergeConsecutiveCancellations();
     }
 
+    public TimeTableDay(JSONObject jsonObject) {
+        try {
+            String date = jsonObject.getString("date");
+            setDate(date);
+
+            JSONArray jsonArray = jsonObject.getJSONArray("elements");
+
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonDay = (JSONObject) jsonArray.get(i);
+                TimeTableElement tte = new TimeTableElement(jsonDay);
+                addElement(tte);
+            }
+        } catch (JSONException e) {
+            Log.e("TimeTableDay", e.getMessage());
+        }
+    }
+
     private void addElement(TimeTableElement tte) {
         int index = 0;
         for (int i = 0; i < timeTableElements.size(); i++) {
