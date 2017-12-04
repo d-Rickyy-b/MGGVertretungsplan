@@ -24,8 +24,7 @@ public class MGGParser extends BaseParser {
     private static final String timeTable_url = "https://www.mgg.karlsruhe.de/stupla/stupla.php";
     private static final String timeTable_url_2 = "https://www.mgg.karlsruhe.de/stupla/stuplamorgen.php";
 
-    public MGGParser(ParsingCompleteListener callback) {
-        super(callback);
+    public MGGParser() {
     }
 
     // Extracts the two tables from the html code
@@ -64,6 +63,11 @@ public class MGGParser extends BaseParser {
     @Override
     public String getTimeTable_url() {
         return timeTable_url;
+    }
+
+    @Override
+    public String[] getTimeTableURLs() {
+        return new String[]{timeTable_url, timeTable_url_2};
     }
 
     private TimeTableDay parseDay(String website, int index) {
@@ -121,11 +125,6 @@ public class MGGParser extends BaseParser {
         }
 
         return timeTable;
-    }
-
-    @Override
-    public void startParsing() {
-        downloadWebsite(timeTable_url, timeTable_url_2);
     }
 
 }
