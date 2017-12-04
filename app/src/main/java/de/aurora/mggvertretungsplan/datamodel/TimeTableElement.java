@@ -84,6 +84,7 @@ public class TimeTableElement {
                 case "L":
                     return "Latein";
                 case "S":
+                case "SPA":
                     return "Spanisch";
                 case "E":
                     return "Englisch";
