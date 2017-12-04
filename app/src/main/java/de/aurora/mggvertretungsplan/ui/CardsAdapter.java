@@ -90,25 +90,24 @@ public class CardsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         classInfoViewHolder.room.setText(timeTableElement.getRoom());
         classInfoViewHolder.newRoom.setText(timeTableElement.getNewRoom());
 
+        int color;
+
         if (sp.getBoolean("listColors", true)) {
-            int color;
 
             switch (timeTableElement.getType()) {
-                case TimeTableElement.CANCELLATION:
-                    color = context.getResources().getColor(R.color.cardCancellation);
-                    break;
                 case TimeTableElement.SUBSTITUTION:
                     color = context.getResources().getColor(R.color.cardSubstitution);
                     break;
+                case TimeTableElement.CANCELLATION:
                 default:
                     color = context.getResources().getColor(R.color.cardCancellation);
             }
 
-            classInfoViewHolder.cardView.setCardBackgroundColor(color);
         } else {
-            int noColor = context.getResources().getColor(R.color.cardNoColor);
-            classInfoViewHolder.cardView.setCardBackgroundColor(noColor);
+            color = context.getResources().getColor(R.color.cardNoColor);
         }
+
+        classInfoViewHolder.cardView.setCardBackgroundColor(color);
 
         setAnimation(classInfoViewHolder.cardView, position);
     }
