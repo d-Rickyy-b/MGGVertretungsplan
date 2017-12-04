@@ -3,6 +3,9 @@ package de.aurora.mggvertretungsplan.datamodel;
 import android.annotation.SuppressLint;
 import android.util.Log;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -46,6 +49,17 @@ public class TimeTableElement {
         this.info = info.trim();
     }
 
+    TimeTableElement(JSONObject jsonObject) throws JSONException {
+        this.hour = jsonObject.getString("hour");
+        this.class_name = jsonObject.getString("class_name");
+        this.subject = jsonObject.getString("subject");
+        this.newSubject = jsonObject.getString("newSubject");
+        this.room = jsonObject.getString("room");
+        this.newRoom = jsonObject.getString("newRoom");
+        this.info = jsonObject.getString("info");
+        this.type = calcType();
+    }
+
     // Returns the full name of a subject abbreviation
     @SuppressLint("DefaultLocale")
     private static String getFullSubject(String subj) {
@@ -70,6 +84,7 @@ public class TimeTableElement {
                 case "L":
                     return "Latein";
                 case "S":
+                case "SPA":
                     return "Spanisch";
                 case "E":
                     return "Englisch";
@@ -236,5 +251,19 @@ public class TimeTableElement {
         return String.format("%s | %s | %s | %s | %s | %s | %s", hour, class_name, subject, newSubject, room, newRoom, info);
     }
 
+    public JSONObject toJSON() throws JSONException {
+        JSONObject jsonObject = new JSONObject();
+
+        jsonObject.put("hour", hour);
+        jsonObject.put("class_name", class_name);
+        jsonObject.put("subject", subject);
+        jsonObject.put("newSubject", newSubject);
+        jsonObject.put("room", room);
+        jsonObject.put("newRoom", newRoom);
+        jsonObject.put("info", info);
+        //jsonObject.put("isNew", isNew);
+
+        return jsonObject;
+    }
 }
 

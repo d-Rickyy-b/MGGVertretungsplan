@@ -2,6 +2,10 @@ package de.aurora.mggvertretungsplan.datamodel;
 
 import android.util.Log;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -14,6 +18,20 @@ public class TimeTable {
 
     public TimeTable() {
 
+    }
+
+    public TimeTable(JSONArray jsonArray) {
+        Log.d("TimeTable", "Creating new TimeTable object from JSON");
+        for (int i = 0; i < jsonArray.length(); i++) {
+            try {
+                JSONObject jsonDay = (JSONObject) jsonArray.get(i);
+                TimeTableDay ttd = new TimeTableDay(jsonDay);
+                addDay(ttd);
+            } catch (JSONException e) {
+                Log.e("TimeTable", e.getMessage());
+            }
+        }
+        Log.d("TimeTable", "TimeTable object created");
     }
 
     // Adds a day to the right place via insertionsort
@@ -106,5 +124,15 @@ public class TimeTable {
         }
 
         return result.toString().trim();
+    }
+
+    public JSONArray toJSON() throws JSONException {
+        JSONArray jsonArray = new JSONArray();
+
+        for (TimeTableDay ttd : timeTableDays) {
+            jsonArray.put(ttd.toJSON());
+        }
+
+        return jsonArray;
     }
 }

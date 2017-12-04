@@ -2,6 +2,10 @@ package de.aurora.mggvertretungsplan.datamodel;
 
 import android.util.Log;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -18,19 +22,7 @@ public class TimeTableDay {
     private Date date = new Date();
 
     public TimeTableDay(String date, ArrayList<ArrayList<String>> timeTableDay_List) {
-        SimpleDateFormat fullDateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.GERMANY);
-        int currentYear = new GregorianCalendar().get(GregorianCalendar.YEAR);
-
-        try {
-            if (date.length() == 6)
-                this.date = fullDateFormat.parse(date + currentYear);
-            else {
-                this.date = fullDateFormat.parse(date);
-            }
-        } catch (ParseException e) {
-            Log.e("Vertretungsplan_TTD", e.getMessage());
-            this.date = new Date();
-        }
+        setDate(date);
 
         for (ArrayList<String> zeile : timeTableDay_List) {
             TimeTableElement timeTableElement = new TimeTableElement(zeile.get(0), zeile.get(1), zeile.get(2), zeile.get(3), zeile.get(4), zeile.get(5), zeile.get(6));
@@ -38,6 +30,23 @@ public class TimeTableDay {
         }
 
         mergeConsecutiveCancellations();
+    }
+
+    public TimeTableDay(JSONObject jsonObject) {
+        try {
+            String date = jsonObject.getString("date");
+            setDate(date);
+
+            JSONArray jsonArray = jsonObject.getJSONArray("elements");
+
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonDay = (JSONObject) jsonArray.get(i);
+                TimeTableElement tte = new TimeTableElement(jsonDay);
+                addElement(tte);
+            }
+        } catch (JSONException e) {
+            Log.e("TimeTableDay", e.getMessage());
+        }
     }
 
     private void addElement(TimeTableElement tte) {
@@ -54,6 +63,22 @@ public class TimeTableDay {
 
     public Date getDate() {
         return date;
+    }
+
+    private void setDate(String date) {
+        SimpleDateFormat fullDateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.GERMANY);
+        int currentYear = new GregorianCalendar().get(GregorianCalendar.YEAR);
+
+        try {
+            if (date.length() == 6)
+                this.date = fullDateFormat.parse(date + currentYear);
+            else {
+                this.date = fullDateFormat.parse(date);
+            }
+        } catch (ParseException e) {
+            Log.e("TimeTableDay", e.getMessage());
+            this.date = new Date();
+        }
     }
 
     public String getDateString() {
@@ -207,4 +232,17 @@ public class TimeTableDay {
         return result.toString().trim();
     }
 
+    public JSONObject toJSON() throws JSONException {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("date", getDateString());
+
+        JSONArray jsonArray = new JSONArray();
+
+        for (TimeTableElement tte : timeTableElements) {
+            jsonArray.put(tte.toJSON());
+        }
+
+        jsonObject.put("elements", jsonArray);
+        return jsonObject;
+    }
 }
