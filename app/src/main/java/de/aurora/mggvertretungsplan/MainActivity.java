@@ -11,6 +11,7 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.annotation.ColorInt;
 import android.support.customtabs.CustomTabsIntent;
@@ -29,10 +30,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import java.util.ArrayList;
+import org.json.JSONArray;
+import org.json.JSONException;
 
 import de.aurora.mggvertretungsplan.datamodel.TimeTable;
-import de.aurora.mggvertretungsplan.datamodel.TimeTableDay;
 import de.aurora.mggvertretungsplan.parsing.BaseParser;
 import de.aurora.mggvertretungsplan.parsing.MGGParser;
 import de.aurora.mggvertretungsplan.parsing.ParsingCompleteListener;
@@ -213,22 +214,36 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
     // Method to display the saved data
     private void displaySavedData() {
-        TimeTable timeTable = new TimeTable();
+        final Handler handler = new Handler();
 
-        int count = sp.getInt("TT_Changes_Count", timeTable.getDaysCount());
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Log.d("MainActivity", "Fetch saved data from disk");
+                TimeTable timeTable;
+                String data = StorageUtilities.readFile(MainActivity.this);
 
-        for (int i = 0; i < count; i++) {
-            ArrayList<ArrayList<String>> table;
-            table = JsonUtilities.getArrayList(sp.getString("table" + i, ""));
-            String date = sp.getString("Date" + i, "01.01.");
+                try {
+                    JSONArray jsonArray = new JSONArray(data);
+                    timeTable = new TimeTable(jsonArray);
+                } catch (JSONException e) {
+                    Log.e("MainActivity", e.getMessage());
+                    timeTable = new TimeTable();
+                }
 
-            if (table != null) {
-                TimeTableDay day = new TimeTableDay(date, table);
-                timeTable.addDay(day);
+                final TimeTable timeTable1 = timeTable;
+
+                handler.post(
+                        new Runnable() {
+                            @Override
+                            public void run() {
+                                displayData(timeTable1);
+                            }
+                        }
+                );
             }
-        }
+        }).start();
 
-        displayData(timeTable);
     }
 
     private boolean isConnectionActive() {
@@ -263,7 +278,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     }
 
     // Creates the view of the Android App
-    private void displayData(TimeTable timeTable) {
+    public void displayData(TimeTable timeTable) {
         Log.d("MainActivity", "Display data on screen");
         String toolbarTitle_WithClass = getString(R.string.toolbarTitle_WithClass);
         toolbar.setTitle(String.format(toolbarTitle_WithClass, class_name));
@@ -275,26 +290,16 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             cAdapter.clearItems();
             cAdapter.addDays(timeTable);
             cAdapter.notifyDataSetChanged();
+            Log.d("MainActivity", "Notify changes");
         }
     }
 
-    private void saveData(TimeTable timeTable) {
+    private void saveData(final TimeTable timeTable) {
+        Log.d("MainActivity", "Saving data.json to disk");
         try {
-            SharedPreferences.Editor editor = sp.edit();
-
-            int i = 0;
-            for (TimeTableDay ttd : timeTable.getAllDays()) {
-                editor.putString("Date" + i, ttd.getDateString());
-                editor.putString("table" + i, JsonUtilities.getJSONArray(ttd.getArrayList()).toString());
-                i++;
-            }
-
-            editor.putInt("TT_Changes_Count", timeTable.getDaysCount());
-
-            editor.apply();
-        } catch (NullPointerException npe) {
-            Toast.makeText(this, R.string.toast_errorOccurred, Toast.LENGTH_LONG).show();
-            Log.d("MainActivity", "NullPointerException - Day or table not present.");
+            StorageUtilities.writeToFile(this, timeTable.toJSON().toString());
+        } catch (JSONException e) {
+            Log.e("MainActivity", e.getMessage());
         }
     }
 
