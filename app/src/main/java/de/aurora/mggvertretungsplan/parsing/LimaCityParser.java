@@ -1,11 +1,7 @@
 package de.aurora.mggvertretungsplan.parsing;
 
-import android.os.AsyncTask;
-
 import java.util.ArrayList;
 
-import de.aurora.mggvertretungsplan.AsyncTaskCompleteListener;
-import de.aurora.mggvertretungsplan.DownloadWebPageTask;
 import de.aurora.mggvertretungsplan.datamodel.TimeTable;
 
 /**
@@ -13,16 +9,11 @@ import de.aurora.mggvertretungsplan.datamodel.TimeTable;
  */
 
 @SuppressWarnings("unused")
-public class LimaCityParser implements WebsiteParser {
-
+public class LimaCityParser extends BaseParser {
     private static final String timeTable_url = "http://rickyy.lima-city.de/html/vertretungsplan.html";
 
-    public void startDownload(AsyncTaskCompleteListener<ArrayList<String>> callback) {
-        new DownloadWebPageTask(callback).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, timeTable_url);
-    }
-
     @Override
-    public TimeTable parse(ArrayList<String> websites, String className) {
+    public TimeTable parse(ArrayList<String> websites) {
         //TODO Fix this any time in the future
         return null;
     }
@@ -30,5 +21,10 @@ public class LimaCityParser implements WebsiteParser {
     @Override
     public String getTimeTable_url() {
         return timeTable_url;
+    }
+
+    @Override
+    public String[] getTimeTableURLs() {
+        return new String[0];
     }
 }
