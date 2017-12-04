@@ -304,7 +304,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         Log.d("MainActivity", "Parsing complete!");
         mSwipeLayout.setRefreshing(false);
 
-        if (timeTable == null) {
+        if (timeTable == null || timeTable.getDaysCount() == 0) {
             recyclerView.setAdapter(new EmptyAdapter(getString(R.string.no_data_to_display)));
             Toast.makeText(getApplicationContext(), R.string.downloadException, Toast.LENGTH_SHORT).show();
             return;
