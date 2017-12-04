@@ -62,14 +62,14 @@ public class TimeTableDayTest {
     public void getFullDateString() throws Exception {
         ArrayList<ArrayList<String>> testList = new ArrayList<>();
 
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(2018, 0, 1);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.GERMANY);
+        Date date = dateFormat.parse("01.01.2018");
 
         TimeTableDay ttd = new TimeTableDay("01.01.2018", testList);
 
-        SimpleDateFormat format = new SimpleDateFormat("EEEE, dd.MM.yyyy");
+        SimpleDateFormat fullDateFormat = new SimpleDateFormat("EEEE, dd.MM.yyyy", Locale.GERMANY);
 
-        assertEquals(format.format(calendar.getTime()), ttd.getFullDateString());
+        assertEquals(fullDateFormat.format(date), ttd.getFullDateString());
     }
 
     @Test
@@ -158,7 +158,7 @@ public class TimeTableDayTest {
         assertEquals(0, ttd.getElementsCount("5a"));
         assertEquals(0, ttd.getElementsCount("abc"));
 
-        ArrayList<ArrayList<String>> day1List = new ArrayList();
+        ArrayList<ArrayList<String>> day1List = new ArrayList<>();
 
         day1List.add(new ArrayList<>(Arrays.asList("3-4", className, "G", "---", "H202", "---", "")));
         day1List.add(new ArrayList<>(Arrays.asList("3-4", className, "G", "---", "H105", "---", "")));
