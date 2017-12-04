@@ -24,6 +24,7 @@ import de.aurora.mggvertretungsplan.datamodel.TimeTableDay;
 import de.aurora.mggvertretungsplan.parsing.BaseParser;
 import de.aurora.mggvertretungsplan.parsing.MGGParser;
 import de.aurora.mggvertretungsplan.parsing.ParsingCompleteListener;
+import de.aurora.mggvertretungsplan.parsing.ParsingTask;
 
 
 public class BackgroundService extends Service implements ParsingCompleteListener {
@@ -45,7 +46,7 @@ public class BackgroundService extends Service implements ParsingCompleteListene
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.d("BackgroundService", "Start Service");
-        websiteParser = new MGGParser(this);
+        websiteParser = new MGGParser();
         updateData();
         stopSelf();
         return START_STICKY;
@@ -57,7 +58,8 @@ public class BackgroundService extends Service implements ParsingCompleteListene
             sp = PreferenceManager.getDefaultSharedPreferences(this);
 
             try {
-                websiteParser.startParsing();
+                ParsingTask parsingTask = new ParsingTask(this, websiteParser);
+                parsingTask.startParsing();
             } catch (Exception e) {
                 Log.e("BackgroundService", e.getMessage());
             }

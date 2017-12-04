@@ -36,6 +36,7 @@ import de.aurora.mggvertretungsplan.datamodel.TimeTableDay;
 import de.aurora.mggvertretungsplan.parsing.BaseParser;
 import de.aurora.mggvertretungsplan.parsing.MGGParser;
 import de.aurora.mggvertretungsplan.parsing.ParsingCompleteListener;
+import de.aurora.mggvertretungsplan.parsing.ParsingTask;
 import de.aurora.mggvertretungsplan.ui.CardsAdapter;
 import de.aurora.mggvertretungsplan.ui.EmptyAdapter;
 import de.aurora.mggvertretungsplan.ui.intro.IntroActivity;
@@ -56,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         int themeID = sp.getInt("Theme", 0);
         setTheme(ThemeManager.getTheme(themeID));
         super.onCreate(savedInstanceState);
-        websiteParser = new MGGParser(this);
+        websiteParser = new MGGParser();
 
         // If application is called for the first time, intro slides will show up
         if (sp.getBoolean("firstStart", true)) {
@@ -249,7 +250,8 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             class_name = sp.getString("KlasseGesamt", "5a");
 
             try {
-                websiteParser.startParsing();
+                ParsingTask parsingTask = new ParsingTask(this, websiteParser);
+                parsingTask.startParsing();
             } catch (Exception e) {
                 mSwipeLayout.setRefreshing(false);
                 Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
