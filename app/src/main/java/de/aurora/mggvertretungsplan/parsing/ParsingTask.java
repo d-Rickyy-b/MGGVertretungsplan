@@ -59,6 +59,8 @@ public class ParsingTask extends AsyncTask<String, Void, TimeTable> {
 
     @Override
     protected TimeTable doInBackground(String... urls) {
+        Thread.currentThread().setName("ParsingTask");
+
         // Download all the html websites as Strings
         ArrayList<String> websites = new ArrayList<>();
 

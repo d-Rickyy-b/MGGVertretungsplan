@@ -243,7 +243,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
                         }
                 );
             }
-        }).start();
+        }, "dataLoader").start();
 
     }
 
