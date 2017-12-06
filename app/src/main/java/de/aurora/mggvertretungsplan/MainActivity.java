@@ -173,11 +173,20 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
                 startActivityForResult(preferenceIntent, 0);
                 break;
             case R.id.action_website:
+                String[] urls = websiteParser.getTimeTableURLs();
+
+                if (urls.length < 1) {
+                    Toast.makeText(this, R.string.no_url_to_open, Toast.LENGTH_LONG).show();
+                    break;
+                }
+
+                String url = urls[0];
+
                 CustomTabsIntent.Builder chromeTabsBuilder = new CustomTabsIntent.Builder();
                 chromeTabsBuilder.setToolbarColor(color);
                 chromeTabsBuilder.setShowTitle(true);
                 CustomTabsIntent websiteIntent = chromeTabsBuilder.build();
-                websiteIntent.launchUrl(this, Uri.parse(websiteParser.getTimeTable_url()));
+                websiteIntent.launchUrl(this, Uri.parse(url));
                 break;
             case R.id.action_feedback:
                 CustomTabsIntent.Builder chromeTabsFeedbackBuilder = new CustomTabsIntent.Builder();
