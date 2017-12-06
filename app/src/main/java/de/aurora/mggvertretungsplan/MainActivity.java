@@ -149,6 +149,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        Log.d(TAG, String.format("onActivityResult: requestCode %s, resultCode %s", requestCode, resultCode));
         if (requestCode == 0) {
             recreate();
         }
