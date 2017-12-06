@@ -52,11 +52,12 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     private RecyclerView recyclerView;
     private CardsAdapter cAdapter;
     private BaseParser websiteParser;
+    private int themeID = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         sp = PreferenceManager.getDefaultSharedPreferences(this);
-        int themeID = sp.getInt("Theme", 0);
+        themeID = sp.getInt("Theme", 0);
         setTheme(ThemeManager.getTheme(themeID));
         super.onCreate(savedInstanceState);
         websiteParser = new MGGParser();
