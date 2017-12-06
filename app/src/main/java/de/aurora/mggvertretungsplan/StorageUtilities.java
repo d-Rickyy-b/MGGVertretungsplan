@@ -14,10 +14,12 @@ import java.io.InputStreamReader;
  */
 
 public class StorageUtilities {
+    private static final String TAG = "StorageUtilities";
+
     private static final String FILENAME = "data.json";
 
     static String readFile(Context context) {
-        Log.d("StorageUtilities", "Reading file!");
+        Log.d(TAG, "Reading file!");
         String content = "";
         try {
             FileInputStream fileInputStream = context.openFileInput(FILENAME);
@@ -36,11 +38,11 @@ public class StorageUtilities {
                 content = stringBuilder.toString();
             }
         } catch (IOException e) {
-            Log.e("Exception", "File read failed: " + e.toString());
+            Log.e(TAG, "File read failed: " + e.toString());
             return "";
         }
 
-        Log.d("StorageUtilities", "Finished reading");
+        Log.d(TAG, "Finished reading");
         return content;
     }
 
@@ -51,16 +53,15 @@ public class StorageUtilities {
             @Override
             public void run() {
                 try {
-                    Log.d("StorageUtilities", "Writing to file");
+                    Log.d(TAG, "Writing to file");
                     FileOutputStream fos = context.openFileOutput(FILENAME, Context.MODE_PRIVATE);
                     fos.write(data.getBytes());
                     fos.close();
+                    Log.d(TAG, "Write finished");
                 } catch (IOException e) {
-                    Log.e("Exception", "File write failed: " + e.toString());
+                    Log.e(TAG, "File write failed: " + e.toString());
                 }
             }
-        }).start();
-
-        Log.d("StorageUtilities", "Write finished");
+        }, "dataSaver").start();
     }
 }

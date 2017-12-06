@@ -44,6 +44,7 @@ import de.aurora.mggvertretungsplan.ui.intro.IntroActivity;
 import de.aurora.mggvertretungsplan.ui.theming.ThemeManager;
 
 public class MainActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener, ParsingCompleteListener {
+    private static final String TAG = "MainActivity";
     private SharedPreferences sp;
     private Toolbar toolbar;
     private String class_name;
@@ -219,7 +220,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         new Thread(new Runnable() {
             @Override
             public void run() {
-                Log.d("MainActivity", "Fetch saved data from disk");
+                Log.d(TAG, "Fetch saved data from disk");
                 TimeTable timeTable;
                 String data = StorageUtilities.readFile(MainActivity.this);
 
@@ -227,7 +228,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
                     JSONArray jsonArray = new JSONArray(data);
                     timeTable = new TimeTable(jsonArray);
                 } catch (JSONException e) {
-                    Log.e("MainActivity", e.getMessage());
+                    Log.e(TAG, e.getMessage());
                     timeTable = new TimeTable();
                 }
 
@@ -253,7 +254,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
             return null != activeNetwork && activeNetwork.isConnected();
         } catch (NullPointerException e) {
-            Log.e("MainActivity", e.getMessage());
+            Log.e(TAG, e.getMessage());
             return false;
         }
     }
@@ -278,7 +279,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
     // Creates the view of the Android App
     public void displayData(TimeTable timeTable) {
-        Log.d("MainActivity", "Display data on screen");
+        Log.d(TAG, "Display data on screen");
         String toolbarTitle_WithClass = getString(R.string.toolbarTitle_WithClass);
         toolbar.setTitle(String.format(toolbarTitle_WithClass, class_name));
 
@@ -289,23 +290,23 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             cAdapter.clearItems();
             cAdapter.addDays(timeTable);
             cAdapter.notifyDataSetChanged();
-            Log.d("MainActivity", "Notify changes");
+            Log.d(TAG, "Notify changes");
         }
     }
 
     private void saveData(final TimeTable timeTable) {
-        Log.d("MainActivity", "Saving data.json to disk");
+        Log.d(TAG, "Saving data.json to disk");
         try {
             StorageUtilities.writeToFile(this, timeTable.toJSON().toString());
         } catch (JSONException e) {
-            Log.e("MainActivity", e.getMessage());
+            Log.e(TAG, e.getMessage());
         }
     }
 
     // Gets called, when website was downloaded and parsed by the parser
     @Override
     public void onParsingComplete(TimeTable timeTable) {
-        Log.d("MainActivity", "Parsing complete!");
+        Log.d(TAG, "Parsing complete!");
         mSwipeLayout.setRefreshing(false);
 
         if (timeTable == null || timeTable.getDaysCount() == 0) {

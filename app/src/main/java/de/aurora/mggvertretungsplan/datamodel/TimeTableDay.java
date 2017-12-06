@@ -18,6 +18,8 @@ import java.util.Locale;
  */
 
 public class TimeTableDay {
+    private static final String TAG = "TimeTableDay";
+
     private final ArrayList<TimeTableElement> timeTableElements = new ArrayList<>();
     private Date date = new Date();
 
@@ -45,7 +47,7 @@ public class TimeTableDay {
                 addElement(tte);
             }
         } catch (JSONException e) {
-            Log.e("TimeTableDay", e.getMessage());
+            Log.e(TAG, e.getMessage());
         }
     }
 
@@ -76,7 +78,7 @@ public class TimeTableDay {
                 this.date = fullDateFormat.parse(date);
             }
         } catch (ParseException e) {
-            Log.e("TimeTableDay", e.getMessage());
+            Log.e(TAG, e.getMessage());
             this.date = new Date();
         }
     }

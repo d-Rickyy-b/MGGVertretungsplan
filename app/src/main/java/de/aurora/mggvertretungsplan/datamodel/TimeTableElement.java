@@ -14,6 +14,8 @@ import java.util.Arrays;
  */
 
 public class TimeTableElement {
+    private static final String TAG = "TimeTableElement";
+
     public static final int EMPTY = -1;
     public static final int CANCELLATION = 0;
     public static final int SUBSTITUTION = 1;
@@ -157,7 +159,7 @@ public class TimeTableElement {
             else
                 return Integer.parseInt(hour.replaceAll("^([0-9]{1,2}).*", "$1"));
         } catch (NumberFormatException nfe) {
-            Log.e("TimeTableElement", String.format("Hour doesn't match pattern: %s", hour));
+            Log.e(TAG, String.format("Hour doesn't match pattern: %s", hour));
             return 12;
         }
     }

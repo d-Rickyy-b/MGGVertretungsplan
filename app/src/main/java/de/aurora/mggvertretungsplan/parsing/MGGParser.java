@@ -21,6 +21,7 @@ import de.aurora.mggvertretungsplan.datamodel.TimeTableDay;
  */
 
 public class MGGParser extends BaseParser {
+    private static final String TAG = "MGGParser";
     private static final String timeTable_url = "https://www.mgg.karlsruhe.de/stupla/stupla.php";
     private static final String timeTable_url_2 = "https://www.mgg.karlsruhe.de/stupla/stuplamorgen.php";
 
@@ -96,8 +97,8 @@ public class MGGParser extends BaseParser {
             } else
                 day = new TimeTableDay(datesList.get(index), new ArrayList<ArrayList<String>>());
         } catch (IndexOutOfBoundsException e) {
-            Log.e("MGGparser", "parseDay(): There is probably no content to extract!");
-            Log.e("MGGparser", e.getMessage());
+            Log.e(TAG, "parseDay(): There is probably no content to extract!");
+            Log.e(TAG, e.getMessage());
         }
 
         return day;
@@ -119,7 +120,7 @@ public class MGGParser extends BaseParser {
 
                 timeTable.addDay(day);
             } catch (Exception e) {
-                Log.e("MGGParser", e.getMessage());
+                Log.e(TAG, e.getMessage());
             }
             index++;
         }
