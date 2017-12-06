@@ -62,11 +62,6 @@ public class MGGParser extends BaseParser {
     }
 
     @Override
-    public String getTimeTable_url() {
-        return timeTable_url;
-    }
-
-    @Override
     public String[] getTimeTableURLs() {
         return new String[]{timeTable_url, timeTable_url_2};
     }

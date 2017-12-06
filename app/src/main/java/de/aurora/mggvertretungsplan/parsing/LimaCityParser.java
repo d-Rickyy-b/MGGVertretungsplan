@@ -19,11 +19,6 @@ public class LimaCityParser extends BaseParser {
     }
 
     @Override
-    public String getTimeTable_url() {
-        return timeTable_url;
-    }
-
-    @Override
     public String[] getTimeTableURLs() {
         return new String[0];
     }

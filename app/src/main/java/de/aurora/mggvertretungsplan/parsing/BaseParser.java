@@ -17,12 +17,7 @@ public abstract class BaseParser {
     // This method needs to be overritten.
     public abstract TimeTable parse(ArrayList<String> websites);
 
-    // Must return the url, which will be opened in the UI after tapping on the
-    // "Website" button to reach the website in a Chrome Tab
-    @Deprecated
-    public abstract String getTimeTable_url();
-
-    // Must return an Array of urls, which will be downloaded.
+    // Must return an Array of at least one url, which will be downloaded.
     // URL at pos. 0 will be opened in the UI after tapping on the
     // "Website" button to reach the website in a Chrome Tab
     public abstract String[] getTimeTableURLs();
