@@ -230,24 +230,26 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             @Override
             public void run() {
                 Log.d(TAG, "Fetch saved data from disk");
-                TimeTable timeTable;
+                final TimeTable timeTable;
                 String data = StorageUtilities.readFile(MainActivity.this);
 
-                try {
-                    JSONArray jsonArray = new JSONArray(data);
-                    timeTable = new TimeTable(jsonArray);
-                } catch (JSONException e) {
-                    Log.e(TAG, e.getMessage());
+                if (data.isEmpty()) {
                     timeTable = new TimeTable();
+                } else {
+                    try {
+                        JSONArray jsonArray = new JSONArray(data);
+                        timeTable = new TimeTable(jsonArray);
+                    } catch (JSONException e) {
+                        Log.e(TAG, e.getMessage());
+                        return;
+                    }
                 }
-
-                final TimeTable timeTable1 = timeTable;
 
                 handler.post(
                         new Runnable() {
                             @Override
                             public void run() {
-                                displayData(timeTable1);
+                                displayData(timeTable);
                             }
                         }
                 );
