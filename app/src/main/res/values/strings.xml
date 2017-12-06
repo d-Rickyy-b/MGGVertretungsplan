@@ -14,6 +14,7 @@
     <string name="infoTitle">Info</string>
     <string name="card_no_information">Keine Ausfälle!</string>
     <string name="no_data_to_display">Es liegen keine Daten vor!\n\n¯\\_(ツ)_/¯</string>
+    <string name="no_url_to_open">Keine URL zum öffnen!</string>
 
     <!-- Intro Slides Strings -->
     <string name="slide_welcome_title">Willkommen</string>
