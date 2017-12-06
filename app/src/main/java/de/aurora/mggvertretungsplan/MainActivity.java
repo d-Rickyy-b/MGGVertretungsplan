@@ -261,7 +261,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     // Get saved class, Check for connection, start downloading the timetable
     private void downloadTimeTable() {
         if (isConnectionActive()) {
-            mSwipeLayout.setRefreshing(true);
             class_name = sp.getString("KlasseGesamt", "5a");
 
             try {
