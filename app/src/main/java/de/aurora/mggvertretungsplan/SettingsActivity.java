@@ -81,13 +81,13 @@ public class SettingsActivity extends PreferenceActivity implements OnSharedPref
     }
 
     private String getClassName(SharedPreferences sharedPreferences) {
-        String klassenstufe = sharedPreferences.getString("Klassenstufe", "5");
-        if (klassenstufe.equals("K1") || klassenstufe.equals("K2")) {
+        String grade = sharedPreferences.getString("Klassenstufe", "5");
+        if (grade.equals("K1") || grade.equals("K2")) {
             setClassPrefStatus(false);
-            return klassenstufe;
+            return grade;
         } else {
             setClassPrefStatus(true);
-            return klassenstufe + sharedPreferences.getString("Klasse", "a");
+            return grade + sharedPreferences.getString("Klasse", "a");
         }
     }
 
