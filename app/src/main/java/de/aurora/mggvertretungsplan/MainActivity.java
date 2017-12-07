@@ -133,6 +133,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     }
 
     // When swiped to refresh
+    @Override
     public void onRefresh() {
         downloadTimeTable();
     }
