@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         themeID = sp.getInt("Theme", 0);
         setTheme(ThemeManager.getTheme(themeID));
         super.onCreate(savedInstanceState);
+
         websiteParser = new MGGParser();
 
         // If application is called for the first time, intro slides will show up
@@ -77,6 +78,9 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         setContentView(R.layout.layout_main);
         mSwipeLayout = findViewById(R.id.swipe_refresh_layout);
         toolbar = findViewById(R.id.toolbar);
+        recyclerView = findViewById(R.id.recycler_view);
+        cAdapter = new CardsAdapter(this);
+
         mSwipeLayout.setOnRefreshListener(this);
         mSwipeLayout.setColorSchemeResources(R.color.refresh_progress_1, R.color.refresh_progress_2, R.color.refresh_progress_3);
 
@@ -85,18 +89,17 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         toolbar.setTitle(String.format(toolbarTitle, class_name));
         setSupportActionBar(toolbar);
 
+        recyclerView.setHasFixedSize(true);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(cAdapter);
+
         if (Build.VERSION.SDK_INT >= 21) {
             toolbar.setElevation(25);
         }
 
-        cAdapter = new CardsAdapter(this);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
-        recyclerView = findViewById(R.id.recycler_view);
 
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(cAdapter);
 
         displaySavedData();
         downloadTimeTable();
@@ -142,6 +145,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     @Override
     public void onResume() {
         super.onResume();
+
         toolbar = findViewById(R.id.toolbar);
         String toolbarTitle_WithClass = getString(R.string.toolbarTitle_WithClass);
 
