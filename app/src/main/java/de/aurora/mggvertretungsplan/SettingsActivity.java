@@ -102,6 +102,8 @@ public class SettingsActivity extends PreferenceActivity implements OnSharedPref
         classPref.setSelectable(status);
     }
 
+    // Checks which class is saved in the settings and en-/disables the access to the class picker.
+    // When a class like "K1" or "K2" is selected, users shouldn't be able to choose 'a' as class.
     private void correctClassPicker() {
         String totalClass_saved = sp.getString("KlasseGesamt", "5a");
 
