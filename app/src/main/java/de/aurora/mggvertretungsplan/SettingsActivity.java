@@ -21,7 +21,6 @@ import de.aurora.mggvertretungsplan.ui.theming.ThemeManager;
 public class SettingsActivity extends PreferenceActivity implements OnSharedPreferenceChangeListener {
 
     private PreferenceFragmentMain preferenceFragmentMain;
-    private String klasseGesamt_saved;
     private SharedPreferences sp;
     private Toolbar toolbar;
 
@@ -54,7 +53,6 @@ public class SettingsActivity extends PreferenceActivity implements OnSharedPref
         preferenceFragmentMain = new PreferenceFragmentMain();
         getFragmentManager().beginTransaction().replace(R.id.content, preferenceFragmentMain).commit();
 
-        klasseGesamt_saved = sp.getString("KlasseGesamt", "5a");
         getFragmentManager().executePendingTransactions();
         correctClassPicker();
     }
@@ -100,7 +98,9 @@ public class SettingsActivity extends PreferenceActivity implements OnSharedPref
     }
 
     private void correctClassPicker() {
-        if (klasseGesamt_saved.equals("K1") || klasseGesamt_saved.equals("K2")) {
+        String totalClass_saved = sp.getString("KlasseGesamt", "5a");
+
+        if (totalClass_saved.equals("K1") || totalClass_saved.equals("K2")) {
             setClassPrefStatus(false);
         } else {
             setClassPrefStatus(true);
