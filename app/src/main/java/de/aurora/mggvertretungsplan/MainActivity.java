@@ -148,13 +148,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         toolbar.setTitle(String.format(toolbarTitle_WithClass, class_name));
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        Log.d(TAG, String.format("onActivityResult: requestCode %s, resultCode %s", requestCode, resultCode));
-        if (requestCode == 0) {
-            recreate();
-        }
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -172,7 +165,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         switch (item.getItemId()) {
             case R.id.action_settings:
                 Intent preferenceIntent = new Intent(getApplicationContext(), SettingsActivity.class);
-                startActivityForResult(preferenceIntent, 0);
+                startActivity(preferenceIntent);
                 break;
             case R.id.action_website:
                 String[] urls = websiteParser.getTimeTableURLs();
@@ -330,6 +323,22 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
         displayData(timeTable);
         saveData(timeTable);
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus) {
+            int newThemeID = sp.getInt("Theme", 0);
+            if (themeID != newThemeID) {
+                recreate();
+            }
+
+            String newClassName = sp.getString("KlasseGesamt", "5a");
+            if (!class_name.equals(newClassName)) {
+                displaySavedData();
+            }
+        }
     }
 
    /*
