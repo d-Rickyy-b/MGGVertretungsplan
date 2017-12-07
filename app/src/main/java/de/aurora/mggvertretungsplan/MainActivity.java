@@ -45,6 +45,8 @@ import de.aurora.mggvertretungsplan.ui.theming.ThemeManager;
 
 public class MainActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener, ParsingCompleteListener {
     private static final String TAG = "MainActivity";
+    private static final String NEED_RELOAD = "need_reload";
+
     private SharedPreferences sp;
     private Toolbar toolbar;
     private String class_name;
@@ -53,6 +55,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     private CardsAdapter cAdapter;
     private BaseParser websiteParser;
     private int themeID = 0;
+    private boolean need_reload = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,10 +102,18 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             toolbar.setElevation(25);
         }
 
+    }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
 
         displaySavedData();
-        downloadTimeTable();
+
+        if (need_reload) {
+            mSwipeLayout.setRefreshing(true);
+            downloadTimeTable();
+        }
 
         long thirtyMinsInMillis = 30 * 60 * 1000;
         ServiceScheduler serviceScheduler = new ServiceScheduler();
