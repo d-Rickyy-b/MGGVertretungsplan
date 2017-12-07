@@ -82,7 +82,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         toolbar = findViewById(R.id.toolbar);
         toolbar.setAlpha(1);
         toolbar.setTitle(String.format(getString(R.string.toolbarTitle_WithClass), class_name));
-        toolbar.showOverflowMenu();
         setSupportActionBar(toolbar);
 
         if (Build.VERSION.SDK_INT >= 21) {
