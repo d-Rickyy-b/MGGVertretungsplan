@@ -10,7 +10,6 @@
     <string name="action_feedback">Feedback</string>
     <string name="action_website">Webseite</string>
     <string name="feedback_url">https://goo.gl/forms/AeYT99ElhH7vzqAx1</string>
-    <string name="lastChecked">Zuletzt aktualisiert: %s</string>
     <string name="infoTitle">Info</string>
     <string name="card_no_information">Keine Ausfälle!</string>
     <string name="no_data_to_display">Es liegen keine Daten vor!\n\n¯\\_(ツ)_/¯</string>
