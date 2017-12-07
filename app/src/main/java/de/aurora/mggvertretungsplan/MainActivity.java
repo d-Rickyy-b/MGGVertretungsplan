@@ -102,6 +102,9 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             toolbar.setElevation(25);
         }
 
+        if (savedInstanceState != null) {
+            need_reload = savedInstanceState.getBoolean(NEED_RELOAD);
+        }
     }
 
     @Override
@@ -164,6 +167,11 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         toolbar.setTitle(String.format(toolbarTitle_WithClass, class_name));
     }
 
+
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean(NEED_RELOAD, false);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
