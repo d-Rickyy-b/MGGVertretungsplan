@@ -17,8 +17,7 @@ import de.aurora.mggvertretungsplan.datamodel.TimeTableDay;
 // This parser is not made for production, it's a parser made for creating mocks - hence the bad coding
 
 @SuppressWarnings("unused")
-public class MockParser implements WebsiteParser {
-
+public class MockParser extends BaseParser {
     private final static String timeTable_url = "http://example.com";
 
     public void startDownload(AsyncTaskCompleteListener<ArrayList<String>> callback) {
@@ -26,9 +25,10 @@ public class MockParser implements WebsiteParser {
     }
 
     @Override
-    public TimeTable parse(ArrayList<String> websites, String className) {
+    public TimeTable parse(ArrayList<String> websites) {
         TimeTable timeTable1 = new TimeTable();
         TimeTable timeTable2 = new TimeTable();
+        TimeTable timeTableReturn = new TimeTable();
         String date1 = "31.12.";
         String date2 = "31.12.";
 
@@ -68,11 +68,14 @@ public class MockParser implements WebsiteParser {
         int diffs = timeTable1.getTotalDifferences(timeTable2, "K1");
         Log.d("MockParser", String.format("Diffs: %s", diffs));
 
-        return new TimeTable();
+        timeTableReturn.addDay(ttd1);
+
+        return timeTableReturn;
     }
 
     @Override
-    public String getTimeTable_url() {
-        return timeTable_url;
+    public String[] getTimeTableURLs() {
+        String[] urls = {timeTable_url};
+        return urls;
     }
 }
