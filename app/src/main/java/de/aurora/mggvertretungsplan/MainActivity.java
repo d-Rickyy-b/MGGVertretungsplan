@@ -308,7 +308,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     }
 
     // Creates the view of the Android App
-    public void displayData(TimeTable timeTable) {
+    private void displayData(TimeTable timeTable) {
         Log.d(TAG, "Display data on screen");
         String toolbarTitle_WithClass = getString(R.string.toolbarTitle_WithClass);
         toolbar.setTitle(String.format(toolbarTitle_WithClass, class_name));
