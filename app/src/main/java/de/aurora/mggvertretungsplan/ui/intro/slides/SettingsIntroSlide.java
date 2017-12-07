@@ -25,6 +25,7 @@ import com.github.paolorotolo.appintro.CustomFontCache;
 
 import de.aurora.mggvertretungsplan.R;
 
+@SuppressWarnings("ClassWithTooManyFields")
 public class SettingsIntroSlide extends AppIntroBaseFragment {
     private static final String DATA_SWITCH = "de.aurora.mggvertretungsplan.ui.intro.slides.InputDemoSlide_switch";
     private static final String DATA_CLASS = "de.aurora.mggvertretungsplan.ui.intro.slides.InputDemoSlide_classSpinner";

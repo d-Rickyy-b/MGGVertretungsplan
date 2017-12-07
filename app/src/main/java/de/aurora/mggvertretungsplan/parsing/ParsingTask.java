@@ -74,6 +74,7 @@ public class ParsingTask extends AsyncTask<String, Void, TimeTable> {
         }
 
         // Parse the TimeTable
+        //noinspection UnnecessaryLocalVariable
         TimeTable timeTable = this.parser.parse(websites);
         return timeTable;
     }

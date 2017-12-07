@@ -69,6 +69,7 @@ public class MockParser extends BaseParser {
 
     @Override
     public String[] getTimeTableURLs() {
+        //noinspection UnnecessaryLocalVariable
         String[] urls = {timeTable_url};
         return urls;
     }

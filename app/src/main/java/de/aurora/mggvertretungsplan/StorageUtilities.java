@@ -31,6 +31,8 @@ public class StorageUtilities {
                 String receiveString;
                 StringBuilder stringBuilder = new StringBuilder();
 
+                // The assignment here is needed to get the line as a String
+                //noinspection NestedAssignment
                 while ((receiveString = bufferedReader.readLine()) != null) {
                     stringBuilder.append(receiveString);
                 }
