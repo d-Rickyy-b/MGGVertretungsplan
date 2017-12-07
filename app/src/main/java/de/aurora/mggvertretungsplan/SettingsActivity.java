@@ -34,6 +34,12 @@ public class SettingsActivity extends PreferenceActivity implements OnSharedPref
         setContentView(R.layout.layout_settings);
 
         toolbar = findViewById(R.id.toolbar);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
         toolbar.setTitle(R.string.settings_name);
 
         if (Build.VERSION.SDK_INT >= 21) {
@@ -48,7 +54,6 @@ public class SettingsActivity extends PreferenceActivity implements OnSharedPref
                 finish();
             }
         });
-
 
         preferenceFragmentMain = new PreferenceFragmentMain();
         getFragmentManager().beginTransaction().replace(R.id.content, preferenceFragmentMain).commit();
