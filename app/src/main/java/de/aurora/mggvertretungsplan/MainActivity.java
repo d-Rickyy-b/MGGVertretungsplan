@@ -76,12 +76,13 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
         setContentView(R.layout.layout_main);
         mSwipeLayout = findViewById(R.id.swipe_refresh_layout);
+        toolbar = findViewById(R.id.toolbar);
         mSwipeLayout.setOnRefreshListener(this);
         mSwipeLayout.setColorSchemeResources(R.color.refresh_progress_1, R.color.refresh_progress_2, R.color.refresh_progress_3);
 
-        toolbar = findViewById(R.id.toolbar);
+        String toolbarTitle = getString(R.string.toolbarTitle_WithClass);
         toolbar.setAlpha(1);
-        toolbar.setTitle(String.format(getString(R.string.toolbarTitle_WithClass), class_name));
+        toolbar.setTitle(String.format(toolbarTitle, class_name));
         setSupportActionBar(toolbar);
 
         if (Build.VERSION.SDK_INT >= 21) {
