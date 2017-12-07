@@ -1,6 +1,8 @@
 package de.aurora.mggvertretungsplan;
 
 import android.annotation.SuppressLint;
+import android.app.ActivityOptions;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Build;
@@ -68,7 +70,15 @@ public class SettingsActivity extends PreferenceActivity implements OnSharedPref
             sp.edit().putInt("Theme", themeID).apply();
             findViewById(android.R.id.content).invalidate();
             setTheme(ThemeManager.getTheme(themeID));
-            recreate();
+
+            if (Build.VERSION.SDK_INT >= 16) {
+                Intent intent = new Intent(this, SettingsActivity.class);
+                ActivityOptions options = ActivityOptions.makeCustomAnimation(this, R.anim.fadein, R.anim.fadeout);
+                startActivity(intent, options.toBundle());
+                finish();
+            } else {
+                recreate();
+            }
         }
     }
 
