@@ -23,7 +23,7 @@ import de.aurora.mggvertretungsplan.datamodel.TimeTable;
 import de.aurora.mggvertretungsplan.datamodel.TimeTableDay;
 import de.aurora.mggvertretungsplan.parsing.BaseParser;
 import de.aurora.mggvertretungsplan.parsing.MGGParser;
-import de.aurora.mggvertretungsplan.parsing.ParsingCompleteListener;
+import de.aurora.mggvertretungsplan.parsing.BaseParser.ParsingCompleteListener;
 import de.aurora.mggvertretungsplan.parsing.ParsingTask;
 
 

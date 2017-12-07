@@ -22,4 +22,7 @@ public abstract class BaseParser {
     // "Website" button to reach the website in a Chrome Tab
     public abstract String[] getTimeTableURLs();
 
+    public interface ParsingCompleteListener {
+        void onParsingComplete(TimeTable timeTable);
+    }
 }

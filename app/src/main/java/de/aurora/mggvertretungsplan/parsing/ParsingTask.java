@@ -12,6 +12,7 @@ import java.net.URL;
 import java.util.ArrayList;
 
 import de.aurora.mggvertretungsplan.datamodel.TimeTable;
+import de.aurora.mggvertretungsplan.parsing.BaseParser.ParsingCompleteListener;
 
 /**
  * Created by Rico on 04.12.2017.
