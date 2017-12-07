@@ -22,6 +22,8 @@ public abstract class BaseParser {
     // "Website" button to reach the website in a Chrome Tab
     public abstract String[] getTimeTableURLs();
 
+    // Interface which needs to be implemented by the receiver
+    // to get the result of the parser
     public interface ParsingCompleteListener {
         void onParsingComplete(TimeTable timeTable);
     }
