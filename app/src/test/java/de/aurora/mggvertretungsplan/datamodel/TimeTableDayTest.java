@@ -138,7 +138,7 @@ public class TimeTableDayTest {
         day1.add(new ArrayList<>(Arrays.asList("8", className, "Deutsch", "Englisch", "S020", "H208", "")));
         day1.add(new ArrayList<>(Arrays.asList("9", className, "Deutsch", "---", "S020", "---", "")));
 
-        ArrayList<ArrayList<String>> day1copy = (ArrayList<ArrayList<String>>) day1.clone();
+        ArrayList<ArrayList<String>> day1copy = new ArrayList<>(day1);
 
         day1.add(new ArrayList<>(Arrays.asList("1", className2, "D", "E", "H105", "H205", "")));
 
