@@ -23,6 +23,7 @@ public class SettingsActivity extends PreferenceActivity implements OnSharedPref
     private PreferenceFragmentMain preferenceFragmentMain;
     private String klasseGesamt_saved;
     private SharedPreferences sp;
+    private Toolbar toolbar;
 
     @SuppressLint("NewApi")
     @Override
@@ -33,7 +34,6 @@ public class SettingsActivity extends PreferenceActivity implements OnSharedPref
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_settings);
 
-        Toolbar toolbar;
         toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle(R.string.settings_name);
 
