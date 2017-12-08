@@ -22,6 +22,7 @@ public class TimeTableDay {
 
     private final ArrayList<TimeTableElement> timeTableElements = new ArrayList<>();
     private Date date = new Date();
+    private Week week;
 
     public TimeTableDay(String date, ArrayList<ArrayList<String>> timeTableDay_List) {
         setDate(date);
@@ -34,10 +35,18 @@ public class TimeTableDay {
         mergeConsecutiveCancellations();
     }
 
+    public TimeTableDay(String date, String week, ArrayList<ArrayList<String>> timeTableDay_List) {
+        this(date, timeTableDay_List);
+        this.week = new Week(week);
+    }
+
     public TimeTableDay(JSONObject jsonObject) {
         try {
             String date = jsonObject.getString("date");
             setDate(date);
+
+            String mWeek = jsonObject.getString("week");
+            this.week = new Week(mWeek);
 
             JSONArray jsonArray = jsonObject.getJSONArray("elements");
 
@@ -237,6 +246,7 @@ public class TimeTableDay {
     public JSONObject toJSON() throws JSONException {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("date", getDateString());
+        jsonObject.put("week", week.toString());
 
         JSONArray jsonArray = new JSONArray();
 
