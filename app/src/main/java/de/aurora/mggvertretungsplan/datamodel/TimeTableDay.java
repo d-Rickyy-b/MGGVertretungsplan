@@ -22,10 +22,6 @@ public class TimeTableDay {
 
     private final ArrayList<TimeTableElement> timeTableElements = new ArrayList<>();
     private Date date = new Date();
-    private int week;
-
-    public static final int WEEK_A = 0;
-    public static final int WEEK_B = 0;
 
     public TimeTableDay(String date, ArrayList<ArrayList<String>> timeTableDay_List) {
         setDate(date);
