@@ -13,11 +13,13 @@ import de.aurora.mggvertretungsplan.R;
 public class HeadingsViewHolder extends RecyclerView.ViewHolder {
     public final TextView heading, tag_text;
     public final RelativeLayout heading_layout;
+    public final RelativeLayout tag_layout;
 
     public HeadingsViewHolder(View view) {
         super(view);
         heading_layout = view.findViewById(R.id.heading_layout);
         heading = view.findViewById(R.id.heading_textView);
         tag_text = view.findViewById(R.id.tag_text);
+        tag_layout = view.findViewById(R.id.tag_layout);
     }
 }

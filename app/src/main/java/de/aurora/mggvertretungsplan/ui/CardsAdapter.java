@@ -120,6 +120,7 @@ public class CardsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
         headingsViewHolder.heading.setText(dateString);
         headingsViewHolder.tag_text.setText(dateHeading.getWeek().toString());
+        headingsViewHolder.tag_layout.setVisibility(View.INVISIBLE);
 
         setAnimation(headingsViewHolder.heading_layout, position);
     }
