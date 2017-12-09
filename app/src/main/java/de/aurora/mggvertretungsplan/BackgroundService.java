@@ -28,7 +28,7 @@ import de.aurora.mggvertretungsplan.parsing.ParsingTask;
 
 
 public class BackgroundService extends Service implements ParsingCompleteListener {
-
+    private final static String TAG = "BackgroundService";
     private final static String CHANNEL_NAME = "default";
     private BaseParser websiteParser;
     private SharedPreferences sp;
@@ -45,7 +45,7 @@ public class BackgroundService extends Service implements ParsingCompleteListene
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.d("BackgroundService", "Start Service");
+        Log.d(TAG, "Start Service");
         websiteParser = new MGGParser();
         updateData();
         stopSelf();
@@ -53,7 +53,7 @@ public class BackgroundService extends Service implements ParsingCompleteListene
     }
 
     private void updateData() {
-        Log.d("BackgroundService", "UpdateData");
+        Log.d(TAG, "UpdateData");
         if (isConnectionActive()) {
             sp = PreferenceManager.getDefaultSharedPreferences(this);
 
@@ -61,10 +61,10 @@ public class BackgroundService extends Service implements ParsingCompleteListene
                 ParsingTask parsingTask = new ParsingTask(this, websiteParser);
                 parsingTask.startParsing();
             } catch (Exception e) {
-                Log.e("BackgroundService", e.getMessage());
+                Log.e(TAG, e.getMessage());
             }
         } else {
-            Log.d("BackgroundService", "No internet Connection. Scheduling next alarm in 10 mins.");
+            Log.d(TAG, "No internet Connection. Scheduling next alarm in 10 mins.");
             long tenMinsInMillis = 60 * 10 * 1000;
             ServiceScheduler serviceScheduler = new ServiceScheduler();
             serviceScheduler.setAlarmManager(getApplicationContext(), tenMinsInMillis);
@@ -75,7 +75,7 @@ public class BackgroundService extends Service implements ParsingCompleteListene
         if (sp.getBoolean("notification", true)) {
             Intent intent = new Intent(this, MainActivity.class);
             PendingIntent pIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-            Log.d("BackgroundService", "Sending notification!");
+            Log.d(TAG, "Sending notification!");
 
             int color;
             if (Build.VERSION.SDK_INT >= 23)
@@ -110,7 +110,7 @@ public class BackgroundService extends Service implements ParsingCompleteListene
             //.setLights(Color.WHITE, 1000, 5000)
 
             notificationManager.notify(0, notification.build());
-            Log.d("BackgroundService", "Notification sent");
+            Log.d(TAG, "Notification sent");
         }
     }
 
@@ -129,10 +129,10 @@ public class BackgroundService extends Service implements ParsingCompleteListene
 
     @Override
     public void onParsingComplete(TimeTable timeTable) {
-        Log.d("BackgroundService", "Parsing complete - Checking for changes");
+        Log.d(TAG, "Parsing complete - Checking for changes");
 
         if (timeTable == null) {
-            Log.d("BackgroundService", "TimeTable is null");
+            Log.d(TAG, "TimeTable is null");
             return;
         }
 
@@ -156,7 +156,7 @@ public class BackgroundService extends Service implements ParsingCompleteListene
 
         // Compare new data with old data
         int totalDiffs = timeTable.getTotalDifferences(timeTable_saved, class_name);
-        Log.d("BackgroundService", String.format("Total differences: %d", totalDiffs));
+        Log.d(TAG, String.format("Total differences: %d", totalDiffs));
 
         String ticker = getResources().getString(R.string.notification_cancellations_ticker);
         String title = getResources().getString(R.string.notification_cancellations_title);
