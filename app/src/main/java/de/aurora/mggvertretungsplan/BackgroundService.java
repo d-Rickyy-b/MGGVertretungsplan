@@ -17,13 +17,13 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
-import java.util.ArrayList;
+import org.json.JSONArray;
+import org.json.JSONException;
 
 import de.aurora.mggvertretungsplan.datamodel.TimeTable;
-import de.aurora.mggvertretungsplan.datamodel.TimeTableDay;
 import de.aurora.mggvertretungsplan.parsing.BaseParser;
-import de.aurora.mggvertretungsplan.parsing.MGGParser;
 import de.aurora.mggvertretungsplan.parsing.BaseParser.ParsingCompleteListener;
+import de.aurora.mggvertretungsplan.parsing.MGGParser;
 import de.aurora.mggvertretungsplan.parsing.ParsingTask;
 
 
@@ -139,18 +139,19 @@ public class BackgroundService extends Service implements ParsingCompleteListene
         sp = PreferenceManager.getDefaultSharedPreferences(this);
         String class_name = sp.getString("KlasseGesamt", "5a");
 
-        ArrayList<ArrayList<String>> table;
 
         TimeTable timeTable_saved = new TimeTable();
-        int count = sp.getInt("TT_Changes_Count", timeTable.getDaysCount());
+        String data = StorageUtilities.readFile(this);
 
-        for (int i = 0; i < count; i++) {
-            table = JsonUtilities.getArrayList(sp.getString("table" + i, ""));
-            String date = sp.getString("Date" + i, "01.01.");
-
-            if (table != null && !table.isEmpty()) {
-                TimeTableDay day = new TimeTableDay(date, table);
-                timeTable_saved.addDay(day);
+        if (data.isEmpty()) {
+            timeTable = new TimeTable();
+        } else {
+            try {
+                JSONArray jsonArray = new JSONArray(data);
+                timeTable = new TimeTable(jsonArray);
+            } catch (JSONException e) {
+                Log.e(TAG, e.getMessage());
+                return;
             }
         }
 
@@ -173,21 +174,11 @@ public class BackgroundService extends Service implements ParsingCompleteListene
     }
 
     private void saveData(TimeTable timeTable) {
+        Log.d(TAG, "Saving data.json to disk");
         try {
-            SharedPreferences.Editor editor = sp.edit();
-
-            int i = 0;
-            for (TimeTableDay ttd : timeTable.getAllDays()) {
-                editor.putString("Date" + i, ttd.getDateString());
-                editor.putString("table" + i, JsonUtilities.getJSONArray(ttd.getArrayList()).toString());
-                i++;
-            }
-
-            editor.putInt("TT_Changes_Count", timeTable.getDaysCount());
-
-            editor.apply();
-        } catch (NullPointerException npe) {
-            Log.d("BackgroundService", "NullPointerException - Day or table not present.");
+            StorageUtilities.writeToFile(this, timeTable.toJSON().toString());
+        } catch (JSONException e) {
+            Log.e(TAG, e.getMessage());
         }
     }
 
