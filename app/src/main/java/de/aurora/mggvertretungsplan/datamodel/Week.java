@@ -22,7 +22,7 @@ public class Week {
     }
 
     public String getWeek() {
-        return (week == WEEK_A) ? "A": "B";
+        return (week == WEEK_A) ? "A" : "B";
     }
 
     @Override
