@@ -1,6 +1,7 @@
 package de.aurora.mggvertretungsplan;
 
 import android.app.AlertDialog;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -117,6 +118,11 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             mSwipeLayout.setRefreshing(true);
             downloadTimeTable();
         }
+
+        // Remove all notifications after opening the app
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        if (notificationManager != null)
+            notificationManager.cancelAll();
 
         long thirtyMinsInMillis = 30 * 60 * 1000;
         ServiceScheduler serviceScheduler = new ServiceScheduler();
