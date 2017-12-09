@@ -11,15 +11,15 @@ import java.util.Locale;
 public class DateHeading {
     @SuppressWarnings("CanBeFinal")
     private Date date;
-    private String week;
+    private Week week;
 
-    public DateHeading(Date date, String week) {
+    public DateHeading(Date date, Week week) {
         this.date = date;
         this.week = week;
     }
 
     public DateHeading(Date date) {
-        this(date, "A");
+        this(date, new Week("A"));
     }
 
     public String getWholeDate() {
@@ -27,7 +27,7 @@ public class DateHeading {
         return wholeDate.format(date);
     }
 
-    public String getWeek() {
+    public Week getWeek() {
         return this.week;
     }
 
