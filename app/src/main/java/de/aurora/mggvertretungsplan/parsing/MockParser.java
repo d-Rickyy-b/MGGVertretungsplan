@@ -53,8 +53,8 @@ public class MockParser extends BaseParser {
         // Nr. of cancellations prev: 10
         // Nr. of cancellations should be : 1 + 3 + 2 + 1 = 7
 
-        TimeTableDay ttd1 = new TimeTableDay(date1, day1);
-        TimeTableDay ttd2 = new TimeTableDay(date2, day2);
+        TimeTableDay ttd1 = new TimeTableDay(date1, "A", day1);
+        TimeTableDay ttd2 = new TimeTableDay(date2, "A", day2);
 
         timeTable1.addDay(ttd1);
         timeTable2.addDay(ttd2);
