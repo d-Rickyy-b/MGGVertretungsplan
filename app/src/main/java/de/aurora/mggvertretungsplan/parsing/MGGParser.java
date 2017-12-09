@@ -12,6 +12,8 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import de.aurora.mggvertretungsplan.datamodel.TimeTable;
 import de.aurora.mggvertretungsplan.datamodel.TimeTableDay;
@@ -87,10 +89,29 @@ public class MGGParser extends BaseParser {
                 return day;
             }
 
+            String date_header = datesList.get(index);
+
+            // Compile pattern to find Strings like the following:
+            // 08.12.2017 Freitag, Woche A
+            // Which are displayed as date string at the top of the website
+            Pattern pattern = Pattern.compile("(?<date>[0-9]{1,2}\\.[0-9]{1,2}\\.[0-9]{4})( [a-zA-Z]+, Woche (?<week>[AB]))?");
+            Matcher matcher = pattern.matcher(date_header);
+
+            String date_text = "01.01.", week_text = "A";
+
+            if (matcher.matches()) {
+                try {
+                    date_text = matcher.group(1);
+                    week_text = matcher.group(3);
+                } catch (Exception e) {
+                    Log.e(TAG, e.getMessage());
+                }
+            }
+
             if (table != null) {
-                day = new TimeTableDay(datesList.get(index), table);
+                day = new TimeTableDay(date_text, week_text, table);
             } else
-                day = new TimeTableDay(datesList.get(index), new ArrayList<ArrayList<String>>());
+                day = new TimeTableDay(date_text, week_text, new ArrayList<ArrayList<String>>());
         } catch (IndexOutOfBoundsException e) {
             Log.e(TAG, "parseDay(): There is probably no content to extract!");
             Log.e(TAG, e.getMessage());

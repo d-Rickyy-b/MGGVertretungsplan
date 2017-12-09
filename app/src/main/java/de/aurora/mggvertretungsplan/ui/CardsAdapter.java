@@ -119,8 +119,19 @@ public class CardsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         String dateString = dateHeading.getWholeDate();
 
         headingsViewHolder.heading.setText(dateString);
+        headingsViewHolder.tag_text.setText(dateHeading.getWeek().toString());
+        boolean showWeekIndicator = sp.getBoolean("showWeekIndicator", true);
+        int visibility;
 
-        setAnimation(headingsViewHolder.heading, position);
+        if (showWeekIndicator) {
+            visibility = View.VISIBLE;
+        } else {
+            visibility = View.INVISIBLE;
+        }
+
+        headingsViewHolder.tag_layout.setVisibility(visibility);
+
+        setAnimation(headingsViewHolder.heading_layout, position);
     }
 
     private void configureNoTypeViewholder(RecyclerView.ViewHolder holder, int position) {
@@ -164,7 +175,7 @@ public class CardsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         String className = sp.getString("KlasseGesamt", "5a");
         ArrayList<TimeTableElement> timeTableElements = ttd.getElements(className);
 
-        DateHeading dateHeading = new DateHeading(date);
+        DateHeading dateHeading = new DateHeading(date, ttd.getWeek());
         items.add(dateHeading);
 
         // TODO should be improved in the future

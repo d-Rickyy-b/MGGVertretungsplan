@@ -10,6 +10,8 @@ import java.util.Arrays;
  */
 public class TimeTableTest extends TestCase {
     private TimeTable timeTable;
+    private static final String WEEK_A = "A";
+    private static final String WEEK_B = "B";
 
     public void setUp() throws Exception {
         super.setUp();
@@ -19,14 +21,15 @@ public class TimeTableTest extends TestCase {
 
     public void testAddDay() throws Exception {
         ArrayList<ArrayList<String>> arrayLists = new ArrayList<>();
-        TimeTableDay ttd = new TimeTableDay("01.01.2018", arrayLists);
+
+        TimeTableDay ttd = new TimeTableDay("01.01.2018", WEEK_A, arrayLists);
         timeTable.addDay(ttd);
 
         assertEquals(1, timeTable.getDaysCount());
         TimeTableDay timeTableDay = timeTable.getAllDays().get(0);
         assertEquals(ttd, timeTableDay);
 
-        TimeTableDay ttd2 = new TimeTableDay("01.01.2018", arrayLists);
+        TimeTableDay ttd2 = new TimeTableDay("01.01.2018", WEEK_A, arrayLists);
         timeTable.addDay(ttd2);
         assertEquals(2, timeTable.getDaysCount());
         TimeTableDay timeTableDay1 = timeTable.getAllDays().get(0);
@@ -40,7 +43,7 @@ public class TimeTableTest extends TestCase {
         assertEquals(0, timeTable.getDaysCount());
 
         ArrayList<ArrayList<String>> arrayLists = new ArrayList<>();
-        TimeTableDay ttd = new TimeTableDay("01.01.2018", arrayLists);
+        TimeTableDay ttd = new TimeTableDay("01.01.2018", WEEK_A, arrayLists);
         timeTable.addDay(ttd);
 
         assertEquals(1, timeTable.getDaysCount());
@@ -56,15 +59,15 @@ public class TimeTableTest extends TestCase {
         assertEquals(0, timeTable.getFutureDaysCount());
 
         ArrayList<ArrayList<String>> arrayLists = new ArrayList<>();
-        TimeTableDay ttd = new TimeTableDay("31.12.", arrayLists);
+        TimeTableDay ttd = new TimeTableDay("31.12.", WEEK_A, arrayLists);
         timeTable.addDay(ttd);
 
         assertEquals(1, timeTable.getFutureDaysCount());
 
-        TimeTableDay ttd2 = new TimeTableDay("30.12.", arrayLists);
+        TimeTableDay ttd2 = new TimeTableDay("30.12.", WEEK_A, arrayLists);
         timeTable.addDay(ttd2);
 
-        TimeTableDay ttd3 = new TimeTableDay("01.01.", arrayLists);
+        TimeTableDay ttd3 = new TimeTableDay("01.01.", WEEK_A, arrayLists);
         timeTable.addDay(ttd3);
 
         assertEquals(2, timeTable.getFutureDaysCount());
@@ -78,7 +81,7 @@ public class TimeTableTest extends TestCase {
         dayList.add(new ArrayList<>(Arrays.asList("2", "7a", "E", "---", "H105", "---", "")));
         dayList.add(new ArrayList<>(Arrays.asList("3", "7a", "BIO", "---", "S320", "---", "")));
         dayList.add(new ArrayList<>(Arrays.asList("3", "5c", "G", "---", "M315", "---", "Test")));
-        TimeTableDay ttd = new TimeTableDay("30.12.", dayList);
+        TimeTableDay ttd = new TimeTableDay("30.12.", WEEK_A, dayList);
         timeTable.addDay(ttd);
 
         ArrayList<TimeTableDay> rttd = new ArrayList<>();
@@ -95,7 +98,7 @@ public class TimeTableTest extends TestCase {
         dayList2.add(new ArrayList<>(Arrays.asList("4", "7a", "BIO", "---", "S320", "---", ""))); // Getting merged with 3. lesson
         dayList2.add(new ArrayList<>(Arrays.asList("5", "9c", "D", "---", "M315", "---", "Test")));
         dayList2.add(new ArrayList<>(Arrays.asList("8-9", "9c", "Sp", "---", "M315", "---", "Test")));
-        TimeTableDay ttd2 = new TimeTableDay("31.12.", dayList2);
+        TimeTableDay ttd2 = new TimeTableDay("31.12.", WEEK_A, dayList2);
         timeTable.addDay(ttd2);
 
         rttd.add(ttd2);
@@ -111,7 +114,7 @@ public class TimeTableTest extends TestCase {
         dayList.add(new ArrayList<>(Arrays.asList("2", "7a", "E", "---", "H105", "---", "")));
         dayList.add(new ArrayList<>(Arrays.asList("3", "7a", "BIO", "---", "S320", "---", "")));
         dayList.add(new ArrayList<>(Arrays.asList("3", "5c", "G", "---", "M315", "---", "Test")));
-        TimeTableDay ttd = new TimeTableDay("31.12.", dayList);
+        TimeTableDay ttd = new TimeTableDay("31.12.", WEEK_A, dayList);
         timeTable.addDay(ttd);
 
         assertEquals(1, timeTable.getTotalCancellations("K1"));
@@ -126,7 +129,7 @@ public class TimeTableTest extends TestCase {
         dayList2.add(new ArrayList<>(Arrays.asList("3-4", "9c", "G", "---", "M315", "---", "Test")));
         dayList2.add(new ArrayList<>(Arrays.asList("5", "9c", "D", "---", "M315", "---", "Test")));
         dayList2.add(new ArrayList<>(Arrays.asList("8-9", "9c", "Sp", "---", "M315", "---", "Test")));
-        TimeTableDay ttd2 = new TimeTableDay("30.12.", dayList2);
+        TimeTableDay ttd2 = new TimeTableDay("30.12.", WEEK_A, dayList2);
 
         timeTable.addDay(ttd2);
 
@@ -143,7 +146,7 @@ public class TimeTableTest extends TestCase {
         assertEquals("", timeTable.toString());
 
         ArrayList<ArrayList<String>> arrayLists = new ArrayList<>();
-        TimeTableDay ttd = new TimeTableDay("31.12.", arrayLists);
+        TimeTableDay ttd = new TimeTableDay("31.12.", WEEK_A, arrayLists);
 
         timeTable.addDay(ttd);
         assertEquals(ttd.getFullDateString(), timeTable.toString());
@@ -152,7 +155,7 @@ public class TimeTableTest extends TestCase {
         dayList.add(new ArrayList<>(Arrays.asList("1", "K1", "D", "---", "H202", "---", "")));
         dayList.add(new ArrayList<>(Arrays.asList("2", "7a", "E", "---", "H105", "---", "")));
         dayList.add(new ArrayList<>(Arrays.asList("3", "5c", "G", "---", "M315", "---", "Test")));
-        TimeTableDay ttd2 = new TimeTableDay("31.12.", dayList);
+        TimeTableDay ttd2 = new TimeTableDay("31.12.", WEEK_A, dayList);
         timeTable.addDay(ttd2);
 
         String day1 = ttd.getFullDateString();

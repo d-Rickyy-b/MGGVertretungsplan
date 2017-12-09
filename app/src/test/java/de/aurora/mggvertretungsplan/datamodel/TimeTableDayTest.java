@@ -19,6 +19,9 @@ import static org.junit.Assert.assertTrue;
  * Created by Rico on 20.11.2017.
  */
 public class TimeTableDayTest {
+    private static final String WEEK_A = "A";
+    private static final String WEEK_B = "B";
+
     @Before
     public void setUp() throws Exception {
     }
@@ -33,7 +36,7 @@ public class TimeTableDayTest {
         SimpleDateFormat fullDateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.GERMANY);
         Date date = fullDateFormat.parse("01.01.2018");
 
-        TimeTableDay ttd = new TimeTableDay("01.01.2018", testList);
+        TimeTableDay ttd = new TimeTableDay("01.01.2018", WEEK_A, testList);
 
         assertEquals(date, ttd.getDate());
         //assertEquals(calendar, ttd.getDate());
@@ -47,13 +50,13 @@ public class TimeTableDayTest {
         int currentYear = new GregorianCalendar().get(GregorianCalendar.YEAR);
         calendar.set(currentYear, 0, 1);
 
-        TimeTableDay ttd = new TimeTableDay("01.01." + currentYear, testList);
+        TimeTableDay ttd = new TimeTableDay("01.01." + currentYear, WEEK_A, testList);
 
         SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
 
         assertEquals(format.format(calendar.getTime()), ttd.getDateString());
 
-        TimeTableDay ttd2 = new TimeTableDay("01.01.", testList);
+        TimeTableDay ttd2 = new TimeTableDay("01.01.", WEEK_A, testList);
 
         assertEquals(format.format(calendar.getTime()), ttd2.getDateString());
     }
@@ -65,11 +68,22 @@ public class TimeTableDayTest {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.GERMANY);
         Date date = dateFormat.parse("01.01.2018");
 
-        TimeTableDay ttd = new TimeTableDay("01.01.2018", testList);
+        TimeTableDay ttd = new TimeTableDay("01.01.2018", WEEK_A, testList);
 
         SimpleDateFormat fullDateFormat = new SimpleDateFormat("EEEE, dd.MM.yyyy", Locale.GERMANY);
 
         assertEquals(fullDateFormat.format(date), ttd.getFullDateString());
+    }
+
+    @Test
+    public void getWeek() throws Exception {
+        ArrayList<ArrayList<String>> day1 = new ArrayList<>();
+        TimeTableDay ttd = new TimeTableDay("01.01.2018", WEEK_A, day1);
+
+        assertEquals(WEEK_A, ttd.getWeek().toString());
+
+        TimeTableDay ttd1 = new TimeTableDay("01.01.2018", WEEK_B, day1);
+        assertEquals(WEEK_B, ttd1.getWeek().toString());
     }
 
     @Test
@@ -91,7 +105,7 @@ public class TimeTableDayTest {
 
         day1.add(new ArrayList<>(Arrays.asList("1", className2, "D", "E", "H105", "H205", "")));
 
-        TimeTableDay ttd = new TimeTableDay("01.01.2018", day1);
+        TimeTableDay ttd = new TimeTableDay("01.01.2018", WEEK_A, day1);
 
         TimeTableElement tte = new TimeTableElement("1", className2, "Deutsch", "Englisch", "H105", "H205", "");
         ArrayList<TimeTableElement> testList = new ArrayList<>();
@@ -118,7 +132,7 @@ public class TimeTableDayTest {
         day1.add(new ArrayList<>(Arrays.asList("9", className, "Deutsch", "---", "S020", "---", "")));
 
 
-        TimeTableDay ttd = new TimeTableDay("01.01.2018", day1);
+        TimeTableDay ttd = new TimeTableDay("01.01.2018", WEEK_A, day1);
 
         assertEquals(day1, ttd.getArrayList());
     }
@@ -142,7 +156,7 @@ public class TimeTableDayTest {
 
         day1.add(new ArrayList<>(Arrays.asList("1", className2, "D", "E", "H105", "H205", "")));
 
-        TimeTableDay ttd = new TimeTableDay("01.01.2018", day1);
+        TimeTableDay ttd = new TimeTableDay("01.01.2018", WEEK_A, day1);
 
         assertEquals(day1copy, ttd.getArrayList(className));
     }
@@ -153,7 +167,7 @@ public class TimeTableDayTest {
         String className = "K1";
         String className2 = "6b";
 
-        TimeTableDay ttd = new TimeTableDay("01.01.2018", testList);
+        TimeTableDay ttd = new TimeTableDay("01.01.2018", WEEK_A, testList);
 
         assertEquals(0, ttd.getElementsCount("5a"));
         assertEquals(0, ttd.getElementsCount("abc"));
@@ -171,7 +185,7 @@ public class TimeTableDayTest {
         day1List.add(new ArrayList<>(Arrays.asList("5-6", className2, "E", "---", "H105", "---", "")));
         day1List.add(new ArrayList<>(Arrays.asList("1", className2, "4BK", "---", "BK3", "---", "")));
 
-        TimeTableDay day1 = new TimeTableDay("01.01.2018", day1List);
+        TimeTableDay day1 = new TimeTableDay("01.01.2018", WEEK_A, day1List);
 
         assertEquals(6, day1.getElementsCount(className));
         assertEquals(3, day1.getElementsCount(className2));
@@ -195,7 +209,7 @@ public class TimeTableDayTest {
         day1List.add(new ArrayList<>(Arrays.asList("2", className, "D", "D", "H208", "H210", "Raumänderung")));
         day1List.add(new ArrayList<>(Arrays.asList("3", className, "E", "BIO", "S121", "S320", "")));
         day1List.add(new ArrayList<>(Arrays.asList("5 - 6", className, "INF", "---", "S020", "---", "")));
-        TimeTableDay day1 = new TimeTableDay("01.01.2018", day1List);
+        TimeTableDay day1 = new TimeTableDay("01.01.2018", WEEK_A, day1List);
 
         // Only first line has changed | G -> D
         day2List.add(new ArrayList<>(Arrays.asList("3-4", className, "D", "---", "H202", "---", "")));
@@ -204,7 +218,7 @@ public class TimeTableDayTest {
         day2List.add(new ArrayList<>(Arrays.asList("2", className, "D", "D", "H208", "H210", "Raumänderung")));
         day2List.add(new ArrayList<>(Arrays.asList("3", className, "E", "BIO", "S121", "S320", "")));
         day2List.add(new ArrayList<>(Arrays.asList("5 - 6", className, "INF", "---", "S020", "---", "")));
-        TimeTableDay day2 = new TimeTableDay("01.01.2018", day2List);
+        TimeTableDay day2 = new TimeTableDay("01.01.2018", WEEK_A, day2List);
 
         // Add one line
         day3List.add(new ArrayList<>(Arrays.asList("3-4", className, "G", "---", "H202", "---", "")));
@@ -214,7 +228,7 @@ public class TimeTableDayTest {
         day3List.add(new ArrayList<>(Arrays.asList("3", className, "E", "BIO", "S121", "S320", "")));
         day3List.add(new ArrayList<>(Arrays.asList("5 - 6", className, "INF", "---", "S020", "---", "")));
         day3List.add(new ArrayList<>(Arrays.asList("4", className, "PSY", "---", "H005", "---", "")));
-        TimeTableDay day3 = new TimeTableDay("01.01.2018", day3List);
+        TimeTableDay day3 = new TimeTableDay("01.01.2018", WEEK_A, day3List);
 
         // Remove one line
         day4List.add(new ArrayList<>(Arrays.asList("3-4", className, "G", "---", "H202", "---", "")));
@@ -222,7 +236,7 @@ public class TimeTableDayTest {
         day4List.add(new ArrayList<>(Arrays.asList("1", className, "4BK", "---", "BK3", "---", "")));
         day4List.add(new ArrayList<>(Arrays.asList("2", className, "D", "D", "H208", "H210", "Raumänderung")));
         day4List.add(new ArrayList<>(Arrays.asList("3", className, "E", "BIO", "S121", "S320", "")));
-        TimeTableDay day4 = new TimeTableDay("01.01.2018", day4List);
+        TimeTableDay day4 = new TimeTableDay("01.01.2018", WEEK_A, day4List);
 
         // Remove one and add another line
         day5List.add(new ArrayList<>(Arrays.asList("3-4", className, "G", "---", "H202", "---", "")));
@@ -231,7 +245,7 @@ public class TimeTableDayTest {
         day5List.add(new ArrayList<>(Arrays.asList("2", className, "D", "D", "H208", "H210", "Raumänderung")));
         day5List.add(new ArrayList<>(Arrays.asList("3", className, "E", "BIO", "S121", "S320", "")));
         day5List.add(new ArrayList<>(Arrays.asList("8", className, "BIO", "---", "S121", "S320", "")));
-        TimeTableDay day5 = new TimeTableDay("01.01.2018", day5List);
+        TimeTableDay day5 = new TimeTableDay("01.01.2018", WEEK_A, day5List);
 
         // Remove one and two another lines which get merged to one
         day6List.add(new ArrayList<>(Arrays.asList("3-4", className, "G", "---", "H202", "---", "")));
@@ -241,7 +255,7 @@ public class TimeTableDayTest {
         day6List.add(new ArrayList<>(Arrays.asList("3", className, "E", "BIO", "S121", "S320", "")));
         day6List.add(new ArrayList<>(Arrays.asList("8", className, "BIO", "---", "S121", "S320", "")));
         day6List.add(new ArrayList<>(Arrays.asList("9", className, "BIO", "---", "S121", "S320", "")));
-        TimeTableDay day6 = new TimeTableDay("01.01.2018", day6List);
+        TimeTableDay day6 = new TimeTableDay("01.01.2018", WEEK_A, day6List);
 
         // Remove one and three another lines
         day7List.add(new ArrayList<>(Arrays.asList("3-4", className, "G", "---", "H202", "---", "")));
@@ -252,7 +266,7 @@ public class TimeTableDayTest {
         day7List.add(new ArrayList<>(Arrays.asList("8", className, "BIO", "---", "S121", "S320", "")));
         day7List.add(new ArrayList<>(Arrays.asList("4", className, "M", "M", "S121", "H308", "")));
         day7List.add(new ArrayList<>(Arrays.asList("8-9", className, "GK", "S", "S121", "H308", "")));
-        TimeTableDay day7 = new TimeTableDay("01.01.2018", day7List);
+        TimeTableDay day7 = new TimeTableDay("01.01.2018", WEEK_A, day7List);
 
 
         assertEquals(0, day1.getDifferences(day1, className));
@@ -268,9 +282,9 @@ public class TimeTableDayTest {
     @Test
     public void isSameDay() throws Exception {
         ArrayList<ArrayList<String>> testList = new ArrayList<>();
-        TimeTableDay ttd = new TimeTableDay("01.01.2018", testList);
-        TimeTableDay ttd2 = new TimeTableDay("01.01.2018", testList);
-        TimeTableDay ttd3 = new TimeTableDay("02.01.2018", testList);
+        TimeTableDay ttd = new TimeTableDay("01.01.2018", WEEK_A, testList);
+        TimeTableDay ttd2 = new TimeTableDay("01.01.2018", WEEK_A, testList);
+        TimeTableDay ttd3 = new TimeTableDay("02.01.2018", WEEK_A, testList);
 
         assertTrue(ttd.isSameDay(ttd2));
         assertFalse(ttd.isSameDay(ttd3));
@@ -288,7 +302,7 @@ public class TimeTableDayTest {
         dayList.add(new ArrayList<>(Arrays.asList("2", className, "D", "D", "H208", "H210", "Raumänderung")));
         dayList.add(new ArrayList<>(Arrays.asList("3", className, "E", "BIO", "S121", "S320", "")));
         dayList.add(new ArrayList<>(Arrays.asList("5 - 6", className, "INF", "---", "S020", "---", "")));
-        TimeTableDay day1 = new TimeTableDay("01.01.2018", dayList);
+        TimeTableDay day1 = new TimeTableDay("01.01.2018", WEEK_A, dayList);
 
         assertEquals(5, day1.getElements(className).size());
         dayList.clear();
@@ -300,7 +314,7 @@ public class TimeTableDayTest {
         dayList.add(new ArrayList<>(Arrays.asList("2", className, "D", "D", "H208", "H210", "Raumänderung")));
         dayList.add(new ArrayList<>(Arrays.asList("3", className, "E", "BIO", "S121", "S320", "")));
         dayList.add(new ArrayList<>(Arrays.asList("5 - 6", className, "INF", "---", "S020", "---", "")));
-        TimeTableDay day2 = new TimeTableDay("01.01.2018", dayList);
+        TimeTableDay day2 = new TimeTableDay("01.01.2018", WEEK_A, dayList);
 
         assertEquals(6, day2.getElements(className).size());
         dayList.clear();
@@ -311,7 +325,7 @@ public class TimeTableDayTest {
         dayList.add(new ArrayList<>(Arrays.asList("2", className, "4BK", "D", "BK3", "H105", "statt 02.01")));
         dayList.add(new ArrayList<>(Arrays.asList("3", className, "E", "BIO", "S121", "S320", "")));
         dayList.add(new ArrayList<>(Arrays.asList("5 - 6", className, "INF", "---", "S020", "---", "")));
-        TimeTableDay day3 = new TimeTableDay("01.01.2018", dayList);
+        TimeTableDay day3 = new TimeTableDay("01.01.2018", WEEK_A, dayList);
 
         assertEquals(4, day3.getElements(className).size());
         assertEquals("statt 02.01", day3.getElements(className).get(0).getInfo());
@@ -324,7 +338,7 @@ public class TimeTableDayTest {
         dayList.add(new ArrayList<>(Arrays.asList("1", "K1", "D", "---", "H202", "---", "")));
         dayList.add(new ArrayList<>(Arrays.asList("2", "7a", "E", "---", "H105", "---", "")));
         dayList.add(new ArrayList<>(Arrays.asList("3", "5c", "G", "---", "M315", "---", "Test")));
-        TimeTableDay ttd = new TimeTableDay("31.12.", dayList);
+        TimeTableDay ttd = new TimeTableDay("31.12.", WEEK_A, dayList);
 
         String result = "";
 
