@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center_vertical"
-    android:paddingBottom="10dp"
-    android:paddingTop="10dp">
+    android:paddingBottom="2dp"
+    android:paddingTop="8dp">
 
     <TextView
         android:id="@+id/heading_textView"
@@ -21,8 +21,8 @@
 
     <include
         layout="@layout/tag"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_marginEnd="25dp"
