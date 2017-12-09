@@ -167,7 +167,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         toolbar.setTitle(String.format(toolbarTitle_WithClass, class_name));
     }
 
-
+    @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putBoolean(NEED_RELOAD, false);
