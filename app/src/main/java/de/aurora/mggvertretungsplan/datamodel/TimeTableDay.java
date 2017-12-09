@@ -24,7 +24,8 @@ public class TimeTableDay {
     private Date date = new Date();
     private Week week;
 
-    public TimeTableDay(String date, ArrayList<ArrayList<String>> timeTableDay_List) {
+    public TimeTableDay(String date, String week, ArrayList<ArrayList<String>> timeTableDay_List) {
+        this.week = new Week(week);
         setDate(date);
 
         for (ArrayList<String> zeile : timeTableDay_List) {
@@ -33,11 +34,6 @@ public class TimeTableDay {
         }
 
         mergeConsecutiveCancellations();
-    }
-
-    public TimeTableDay(String date, String week, ArrayList<ArrayList<String>> timeTableDay_List) {
-        this(date, timeTableDay_List);
-        this.week = new Week(week);
     }
 
     public TimeTableDay(JSONObject jsonObject) {
