@@ -119,8 +119,9 @@ public class CardsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         String dateString = dateHeading.getWholeDate();
 
         headingsViewHolder.heading.setText(dateString);
+        headingsViewHolder.tag_text.setText(dateHeading.getWeek().toString());
 
-        setAnimation(headingsViewHolder.heading, position);
+        setAnimation(headingsViewHolder.heading_layout, position);
     }
 
     private void configureNoTypeViewholder(RecyclerView.ViewHolder holder, int position) {
@@ -164,7 +165,7 @@ public class CardsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         String className = sp.getString("KlasseGesamt", "5a");
         ArrayList<TimeTableElement> timeTableElements = ttd.getElements(className);
 
-        DateHeading dateHeading = new DateHeading(date);
+        DateHeading dateHeading = new DateHeading(date, ttd.getWeek());
         items.add(dateHeading);
 
         // TODO should be improved in the future
