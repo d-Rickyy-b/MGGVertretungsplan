@@ -143,12 +143,10 @@ public class BackgroundService extends Service implements ParsingCompleteListene
         TimeTable timeTable_saved = new TimeTable();
         String data = StorageUtilities.readFile(this);
 
-        if (data.isEmpty()) {
-            timeTable = new TimeTable();
-        } else {
+        if (!data.isEmpty()) {
             try {
                 JSONArray jsonArray = new JSONArray(data);
-                timeTable = new TimeTable(jsonArray);
+                timeTable_saved = new TimeTable(jsonArray);
             } catch (JSONException e) {
                 Log.e(TAG, e.getMessage());
                 return;
