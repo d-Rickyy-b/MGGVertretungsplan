@@ -35,16 +35,6 @@
             android:theme="@style/AppTheme.Light.NoActionBar" />
 
         <activity
-            android:name="de.aurora.mggvertretungsplan.SettingsNotificationActivity"
-            android:label="@string/settings_notification_title"
-            android:theme="@style/AppTheme.Light.NoActionBar">
-            <intent-filter>
-                <action android:name=".EINSTELLUNGEN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-
-        <activity
             android:name="de.aurora.mggvertretungsplan.ui.intro.IntroActivity"
             android:theme="@style/AppTheme.Light.NoActionBar" />
 
