@@ -72,6 +72,10 @@ public class TimeTableDay {
         timeTableElements.add(index, tte);
     }
 
+    public Week getWeek() {
+        return this.week;
+    }
+
     public Date getDate() {
         return date;
     }
