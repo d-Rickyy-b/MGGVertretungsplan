@@ -12,9 +12,9 @@ android {
     defaultConfig {
         applicationId "de.aurora.mggvertretungsplan"
         minSdkVersion 15
-        targetSdkVersion 26
-        versionCode 23
-        versionName "3.1.4"
+        targetSdkVersion 25
+        versionCode 24
+        versionName "3.1.5"
         multiDexEnabled true
     }
 
