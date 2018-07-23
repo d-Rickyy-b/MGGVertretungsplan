@@ -45,5 +45,5 @@ before_install:
 
 # Let's try to build...
 script:
-  - ./gradlew test jacocoTestReport && ./gradlew coveralls bintrayUpload
+  - ./gradlew test && ./gradlew coveralls bintrayUpload
   #- ./gradlew clean build
