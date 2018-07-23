@@ -44,5 +44,6 @@ before_install:
   - ./gradlew dependencies || true
 
 # Let's try to build...
-script: 
-  - ./gradlew clean build
+script:
+  - ./gradlew test jacocoTestReport && ./gradlew coveralls bintrayUpload
+  #- ./gradlew clean build
