@@ -33,11 +33,6 @@ cache:
     - $HOME/.gradle/wrapper/
     - $HOME/.android/build-cache
 
-before_install:
-  - mkdir "$ANDROID_HOME/licenses" || true
-  - chmod +x gradlew
-  - ./gradlew dependencies || true
-
 # Let's try to build...
 script:
   - ./gradlew testdebugUnitTestCoverage coveralls
