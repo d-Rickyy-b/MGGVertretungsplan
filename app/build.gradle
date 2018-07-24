@@ -63,7 +63,7 @@ dependencies {
 }
 
 coveralls {
-    jacocoReportPath = "${buildDir}/reports/jacoco/testdebugUnitTestCoverage/testDebugUnitTestCoverage.xml"
+    jacocoReportPath = "${buildDir}/reports/jacoco/testDebugUnitTestCoverage/testDebugUnitTestCoverage.xml"
 }
 tasks.coveralls {
     dependsOn 'testDebugUnitTestCoverage'
