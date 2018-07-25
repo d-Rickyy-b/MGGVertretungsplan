@@ -22,6 +22,9 @@ android {
 
     compileOptions.encoding = "utf-8"
 
+    signingConfigs {
+        release
+    }
 
     buildTypes {
         release {
