@@ -2,39 +2,83 @@
 <resources>
 
     <string name="app_name">Vertretungsplan</string>
-    <string name="bar_title">Vertretungsplan</string>
+    <string name="toolbarTitle_WithClass">Vertretungsplan (%s)</string>
+    <string name="bar_title">@string/app_name</string>
+    <string name="downloadException">Es ist ein Fehler beim Herunterladen aufgetreten!</string>
+
     <string name="action_settings">Einstellungen</string>
-    <string name="action_webview">Webseite</string>
-    <string name="vertretungsplan_url">http://www.mgg.karlsruhe.de/index.php/vertretungsplan</string>
-    <string name="ur2">http://rickyy.lima-city.de/html/vertretungsplan.html</string>
-    <string name="zuletztAbger">Zuletzt aktualisiert: %s</string>
-    <string name="welcome_slide_title">Willkommen</string>
-    <string name="welcome_slide_descr">Vielen Dank, dass du diese App nutzt. Auf der folgenden Seite findest du einige Einstellungen, die du setzen solltest.</string>
-    <string name="settings_slide_title">@string/action_settings</string>
-    <string name="settings_slide_descr">Bitte stelle deine Klasse ein!\nFalls du keine Benachrichtigungen wünschst, dann schalte sie oben aus!\nAlle Einstellungen kannst du später wieder ändern.</string>
-    <string name="notification_setting_title">Benachrichtigungen</string>
-    <string name="notification_setting_summary">Benachrichtigung bei Änderung des Vertretungsplans</string>
-    <string name="notification_interval_title">Prüfintervall</string>
-    <string name="notification_interval_summary">Bitte wähle das Zeitintervall, in welchem der Vertretungsplan geprüft werden soll</string>
+    <string name="action_feedback">Feedback</string>
+    <string name="action_website">Webseite</string>
+    <string name="feedback_url">https://goo.gl/forms/AeYT99ElhH7vzqAx1</string>
+    <string name="infoTitle">Info</string>
+    <string name="card_no_information">Keine Ausfälle!</string>
+    <string name="no_data_to_display">Es liegen keine Daten vor!\n\n¯\\_(ツ)_/¯</string>
+    <string name="no_url_to_open">Keine URL zum öffnen!</string>
 
-    <string name="version">2.0.2</string>
-    <integer name="versionNumber">14</integer>
+    <!-- Intro Slides Strings -->
+    <string name="slide_welcome_title">Willkommen</string>
+    <string name="slide_welcome_descr">Vielen Dank, dass du diese App nutzt. Auf der folgenden Seite findest du einige Einstellungen, die du setzen solltest.</string>
+    <string name="slide_welcome_content_descr">App-Logo</string>
 
-    <string name="notifications">Benachrichtigungen</string>
-    <string name="miscellaneous">Verschiedenes</string>
-    <string name="showToday">Akt. Tag zeigen</string>
-    <string name="action_done">FERTIG</string>
+    <string name="slide_settings_title">@string/action_settings</string>
+    <string name="slide_settings_descr">Bitte stelle deine Klasse ein!\nFalls du keine Benachrichtigungen wünschst, dann schalte sie oben aus!\nAlle Einstellungen kannst du später wieder ändern.</string>
 
-    <!-- Not Added yet :( -->
-    <string name="cancelled">Entfällt</string>
-    <string name="representation">Vertretung</string>
-    <string name="settings_name">Einstellungen</string>
-    <string name="settings_saved">Einstellungen übernommen!</string>
+    <string name="slide_action_done">FERTIG</string>
     <!--  -->
 
-    <string name="infoTitle">Info</string>
+    <string name="settings_name">Einstellungen</string>
+    <string name="toast_settings_saved">Einstellungen übernommen!</string>
+    <string name="toast_noInternetConnection">Keine Internetverbindung!</string>
+    <string name="toast_errorOccurred">Ein Fehler ist aufgetreten!</string>
 
-    <string-array name="Klassenstufe_List">
+    <!-- Class SettingsActivity Section -->
+    <string name="settings_section_class">Klasse</string>
+    <string name="settings_chooseClassLayer_title">Stufe</string>
+    <string name="settings_chooseClassLayer_desc">Bitte wähle deine Stufe aus</string>
+    <string name="settings_chooseClass_title">Klasse</string>
+    <string name="settings_chooseClass_desc">Bitte wähle deine Klasse aus</string>
+    <!--  -->
+
+    <!-- Miscellaneous SettingsActivity Section -->
+    <string name="settings_section_miscellaneous">Verschiedenes</string>
+    <string name="settings_notification_title">Benachrichtigungen</string>
+    <string name="settings_notification_summary">Benachrichtigung bei Änderung des Vertretungsplans</string>
+    <string name="settings_notification_interval_title">Prüfintervall</string>
+    <string name="settings_notification_interval_summary">Bitte wähle das Zeitintervall, in welchem der Vertretungsplan geprüft werden soll</string>
+    <string name="settings_notification_interval_dialog_title">Intervall</string>
+    <string name="settings_notification_interval_dialog_back">Zurück!</string>
+
+    <string name="settings_section_display">Anzeige</string>
+    <string name="settings_past_days_title">Alte Tage zeigen</string>
+    <string name="settings_past_days_summary">Sollen vergangene Tage noch angezeigt werden?</string>
+
+    <string name="colored_cards_title">Farbige Karten</string>
+    <string name="colored_cards_summary">Ausfälle in Übersicht farbig anzeigen</string>
+
+    <string name="settings_weekIndicator_title">A/B Woche</string>
+    <string name="settings_weekIndicator_summary">Aktuelle Woche (A/B) anzeigen</string>
+
+    <string name="settings_app_color_title">Farbgebung</string>
+    <string name="settings_app_color_summary">Wähle die Farbe der App</string>
+    <!--  -->
+
+
+    <!-- Not Added yet :( -->
+    <string name="crardInfo_cancelled">Entfällt</string>
+    <string name="cardInfo_representation">Vertretung</string>
+    <!--  -->
+
+    <string name="notification_cancellations_title">MGG Vertretungsplan</string>
+    <string name="notification_cancellations_ticker">Stundenplan Änderung!</string>
+    <string name="notification_cancellations_infoOne">%d Änderung!</string>
+    <string name="notification_cancellations_infoMany">%d Änderungen!</string>
+
+    <plurals name="notification_cancellations_info">
+        <item quantity="one">%d Änderung!</item>
+        <item quantity="many">%d Änderungen!</item>
+    </plurals>
+
+    <string-array name="ClassLayer_List">
         <item>5</item>
         <item>6</item>
         <item>7</item>
@@ -45,7 +89,7 @@
         <item>K2</item>
     </string-array>
 
-    <string-array name="Klassen_List">
+    <string-array name="Class_List">
         <item>a</item>
         <item>b</item>
         <item>c</item>

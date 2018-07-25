@@ -1,24 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="de.aurora.mggvertretungsplan"
-    android:installLocation="auto"
-    android:versionCode="14"
-    android:versionName="@string/version">
+    android:installLocation="auto">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
+    <uses-sdk tools:overrideLibrary="android.support.customtabs" />
+
     <application
         android:allowBackup="true"
-        android:icon="@drawable/app_logo_material"
+        android:fullBackupContent="@xml/backup_descriptor"
+        android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme">
+        android:supportsRtl="false"
+        android:theme="@style/AppTheme.Light">
 
         <activity
             android:name=".MainActivity"
             android:label="@string/bar_title"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:launchMode="singleTop"
+            android:theme="@style/AppTheme.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -26,42 +30,19 @@
         </activity>
 
         <activity
-            android:name=".webView_Activity"
-            android:label="@string/action_webview"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
-
-        <activity
-            android:name=".Settings"
-            android:label="Einstellungen"
-            android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.SETTINGS" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".PreferenceBenachrichtigungen"
-            android:label="Einstellungen"
-            android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="de.aurora.MggVertretungsplan.EINSTELLUNGEN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
+            android:name="de.aurora.mggvertretungsplan.SettingsActivity"
+            android:label="@string/settings_name"
+            android:theme="@style/AppTheme.Light.NoActionBar" />
 
         <activity
             android:name="de.aurora.mggvertretungsplan.ui.intro.IntroActivity"
-            android:label="Test"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.Light.NoActionBar" />
 
-        <service android:name=".VertretungsplanService">
-        </service>
+        <service android:name="de.aurora.mggvertretungsplan.BackgroundService" />
 
-        <receiver android:name=".BootUpReceiver">
+        <receiver android:name="de.aurora.mggvertretungsplan.BootUpReceiver">
             <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED">
-                </action>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
 

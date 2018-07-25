@@ -111,3 +111,4 @@ $RECYCLE.BIN/
 
 # Mac crap
 .DS_Store
+app/release/

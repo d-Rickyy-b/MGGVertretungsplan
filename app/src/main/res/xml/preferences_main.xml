@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory android:title="@string/settings_section_class">
+
+        <ListPreference
+            android:defaultValue="5"
+            android:entries="@array/ClassLayer_List"
+            android:entryValues="@array/ClassLayer_List"
+            android:key="Klassenstufe"
+            android:summary="@string/settings_chooseClassLayer_desc"
+            android:title="@string/settings_chooseClassLayer_title" />
+
+        <ListPreference
+            android:defaultValue="0"
+            android:entries="@array/Class_List"
+            android:entryValues="@array/Class_List"
+            android:key="Klasse"
+            android:summary="@string/settings_chooseClass_desc"
+            android:title="@string/settings_chooseClass_title" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/settings_section_display">
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="displayPastDays"
+            android:summary="@string/settings_past_days_summary"
+            android:title="@string/settings_past_days_title" />
+
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="listColors"
+            android:summary="@string/colored_cards_summary"
+            android:title="@string/colored_cards_title" />
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="showWeekIndicator"
+            android:summary="@string/settings_weekIndicator_summary"
+            android:title="@string/settings_weekIndicator_title" />
+
+        <com.thebluealliance.spectrum.SpectrumPreference
+            android:defaultValue="@color/colorPrimary"
+            android:key="color"
+            android:summary="@string/settings_app_color_summary"
+            android:title="@string/settings_app_color_title"
+            app:spectrum_colors="@array/theme_picker" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/settings_section_miscellaneous">
+
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="notification"
+            android:title="@string/settings_notification_title" />
+
+        <ListPreference
+            android:defaultValue="3600000"
+            android:dialogTitle="@string/settings_notification_interval_dialog_title"
+            android:entries="@array/Intervall"
+            android:entryValues="@array/Intervall_values"
+            android:key="AbrufIntervall"
+            android:negativeButtonText="@string/settings_notification_interval_dialog_back"
+            android:persistent="true"
+            android:summary="@string/settings_notification_interval_summary"
+            android:title="@string/settings_notification_interval_title" />
+
+    </PreferenceCategory>
+</PreferenceScreen>

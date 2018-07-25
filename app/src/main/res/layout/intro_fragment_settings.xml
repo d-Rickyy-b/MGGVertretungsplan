@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:id="@id/main"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:paddingBottom="64dp">
 
     <TextView
-        android:id="@id/title"
+        android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_gravity="center"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="32dp"
-        android:paddingBottom="10dp"
         android:layout_weight="2"
         android:gravity="center"
+        android:paddingBottom="10dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-        tools:text="Einstellungen"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        tools:text="@string/action_settings" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -30,47 +30,46 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="5"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
             android:gravity="top"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp">
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp">
 
                 <TextView
                     android:id="@+id/slide_class_textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Stufe"
-                    android:textColor="@color/Weiss"
-                    tools:textColor="@color/Schwarz"
-                    android:textSize="20sp"
-                    android:gravity="center_vertical"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
                     android:layout_centerInParent="true"
                     android:layout_toLeftOf="@+id/slide_class_spinner"
                     android:layout_toStartOf="@+id/slide_class_spinner"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
+                    android:gravity="center_vertical"
+                    android:text="@string/settings_chooseClassLayer_title"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp"
+                    tools:textColor="@android:color/black" />
 
                 <android.support.v7.widget.AppCompatSpinner
                     android:id="@+id/slide_class_spinner"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="right|center"
-                    android:minWidth="60dp"
-                    tools:text="Klasse"
-
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
-                    android:layout_alignParentEnd="true" />
+                    android:layout_alignParentTop="true"
+
+                    android:layout_gravity="end|center"
+                    android:minWidth="60dp"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp"
+                    tools:text="@string/settings_chooseClass_title" />
 
             </RelativeLayout>
 
@@ -78,37 +77,37 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp">
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp">
 
                 <TextView
                     android:id="@+id/slide_class1_textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Klasse"
-                    android:textColor="@color/Weiss"
-                    tools:textColor="@color/Schwarz"
-                    android:textSize="20sp"
-                    android:gravity="center_vertical"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
                     android:layout_centerInParent="true"
                     android:layout_toLeftOf="@+id/slide_class_spinner2"
                     android:layout_toStartOf="@+id/slide_class_spinner2"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
+                    android:gravity="center_vertical"
+                    android:text="@string/settings_chooseClass_title"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp"
+                    tools:textColor="@android:color/black" />
 
                 <android.support.v7.widget.AppCompatSpinner
                     android:id="@+id/slide_class_spinner2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="right|center"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentRight="true"
                     android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_gravity="end|center"
                     android:minWidth="60dp"
-                    tools:text="Stufe"
+                    android:paddingBottom="10dp"
 
                     android:paddingTop="10dp"
-                    android:paddingBottom="10dp" />
+                    tools:text="Stufe" />
 
             </RelativeLayout>
 
@@ -117,21 +116,18 @@
                 android:id="@+id/slide_notifications_switch"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Benachrichtigungen"
-                android:textColorHint="@color/Weiss"
-                android:textSize="20sp"
-                android:paddingTop="10dp"
+                android:hint="@string/settings_notification_title"
                 android:paddingBottom="10dp"
-                android:theme="@style/AppTheme.Switch_Activated" />
-
+                android:paddingTop="10dp"
+                android:textColorHint="@android:color/white"
+                android:textSize="20sp" />
 
         </LinearLayout>
-
     </ScrollView>
 
 
     <TextView
-        android:id="@id/description"
+        android:id="@+id/description"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_gravity="center"
@@ -141,6 +137,6 @@
         android:layout_weight="3"
         android:gravity="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam." />
+        tools:text="@string/slide_settings_descr" />
 
 </LinearLayout>

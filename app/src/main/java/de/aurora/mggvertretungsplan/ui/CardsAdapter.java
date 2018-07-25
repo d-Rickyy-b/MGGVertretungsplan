@@ -1,25 +1,26 @@
 package de.aurora.mggvertretungsplan.ui;
 
-/**
- * Created by Rico on 26.09.2016.
- */
-
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.preference.PreferenceManager;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.TextView;
 
-import java.util.List;
+import java.util.ArrayList;
+import java.util.Date;
 
 import de.aurora.mggvertretungsplan.R;
+import de.aurora.mggvertretungsplan.datamodel.DateHeading;
+import de.aurora.mggvertretungsplan.datamodel.TimeTable;
+import de.aurora.mggvertretungsplan.datamodel.TimeTableDay;
+import de.aurora.mggvertretungsplan.datamodel.TimeTableElement;
+import de.aurora.mggvertretungsplan.ui.viewholder.ClassInfoViewHolder;
+import de.aurora.mggvertretungsplan.ui.viewholder.HeadingsViewHolder;
+import de.aurora.mggvertretungsplan.ui.viewholder.NoInfoViewHolder;
 
 /**
  * Created by Rico on 26.09.2016.
@@ -27,197 +28,182 @@ import de.aurora.mggvertretungsplan.R;
 
 public class CardsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private static final int TYPE_HEADER = 0;
-    private static final int TYPE_DAYONE = 1;
-    private static final int TYPE_DAYTWO = 2;
-    private static final int TYPE_NOINFO = 3;
-    private int lastPosition = -1;
-    private List<TimeTableCard> dayOneList;
-    private List<TimeTableCard> dayTwoList;
-    private List<DateHeading> headingList;
+    private static final int TYPE_CANCELLATION = 1;
+    private static final int TYPE_NOINFO = 2;
     private final Context context;
     private final SharedPreferences sp;
+    private final ArrayList<Object> items = new ArrayList<>();
+    private int lastPosition = -1;
 
-    public CardsAdapter(List<TimeTableCard> dayOneList, List<TimeTableCard> dayTwoList, List<DateHeading> headingList, Context context) {
-        this.dayOneList = dayOneList;
-        this.dayTwoList = dayTwoList;
-        this.headingList = headingList;
+    public CardsAdapter(Context context) {
         this.context = context;
         sp = PreferenceManager.getDefaultSharedPreferences(context);
     }
 
-    //Wenn RecyclerView erstellt wird, werden Layouts inflated und gecached.
+    // When the RecyclerView gets created, Layouts are inflated and cached.
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        if (viewType == TYPE_DAYONE || viewType == TYPE_DAYTWO) {
-            View itemView = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.view_time_table_card, parent, false);
 
-            return new ClassInfoViewHolder(itemView);
-        } else if (viewType == TYPE_HEADER) {
-            View itemView = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.view_date_heading, parent, false);
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
 
-            return new HeadingsViewHolder(itemView);
-        } else if (viewType == TYPE_NOINFO) {
-//            Log.v("MyTag", "Type: " + viewType + " | " + dayOneList.toString() + " | " + dayTwoList.toString());
-            View itemView = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.view_no_info_card, parent, false);
+        switch (viewType) {
+            case TYPE_CANCELLATION:
+                View v1 = inflater.inflate(R.layout.view_time_table_card, parent, false);
+                return new ClassInfoViewHolder(v1);
 
-            return new NoInfoViewHolder(itemView);
+            case TYPE_HEADER:
+                View v2 = inflater.inflate(R.layout.view_date_heading, parent, false);
+                return new HeadingsViewHolder(v2);
+
+            case TYPE_NOINFO:
+            default:
+                View v3 = inflater.inflate(R.layout.view_no_info_card, parent, false);
+                return new NoInfoViewHolder(v3);
         }
-
-        throw new RuntimeException("there is no type that matches the type " + viewType + " + make sure your using types correctly");
     }
-
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        if (holder instanceof ClassInfoViewHolder) {
-            ClassInfoViewHolder myholder = (ClassInfoViewHolder) holder;
-            TimeTableCard timeTableCard;
-            int viewType = getItemViewType(position);
-            if (viewType == TYPE_DAYONE) {
-                timeTableCard = dayOneList.get(position - 1); //TODO Bug
-            } else if (viewType == TYPE_DAYTWO) {
-                int dayOneListSize = 1;
-                if (dayOneList.size() > 0) {
-                    dayOneListSize = dayOneList.size();
-                }
-                timeTableCard = dayTwoList.get(position - headingList.size() - dayOneListSize);
-            } else
-                throw new RuntimeException("there is no matching type!");
+    public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
+        switch (holder.getItemViewType()) {
+            case TYPE_CANCELLATION:
+                configureCancellationViewholder(holder, position);
+                break;
 
-            myholder.hour.setText(timeTableCard.getHour());
-            myholder.title.setText(timeTableCard.getTitle());
-            myholder.info.setText(timeTableCard.getInfo());
-            myholder.raum.setText(timeTableCard.getRaum());
-            myholder.neuRaum.setText(timeTableCard.getNeuRaum());
+            case TYPE_HEADER:
+                configureHeaderViewholder(holder, position);
+                break;
 
-            if (sp.getBoolean("listColors", true)) {
-                switch (timeTableCard.getTyp()) {
-                    case "Entfall":
-                        myholder.cardView.setCardBackgroundColor(Color.parseColor("#FF6961")); //#EF5350
-                        break;
-                    case "Vertretung":
-                        myholder.cardView.setCardBackgroundColor(Color.parseColor("#779ECB"));
-                        break;
-                }
-            } else {
-                myholder.cardView.setCardBackgroundColor(Color.parseColor("#F5F5F5"));
+            case TYPE_NOINFO:
+                configureNoTypeViewholder(holder, position);
+                break;
+        }
+    }
+
+    // Methods to configure the used viewholders
+    private void configureCancellationViewholder(RecyclerView.ViewHolder holder, int position) {
+        ClassInfoViewHolder classInfoViewHolder = (ClassInfoViewHolder) holder;
+        TimeTableElement timeTableElement = (TimeTableElement) items.get(position);
+
+        classInfoViewHolder.hour.setText(timeTableElement.getHour());
+        classInfoViewHolder.title.setText(timeTableElement.getSubject());
+        classInfoViewHolder.info.setText(timeTableElement.getInfoForDisplay());
+        classInfoViewHolder.room.setText(timeTableElement.getRoom());
+        classInfoViewHolder.newRoom.setText(timeTableElement.getNewRoom());
+
+        int color;
+
+        if (sp.getBoolean("listColors", true)) {
+
+            switch (timeTableElement.getType()) {
+                case TimeTableElement.SUBSTITUTION:
+                    color = context.getResources().getColor(R.color.cardSubstitution);
+                    break;
+                case TimeTableElement.CANCELLATION:
+                default:
+                    color = context.getResources().getColor(R.color.cardCancellation);
             }
 
-            setAnimation(myholder.cardView, position);
-
-        } else if (holder instanceof HeadingsViewHolder) {
-            HeadingsViewHolder myholder = (HeadingsViewHolder) holder;
-            String dateString;
-            try {
-                DateHeading dateHeading = headingList.get(whichHeader(position));
-                dateString = dateHeading.getWholeDate();
-            } catch (Exception e) {
-                e.printStackTrace();
-                dateString = "Fehler!";
-            }
-
-            myholder.heading.setText(dateString);
-
-            setAnimation(myholder.heading, position);
-        } else if (holder instanceof NoInfoViewHolder) {
-            NoInfoViewHolder myholder = (NoInfoViewHolder) holder;
-            myholder.noInfo.setText("Keine Informationen!");
-
-            setAnimation(myholder.noInfo, position);
+        } else {
+            color = context.getResources().getColor(R.color.cardNoColor);
         }
 
+        classInfoViewHolder.cardView.setCardBackgroundColor(color);
+
+        setAnimation(classInfoViewHolder.cardView, position);
     }
 
-    public class ClassInfoViewHolder extends RecyclerView.ViewHolder {
-        public final TextView title, hour, info, raum, neuRaum;
-        public final CardView cardView;
+    private void configureHeaderViewholder(RecyclerView.ViewHolder holder, int position) {
+        HeadingsViewHolder headingsViewHolder = (HeadingsViewHolder) holder;
 
-        public ClassInfoViewHolder(View view) {
-            super(view);
-            cardView = (CardView) view.findViewById(R.id.card_view);
-            title = (TextView) view.findViewById(R.id.info_title);
-            hour = (TextView) view.findViewById(R.id.info_hour);
-            info = (TextView) view.findViewById(R.id.info_text);
-            raum = (TextView) view.findViewById(R.id.info_room);
-            neuRaum = (TextView) view.findViewById(R.id.info_new_room);
+        DateHeading dateHeading = (DateHeading) items.get(position);
+        String dateString = dateHeading.getWholeDate();
+
+        headingsViewHolder.heading.setText(dateString);
+        headingsViewHolder.tag_text.setText(dateHeading.getWeek().toString());
+        boolean showWeekIndicator = sp.getBoolean("showWeekIndicator", true);
+        int visibility;
+
+        if (showWeekIndicator) {
+            visibility = View.VISIBLE;
+        } else {
+            visibility = View.INVISIBLE;
         }
+
+        headingsViewHolder.tag_layout.setVisibility(visibility);
+
+        setAnimation(headingsViewHolder.heading_layout, position);
     }
 
-    public class HeadingsViewHolder extends RecyclerView.ViewHolder {
-        public final TextView heading;
+    private void configureNoTypeViewholder(RecyclerView.ViewHolder holder, int position) {
+        NoInfoViewHolder noInfoViewHolder = (NoInfoViewHolder) holder;
+        noInfoViewHolder.noInfo.setText(context.getResources().getString(R.string.card_no_information));
 
-        public HeadingsViewHolder(View view) {
-            super(view);
-            heading = (TextView) view.findViewById(R.id.heading_textView);
-        }
+        setAnimation(noInfoViewHolder.noInfo, position);
     }
-
-    public class NoInfoViewHolder extends RecyclerView.ViewHolder {
-        public TextView noInfo;
-
-        public NoInfoViewHolder(View view) {
-            super(view);
-            noInfo = (TextView) view.findViewById(R.id.no_info_textview);
-        }
-    }
-
 
     @Override
     public int getItemCount() {
-        int dayOneListSize = 1;
-        int dayTwoListSize = 1;
-
-        if (dayOneList.size() > 0) {
-            dayOneListSize = dayOneList.size();
-        }
-
-        if (dayTwoList.size() > 0) {
-            dayTwoListSize = dayTwoList.size();
-        }
-        return dayOneListSize + dayTwoListSize + headingList.size();
+        return items.size();
     }
 
-    private boolean isPositionHeader(int position) {
-        if (dayOneList.size() > 0) {
-            return position == 0 || position == dayOneList.size() + 1;
-        } else {
-            return position == 0 || position == 2;
-        }
+    public void clearItems() {
+        items.clear();
     }
 
-    private int whichHeader(int position) {
-        if (position == 0)
-            return 0;
-        return 1;
+    public void addDays(TimeTable timeTable) {
+        for (TimeTableDay ttd : timeTable.getAllDays())
+            addDay(ttd);
+    }
+
+    public void addDay(TimeTableDay ttd) {
+        Date date = ttd.getDate();
+
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+        boolean displayPastDays = sp.getBoolean("displayPastDays", true);
+
+        Date currentDate = new Date();
+        int sixteenHrsInMillisecs = 60 * 60 * 16 * 1000;
+        long secondsDiff = ((date.getTime() + sixteenHrsInMillisecs) - currentDate.getTime()) / 1000; // Difference between today and future date. If negative: date in the past. If positive: date in the future
+
+        // Displays the current day only when the setting is active
+        // OR when it's not set, but it's before 16:00
+        // If the setting for displaying old days is deactivated, they will be removed here.
+        if (!displayPastDays && (secondsDiff < 0)) {
+            return;
+        }
+
+        String className = sp.getString("KlasseGesamt", "5a");
+        ArrayList<TimeTableElement> timeTableElements = ttd.getElements(className);
+
+        DateHeading dateHeading = new DateHeading(date, ttd.getWeek());
+        items.add(dateHeading);
+
+        // TODO should be improved in the future
+        if (timeTableElements.isEmpty()) {
+            items.add(new TimeTableElement());
+            return;
+        }
+
+        items.addAll(timeTableElements);
     }
 
     @Override
     public int getItemViewType(int position) {
-
-        if (isPositionHeader(position))
+        if (items.get(position) instanceof TimeTableElement) {
+            if (((TimeTableElement) items.get(position)).getType() == TimeTableElement.EMPTY) {
+                return TYPE_NOINFO;
+            }
+            return TYPE_CANCELLATION;
+        } else if (items.get(position) instanceof DateHeading)
             return TYPE_HEADER;
-        else if (dayOneList.size() == 0 && position == 1)
-            return TYPE_NOINFO;
-        else if (position <= dayOneList.size())
-            return TYPE_DAYONE;
-        else if ((dayTwoList.size() == 0 && position >= (dayOneList.size() + headingList.size())))
-            return TYPE_NOINFO;
-        else if (position >= (dayOneList.size() + headingList.size()))
-            return TYPE_DAYTWO;
-
-
-        throw new RuntimeException("No matching type! Position = " + position + ", dayOneList.size() = " +
-                dayOneList.size() + ", dayTwoList.size() = " + dayTwoList.size() +
-                ", headingsList.size() = " + headingList.size() + ";");
+        else
+            return 0;
     }
 
     private void setAnimation(View viewToAnimate, int position) {
         // If the bound view wasn't previously displayed on screen, it's animated
         if (position > lastPosition) {
-            Animation animation = AnimationUtils.loadAnimation(context, R.anim.slide_up_bottom);
+            Animation animation = AnimationUtils.loadAnimation(context, android.R.anim.slide_in_left);
             viewToAnimate.startAnimation(animation);
             lastPosition = position;
         }

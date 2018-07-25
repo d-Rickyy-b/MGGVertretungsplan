@@ -23,6 +23,7 @@
 -optimizations !code/simplification/arithmetic,!code/simplification/cast,!field/*,!class/merging/*
 -optimizationpasses 5
 -allowaccessmodification
+-printmapping build/outputs/mapping/debug/mapping.txt
 #
 # Note that you cannot just include these flags in your own
 # configuration file; if you are including this file, optimization

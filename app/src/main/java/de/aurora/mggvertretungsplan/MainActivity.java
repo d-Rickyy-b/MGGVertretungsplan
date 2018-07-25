@@ -1,19 +1,21 @@
 package de.aurora.mggvertretungsplan;
 
-import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources.Theme;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.AsyncTask;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.support.annotation.ColorInt;
+import android.support.customtabs.CustomTabsIntent;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -21,54 +23,53 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
-import android.text.format.DateFormat;
+import android.text.Spanned;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
+import org.json.JSONArray;
+import org.json.JSONException;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.Locale;
-
+import de.aurora.mggvertretungsplan.datamodel.TimeTable;
+import de.aurora.mggvertretungsplan.parsing.BaseParser;
+import de.aurora.mggvertretungsplan.parsing.BaseParser.ParsingCompleteListener;
+import de.aurora.mggvertretungsplan.parsing.MGGParser;
+import de.aurora.mggvertretungsplan.parsing.ParsingTask;
 import de.aurora.mggvertretungsplan.ui.CardsAdapter;
-import de.aurora.mggvertretungsplan.ui.DateHeading;
-import de.aurora.mggvertretungsplan.ui.TimeTableCard;
+import de.aurora.mggvertretungsplan.ui.EmptyAdapter;
+import de.aurora.mggvertretungsplan.ui.intro.IntroActivity;
+import de.aurora.mggvertretungsplan.ui.theming.ThemeManager;
 
-public class MainActivity extends AppCompatActivity implements AsyncTaskCompleteListener<String>, SwipeRefreshLayout.OnRefreshListener {
+public class MainActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener, ParsingCompleteListener {
+    private static final String TAG = "MainActivity";
+    private static final String NEED_RELOAD = "need_reload";
 
     private SharedPreferences sp;
     private Toolbar toolbar;
-    private int clickcount = 0;
-    private String klasse;
-    private int jahr;
+    private String class_name;
     private SwipeRefreshLayout mSwipeLayout;
-    private ArrayList<TimeTableCard> dayOneList = new ArrayList<>();
-    private ArrayList<TimeTableCard> dayTwoList = new ArrayList<>();
-    private ArrayList<DateHeading> headingsList = new ArrayList<>();
+    private RecyclerView recyclerView;
     private CardsAdapter cAdapter;
+    private BaseParser websiteParser;
+    private int themeID = 0;
+    private boolean need_reload = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         sp = PreferenceManager.getDefaultSharedPreferences(this);
+        themeID = sp.getInt("Theme", 0);
+        setTheme(ThemeManager.getTheme(themeID));
+        super.onCreate(savedInstanceState);
 
-        //TODO wieder entfernen, sobald die Funktion wieder geht
-        sp.edit().putBoolean("AktTagAnzeigen", true).apply(); //true!!!
+        websiteParser = new MGGParser();
 
+        // If application is called for the first time, intro slides will show up
         if (sp.getBoolean("firstStart", true)) {
-            //Wenn erster Start
-            Intent intent = new Intent(getApplicationContext(), de.aurora.mggvertretungsplan.ui.intro.IntroActivity.class);
+            Intent intent = new Intent(getApplicationContext(), IntroActivity.class);
             startActivity(intent);
 
             SharedPreferences.Editor editor = sp.edit();
@@ -76,107 +77,59 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
             editor.apply();
         }
 
-        setContentView(R.layout.activity_main);
-        mSwipeLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
+        class_name = sp.getString("KlasseGesamt", "5a");
+
+        setContentView(R.layout.layout_main);
+        mSwipeLayout = findViewById(R.id.swipe_refresh_layout);
+        toolbar = findViewById(R.id.toolbar);
+        recyclerView = findViewById(R.id.recycler_view);
+        cAdapter = new CardsAdapter(this);
+
         mSwipeLayout.setOnRefreshListener(this);
         mSwipeLayout.setColorSchemeResources(R.color.refresh_progress_1, R.color.refresh_progress_2, R.color.refresh_progress_3);
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        String toolbarTitle = getString(R.string.toolbarTitle_WithClass);
         toolbar.setAlpha(1);
-        toolbar.setTitle("Vertretungsplan");
-        toolbar.showOverflowMenu();
+        toolbar.setTitle(String.format(toolbarTitle, class_name));
+        setSupportActionBar(toolbar);
 
-//        toolbar.setOnClickListener(new View.OnClickListener() {
-//
-//            @Override
-//            public void onClick(View v) {
-//                clickcount = clickcount + 1;
-//                if (clickcount % 10 == 0) {
-//                    Toast.makeText(getApplicationContext(), "Notification gesendet!", Toast.LENGTH_SHORT).show();
-//
-//                    notification("Ticker", "Titel", "Text");
-//                    notification("Stundenplan Änderung!", "MGG Vertretungsplan", "3 Änderungen!");
-//                    Intent intent = new Intent(getApplicationContext(), de.aurora.mggvertretungsplan.ui.intro.IntroActivity.class);
-//                    startActivity(intent);
-//                }
-//            }
-//        });
+        recyclerView.setHasFixedSize(true);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(cAdapter);
 
         if (Build.VERSION.SDK_INT >= 21) {
             toolbar.setElevation(25);
         }
 
-        jahr = new GregorianCalendar().get(GregorianCalendar.YEAR);
-
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        cAdapter = new CardsAdapter(dayOneList, dayTwoList, headingsList, this);
-        recyclerView.setHasFixedSize(true);
-
-        //Neuer LayoutManager
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
-        recyclerView.setLayoutManager(mLayoutManager);
-
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(cAdapter);
-
-        //TODO entfernen oder auskommentieren, da noch nicht genutzt
-        /*
-        recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), recyclerView, new RecyclerTouchListener.ClickListener() {
-            @Override
-            public void onClick(View view, int position) {
-                String infotext = "";
-                if (position == 0){
-                    DateHeading dv = headingsList.get(0);
-                    infotext = dv.getTitle();
-                } else if (position == dayOneList.size() + 1) {
-                    DateHeading dv = headingsList.get(position - (dayOneList.size() + 1));
-                    infotext = dv.getTitle();
-                } else if (position <= dayOneList.size()){
-                    TimeTableCard timeTableCard = dayOneList.get(position - 1);
-                    infotext = timeTableCard.getInfo();
-                } else if (position >= dayOneList.size() + headingsList.size()){
-                    TimeTableCard timeTableCard = dayTwoList.get(position - (dayOneList.size() + headingsList.size()));
-                    infotext = timeTableCard.getInfo();
-                }
-
-                Toast.makeText(getApplicationContext(), infotext + " is selected!", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onLongClick(View view, int position) {
-                Toast.makeText(getApplicationContext(), position + " is selected!", Toast.LENGTH_SHORT).show();
-            }
-        }));
-        */
-
-        gespeicherteDatenAnzeigen();
-        updateData();
+        if (savedInstanceState != null) {
+            need_reload = savedInstanceState.getBoolean(NEED_RELOAD);
+        }
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
 
-    //added for testing purposes
-    private void notification(String ticker, String titel, String text) {
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-        PendingIntent pIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, 0);
-        Log.i("VertretungsplanService", "Notification!");
-        @SuppressWarnings("deprecation")
-        android.support.v7.app.NotificationCompat.Builder notification = (android.support.v7.app.NotificationCompat.Builder) new android.support.v7.app.NotificationCompat.Builder(this)
-                .setContentTitle(titel)
-                .setContentText(text)
-                .setTicker(ticker)
-                .setColor(getResources().getColor(R.color.colorAccent))
-                .setSmallIcon(R.drawable.icon)
-                .setContentIntent(pIntent)
-                .setAutoCancel(true);
+        displaySavedData();
 
-        //.setVibrate(new long[]{0,300,200,300})
-        //.setLights(Color.WHITE, 1000, 5000)
+        if (need_reload) {
+            mSwipeLayout.setRefreshing(true);
+            downloadTimeTable();
+        }
 
-        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        notificationManager.notify(0, notification.build());
+        // Remove all notifications after opening the app
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        if (notificationManager != null)
+            notificationManager.cancelAll();
+
+        long thirtyMinsInMillis = 30 * 60 * 1000;
+        ServiceScheduler serviceScheduler = new ServiceScheduler();
+        serviceScheduler.setAlarmManager(this, thirtyMinsInMillis);
     }
 
+    // Checks which hardware key was pressed
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         switch (keyCode) {
@@ -203,62 +156,90 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         return true;
     }
 
-
+    // When swiped to refresh
+    @Override
     public void onRefresh() {
-        updateData();
+        downloadTimeTable();
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
 
-    private void gespeicherteDatenAnzeigen() {
-        String AbrufDatum = sp.getString("AbrufDatum", ": Noch nie aktualisiert!");
+        toolbar = findViewById(R.id.toolbar);
+        String toolbarTitle_WithClass = getString(R.string.toolbarTitle_WithClass);
 
-        jahr = new GregorianCalendar().get(GregorianCalendar.YEAR);
-        klasse = sp.getString("KlasseGesamt", "5a");
-        setTitle(String.format("Vertretungsplan (%s)", klasse));
+        class_name = sp.getString("KlasseGesamt", "5a");
+        toolbar.setTitle(String.format(toolbarTitle_WithClass, class_name));
+    }
 
-        String erDatum = sp.getString("erstesDatum", "01.01." + jahr);
-        String zwDatum = sp.getString("zweitesDatum", "01.01." + jahr);
-
-        ArrayList<ArrayList<String>> tableOne, tableTwo;
-
-        tableOne = hilfsMethoden.getArrayList(sp.getString("ersteTabelle", ""));
-        tableTwo = hilfsMethoden.getArrayList(sp.getString("zweiteTabelle", ""));
-
-        sp.edit().putBoolean("AktTagAnzeigen", true).apply();
-        anzeigen(tableOne, tableTwo, erDatum, zwDatum, sp.getBoolean("AktTagAnzeigen", true));
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean(NEED_RELOAD, false);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.settings, menu);
+        getMenuInflater().inflate(R.menu.toolbar_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
-    //Aktion die ausgeführt werden soll, wenn action bar item geklickt wurde
+    // Checks which item of the toolbar menu was selected
     public boolean onOptionsItemSelected(MenuItem item) {
+        TypedValue typedValue = new TypedValue();
+        Theme theme = getTheme();
+        theme.resolveAttribute(R.attr.colorPrimary, typedValue, true);
+        @ColorInt int color = typedValue.data;
+
         switch (item.getItemId()) {
             case R.id.action_settings:
-                Intent preferenceIntent = new Intent(getApplicationContext(), Settings.class);
+                Intent preferenceIntent = new Intent(getApplicationContext(), SettingsActivity.class);
                 startActivity(preferenceIntent);
                 break;
-            case R.id.action_webview:
-                Intent webViewIntent = new Intent(getApplicationContext(), de.aurora.mggvertretungsplan.webView_Activity.class);
-                startActivity(webViewIntent);
+            case R.id.action_website:
+                String[] urls = websiteParser.getTimeTableURLs();
+
+                if (urls.length < 1) {
+                    Toast.makeText(this, R.string.no_url_to_open, Toast.LENGTH_LONG).show();
+                    break;
+                }
+
+                String url = urls[0];
+
+                CustomTabsIntent.Builder chromeTabsBuilder = new CustomTabsIntent.Builder();
+                chromeTabsBuilder.setToolbarColor(color);
+                chromeTabsBuilder.setShowTitle(true);
+                CustomTabsIntent websiteIntent = chromeTabsBuilder.build();
+                websiteIntent.launchUrl(this, Uri.parse(url));
+                break;
+            case R.id.action_feedback:
+                CustomTabsIntent.Builder chromeTabsFeedbackBuilder = new CustomTabsIntent.Builder();
+                chromeTabsFeedbackBuilder.setToolbarColor(color);
+                chromeTabsFeedbackBuilder.setShowTitle(true);
+                CustomTabsIntent feedbackIntent = chromeTabsFeedbackBuilder.build();
+                feedbackIntent.launchUrl(this, Uri.parse(getString(R.string.feedback_url)));
                 break;
             case R.id.action_info:
-                AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.YourAlertDialogTheme);
+                Spanned informationText;
+                if (Build.VERSION.SDK_INT >= 24) {
+                    informationText = Html.fromHtml("Programmiert von Rico Jambor<br><br>Bei Fehlern entweder eine Email an:<br><b>rico.jambor@gmail.com</b><br><br>Oder per Telegram an:<br><center><b>@d_Rickyy_b</b></center>", Html.FROM_HTML_MODE_LEGACY);
+                } else {
+                    //noinspection deprecation
+                    informationText = Html.fromHtml("Programmiert von Rico Jambor<br><br>Bei Fehlern entweder eine Email an:<br><b>rico.jambor@gmail.com</b><br><br>Oder per Telegram an:<br><center><b>@d_Rickyy_b</b></center>");
+                }
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.AlertDialogTheme);
                 builder
-                        .setIcon(R.drawable.ic_menu_info_details)
-                        .setTitle("MGG Vertretungsplan v" + getString(R.string.version))
-                        .setMessage(Html.fromHtml("Programmiert von Rico Jambor<br><br>Bei Fehlern entweder eine Email an:<br><b>rico.jambor@gmail.com</b><br><br>Oder per Telegram an:<br><center><b>@d_Rickyy_b</b></center>"))
+                        .setIcon(R.drawable.ic_info_outline_black)
+                        .setTitle("MGG Vertretungsplan v" + BuildConfig.VERSION_NAME)
+                        .setMessage(informationText)
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                             }
                         });
-
                 AlertDialog dialog = builder.create();
                 dialog.show();
-
                 break;
             default:
                 break;
@@ -266,231 +247,131 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         return super.onOptionsItemSelected(item);
     }
 
+    // Method to display the saved data
+    private void displaySavedData() {
+        final Handler handler = new Handler();
 
-    private void serviceProvider() {
-        if (sp.getBoolean("notification", true)) {
-            AlarmManager(Integer.valueOf(sp.getString("AbrufIntervall", "1800000")));
-            Log.v("VertretungsplanService", "serviceProvider, Interval: " + sp.getString("AbrufIntervall", "1800000"));
-        } else {
-            AlarmManagerBeenden();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Log.d(TAG, "Fetch saved data from disk");
+                final TimeTable timeTable;
+                String data = StorageUtilities.readFile(MainActivity.this);
+
+                if (data.isEmpty()) {
+                    timeTable = new TimeTable();
+                } else {
+                    try {
+                        JSONArray jsonArray = new JSONArray(data);
+                        timeTable = new TimeTable(jsonArray);
+                    } catch (JSONException e) {
+                        Log.e(TAG, e.getMessage());
+                        return;
+                    }
+                }
+
+                handler.post(
+                        new Runnable() {
+                            @Override
+                            public void run() {
+                                displayData(timeTable);
+                            }
+                        }
+                );
+            }
+        }, "dataLoader").start();
+
+    }
+
+    private boolean isConnectionActive() {
+        try {
+            final ConnectivityManager conMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+            final NetworkInfo activeNetwork = conMgr.getActiveNetworkInfo();
+
+            return null != activeNetwork && activeNetwork.isConnected();
+        } catch (NullPointerException e) {
+            Log.e(TAG, e.getMessage());
+            return false;
         }
     }
 
-    //AlarmManager Starten! -> Hintergrund Prozess
-    private void AlarmManager(int intervall) {
-        long interval = (long) intervall;
-        long firstStart = System.currentTimeMillis() + interval;
-
-        Intent intentsOpen = new Intent(this, VertretungsplanService.class);
-        PendingIntent pendingIntent = PendingIntent.getService(this, 0, intentsOpen, 0);
-        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, firstStart, interval, pendingIntent);
-    }
-
-    //beendet AlarmManager
-    private void AlarmManagerBeenden() {
-        Intent intentsOpen = new Intent(this, VertretungsplanService.class);
-        PendingIntent pendingIntent = PendingIntent.getService(this, 0, intentsOpen, 0);
-        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-        alarmManager.cancel(pendingIntent);
-    }
-
-    private boolean aktiveVerbindung() {
-        final ConnectivityManager conMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        final NetworkInfo activeNetwork = conMgr.getActiveNetworkInfo();
-
-        return activeNetwork != null && activeNetwork.isConnected();
-    }
-
-    // überprüfen ob Klasse ausgewählt, ob Internetverbinding besteht, gibt Befehl zum Runterladen
-    private void updateData() {
-        if (aktiveVerbindung()) {
-            mSwipeLayout.setRefreshing(true);
-            klasse = sp.getString("KlasseGesamt", "5a");
-            sp = PreferenceManager.getDefaultSharedPreferences(this);
+    // Get saved class, Check for connection, start downloading the timetable
+    private void downloadTimeTable() {
+        if (isConnectionActive()) {
+            class_name = sp.getString("KlasseGesamt", "5a");
 
             try {
-                new DownloadWebPageTask(this).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, getString(R.string.vertretungsplan_url));
+                ParsingTask parsingTask = new ParsingTask(this, websiteParser);
+                parsingTask.startParsing();
             } catch (Exception e) {
                 mSwipeLayout.setRefreshing(false);
                 Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         } else {
             mSwipeLayout.setRefreshing(false);
-            Toast.makeText(getApplicationContext(), "Keine Internetverbindung!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), R.string.toast_noInternetConnection, Toast.LENGTH_SHORT).show();
         }
     }
 
+    // Creates the view of the Android App
+    private void displayData(TimeTable timeTable) {
+        Log.d(TAG, "Display data on screen");
+        String toolbarTitle_WithClass = getString(R.string.toolbarTitle_WithClass);
+        toolbar.setTitle(String.format(toolbarTitle_WithClass, class_name));
 
-    //Initialisieren einer ArrayList, Hinzufügen von Items, Adapter an ListView binden
-    private void anzeigen(ArrayList<ArrayList<String>> ersterTag, ArrayList<ArrayList<String>> zweiterTag, String erstesDatum, String zweitesDatum, boolean aktTagAnzeigen) {
-        headingsList.clear();
-        dayOneList.clear();
-        dayTwoList.clear();
-
-        long unixTime = System.currentTimeMillis() / 1000L;
-        String currentTimeInHours = new SimpleDateFormat("HH", new Locale("de")).format((unixTime + 3600) * 1000L);
-        String tagAkt = (String) DateFormat.format("dd", new Date());
-        String monatAkt = (String) DateFormat.format("MM", new Date());
-        int monat1, monat2, tag1, tag2;
-
-        try {
-            monat1 = Integer.valueOf(erstesDatum.substring(3, 5));
-            monat2 = Integer.valueOf(zweitesDatum.substring(3, 5));
-            tag1 = Integer.valueOf(erstesDatum.substring(0, 2));
-            tag2 = Integer.valueOf(zweitesDatum.substring(0, 2));
-        } catch (Exception e) {
-            e.printStackTrace();
-            monat1 = monat2 = 1;
-            tag1 = tag2 = 1;
-        }
-
-        Log.v("MyTag", erstesDatum + jahr + " | " + zweitesDatum + jahr);
-
-        //Wenn der erste Tag vor dem zweiten kommt im gleichen Monat (normalfall), oder wenn der erste Monat vor dem zweiten kommt
-        if ((tag1 > tag2 && monat1 == monat2) || (tag1 < tag2 && monat1 > monat2)) {
-            ArrayList<ArrayList<String>> tempList = new ArrayList<>(ersterTag);
-            ersterTag = zweiterTag;
-            zweiterTag = tempList;
-
-            int tmpTag = tag1;
-            tag1 = tag2;
-            tag2 = tmpTag;
-
-            int tmpMonat = monat1;
-            monat1 = monat2;
-            monat2 = tmpMonat;
-
-//            DateHeading tempHeading = headingsList.get(0);
-//            headingsList.set(0, headingsList.get(1));
-//            headingsList.set(1, tempHeading);
-        }
-
-        String erstesDatumName = hilfsMethoden.getAnyDayByName(jahr, monat1, tag1);
-        String zweitesDatumName = hilfsMethoden.getAnyDayByName(jahr, monat2, tag2);
-
-        Log.v("MainActivity", erstesDatumName + " | " + zweitesDatumName);
-
-        headingsList.add(new DateHeading(erstesDatumName, tag1 + "." + monat1 + "." + jahr));
-        headingsList.add(new DateHeading(zweitesDatumName, tag2 + "." + monat2 + "." + jahr));
-
-        //Wenn Tag angezeigt werden soll, dann anzeigen
-        //ODER Wenn Tag nicht angezeigt werden soll, aber es noch vor 16 Uhr ist, dann anzeigen
-        //ODER Wenn der Tag1 kleiner als der aktuelle ist, aber der aktuelle Monat kleiner als der monat1 ist
-        if (aktTagAnzeigen ||
-                (Integer.valueOf(currentTimeInHours) < 16 && tag1 == Integer.valueOf(tagAkt) && monat1 == Integer.valueOf(monatAkt)) ||
-                (tag1 > Integer.valueOf(tagAkt) && monat1 == Integer.valueOf(monatAkt)) ||
-                (tag1 < Integer.valueOf(tagAkt) && monat1 > Integer.valueOf(monatAkt))) {
-
-            //Tag 1
-            for (ArrayList<String> zeile : ersterTag) {
-                if (zeile.size() == 7) {
-                    TimeTableCard timeTableCard = new TimeTableCard(zeile.get(0), hilfsMethoden.abkuerzung(zeile.get(2)), hilfsMethoden.abkuerzung(zeile.get(3)), zeile.get(4), zeile.get(5), hilfsMethoden.getType(zeile.get(3), zeile.get(5)), zeile.get(6));
-                    dayOneList.add(timeTableCard);
-                }
-            }
+        if (timeTable.getDaysCount() == 0 || (sp.getBoolean("", true) && timeTable.getFutureDaysCount() == 0)) {
+            recyclerView.setAdapter(new EmptyAdapter(getString(R.string.no_data_to_display)));
         } else {
-            //Tag 1 aus Headings löschen
-            headingsList.remove(0);
+            recyclerView.setAdapter(cAdapter);
+            cAdapter.clearItems();
+            cAdapter.addDays(timeTable);
+            cAdapter.notifyDataSetChanged();
+            Log.d(TAG, "Notify changes");
         }
+    }
 
-        //Tag 2
-        for (ArrayList<String> zeile : zweiterTag) {
-            TimeTableCard timeTableCard = new TimeTableCard(zeile.get(0), hilfsMethoden.abkuerzung(zeile.get(2)), hilfsMethoden.abkuerzung(zeile.get(3)), zeile.get(4), zeile.get(5), hilfsMethoden.getType(zeile.get(3), zeile.get(5)), zeile.get(6));
-            dayTwoList.add(timeTableCard);
+    private void saveData(final TimeTable timeTable) {
+        Log.d(TAG, "Saving data.json to disk");
+        try {
+            StorageUtilities.writeToFile(this, timeTable.toJSON().toString());
+        } catch (JSONException e) {
+            Log.e(TAG, e.getMessage());
         }
+    }
 
-        cAdapter.notifyDataSetChanged();
+    // Gets called, when website was downloaded and parsed by the parser
+    @Override
+    public void onParsingComplete(TimeTable timeTable) {
+        Log.d(TAG, "Parsing complete!");
         mSwipeLayout.setRefreshing(false);
-    }
 
-    // Wird aufgerufen wenn die Website heruntergeladen wurde
-    public void onTaskComplete(String html) {
-        setTitle("Vertretungsplan (" + klasse + ")");
-        sp = PreferenceManager.getDefaultSharedPreferences(this);
-
-        String erstesDatum, zweitesDatum;
-        ArrayList<ArrayList<String>> tableOne, tableTwo;
-
-        //Umlaute entfernen
-        html = html.replace("&auml;", "ä").replace("&ouml;", "ö").replace("&uuml;", "ü");
-
-        Document doc = Jsoup.parse(html);
-        Elements dates = doc.select("h2.tabber_title");
-
-        ArrayList<String> datesList = new ArrayList<>();
-        for (Element date : dates) {
-            datesList.add(date.text()); //Datum 1 und 2
+        if (timeTable == null || timeTable.getDaysCount() == 0) {
+            recyclerView.setAdapter(new EmptyAdapter(getString(R.string.no_data_to_display)));
+            Toast.makeText(getApplicationContext(), R.string.downloadException, Toast.LENGTH_SHORT).show();
+            return;
         }
 
-        try {
-            erstesDatum = datesList.get(0);
-        } catch (Exception e) {
-            e.printStackTrace();
-            erstesDatum = "";
-        }
-
-        try {
-            zweitesDatum = datesList.get(1);
-        } catch (Exception e) {
-            e.printStackTrace();
-            zweitesDatum = "";
-        }
-
-        try {
-            tableOne = hilfsMethoden.extractTable(doc, 0);
-
-        } catch (IndexOutOfBoundsException e) {
-            e.printStackTrace();
-            tableOne = new ArrayList<>();
-            tableOne.add(new ArrayList<>(Arrays.asList("", "", "", "", "", "", "")));
-        }
-
-        try {
-            tableTwo = hilfsMethoden.extractTable(doc, 1);
-        } catch (IndexOutOfBoundsException e) {
-            e.printStackTrace();
-            tableTwo = new ArrayList<>();
-            tableTwo.add(new ArrayList<>(Arrays.asList("", "", "", "", "", "", "")));
-        }
-
-        tableOne = hilfsMethoden.datenAufbereiten(tableOne, klasse);
-        tableTwo = hilfsMethoden.datenAufbereiten(tableTwo, klasse);
-
-        String AbrufDatum = hilfsMethoden.getFormattedDate(System.currentTimeMillis());
-
-        //TODO wenn ein Datum = "", dann "Keine Informationen" anzeigen
-        ArrayList<ArrayList<String>> tableOne_saved = hilfsMethoden.getArrayList(sp.getString("ersteTabelle", ""));
-        ArrayList<ArrayList<String>> tableTwo_saved = hilfsMethoden.getArrayList(sp.getString("zweiteTabelle", ""));
-
-        int count1 = hilfsMethoden.getDifferencesCount(tableOne, tableOne_saved);
-        int count2 = hilfsMethoden.getDifferencesCount(tableTwo, tableTwo_saved);
-
-        if ((count1 + count2) > 0) {
-            Log.v("MyTag", "Anzeigen");
-            anzeigen(tableOne, tableTwo, erstesDatum, zweitesDatum, sp.getBoolean("AktTagAnzeigen", true));
-        } else {
-            mSwipeLayout.setRefreshing(false);
-        }
-
-        SharedPreferences.Editor editor = sp.edit();
-        editor.putString("erstesDatum", erstesDatum);
-        editor.putString("zweitesDatum", zweitesDatum);
-        editor.putString("AbrufDatum", AbrufDatum);
-        editor.putString("ersteTabelle", hilfsMethoden.getJSONArray(tableOne).toString());
-        editor.putString("zweiteTabelle", hilfsMethoden.getJSONArray(tableTwo).toString());
-        editor.putBoolean("AktTagAnzeigen", true);
-        editor.apply();
+        displayData(timeTable);
+        saveData(timeTable);
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-        updateData();
-        serviceProvider();
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus) {
+            int newThemeID = sp.getInt("Theme", 0);
+            if (themeID != newThemeID) {
+                recreate();
+            }
+
+            String newClassName = sp.getString("KlasseGesamt", "5a");
+            if (!class_name.equals(newClassName)) {
+                displaySavedData();
+            }
+        }
     }
 
    /*
      * Code by Rico Jambor
-	 */
+    */
 }
