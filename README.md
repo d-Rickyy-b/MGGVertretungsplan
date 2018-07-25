@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/d-Rickyy-b/MGGVertretungsplan.svg?branch=master)](https://travis-ci.org/d-Rickyy-b/MGGVertretungsplan)
+[![Build Status](https://travis-ci.org/d-Rickyy-b/MGGVertretungsplan.svg?branch=master)](https://travis-ci.org/d-Rickyy-b/MGGVertretungsplan) [![Coverage Status](https://coveralls.io/repos/github/d-Rickyy-b/MGGVertretungsplan/badge.svg?branch=master)](https://coveralls.io/github/d-Rickyy-b/MGGVertretungsplan?branch=master)
 
 # MGGVertretungsplan
 This is the Android timetable app for the [Markgrafen Gymnasium](http://http://www.mgg.karlsruhe.de/stupla/stupla.php) in Germany. It can only display the cancellations of this specific school without modifications. I tried my best to make the app as modular as possible. That means with some programming work (see below) it should be possible to use this code for another school.
