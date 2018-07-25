@@ -26,21 +26,6 @@ android {
         release
     }
 
-    buildTypes {
-        release {
-            minifyEnabled true
-            shrinkResources true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.release
-        }
-
-        debug {
-            applicationIdSuffix ".debug"
-            versionNameSuffix "-debug"
-            testCoverageEnabled = true
-        }
-    }
-
     def isRunningOnTravis = System.getenv("CI") == "true"
 
     if (isRunningOnTravis) {
@@ -49,6 +34,24 @@ android {
         signingConfigs.release.storePassword = System.getenv("keystore_password")
         signingConfigs.release.keyAlias = System.getenv("keystore_alias")
         signingConfigs.release.keyPassword = System.getenv("keystore_alias_password")
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            if (isRunningOnTravis) {
+                signingConfig signingConfigs.release
+            }
+        }
+
+        debug {
+            applicationIdSuffix ".debug"
+            versionNameSuffix "-debug"
+            testCoverageEnabled = true
+        }
     }
 
     testOptions {
