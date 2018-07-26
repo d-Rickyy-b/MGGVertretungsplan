@@ -47,6 +47,17 @@ public class Grade {
     }
 
     public boolean matches(String classString) {
+        if (null == classString) {
+            return false;
+        }
+
+        if (classString.contains("K1")) {
+            return "K1".equals(this.toString());
+        }
+        if (classString.contains("K2")) {
+            return "K2".equals(this.toString());
+        }
+
         Matcher matcher = Pattern.compile("([0-9]+)([a-f]+)").matcher(classString);
 
         if (matcher.find()) {
