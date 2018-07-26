@@ -21,15 +21,15 @@ import static org.junit.Assert.assertTrue;
 public class TimeTableDayTest {
     private static final String WEEK_A = "A";
     private static final String WEEK_B = "B";
+    ArrayList<ArrayList<String>> testList;
 
     @Before
     public void setUp() throws Exception {
+        testList = new ArrayList<>();
     }
 
     @Test
     public void getDate() throws Exception {
-        ArrayList<ArrayList<String>> testList = new ArrayList<>();
-
         Calendar calendar = Calendar.getInstance();
         calendar.set(2018, 0, 1);
 
@@ -44,8 +44,6 @@ public class TimeTableDayTest {
 
     @Test
     public void getDateString() throws Exception {
-        ArrayList<ArrayList<String>> testList = new ArrayList<>();
-
         Calendar calendar = Calendar.getInstance();
         int currentYear = new GregorianCalendar().get(GregorianCalendar.YEAR);
         calendar.set(currentYear, 0, 1);
@@ -63,8 +61,6 @@ public class TimeTableDayTest {
 
     @Test
     public void getFullDateString() throws Exception {
-        ArrayList<ArrayList<String>> testList = new ArrayList<>();
-
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.GERMANY);
         Date date = dateFormat.parse("01.01.2018");
 
@@ -163,7 +159,6 @@ public class TimeTableDayTest {
 
     @Test
     public void getElementsCount() throws Exception {
-        ArrayList<ArrayList<String>> testList = new ArrayList<>();
         String className = "K1";
         String className2 = "6b";
 
@@ -281,7 +276,6 @@ public class TimeTableDayTest {
 
     @Test
     public void isSameDay() throws Exception {
-        ArrayList<ArrayList<String>> testList = new ArrayList<>();
         TimeTableDay ttd = new TimeTableDay("01.01.2018", WEEK_A, testList);
         TimeTableDay ttd2 = new TimeTableDay("01.01.2018", WEEK_A, testList);
         TimeTableDay ttd3 = new TimeTableDay("02.01.2018", WEEK_A, testList);
