@@ -19,7 +19,7 @@ public class StorageUtilities {
 
     private static final String FILENAME = "data.json";
 
-    static String readFile(Context context) {
+    public static String readFile(Context context) {
         Log.d(TAG, "Reading file!");
         String content = "";
         try {
@@ -51,7 +51,7 @@ public class StorageUtilities {
         return content;
     }
 
-    static void writeToFile(final Context context, final String data) {
+    public static void writeToFile(final Context context, final String data) {
         // Save data to disk in background thread
 
         new Thread(new Runnable() {
