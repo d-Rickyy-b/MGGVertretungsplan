@@ -8,6 +8,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Locale;
 
 /**
  * Created by Rico on 26.09.2016.
@@ -199,7 +200,7 @@ public class TimeTableElement {
     public String getInfoForDisplay() {
         String info_e;
         if (!info.isEmpty() && !" ".equals(info)) {
-            info_e = info.substring(0, 1).toUpperCase() + info.substring(1);
+            info_e = info.substring(0, 1).toUpperCase(Locale.getDefault()) + info.substring(1);
 
             if (!subject.equals(newSubject) && !newSubject.equals("---") && !newSubject.isEmpty()) {
                 info_e = String.format("%s - %s", this.newSubject, info);
