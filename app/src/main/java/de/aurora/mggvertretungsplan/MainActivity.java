@@ -39,6 +39,7 @@ import de.aurora.mggvertretungsplan.parsing.BaseParser;
 import de.aurora.mggvertretungsplan.parsing.BaseParser.ParsingCompleteListener;
 import de.aurora.mggvertretungsplan.parsing.MGGParser;
 import de.aurora.mggvertretungsplan.parsing.ParsingTask;
+import de.aurora.mggvertretungsplan.services.ServiceScheduler;
 import de.aurora.mggvertretungsplan.ui.CardsAdapter;
 import de.aurora.mggvertretungsplan.ui.EmptyAdapter;
 import de.aurora.mggvertretungsplan.ui.intro.IntroActivity;

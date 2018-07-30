@@ -10,6 +10,8 @@ import android.preference.PreferenceManager;
 import android.text.format.DateUtils;
 import android.util.Log;
 
+import de.aurora.mggvertretungsplan.services.BackgroundService;
+
 public class BootUpReceiver extends BroadcastReceiver {
 
     @Override

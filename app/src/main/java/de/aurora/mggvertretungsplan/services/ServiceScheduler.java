@@ -1,4 +1,4 @@
-package de.aurora.mggvertretungsplan;
+package de.aurora.mggvertretungsplan.services;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -51,7 +51,7 @@ public class ServiceScheduler {
     }
 
 
-    void setAlarmManager(Context context, long firstStartFromNow) {
+    public void setAlarmManager(Context context, long firstStartFromNow) {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
 
         if (sp.getBoolean("notification", true)) {
