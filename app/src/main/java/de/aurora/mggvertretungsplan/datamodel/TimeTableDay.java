@@ -108,6 +108,7 @@ public class TimeTableDay {
 
         for (TimeTableElement tte : timeTableElements) {
             String elementClassName = tte.getClass_name();
+            // TODO Remove the "contains" part
             if (grade.matches(elementClassName) || elementClassName.contains(className))
                 elementsOfClass.add(tte);
         }
