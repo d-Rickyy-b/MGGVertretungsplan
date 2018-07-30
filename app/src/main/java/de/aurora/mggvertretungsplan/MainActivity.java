@@ -44,6 +44,8 @@ import de.aurora.mggvertretungsplan.ui.EmptyAdapter;
 import de.aurora.mggvertretungsplan.ui.intro.IntroActivity;
 import de.aurora.mggvertretungsplan.ui.theming.ThemeManager;
 
+import static de.aurora.mggvertretungsplan.networking.ConnectionManager.isConnectionActive;
+
 public class MainActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener, ParsingCompleteListener {
     private static final String TAG = "MainActivity";
     private static final String NEED_RELOAD = "need_reload";
@@ -283,21 +285,9 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
     }
 
-    private boolean isConnectionActive() {
-        try {
-            final ConnectivityManager conMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-            final NetworkInfo activeNetwork = conMgr.getActiveNetworkInfo();
-
-            return null != activeNetwork && activeNetwork.isConnected();
-        } catch (NullPointerException e) {
-            Log.e(TAG, e.getMessage());
-            return false;
-        }
-    }
-
     // Get saved class, Check for connection, start downloading the timetable
     private void downloadTimeTable() {
-        if (isConnectionActive()) {
+        if (isConnectionActive(this)) {
             class_name = sp.getString("KlasseGesamt", "5a");
 
             try {
