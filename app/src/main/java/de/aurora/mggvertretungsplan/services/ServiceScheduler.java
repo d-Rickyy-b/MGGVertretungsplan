@@ -19,6 +19,7 @@ import static android.content.Context.ALARM_SERVICE;
  */
 
 public class ServiceScheduler {
+    private static final String TAG = "ServiceScheduler";
 
     private void scheduleService(Context context, long firstStartFromNow, long interval) {
         long firstStart = System.currentTimeMillis() + firstStartFromNow;
@@ -27,20 +28,20 @@ public class ServiceScheduler {
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(ALARM_SERVICE);
 
         if (null == alarmManager) {
-            Log.e("ServiceScheduler", "Couldn't get AlarmManager instance");
+            Log.e(TAG, "Couldn't get AlarmManager instance");
             return;
         }
 
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, firstStart, interval, pendingIntent);
-        Log.d("ServiceScheduler", "Alarm scheduled!");
+        Log.d(TAG, "Alarm scheduled!");
     }
 
     private void unscheduleService(Context context) {
-        Log.d("ServiceScheduler", "Cancel service execution!");
+        Log.d(TAG, "Cancel service execution!");
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(ALARM_SERVICE);
 
         if (null == alarmManager) {
-            Log.e("ServiceScheduler", "Couldn't get AlarmManager instance");
+            Log.e(TAG, "Couldn't get AlarmManager instance");
             return;
         }
 
@@ -61,10 +62,10 @@ public class ServiceScheduler {
             Date date = new Date(System.currentTimeMillis() + firstStartFromNow);
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss", Locale.GERMANY);
 
-            Log.d("ServiceScheduler", String.format("Scheduling BackgroundService - Interval: %s - Next start: %s", interval_s, dateFormat.format(date)));
+            Log.d(TAG, String.format("Scheduling BackgroundService - Interval: %s - Next start: %s", interval_s, dateFormat.format(date)));
             scheduleService(context, firstStartFromNow, interval);
         } else {
-            Log.d("ServiceScheduler", "Cancelling BackgroundService");
+            Log.d(TAG, "Cancelling BackgroundService");
             unscheduleService(context);
         }
     }
