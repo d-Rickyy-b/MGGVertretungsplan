@@ -1,35 +1,32 @@
-package de.aurora.mggvertretungsplan;
+package de.aurora.mggvertretungsplan.services;
 
-import android.app.Notification;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.os.Build;
-import android.os.IBinder;
 import android.preference.PreferenceManager;
-import android.support.annotation.Nullable;
-import android.support.v4.app.NotificationCompat;
+import android.support.annotation.NonNull;
+import android.support.v4.app.JobIntentService;
 import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import de.aurora.mggvertretungsplan.R;
+import de.aurora.mggvertretungsplan.StorageUtilities;
 import de.aurora.mggvertretungsplan.datamodel.TimeTable;
 import de.aurora.mggvertretungsplan.parsing.BaseParser;
 import de.aurora.mggvertretungsplan.parsing.BaseParser.ParsingCompleteListener;
 import de.aurora.mggvertretungsplan.parsing.MGGParser;
 import de.aurora.mggvertretungsplan.parsing.ParsingTask;
+import de.aurora.mggvertretungsplan.util.NotificationHelper;
+
+import static de.aurora.mggvertretungsplan.networking.ConnectionManager.isConnectionActive;
 
 
-public class BackgroundService extends Service implements ParsingCompleteListener {
+public class BackgroundService extends JobIntentService implements ParsingCompleteListener {
     private final static String TAG = "BackgroundService";
     private final static String CHANNEL_NAME = "default";
+    public static final int JOB_ID = 0x01;
     private BaseParser websiteParser;
     private SharedPreferences sp;
 
@@ -37,24 +34,21 @@ public class BackgroundService extends Service implements ParsingCompleteListene
 
     }
 
-    @Nullable
-    @Override
-    public IBinder onBind(Intent intent) {
-        return null;
+    public static void enqueueWork(Context context, Intent intent) {
+        enqueueWork(context, BackgroundService.class, JOB_ID, intent);
     }
 
     @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
+    protected void onHandleWork(@NonNull Intent intent) {
         Log.d(TAG, "Start Service");
         websiteParser = new MGGParser();
         updateData();
         stopSelf();
-        return START_STICKY;
     }
 
     private void updateData() {
         Log.d(TAG, "UpdateData");
-        if (isConnectionActive()) {
+        if (isConnectionActive(this)) {
             sp = PreferenceManager.getDefaultSharedPreferences(this);
 
             try {
@@ -68,62 +62,6 @@ public class BackgroundService extends Service implements ParsingCompleteListene
             long tenMinsInMillis = 60 * 10 * 1000;
             ServiceScheduler serviceScheduler = new ServiceScheduler();
             serviceScheduler.setAlarmManager(getApplicationContext(), tenMinsInMillis);
-        }
-    }
-
-    private void notification(String ticker, String titel, String text) {
-        if (sp.getBoolean("notification", true)) {
-            Intent intent = new Intent(this, MainActivity.class);
-            PendingIntent pIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-            Log.d(TAG, "Sending notification!");
-
-            int color;
-            if (Build.VERSION.SDK_INT >= 23)
-                color = getResources().getColor(R.color.colorAccent, getTheme());
-            else
-                //noinspection deprecation
-                color = getResources().getColor(R.color.colorAccent);
-
-            NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-
-            if (notificationManager == null)
-                return;
-
-            if (Build.VERSION.SDK_INT >= 26) {
-                NotificationChannel channel = new NotificationChannel(CHANNEL_NAME, "Default Channel", NotificationManager.IMPORTANCE_DEFAULT);
-                channel.setDescription("Notifications about changes of the timetable");
-                channel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
-                notificationManager.createNotificationChannel(channel);
-            }
-
-            NotificationCompat.Builder notification = new NotificationCompat.Builder(this, CHANNEL_NAME)
-                    .setContentTitle(titel)
-                    .setContentText(text)
-                    .setTicker(ticker)
-                    .setColor(color)
-                    .setSmallIcon(R.drawable.ic_notification)
-                    .setContentIntent(pIntent)
-                    .setAutoCancel(true)
-                    .setChannelId(CHANNEL_NAME);
-
-            //.setVibrate(new long[]{0,300,200,300})
-            //.setLights(Color.WHITE, 1000, 5000)
-
-            notificationManager.notify(0, notification.build());
-            Log.d(TAG, "Notification sent");
-        }
-    }
-
-    // Checks for an active connection
-    private boolean isConnectionActive() {
-        try {
-            final ConnectivityManager conMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-            final NetworkInfo activeNetwork = conMgr.getActiveNetworkInfo();
-
-            return null != activeNetwork && activeNetwork.isConnected();
-        } catch (NullPointerException e) {
-            Log.e("MainActivity", e.getMessage());
-            return false;
         }
     }
 
@@ -155,6 +93,21 @@ public class BackgroundService extends Service implements ParsingCompleteListene
 
         // Compare new data with old data
         int totalDiffs = timeTable.getTotalDifferences(timeTable_saved, class_name);
+
+        // Get new cancellations
+        // new_cancellations = ...
+
+        // Get removed cancellations
+        // removed_cancellations = ...
+
+        // Get changed cancellations
+        // changed_cancellations = ...
+
+        // "x neue Ausfälle"
+        // "x Änderung/en am Vertretugnsplan"
+        // "..."
+
+
         Log.d(TAG, String.format("Total differences: %d", totalDiffs));
 
         String ticker = getResources().getString(R.string.notification_cancellations_ticker);
@@ -162,10 +115,12 @@ public class BackgroundService extends Service implements ParsingCompleteListene
         String infoOne = getResources().getString(R.string.notification_cancellations_infoOne);
         String infoMany = getResources().getString(R.string.notification_cancellations_infoMany);
 
+        NotificationHelper notificationHelper = new NotificationHelper(this);
+
         if (totalDiffs == 1) {
-            notification(ticker, title, String.format(infoOne, 1));
+            notificationHelper.notifyChanges(ticker, title, String.format(infoOne, 1));
         } else if (totalDiffs > 1) {
-            notification(ticker, title, String.format(infoMany, totalDiffs));
+            notificationHelper.notifyChanges(ticker, title, String.format(infoMany, totalDiffs));
         }
 
         saveData(timeTable);
