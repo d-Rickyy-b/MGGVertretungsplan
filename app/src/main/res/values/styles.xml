@@ -21,8 +21,8 @@
         <item name="android:alertDialogStyle">@style/AlertDialogTheme</item>
         <item name="android:alertDialogTheme">@style/AlertDialogTheme</item>
 
-        <item name="android:textColor">@drawable/two_value_colors_2</item>
-        <item name="android:textColorSecondary">@drawable/two_value_colors</item>
+        <item name="android:textColor">@color/text_color_enabled_disabled_2</item>
+        <item name="android:textColorSecondary">@color/text_color_enabled_disabled</item>
 
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
