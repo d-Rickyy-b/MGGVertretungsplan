@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     private RecyclerView recyclerView;
     private CardsAdapter cAdapter;
     private BaseParser websiteParser;
+    private Context context;
     private int themeID = 0;
     private boolean need_reload = true;
 
@@ -67,12 +68,13 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         themeID = sp.getInt("Theme", 0);
         setTheme(ThemeManager.getTheme(themeID));
         super.onCreate(savedInstanceState);
+        this.context = getApplicationContext();
 
         websiteParser = new MGGParser();
 
         // If application is called for the first time, intro slides will show up
         if (sp.getBoolean("firstStart", true)) {
-            Intent intent = new Intent(getApplicationContext(), IntroActivity.class);
+            Intent intent = new Intent(this.context, IntroActivity.class);
             startActivity(intent);
 
             SharedPreferences.Editor editor = sp.edit();
@@ -97,7 +99,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         setSupportActionBar(toolbar);
 
         recyclerView.setHasFixedSize(true);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this.context);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(cAdapter);
@@ -197,7 +199,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
         switch (item.getItemId()) {
             case R.id.action_settings:
-                Intent preferenceIntent = new Intent(getApplicationContext(), SettingsActivity.class);
+                Intent preferenceIntent = new Intent(this.context, SettingsActivity.class);
                 startActivity(preferenceIntent);
                 break;
             case R.id.action_website:
@@ -288,7 +290,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
     // Get saved class, Check for connection, start downloading the timetable
     private void downloadTimeTable() {
-        if (isConnectionActive(this)) {
+        if (isConnectionActive(this.context)) {
             class_name = sp.getString("KlasseGesamt", "5a");
 
             try {
@@ -296,11 +298,11 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
                 parsingTask.startParsing();
             } catch (Exception e) {
                 mSwipeLayout.setRefreshing(false);
-                Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(this.context, e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         } else {
             mSwipeLayout.setRefreshing(false);
-            Toast.makeText(getApplicationContext(), R.string.toast_noInternetConnection, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this.context, R.string.toast_noInternetConnection, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -338,7 +340,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
         if (timeTable == null || timeTable.getDaysCount() == 0) {
             recyclerView.setAdapter(new EmptyAdapter(getString(R.string.no_data_to_display)));
-            Toast.makeText(getApplicationContext(), R.string.downloadException, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this.context, R.string.downloadException, Toast.LENGTH_SHORT).show();
             return;
         }
 
