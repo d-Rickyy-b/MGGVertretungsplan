@@ -64,13 +64,13 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        sp = PreferenceManager.getDefaultSharedPreferences(this);
-        themeID = sp.getInt("Theme", 0);
-        setTheme(ThemeManager.getTheme(themeID));
         super.onCreate(savedInstanceState);
         this.context = getApplicationContext();
+        this.sp = PreferenceManager.getDefaultSharedPreferences(this.context);
+        this.themeID = this.sp.getInt("Theme", 0);
+        setTheme(ThemeManager.getTheme(themeID));
 
-        websiteParser = new MGGParser();
+        this.websiteParser = new MGGParser();
 
         // If application is called for the first time, intro slides will show up
         if (sp.getBoolean("firstStart", true)) {
