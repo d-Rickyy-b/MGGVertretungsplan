@@ -212,18 +212,10 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
                 String url = urls[0];
 
-                CustomTabsIntent.Builder chromeTabsBuilder = new CustomTabsIntent.Builder();
-                chromeTabsBuilder.setToolbarColor(color);
-                chromeTabsBuilder.setShowTitle(true);
-                CustomTabsIntent websiteIntent = chromeTabsBuilder.build();
-                websiteIntent.launchUrl(this, Uri.parse(url));
+                launchCustomTabsIntent(color, url);
                 break;
             case R.id.action_feedback:
-                CustomTabsIntent.Builder chromeTabsFeedbackBuilder = new CustomTabsIntent.Builder();
-                chromeTabsFeedbackBuilder.setToolbarColor(color);
-                chromeTabsFeedbackBuilder.setShowTitle(true);
-                CustomTabsIntent feedbackIntent = chromeTabsFeedbackBuilder.build();
-                feedbackIntent.launchUrl(this, Uri.parse(getString(R.string.feedback_url)));
+                launchCustomTabsIntent(color, getString(R.string.feedback_url));
                 break;
             case R.id.action_info:
                 Spanned informationText;
@@ -250,6 +242,19 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     * Takes a color and an url as string to open a Chrome custom tab
+     * @param color The color for the custom chrome intent
+     * @param url The url to be called as string
+     */
+    private void launchCustomTabsIntent(int color, String url) {
+        CustomTabsIntent.Builder chromeTabsFeedbackBuilder = new CustomTabsIntent.Builder();
+        chromeTabsFeedbackBuilder.setToolbarColor(color);
+        chromeTabsFeedbackBuilder.setShowTitle(true);
+        CustomTabsIntent feedbackIntent = chromeTabsFeedbackBuilder.build();
+        feedbackIntent.launchUrl(this, Uri.parse(url));
     }
 
     // Method to display the saved data
