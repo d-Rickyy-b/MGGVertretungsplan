@@ -246,8 +246,9 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
     /**
      * Takes a color and an url as string to open a Chrome custom tab
+     *
      * @param color The color for the custom chrome intent
-     * @param url The url to be called as string
+     * @param url   The url to be called as string
      */
     private void launchCustomTabsIntent(int color, String url) {
         CustomTabsIntent.Builder chromeTabsFeedbackBuilder = new CustomTabsIntent.Builder();
