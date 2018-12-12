@@ -378,7 +378,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         }
     }
 
-   /*
+    /*
      * Code by Rico Jambor
-    */
+     */
 }
