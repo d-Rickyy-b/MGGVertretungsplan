@@ -23,6 +23,23 @@
     <color name="cardSubstitution">#779ECB</color>
     <color name="cardNoColor">#F5F5F5</color>
 
+    <!-- Dark theme colors -->
+    <color name="cardCancellationDark">#e43d3d</color>
+    <color name="cardSubstitutionDark">#5588c2</color>
+    <color name="cardNoColorDark">#1c2632</color>
+
+    <!-- Dark colors -->
+    <color name="darkBackground">#151d26</color>
+    <color name="darkPrimary">#212d3b</color>
+    <color name="darkPrimaryDark">#19212c</color>
+    <color name="darkColorAccent">#446891</color>
+
+    <color name="darkTextColor">#ffffff</color>
+    <color name="darkTextColor2">#dcdcdc</color>
+
+    <color name="darkDisabled">#888888</color>
+    <color name="darkDisabled2">#bababa</color>
+
     <!-- Colors shown in the color picker in the settings -->
     <array name="theme_picker">
         <item name="standard">#757575</item>
@@ -30,6 +47,7 @@
         <item name="pink">#f06292</item>
         <item name="green">#9ccc65</item>
         <item name="orange">#ff9800</item>
+        <item name="dark">#212d3b</item>
     </array>
 
     <color name="tagBackground">#00bcce</color>
