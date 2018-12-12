@@ -258,7 +258,9 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         feedbackIntent.launchUrl(this, Uri.parse(url));
     }
 
-    // Method to display the saved data
+    /**
+     * Display the saved time table data
+     */
     private void displaySavedData() {
         final Handler handler = new Handler();
 
@@ -294,7 +296,9 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
     }
 
-    // Get saved class, Check for connection, start downloading the timetable
+    /**
+     * Downloads the current time table to the local storage, if there is an active connection
+     */
     private void downloadTimeTable() {
         if (isConnectionActive(this.context)) {
             class_name = sp.getString("KlasseGesamt", "5a");
@@ -312,7 +316,11 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         }
     }
 
-    // Creates the view of the Android App
+    /**
+     * Displays a given TimeTable object in the main view
+     *
+     * @param timeTable A TimeTable element to be displayed on screen
+     */
     private void displayData(TimeTable timeTable) {
         Log.d(TAG, "Display data on screen");
         String toolbarTitle_WithClass = getString(R.string.toolbarTitle_WithClass);
