@@ -86,7 +86,7 @@ public class MGGParser extends BaseParser {
             table = deleteDoubles(table);
 
             if (index >= datesList.size()) {
-                return day;
+                return null;
             }
 
             String date_header = datesList.get(index);
@@ -122,6 +122,7 @@ public class MGGParser extends BaseParser {
 
     @Override
     public TimeTable parse(ArrayList<String> websites) {
+        Log.d(TAG, "Start parsing");
         TimeTable timeTable = new TimeTable();
         int index = 0;
 
@@ -130,6 +131,7 @@ public class MGGParser extends BaseParser {
                 TimeTableDay day = parseDay(website, index);
 
                 if (null == day) {
+                    // If the day can't be parsed, just ignore it and continue
                     index++;
                     continue;
                 }
