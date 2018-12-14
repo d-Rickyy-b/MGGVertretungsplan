@@ -8,6 +8,12 @@
         <item name="android:background">@android:color/white</item>
     </style>
 
+    <!-- Drop down menu dark style of main layout -->
+    <style name="DropDownMenuThemeDark" parent="@style/Widget.AppCompat.Light.ListView.DropDown">
+        <item name="android:textColorPrimary">@color/text_color_dark_enabled_disabled_2</item>
+        <item name="android:background">@color/darkBackground</item>
+    </style>
+
     <!-- Base Theme -->
     <style name="AppTheme.Light" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
@@ -28,12 +34,6 @@
 
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-    </style>
-
-    <!-- Drop down menu dark style of main layout -->
-    <style name="DropDownMenuThemeDark" parent="@style/Widget.AppCompat.Light.ListView.DropDown">
-        <item name="android:textColorPrimary">@color/text_color_dark_enabled_disabled_2</item>
-        <item name="android:background">@color/darkBackground</item>
     </style>
 
     <style name="AppTheme.Dark" parent="Theme.AppCompat">
@@ -59,33 +59,33 @@
 
     <!-- Colored themes, changable in settings -->
     <style name="BlueTheme" parent="AppTheme.Light">
-        <item name="colorPrimary">#64b5f6</item>
-        <item name="colorPrimaryDark">#2286c3</item>
-        <item name="colorAccent">#4d2c91</item>
+        <item name="colorPrimary">@color/bluePrimary</item>
+        <item name="colorPrimaryDark">@color/bluePrimaryDark</item>
+        <item name="colorAccent">@color/blueAccent</item>
     </style>
 
     <style name="PinkTheme" parent="AppTheme.Light">
-        <item name="colorPrimary">#f06292</item>
-        <item name="colorPrimaryDark">#ba2d65</item>
-        <item name="colorAccent">#673ab7</item>
+        <item name="colorPrimary">@color/pinkPrimary</item>
+        <item name="colorPrimaryDark">@color/pinkPrimaryDark</item>
+        <item name="colorAccent">@color/pinkAccent</item>
     </style>
 
     <style name="GreenTheme" parent="AppTheme.Light">
-        <item name="colorPrimary">#9ccc65</item>
-        <item name="colorPrimaryDark">#6b9b37</item>
-        <item name="colorAccent">#8d6e63</item>
+        <item name="colorPrimary">@color/greenPrimary</item>
+        <item name="colorPrimaryDark">@color/greenPrimaryDark</item>
+        <item name="colorAccent">@color/greenAccent</item>
     </style>
 
     <style name="OrangeTheme" parent="AppTheme.Light">
-        <item name="colorPrimary">#ff9800</item>
-        <item name="colorPrimaryDark">#c66900</item>
-        <item name="colorAccent">#9c64a6</item>
+        <item name="colorPrimary">@color/orangePrimary</item>
+        <item name="colorPrimaryDark">@color/orangePrimaryDark</item>
+        <item name="colorAccent">@color/orangeAccent</item>
     </style>
 
     <style name="DarkTheme" parent="AppTheme.Dark">
         <item name="colorPrimary">@color/darkPrimary</item>
         <item name="colorPrimaryDark">@color/darkPrimaryDark</item>
-        <item name="colorAccent">@color/darkColorAccent</item>
+        <item name="colorAccent">@color/darkAccent</item>
     </style>
 
     <style name="AppTheme.Light.NoActionBar">

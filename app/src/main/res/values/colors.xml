@@ -28,18 +28,6 @@
     <color name="cardSubstitutionDark">#5588c2</color>
     <color name="cardNoColorDark">#1c2632</color>
 
-    <!-- Dark colors -->
-    <color name="darkBackground">#151d26</color>
-    <color name="darkPrimary">#212d3b</color>
-    <color name="darkPrimaryDark">#19212c</color>
-    <color name="darkColorAccent">#446891</color>
-
-    <color name="darkTextColor">#ffffff</color>
-    <color name="darkTextColor2">#dcdcdc</color>
-
-    <color name="darkDisabled">#888888</color>
-    <color name="darkDisabled2">#bababa</color>
-
     <!-- Colors shown in the color picker in the settings -->
     <array name="theme_picker">
         <item name="standard">#757575</item>
@@ -49,6 +37,38 @@
         <item name="orange">#ff9800</item>
         <item name="dark">#212d3b</item>
     </array>
+
+    <!-- Blue Theme -->
+    <color name="bluePrimary">#64b5f6</color>
+    <color name="bluePrimaryDark">#2286c3</color>
+    <color name="blueAccent">#4d2c91</color>
+
+    <!-- Pink Theme -->
+    <color name="pinkPrimary">#f06292</color>
+    <color name="pinkPrimaryDark">#ba2d65</color>
+    <color name="pinkAccent">#673ab7</color>
+
+    <!-- Green Theme -->
+    <color name="greenPrimary">#9ccc65</color>
+    <color name="greenPrimaryDark">#6b9b37</color>
+    <color name="greenAccent">#8d6e63</color>
+
+    <!-- Orange Theme -->
+    <color name="orangePrimary">#ff9800</color>
+    <color name="orangePrimaryDark">#c66900</color>
+    <color name="orangeAccent">#9c64a6</color>
+
+    <!-- Dark Theme -->
+    <color name="darkPrimary">#212d3b</color>
+    <color name="darkPrimaryDark">#19212c</color>
+    <color name="darkAccent">#446891</color>
+    <color name="darkBackground">#151d26</color>
+
+    <color name="darkTextColor">#ffffff</color>
+    <color name="darkTextColor2">#dcdcdc</color>
+
+    <color name="darkDisabled">#888888</color>
+    <color name="darkDisabled2">#bababa</color>
 
     <color name="tagBackground">#00bcce</color>
 </resources>
