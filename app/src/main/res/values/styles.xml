@@ -30,6 +30,33 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <!-- Drop down menu dark style of main layout -->
+    <style name="DropDownMenuThemeDark" parent="@style/Widget.AppCompat.Light.ListView.DropDown">
+        <item name="android:textColorPrimary">@color/text_color_dark_enabled_disabled_2</item>
+        <item name="android:background">@color/darkBackground</item>
+    </style>
+
+    <style name="AppTheme.Dark" parent="Theme.AppCompat">
+        <item name="android:dropDownListViewStyle">@style/DropDownMenuThemeDark</item>
+        <item name="dropDownListViewStyle">@style/DropDownMenuThemeDark</item>
+
+        <item name="colorControlNormal">@color/textColor</item>
+        <item name="android:textColorPrimary">@color/textColor</item>
+        <item name="android:textColorPrimaryInverse">@color/textColorInverse</item>
+        <item name="android:alertDialogStyle">@style/AlertDialogThemeDark</item>
+        <item name="android:alertDialogTheme">@style/AlertDialogThemeDark</item>
+
+        <item name="android:textColorAlertDialogListItem">@color/textColor</item>
+
+        <item name="android:windowBackground">@color/darkBackground</item>
+
+        <item name="android:textColor">@color/text_color_dark_enabled_disabled_2</item>
+        <item name="android:textColorSecondary">@color/text_color_dark_enabled_disabled</item>
+
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
     <!-- Colored themes, changable in settings -->
     <style name="BlueTheme" parent="AppTheme.Light">
         <item name="colorPrimary">#64b5f6</item>
@@ -54,7 +81,12 @@
         <item name="colorPrimaryDark">#c66900</item>
         <item name="colorAccent">#9c64a6</item>
     </style>
-    <!-- -->
+
+    <style name="DarkTheme" parent="AppTheme.Dark">
+        <item name="colorPrimary">@color/darkPrimary</item>
+        <item name="colorPrimaryDark">@color/darkPrimaryDark</item>
+        <item name="colorAccent">@color/darkColorAccent</item>
+    </style>
 
     <style name="AppTheme.Light.NoActionBar">
         <item name="windowActionBar">false</item>
