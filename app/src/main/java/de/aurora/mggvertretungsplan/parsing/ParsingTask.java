@@ -21,6 +21,7 @@ import de.aurora.mggvertretungsplan.parsing.BaseParser.ParsingCompleteListener;
 public class ParsingTask extends AsyncTask<String, Void, TimeTable> {
     private final ParsingCompleteListener callback;
     private final BaseParser parser;
+    private static final String TAG = "ParsingTask";
 
     public ParsingTask(ParsingCompleteListener callback, BaseParser parser) {
         this.callback = callback;
@@ -28,6 +29,7 @@ public class ParsingTask extends AsyncTask<String, Void, TimeTable> {
     }
 
     public void startParsing() {
+        Log.d(TAG, "Start ParsingTask");
         this.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, parser.getTimeTableURLs());
     }
 
@@ -36,6 +38,7 @@ public class ParsingTask extends AsyncTask<String, Void, TimeTable> {
 
         try {
             URL url = new URL(urlString);
+            Log.d(TAG, String.format("Downloading webpage: %s", url.toString()));
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setReadTimeout(10000);
             conn.setConnectTimeout(15000);
@@ -69,7 +72,7 @@ public class ParsingTask extends AsyncTask<String, Void, TimeTable> {
             try {
                 websites.add(downloadURL(url));
             } catch (IOException e) {
-                Log.e("ParsingTask", e.getMessage());
+                Log.e(TAG, e.getMessage());
             }
         }
 
@@ -81,6 +84,7 @@ public class ParsingTask extends AsyncTask<String, Void, TimeTable> {
 
     @Override
     protected void onPostExecute(TimeTable timeTable) {
+        // TODO move to background task
         callback.onParsingComplete(timeTable);
     }
 
