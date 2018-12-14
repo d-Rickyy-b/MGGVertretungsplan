@@ -198,11 +198,17 @@ public class TimeTableElement {
     }
 
     public String getInfoForDisplay() {
+        if ("! Raum".equals(info)){
+            return "Raumänderung";
+        }
+
         if (!info.isEmpty() && !" ".equals(info)) {
-            info_e = info.substring(0, 1).toUpperCase(Locale.getDefault()) + info.substring(1);
+            String info_e = info.substring(0, 1).toUpperCase(Locale.getDefault()) + info.substring(1);
 
             if (!subject.equals(newSubject) && !newSubject.equals("---") && !newSubject.isEmpty()) {
-                info_e = String.format("%s - %s", this.newSubject, info);
+                return String.format("%s - %s", this.newSubject, info_e);
+            } else {
+                return info_e;
             }
         } else if (type == CANCELLATION) {
             return "Entfällt";
