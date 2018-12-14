@@ -198,7 +198,6 @@ public class TimeTableElement {
     }
 
     public String getInfoForDisplay() {
-        String info_e;
         if (!info.isEmpty() && !" ".equals(info)) {
             info_e = info.substring(0, 1).toUpperCase(Locale.getDefault()) + info.substring(1);
 
@@ -206,17 +205,15 @@ public class TimeTableElement {
                 info_e = String.format("%s - %s", this.newSubject, info);
             }
         } else if (type == CANCELLATION) {
-            info_e = "Entfällt";
+            return "Entfällt";
         } else if (type == SUBSTITUTION) {
             if (!subject.equals(newSubject) && !newSubject.equals("---") && !newSubject.isEmpty()) {
-                info_e = String.format("%s - %s", this.newSubject, "Vertretung");
+                return String.format("%s - %s", this.newSubject, "Vertretung");
             } else
-                info_e = "Vertretung";
+                return "Vertretung";
         } else {
-            info_e = this.newSubject;
+            return this.newSubject;
         }
-
-        return info_e;
     }
 
     boolean equals(TimeTableElement tte) {
