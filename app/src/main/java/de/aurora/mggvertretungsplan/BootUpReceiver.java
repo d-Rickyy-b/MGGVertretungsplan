@@ -13,9 +13,11 @@ import android.util.Log;
 import de.aurora.mggvertretungsplan.services.BackgroundService;
 
 public class BootUpReceiver extends BroadcastReceiver {
+    private final static String TAG = "BootUpReceiver";
 
     @Override
     public void onReceive(Context context, Intent intent) {
+        Log.d(TAG, "BootUpReceiver called!");
         if ("android.intent.action.BOOT_COMPLETED".equals(intent.getAction())) {
             SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
 
