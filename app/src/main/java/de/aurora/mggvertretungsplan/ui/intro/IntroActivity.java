@@ -8,14 +8,14 @@ import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import androidx.annotation.ColorInt;
-import androidx.fragment.app.Fragment;
 import android.util.Log;
 import android.util.TypedValue;
 
 import com.github.paolorotolo.appintro.AppIntro;
 import com.github.paolorotolo.appintro.AppIntroFragment;
 
+import androidx.annotation.ColorInt;
+import androidx.fragment.app.Fragment;
 import de.aurora.mggvertretungsplan.R;
 import de.aurora.mggvertretungsplan.ui.intro.slides.SettingsIntroSlide;
 import de.aurora.mggvertretungsplan.ui.theming.ThemeManager;

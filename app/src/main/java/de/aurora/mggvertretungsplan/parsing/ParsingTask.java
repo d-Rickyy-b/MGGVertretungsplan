@@ -19,9 +19,9 @@ import de.aurora.mggvertretungsplan.parsing.BaseParser.ParsingCompleteListener;
  */
 
 public class ParsingTask extends AsyncTask<String, Void, TimeTable> {
+    private static final String TAG = "ParsingTask";
     private final ParsingCompleteListener callback;
     private final BaseParser parser;
-    private static final String TAG = "ParsingTask";
 
     public ParsingTask(ParsingCompleteListener callback, BaseParser parser) {
         this.callback = callback;

@@ -11,20 +11,20 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 import de.aurora.mggvertretungsplan.R;
-import de.aurora.mggvertretungsplan.util.StorageUtilities;
 import de.aurora.mggvertretungsplan.datamodel.TimeTable;
 import de.aurora.mggvertretungsplan.parsing.BaseParser;
 import de.aurora.mggvertretungsplan.parsing.BaseParser.ParsingCompleteListener;
 import de.aurora.mggvertretungsplan.parsing.MGGParser;
 import de.aurora.mggvertretungsplan.parsing.ParsingTask;
 import de.aurora.mggvertretungsplan.util.NotificationHelper;
+import de.aurora.mggvertretungsplan.util.StorageUtilities;
 
 import static de.aurora.mggvertretungsplan.networking.ConnectionManager.isConnectionActive;
 
 
 public class BackgroundService extends JobService implements ParsingCompleteListener {
-    private final static String TAG = "BackgroundService";
     public static final int JOB_ID = 0x01;
+    private final static String TAG = "BackgroundService";
     private BaseParser websiteParser;
     private SharedPreferences sp;
     private JobParameters jobParameters;
@@ -142,5 +142,4 @@ public class BackgroundService extends JobService implements ParsingCompleteList
             Log.e(TAG, e.getMessage());
         }
     }
-
 }

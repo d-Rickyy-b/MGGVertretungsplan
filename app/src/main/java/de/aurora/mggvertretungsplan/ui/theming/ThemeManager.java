@@ -1,7 +1,6 @@
 package de.aurora.mggvertretungsplan.ui.theming;
 
 import androidx.annotation.StyleRes;
-
 import de.aurora.mggvertretungsplan.R;
 
 public class ThemeManager {

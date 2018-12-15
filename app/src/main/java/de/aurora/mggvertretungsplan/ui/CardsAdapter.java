@@ -3,7 +3,6 @@ package de.aurora.mggvertretungsplan.ui;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +12,7 @@ import android.view.animation.AnimationUtils;
 import java.util.ArrayList;
 import java.util.Date;
 
+import androidx.recyclerview.widget.RecyclerView;
 import de.aurora.mggvertretungsplan.R;
 import de.aurora.mggvertretungsplan.datamodel.DateHeading;
 import de.aurora.mggvertretungsplan.datamodel.TimeTable;

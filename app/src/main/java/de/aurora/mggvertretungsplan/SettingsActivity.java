@@ -10,10 +10,10 @@ import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
-import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.appcompat.widget.Toolbar;
 import de.aurora.mggvertretungsplan.ui.settings.PreferenceFragmentMain;
 import de.aurora.mggvertretungsplan.ui.theming.ThemeManager;
 

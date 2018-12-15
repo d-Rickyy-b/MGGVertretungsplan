@@ -15,12 +15,10 @@ import java.util.Locale;
  */
 
 public class TimeTableElement {
-    private static final String TAG = "TimeTableElement";
-
     public static final int EMPTY = -1;
     public static final int CANCELLATION = 0;
     public static final int SUBSTITUTION = 1;
-
+    private static final String TAG = "TimeTableElement";
     private final String hour;
     private final String class_name;
     private final String subject;
@@ -198,7 +196,7 @@ public class TimeTableElement {
     }
 
     public String getInfoForDisplay() {
-        if ("! Raum".equals(info)){
+        if ("! Raum".equals(info)) {
             return "Raumänderung";
         }
 
