@@ -67,8 +67,8 @@
     <color name="darkTextColor">#ffffff</color>
     <color name="darkTextColor2">#dcdcdc</color>
 
-    <color name="darkDisabled">#888888</color>
-    <color name="darkDisabled2">#bababa</color>
+    <color name="darkDisabled">#777777</color>
+    <color name="darkDisabled2">#aaaaaa</color>
 
     <color name="tagBackground">#00bcce</color>
 </resources>
