@@ -1,4 +1,4 @@
-package de.aurora.mggvertretungsplan;
+package de.aurora.mggvertretungsplan.util;
 
 import android.content.Context;
 import android.util.Log;

@@ -45,6 +45,7 @@ import de.aurora.mggvertretungsplan.ui.CardsAdapter;
 import de.aurora.mggvertretungsplan.ui.EmptyAdapter;
 import de.aurora.mggvertretungsplan.ui.intro.IntroActivity;
 import de.aurora.mggvertretungsplan.ui.theming.ThemeManager;
+import de.aurora.mggvertretungsplan.util.StorageUtilities;
 
 import static de.aurora.mggvertretungsplan.networking.ConnectionManager.isConnectionActive;
 
