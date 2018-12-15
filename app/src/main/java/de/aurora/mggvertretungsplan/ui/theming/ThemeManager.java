@@ -10,6 +10,7 @@ public class ThemeManager {
     private static final int pinkPrimary = 0xFFf06292;
     private static final int greenPrimary = 0xFF9ccc65;
     private static final int orangePrimary = 0xFFff9800;
+    private static final int darkPrimary = 0xFF212d3b;
 
     @StyleRes
     public static int getTheme(int themeID) {
@@ -24,6 +25,8 @@ public class ThemeManager {
                 return R.style.GreenTheme;
             case 4:
                 return R.style.OrangeTheme;
+            case 5:
+                return R.style.DarkTheme;
             default:
                 return R.style.AppTheme_Light;
         }
@@ -41,6 +44,8 @@ public class ThemeManager {
                 return 3;
             case orangePrimary:
                 return 4;
+            case darkPrimary:
+                return 5;
             default:
                 return 0;
         }
