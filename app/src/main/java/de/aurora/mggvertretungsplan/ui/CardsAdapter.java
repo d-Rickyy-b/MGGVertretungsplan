@@ -91,20 +91,34 @@ public class CardsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         classInfoViewHolder.newRoom.setText(timeTableElement.getNewRoom());
 
         int color;
+        int themeID = sp.getInt("Theme", 0);
 
         if (sp.getBoolean("listColors", true)) {
 
             switch (timeTableElement.getType()) {
                 case TimeTableElement.SUBSTITUTION:
-                    color = context.getResources().getColor(R.color.cardSubstitution);
+                    if (themeID == 5) {
+                        color = context.getResources().getColor(R.color.cardSubstitutionDark);
+                    } else {
+                        color = context.getResources().getColor(R.color.cardSubstitution);
+                    }
                     break;
                 case TimeTableElement.CANCELLATION:
                 default:
-                    color = context.getResources().getColor(R.color.cardCancellation);
+                    if (themeID == 5) {
+                        color = context.getResources().getColor(R.color.cardCancellationDark);
+                    } else {
+                        color = context.getResources().getColor(R.color.cardCancellation);
+                    }
             }
 
         } else {
-            color = context.getResources().getColor(R.color.cardNoColor);
+            if (themeID == 5) {
+                // If using dark theme, use dark card color
+                color = context.getResources().getColor(R.color.cardNoColorDark);
+            } else {
+                color = context.getResources().getColor(R.color.cardNoColor);
+            }
         }
 
         classInfoViewHolder.cardView.setCardBackgroundColor(color);
@@ -138,6 +152,14 @@ public class CardsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         NoInfoViewHolder noInfoViewHolder = (NoInfoViewHolder) holder;
         noInfoViewHolder.noInfo.setText(context.getResources().getString(R.string.card_no_information));
 
+        int color;
+        if (sp.getInt("Theme", 0) == 5) {
+            color = context.getResources().getColor(R.color.cardNoColorDark);
+        } else {
+            color = context.getResources().getColor(R.color.cardNoColor);
+        }
+
+        noInfoViewHolder.cardView.setCardBackgroundColor(color);
         setAnimation(noInfoViewHolder.noInfo, position);
     }
 
