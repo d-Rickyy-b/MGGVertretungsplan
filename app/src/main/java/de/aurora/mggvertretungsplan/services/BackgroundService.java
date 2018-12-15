@@ -33,8 +33,6 @@ public class BackgroundService extends JobService implements ParsingCompleteList
     public boolean onStartJob(JobParameters params) {
         this.jobParameters = params;
         startService();
-        NotificationHelper notificationHelper = new NotificationHelper(getApplicationContext());
-        notificationHelper.notifyChanges("BackgroundService ausgeführt", "BackgroundService ausgeführt", "Im Hintergrund ausgeführt!");
         return true; // Answers the question: "Is there still work going on?"
     }
 
