@@ -27,7 +27,9 @@
         <item name="android:textColorPrimary">@color/textColor</item>
         <item name="android:textColorPrimaryInverse">@color/textColorInverse</item>
         <item name="android:alertDialogStyle">@style/AlertDialogTheme</item>
+        <item name="alertDialogStyle">@style/AlertDialogTheme</item>
         <item name="android:alertDialogTheme">@style/AlertDialogTheme</item>
+        <item name="alertDialogTheme">@style/AlertDialogTheme</item>
 
         <item name="android:textColor">@color/text_color_enabled_disabled_2</item>
         <item name="android:textColorSecondary">@color/text_color_enabled_disabled</item>
@@ -44,9 +46,12 @@
         <item name="android:textColorPrimary">@color/textColor</item>
         <item name="android:textColorPrimaryInverse">@color/textColorInverse</item>
         <item name="android:alertDialogStyle">@style/AlertDialogThemeDark</item>
+        <item name="alertDialogStyle">@style/AlertDialogThemeDark</item>
         <item name="android:alertDialogTheme">@style/AlertDialogThemeDark</item>
+        <item name="alertDialogTheme">@style/AlertDialogThemeDark</item>
 
         <item name="android:textColorAlertDialogListItem">@color/textColor</item>
+        <item name="textColorAlertDialogListItem">@color/textColor</item>
 
         <item name="android:windowBackground">@color/darkBackground</item>
 
