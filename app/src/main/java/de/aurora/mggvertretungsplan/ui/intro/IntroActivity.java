@@ -8,8 +8,8 @@ import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.annotation.ColorInt;
-import android.support.v4.app.Fragment;
+import androidx.annotation.ColorInt;
+import androidx.fragment.app.Fragment;
 import android.util.Log;
 import android.util.TypedValue;
 
