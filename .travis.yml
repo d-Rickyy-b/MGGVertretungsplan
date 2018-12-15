@@ -47,7 +47,9 @@ deploy:
   api_key:
     secure: SI7N7wUJfpmI3H0qL7UUDP3YKnbGMRz0PSbTcVqSDxk/4JE6Mwy5PPOJIn0kH2mQ+Yj2wKNF7f6jkTjQd8ZnkV4tv8UkjG3uRbLaGKyA1KOvJ9ZKIVFMen65dKLQI/kg6iU7+3YGpFLuqEaeHOEVz+zC1yfzSi927B3AZsF6QuJN9eNSKKIARKPCZi+/XMi4+tqGKyUtPntu6Cd4Nb12qZd5l9NwMdKcxrP0ux13j5Q+aYxFz1Oibye7TIdb3ucQ1KiQ21653fHhxB902ytZClbbyP8xfLOLZ/BrEadOUYuRVQM2whJXD32GLZ9Ue2ofuUayxkKabXrIUOsOlgXqQcE0G89c8kHB72B9K+SMad7pBW1uOOqW0QRqOv5XEziQ71nVM5SqFpbuV5ORJQZvlvScxRq4JxNIyw+fkyrYSbNoPIQLrAv/GW5PDFKlzsbL4KW55CGZPdOGhDcjcHePni/LSDm5MLj3zfTWLbxmzEVSlmHzCOaAuGgryst2HuIFX8oLkdBjTT3Hr/62a6zC0CQmsqu/qTjLhg9ZLNEPx8yB3XhgkeyaKj+Ue2nlq9iZb3zR3fwBs5V67/+p7h0l6Ssph5xNSsqH68Cj6W77Onuz2aDkNONfGtA6NrPMeSBOe+pP7LxQOPDBeUTibDX9BS43mVEOmGwG00h+jMc4pXQ=
   file_glob: true
-  file: "/home/travis/build/d-Rickyy-b/MGGVertretungsplan/app/build/outputs/apk/release/*.apk"
+  file:
+    - "/home/travis/build/d-Rickyy-b/MGGVertretungsplan/app/build/outputs/apk/release/*.apk"
+    - "/home/travis/build/d-Rickyy-b/MGGVertretungsplan/app/build/outputs/mapping/release/mapping.txt"
   on:
     repo: d-Rickyy-b/MGGVertretungsplan
     # branch: master
