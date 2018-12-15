@@ -22,8 +22,7 @@ public class BootUpReceiver extends BroadcastReceiver {
             SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
 
             if (sp.getBoolean("notification", true)) {
-                long interval = (long) Integer.valueOf(sp.getString("AbrufIntervall", "1800000"));
-                long firstStart = System.currentTimeMillis() + DateUtils.MINUTE_IN_MILLIS * 30;
+                int firstStart = (int) ((System.currentTimeMillis() + DateUtils.MINUTE_IN_MILLIS * 30) / 1000);
 
                 Intent intentsOpen = new Intent(context, BackgroundService.class);
                 PendingIntent pendingIntent = PendingIntent.getService(context, 0, intentsOpen, 0);
