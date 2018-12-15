@@ -99,20 +99,4 @@
         <item>f</item>
     </string-array>
 
-    <string-array name="Intervall">
-        <item name="15 min">15 min</item>
-        <item name="30 min">30 min</item>
-        <item name="60 min">1 std</item>
-        <item name="4 std">4 std</item>
-        <item name="6 std">6 std</item>
-    </string-array>
-
-    <string-array name="Intervall_values">
-        <item name="15 min">900000</item>
-        <item name="30 min">1800000</item>
-        <item name="60 min">3600000</item>
-        <item name="4 std">14400000</item>
-        <item name="6 std">21600000</item>
-    </string-array>
-
 </resources>
