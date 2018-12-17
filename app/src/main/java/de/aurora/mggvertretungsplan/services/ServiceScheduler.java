@@ -1,18 +1,16 @@
 package de.aurora.mggvertretungsplan.services;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
-import static android.content.Context.ALARM_SERVICE;
+import androidx.work.Constraints;
+import androidx.work.NetworkType;
+import androidx.work.PeriodicWorkRequest;
+import androidx.work.WorkManager;
 
 /**
  * Created by Rico on 14.11.2017.
@@ -20,53 +18,53 @@ import static android.content.Context.ALARM_SERVICE;
 
 public class ServiceScheduler {
     private static final String TAG = "ServiceScheduler";
+    private static final String WORK_TAG = "ScheduleDownloaderWorker";
 
-    private void scheduleService(Context context, long firstStartFromNow, long interval) {
-        long firstStart = System.currentTimeMillis() + firstStartFromNow;
-        Intent intentsOpen = new Intent(context, BackgroundService.class);
-        PendingIntent pendingIntent = PendingIntent.getService(context, 0, intentsOpen, PendingIntent.FLAG_UPDATE_CURRENT);
-        AlarmManager alarmManager = (AlarmManager) context.getSystemService(ALARM_SERVICE);
+    /**
+     * Method to schedule the periodic execution of DownloadTimeTableWorker
+     */
+    private void scheduleService() {
+        long repeatInterval = 30L;
 
-        if (null == alarmManager) {
-            Log.e(TAG, "Couldn't get AlarmManager instance");
-            return;
-        }
+        // Only run task when network is connected
+        Constraints constraints = new Constraints.Builder()
+                .setRequiredNetworkType(NetworkType.CONNECTED)
+                .build();
+        PeriodicWorkRequest backgroundWork = new PeriodicWorkRequest.Builder(DownloadTimeTableWorker.class, repeatInterval, TimeUnit.MINUTES)
+                .addTag(WORK_TAG)
+                .setConstraints(constraints)
+                .build();
 
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, firstStart, interval, pendingIntent);
-        Log.d(TAG, "Alarm scheduled!");
+        WorkManager workManager = WorkManager.getInstance();
+        workManager.cancelAllWorkByTag(WORK_TAG);
+        workManager.enqueue(backgroundWork);
+
+        Log.d(TAG, "Work scheduled!");
     }
 
-    private void unscheduleService(Context context) {
-        Log.d(TAG, "Cancel service execution!");
-        AlarmManager alarmManager = (AlarmManager) context.getSystemService(ALARM_SERVICE);
-
-        if (null == alarmManager) {
-            Log.e(TAG, "Couldn't get AlarmManager instance");
-            return;
-        }
-
-        Intent intentsOpen = new Intent(context, BackgroundService.class);
-        PendingIntent pendingIntent = PendingIntent.getService(context, 0, intentsOpen, PendingIntent.FLAG_UPDATE_CURRENT);
-
-        alarmManager.cancel(pendingIntent);
+    /**
+     * Method to unschedule the DownloadTimeTableWorker
+     */
+    private void unscheduleService() {
+        Log.d(TAG, "Canceling service execution!");
+        WorkManager workManager = WorkManager.getInstance();
+        workManager.cancelAllWorkByTag(WORK_TAG);
     }
 
-
-    public void setAlarmManager(Context context, long firstStartFromNow) {
+    /**
+     * Method to schedule or unschedule the background service depending on the settings
+     *
+     * @param context Current application context to get the shared preferences from
+     */
+    public void schedule(Context context) {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
 
         if (sp.getBoolean("notification", true)) {
-            String interval_s = sp.getString("AbrufIntervall", "1800000");
-            long interval = Long.valueOf(interval_s);
-
-            Date date = new Date(System.currentTimeMillis() + firstStartFromNow);
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss", Locale.GERMANY);
-
-            Log.d(TAG, String.format("Scheduling BackgroundService - Interval: %s - Next start: %s", interval_s, dateFormat.format(date)));
-            scheduleService(context, firstStartFromNow, interval);
+            Log.d(TAG, "Scheduling background work");
+            scheduleService();
         } else {
-            Log.d(TAG, "Cancelling BackgroundService");
-            unscheduleService(context);
+            Log.d(TAG, "Cancelling BackgroundService, because user does not want notifications!");
+            unscheduleService();
         }
     }
 
