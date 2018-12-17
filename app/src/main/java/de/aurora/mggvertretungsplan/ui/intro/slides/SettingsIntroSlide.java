@@ -27,9 +27,9 @@ import de.aurora.mggvertretungsplan.R;
 
 @SuppressWarnings("ClassWithTooManyFields")
 public class SettingsIntroSlide extends AppIntroBaseFragment {
-    private static final String DATA_SWITCH = "de.aurora.mggvertretungsplan.ui.intro.slides.InputDemoSlide_switch";
-    private static final String DATA_CLASS = "de.aurora.mggvertretungsplan.ui.intro.slides.InputDemoSlide_classSpinner";
-    private static final String DATA_STUFE = "de.aurora.mggvertretungsplan.ui.intro.slides.InputDemoSlide_stufeSpinner";
+    private static final String DATA_SWITCH = "de.aurora.mggvertretungsplan.ui.intro.slides.SettingsSlide_switch";
+    private static final String DATA_CLASS = "de.aurora.mggvertretungsplan.ui.intro.slides.SettingsSlide_classSpinner";
+    private static final String DATA_STUFE = "de.aurora.mggvertretungsplan.ui.intro.slides.SettingsSlide_stufeSpinner";
 
     private AppCompatSpinner stufeSpinner, classSpinner;
     private SwitchCompat notificationsSwitch;
@@ -202,9 +202,9 @@ public class SettingsIntroSlide extends AppIntroBaseFragment {
         return R.layout.intro_fragment_settings;
     }
 
-    private int getPositionFromString(String[] klassen, String gesuchteKlasse) {
-        for (int i = 0; i < klassen.length; i++) {
-            if (klassen[i].equals(gesuchteKlasse)) {
+    private int getPositionFromString(String[] classes, String searchedClass) {
+        for (int i = 0; i < classes.length; i++) {
+            if (classes[i].equals(searchedClass)) {
                 return i;
             }
         }

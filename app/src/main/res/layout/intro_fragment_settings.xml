@@ -107,10 +107,10 @@
                     android:paddingBottom="10dp"
 
                     android:paddingTop="10dp"
-                    tools:text="Stufe" />
+                    tools:text="Stufe"
+                    tools:textColor="@android:color/black"/>
 
             </RelativeLayout>
-
 
             <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/slide_notifications_switch"
@@ -120,8 +120,8 @@
                 android:paddingBottom="10dp"
                 android:paddingTop="10dp"
                 android:textColorHint="@android:color/white"
-                android:textSize="20sp" />
-
+                android:textSize="20sp"
+                tools:textColor="@android:color/black" />
         </LinearLayout>
     </ScrollView>
 

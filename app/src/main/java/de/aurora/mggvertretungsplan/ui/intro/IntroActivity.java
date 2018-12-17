@@ -23,9 +23,9 @@ import de.aurora.mggvertretungsplan.ui.theming.ThemeManager;
 public class IntroActivity extends AppIntro {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        int themeID = PreferenceManager.getDefaultSharedPreferences(this).getInt("Theme", 0);
-        setTheme(ThemeManager.getTheme(themeID));
         super.onCreate(savedInstanceState);
+        int themeID = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getInt("Theme", 0);
+        setTheme(ThemeManager.getTheme(themeID));
 
         TypedValue typedValue = new TypedValue();
         Resources.Theme theme = getTheme();
