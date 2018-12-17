@@ -10,10 +10,11 @@ import java.util.regex.Pattern;
  */
 
 public class Grade {
+    private static final String TAG = "Grade";
     private String classLayer, classTitle;
 
-    public Grade(String grade) {
-        Log.d("Grade", String.format("Creating new Grade object for class: %s", grade));
+    Grade(String grade) {
+        Log.d(TAG, String.format("Creating new Grade object for class: %s", grade));
         if ("K1".equals(grade) || "K2".equals(grade)) {
             classLayer = grade;
             classTitle = "";
@@ -30,23 +31,23 @@ public class Grade {
                 classTitle = matcher.group(2);
             } catch (IllegalStateException e) {
                 initializeOnException();
-                Log.e("Grade", String.format("IllegalStateException: %s", e.getMessage()));
+                Log.e(TAG, String.format("IllegalStateException: %s", e.getMessage()));
             } catch (IndexOutOfBoundsException e) {
                 initializeOnException();
-                Log.e("Grade", String.format("IndexOutOfBoundsException: %s", e.getMessage()));
+                Log.e(TAG, String.format("IndexOutOfBoundsException: %s", e.getMessage()));
             } catch (NullPointerException e) {
                 initializeOnException();
-                Log.e("Grade", String.format("NullPointerException: %s", e.getMessage()));
+                Log.e(TAG, String.format("NullPointerException: %s", e.getMessage()));
             }
         }
     }
 
-    public Grade(String classLayer, String classTitle) {
+    Grade(String classLayer, String classTitle) {
         this.classLayer = classLayer;
         this.classTitle = classTitle;
     }
 
-    public boolean matches(String classString) {
+    boolean matches(String classString) {
         if (null == classString) {
             return false;
         }
@@ -89,7 +90,7 @@ public class Grade {
     }
 
     private void initializeOnException() {
-        classLayer = "5";
-        classTitle = "a";
+        this.classLayer = "5";
+        this.classTitle = "a";
     }
 }
