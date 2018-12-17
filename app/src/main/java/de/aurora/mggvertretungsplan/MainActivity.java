@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         mSwipeLayout = findViewById(R.id.swipe_refresh_layout);
         toolbar = findViewById(R.id.toolbar);
         recyclerView = findViewById(R.id.recycler_view);
-        cAdapter = new CardsAdapter(this);
+        cAdapter = new CardsAdapter(this.context);
 
         mSwipeLayout.setOnRefreshListener(this);
         mSwipeLayout.setColorSchemeResources(R.color.refresh_progress_1, R.color.refresh_progress_2, R.color.refresh_progress_3);
@@ -208,7 +208,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
                 String[] urls = websiteParser.getTimeTableURLs();
 
                 if (urls.length < 1) {
-                    Toast.makeText(this, R.string.no_url_to_open, Toast.LENGTH_LONG).show();
+                    Toast.makeText(this.context, R.string.no_url_to_open, Toast.LENGTH_LONG).show();
                     break;
                 }
 
@@ -257,7 +257,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         chromeTabsFeedbackBuilder.setToolbarColor(color);
         chromeTabsFeedbackBuilder.setShowTitle(true);
         CustomTabsIntent feedbackIntent = chromeTabsFeedbackBuilder.build();
-        feedbackIntent.launchUrl(this, Uri.parse(url));
+        feedbackIntent.launchUrl(this.context, Uri.parse(url));
     }
 
     /**
@@ -342,7 +342,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     private void saveData(final TimeTable timeTable) {
         Log.d(TAG, "Saving data.json to disk");
         try {
-            StorageUtilities.writeToFile(this, timeTable.toJSON().toString());
+            StorageUtilities.writeToFile(this.context, timeTable.toJSON().toString());
         } catch (JSONException e) {
             Log.e(TAG, e.getMessage());
         }
