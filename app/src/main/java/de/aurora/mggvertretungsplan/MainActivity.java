@@ -131,9 +131,8 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         if (notificationManager != null)
             notificationManager.cancelAll();
 
-        long thirtyMinsInMillis = 30 * 60 * 1000;
         ServiceScheduler serviceScheduler = new ServiceScheduler();
-        serviceScheduler.setAlarmManager(this, thirtyMinsInMillis);
+        serviceScheduler.schedule(this.context);
     }
 
     // Checks which hardware key was pressed
