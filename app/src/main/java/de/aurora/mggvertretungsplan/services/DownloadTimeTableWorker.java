@@ -57,7 +57,6 @@ public class DownloadTimeTableWorker extends Worker implements ParsingCompleteLi
                 parsingTask.get();
             } catch (Exception e) {
                 Log.e(TAG, e.getMessage());
-                //jobFinished(jobParameters, true);
             }
         } else {
             Log.d(TAG, "No internet Connection.");
