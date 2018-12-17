@@ -63,7 +63,7 @@ public class ServiceScheduler {
             Log.d(TAG, "Scheduling background work");
             scheduleService();
         } else {
-            Log.d(TAG, "Cancelling BackgroundService, because user does not want notifications!");
+            Log.d(TAG, "Cancelling ScheduleDownloaderWorker, because user does not want notifications!");
             unscheduleService();
         }
     }
