@@ -80,7 +80,7 @@ dependencies {
 
     // Other libraries
     implementation 'org.jsoup:jsoup:1.10.2'
-    implementation 'com.github.paolorotolo:appintro:4.1.0'
+    implementation 'com.github.paolorotolo:appintro:v5.1.0'
     implementation 'com.thebluealliance:spectrum:0.7.1'
 }
 
