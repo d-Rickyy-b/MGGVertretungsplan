@@ -172,6 +172,11 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     public void onResume() {
         super.onResume();
 
+        int newThemeID = sp.getInt("Theme", 0);
+        if (themeID != newThemeID) {
+            recreate();
+        }
+
         toolbar = findViewById(R.id.toolbar);
         String toolbarTitle_WithClass = getString(R.string.toolbarTitle_WithClass);
 
