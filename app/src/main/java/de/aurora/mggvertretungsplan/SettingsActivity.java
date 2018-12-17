@@ -75,7 +75,7 @@ public class SettingsActivity extends PreferenceActivity implements OnSharedPref
             setTheme(ThemeManager.getTheme(themeID));
 
             if (Build.VERSION.SDK_INT >= 16) {
-                Intent intent = new Intent(this, SettingsActivity.class);
+                Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
                 ActivityOptions options = ActivityOptions.makeCustomAnimation(this, R.anim.fadein, R.anim.fadeout);
                 startActivity(intent, options.toBundle());
                 finish();
