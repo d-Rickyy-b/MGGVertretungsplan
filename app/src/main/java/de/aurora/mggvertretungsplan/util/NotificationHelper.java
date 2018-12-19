@@ -33,8 +33,14 @@ public class NotificationHelper extends ContextWrapper {
     private void createNotificationChannels() {
         if (Build.VERSION.SDK_INT >= 26) {
             Log.d(TAG, "Creating Notification Channels");
-            createNotificationChannel(defaultChannelName, "Stundenplanänderungen", "Benachrichtigungen über Änderungen des Vertretungsplans");
-            createNotificationChannel(newsChannelName, "Neuigkeiten", "Nachrichten der MGG Webseite");
+
+            String defaultChannelDisplayName = getApplicationContext().getString(R.string.defaultChannelDisplayName);
+            String defaultChannelDesc = getApplicationContext().getString(R.string.defaultChannelDesc);
+            String newsChannelDisplayName = getApplicationContext().getString(R.string.newsChannelDisplayName);
+            String newsChannelDesc = getApplicationContext().getString(R.string.newsChannelDesc);
+
+            createNotificationChannel(defaultChannelName, defaultChannelDisplayName, defaultChannelDesc);
+            createNotificationChannel(newsChannelName, newsChannelDisplayName, newsChannelDesc);
         }
     }
 

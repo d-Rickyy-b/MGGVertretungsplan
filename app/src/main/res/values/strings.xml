@@ -79,6 +79,11 @@
         <item quantity="many">%d Änderungen!</item>
     </plurals>
 
+    <string name="defaultChannelDisplayName">Stundenplanänderungen</string>
+    <string name="defaultChannelDesc">Benachrichtigungen über Änderungen des Vertretungsplans</string>
+    <string name="newsChannelDisplayName">Neuigkeiten</string>
+    <string name="newsChannelDesc">Nachrichten der MGG Webseite</string>
+
     <string-array name="ClassLayer_List">
         <item>5</item>
         <item>6</item>
