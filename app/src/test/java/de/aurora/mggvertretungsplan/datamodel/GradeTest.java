@@ -10,6 +10,7 @@ import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertTrue;
 import static junit.framework.Assert.assertNotNull;
+import static org.junit.Assert.assertNotEquals;
 
 /**
  * Created by Rico on 18.11.2017.
@@ -71,7 +72,7 @@ public class GradeTest {
         Grade grade = new Grade("5a");
         Grade grade2 = new Grade("5b");
 
-        assertFalse(grade.toString().equals(grade2.toString()));
+        assertNotEquals(grade.toString(), grade2.toString());
 
         Grade grade3 = new Grade("5a");
         Grade grade4 = new Grade(""); // When passing an empty string, the grade should be initialized with "5a"
