@@ -24,7 +24,7 @@ public class TimeTableDayTest {
     ArrayList<ArrayList<String>> testList;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         testList = new ArrayList<>();
     }
 
@@ -43,7 +43,7 @@ public class TimeTableDayTest {
     }
 
     @Test
-    public void getDateString() throws Exception {
+    public void getDateString() {
         Calendar calendar = Calendar.getInstance();
         int currentYear = new GregorianCalendar().get(GregorianCalendar.YEAR);
         calendar.set(currentYear, 0, 1);
@@ -72,7 +72,7 @@ public class TimeTableDayTest {
     }
 
     @Test
-    public void getWeek() throws Exception {
+    public void getWeek() {
         ArrayList<ArrayList<String>> day1 = new ArrayList<>();
         TimeTableDay ttd = new TimeTableDay("01.01.2018", WEEK_A, day1);
 
@@ -83,7 +83,7 @@ public class TimeTableDayTest {
     }
 
     @Test
-    public void getElements() throws Exception {
+    public void getElements() {
         ArrayList<ArrayList<String>> day1 = new ArrayList<>();
         String className = "K1";
         String className2 = "5a";
@@ -112,7 +112,7 @@ public class TimeTableDayTest {
     }
 
     @Test
-    public void getArrayList() throws Exception {
+    public void getArrayList() {
         ArrayList<ArrayList<String>> day1 = new ArrayList<>();
         String className = "K1";
         String className2 = "5a";
@@ -134,7 +134,7 @@ public class TimeTableDayTest {
     }
 
     @Test
-    public void getArrayListClass() throws Exception {
+    public void getArrayListClass() {
         ArrayList<ArrayList<String>> day1 = new ArrayList<>();
         String className = "K1";
         String className2 = "5a";
@@ -158,7 +158,7 @@ public class TimeTableDayTest {
     }
 
     @Test
-    public void getElementsCount() throws Exception {
+    public void getElementsCount() {
         String className = "K1";
         String className2 = "6b";
 
@@ -187,7 +187,7 @@ public class TimeTableDayTest {
     }
 
     @Test
-    public void getDifferences() throws Exception {
+    public void getDifferences() {
         ArrayList<ArrayList<String>> day1List = new ArrayList<>();
         ArrayList<ArrayList<String>> day2List = new ArrayList<>();
         ArrayList<ArrayList<String>> day3List = new ArrayList<>();
@@ -275,7 +275,7 @@ public class TimeTableDayTest {
     }
 
     @Test
-    public void isSameDay() throws Exception {
+    public void isSameDay() {
         TimeTableDay ttd = new TimeTableDay("01.01.2018", WEEK_A, testList);
         TimeTableDay ttd2 = new TimeTableDay("01.01.2018", WEEK_A, testList);
         TimeTableDay ttd3 = new TimeTableDay("02.01.2018", WEEK_A, testList);
@@ -285,7 +285,7 @@ public class TimeTableDayTest {
     }
 
     @Test
-    public void mergeConsecutiveCancellations() throws Exception {
+    public void mergeConsecutiveCancellations() {
         ArrayList<ArrayList<String>> dayList = new ArrayList<>();
         String className = "K1";
 
@@ -327,7 +327,7 @@ public class TimeTableDayTest {
     }
 
     @Test
-    public void testToString() throws Exception {
+    public void testToString() {
         ArrayList<ArrayList<String>> dayList = new ArrayList<>();
         dayList.add(new ArrayList<>(Arrays.asList("1", "K1", "D", "---", "H202", "---", "")));
         dayList.add(new ArrayList<>(Arrays.asList("2", "7a", "E", "---", "H105", "---", "")));

@@ -19,7 +19,7 @@ public class TimeTableTest extends TestCase {
         timeTable = new TimeTable();
     }
 
-    public void testAddDay() throws Exception {
+    public void testAddDay() {
         ArrayList<ArrayList<String>> arrayLists = new ArrayList<>();
 
         TimeTableDay ttd = new TimeTableDay("01.01.2018", WEEK_A, arrayLists);
@@ -39,7 +39,7 @@ public class TimeTableTest extends TestCase {
         assertEquals(ttd2, timeTableDay2);
     }
 
-    public void testGetDaysCount() throws Exception {
+    public void testGetDaysCount() {
         assertEquals(0, timeTable.getDaysCount());
 
         ArrayList<ArrayList<String>> arrayLists = new ArrayList<>();
@@ -55,7 +55,7 @@ public class TimeTableTest extends TestCase {
         assertEquals(4, timeTable.getDaysCount());
     }
 
-    public void testGetFutureDaysCount() throws Exception {
+    public void testGetFutureDaysCount() {
         assertEquals(0, timeTable.getFutureDaysCount());
 
         ArrayList<ArrayList<String>> arrayLists = new ArrayList<>();
@@ -73,7 +73,7 @@ public class TimeTableTest extends TestCase {
         assertEquals(2, timeTable.getFutureDaysCount());
     }
 
-    public void testGetAllDays() throws Exception {
+    public void testGetAllDays() {
         assertEquals(new ArrayList<TimeTableDay>(), timeTable.getAllDays());
 
         ArrayList<ArrayList<String>> dayList = new ArrayList<>();
@@ -106,7 +106,7 @@ public class TimeTableTest extends TestCase {
         assertEquals(rttd, timeTable.getAllDays());
     }
 
-    public void testGetTotalCancellations() throws Exception {
+    public void testGetTotalCancellations() {
         assertEquals(0, timeTable.getTotalCancellations("K1"));
 
         ArrayList<ArrayList<String>> dayList = new ArrayList<>();
@@ -139,10 +139,10 @@ public class TimeTableTest extends TestCase {
         assertEquals(3, timeTable.getTotalCancellations("9c"));
     }
 
-    public void testGetTotalDifferences() throws Exception {
+    public void testGetTotalDifferences() {
     }
 
-    public void testToString() throws Exception {
+    public void testToString() {
         assertEquals("", timeTable.toString());
 
         ArrayList<ArrayList<String>> arrayLists = new ArrayList<>();

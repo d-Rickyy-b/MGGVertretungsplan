@@ -13,11 +13,11 @@ import static org.junit.Assert.assertEquals;
 public class DateHeadingTest {
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
     }
 
     @Test
-    public void testGetWholeDate() throws Exception {
+    public void testGetWholeDate() {
         Date date = new Date(117, 0, 20);
         DateHeading dateHeading = new DateHeading(date);
         assertEquals("Freitag, 20.01.2017", dateHeading.getWholeDate());

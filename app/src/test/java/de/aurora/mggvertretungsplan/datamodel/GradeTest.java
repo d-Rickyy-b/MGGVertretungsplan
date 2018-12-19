@@ -18,11 +18,11 @@ import static org.junit.Assert.assertNotEquals;
 public class GradeTest {
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
     }
 
     @Test
-    public void testEmptyConstructor() throws Exception {
+    public void testEmptyConstructor() {
         //Mockito.mock(Log.class);
         Grade grade = new Grade("");
         assertNotNull(grade);
@@ -30,7 +30,7 @@ public class GradeTest {
     }
 
     @Test
-    public void testWrongConstructor() throws Exception {
+    public void testWrongConstructor() {
         Grade grade = new Grade("ASDF");
         Grade grade2 = new Grade("a10");
 
@@ -39,7 +39,7 @@ public class GradeTest {
     }
 
     @Test
-    public void testCorrectConstructor() throws Exception {
+    public void testCorrectConstructor() {
         List<String> classList = Arrays.asList("5a", "5b", "5c", "5d", "5e", "5f",
                 "6a", "6b", "6c", "6d", "6e", "6f",
                 "6a", "6b", "6c", "6d", "6e", "6f",
@@ -68,7 +68,7 @@ public class GradeTest {
     }
 
     @Test
-    public void testGradeGeneral() throws Exception {
+    public void testGradeGeneral() {
         Grade grade = new Grade("5a");
         Grade grade2 = new Grade("5b");
 
@@ -86,14 +86,14 @@ public class GradeTest {
     }
 
     @Test
-    public void testNull() throws Exception {
+    public void testNull() {
         Grade grade = new Grade(null);
 
         assertEquals("5a", grade.toString());
     }
 
     @Test
-    public void testMatches() throws Exception {
+    public void testMatches() {
         Grade grade1 = new Grade("8a");
         assertTrue(grade1.matches("8ab_Nd_N"));
 
