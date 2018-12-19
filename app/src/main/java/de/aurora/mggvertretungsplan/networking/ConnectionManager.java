@@ -17,7 +17,6 @@ public class ConnectionManager {
         final NetworkInfo activeNetwork = conMgr.getActiveNetworkInfo();
 
         return null != activeNetwork && activeNetwork.isConnected();
-
     }
 
 }
