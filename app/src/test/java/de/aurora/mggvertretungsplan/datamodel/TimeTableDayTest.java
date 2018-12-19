@@ -21,7 +21,7 @@ import static org.junit.Assert.assertTrue;
 public class TimeTableDayTest {
     private static final String WEEK_A = "A";
     private static final String WEEK_B = "B";
-    ArrayList<ArrayList<String>> testList;
+    private ArrayList<ArrayList<String>> testList;
 
     @Before
     public void setUp() {
