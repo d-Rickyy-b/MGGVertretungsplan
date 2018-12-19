@@ -18,12 +18,14 @@ public class NotificationHelper extends ContextWrapper {
     private static final String TAG = "NotificationHelper";
     private static final String defaultChannelName = "default";
     private static final String newsChannelName = "news";
-    private NotificationManager notificationManager;
+    private final Context context;
+    private final NotificationManager notificationManager;
     private int notificationCounter = 0;
 
 
     public NotificationHelper(Context context) {
         super(context);
+        this.context = context;
         notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         createNotificationChannels();
     }
@@ -54,7 +56,7 @@ public class NotificationHelper extends ContextWrapper {
             //noinspection deprecation
             color = getResources().getColor(R.color.colorAccent);
 
-        NotificationCompat.Builder notification_builder = new NotificationCompat.Builder(this, channel)
+        NotificationCompat.Builder notification_builder = new NotificationCompat.Builder(this.context, channel)
                 .setContentTitle(titel)
                 .setContentText(text)
                 .setStyle(new NotificationCompat.BigTextStyle().bigText(text))
@@ -69,16 +71,16 @@ public class NotificationHelper extends ContextWrapper {
     }
 
     public void notifyNews(String ticker, String titel, String text) {
-        Intent intent = new Intent(this, MainActivity.class);
-        PendingIntent pIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        Intent intent = new Intent(this.context, MainActivity.class);
+        PendingIntent pIntent = PendingIntent.getActivity(this.context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         Notification notification = buildNotification(ticker, titel, text, newsChannelName, pIntent);
         notificationManager.notify(notificationCounter, notification);
         notificationCounter++;
     }
 
     public void notifyChanges(String ticker, String titel, String text) {
-        Intent intent = new Intent(this, MainActivity.class);
-        PendingIntent pIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        Intent intent = new Intent(this.context, MainActivity.class);
+        PendingIntent pIntent = PendingIntent.getActivity(this.context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         Notification notification = buildNotification(ticker, titel, text, defaultChannelName, pIntent);
         notificationManager.notify(notificationCounter, notification);
         notificationCounter++;
