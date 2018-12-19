@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     private Context context;
     private int themeID = 0;
     private boolean need_reload = true;
+    //TODO this ^ leads to double download of timetable! Without it, the view won't be updated
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
