@@ -36,7 +36,7 @@
             android:title="@string/colored_cards_title" />
 
         <SwitchPreference
-            android:defaultValue="false"
+            android:defaultValue="true"
             android:key="showWeekIndicator"
             android:summary="@string/settings_weekIndicator_summary"
             android:title="@string/settings_weekIndicator_title" />
