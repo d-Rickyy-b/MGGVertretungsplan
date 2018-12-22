@@ -213,23 +213,19 @@ public class SettingsIntroSlide extends AppIntroBaseFragment {
     }
 
     public void saveData() {
-        String klasseGesamt, klasse, stufe;
+        String fullClassName = "5a", className = "a", classLayer = "5";
         boolean notify;
 
         // Check if one or both spinners are null, if they are initialize with standard values
-        if (stufeSpinner == null || classSpinner == null) {
-            stufe = "5";
-            klasse = "a";
-            klasseGesamt = "5a";
-        } else {
-            if ("K1".equals(stufeSpinner.getSelectedItem().toString()) || "K2".equals(stufeSpinner.getSelectedItem().toString())) {
-                klasseGesamt = stufeSpinner.getSelectedItem().toString();
-            } else {
-                klasseGesamt = stufeSpinner.getSelectedItem().toString() + classSpinner.getSelectedItem().toString();
-            }
+        if (layerSpinner != null && classSpinner != null) {
+            classLayer = layerSpinner.getSelectedItem().toString();
+            className = classSpinner.getSelectedItem().toString();
 
-            stufe = stufeSpinner.getSelectedItem().toString();
-            klasse = classSpinner.getSelectedItem().toString();
+            if ("K1".equals(classLayer) || "K2".equals(classLayer)) {
+                fullClassName = classLayer;
+            } else {
+                fullClassName = classLayer + className;
+            }
         }
 
         // When notificationsSwitch is null or notificationsSwitch is checked, set notify to true
@@ -240,9 +236,9 @@ public class SettingsIntroSlide extends AppIntroBaseFragment {
         SharedPreferences.Editor editor = sp.edit();
 
         editor.putBoolean("notification", notify);
-        editor.putString("KlasseGesamt", klasseGesamt);
-        editor.putString("Klassenstufe", stufe);
-        editor.putString("Klasse", klasse);
+        editor.putString("KlasseGesamt", fullClassName);
+        editor.putString("Klassenstufe", classLayer);
+        editor.putString("Klasse", className);
         editor.apply();
     }
 }
