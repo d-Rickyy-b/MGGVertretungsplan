@@ -117,7 +117,7 @@ public class SettingsIntroSlide extends AppIntroBaseFragment {
         // ClassLayer:
         stufeSpinner = v.findViewById(R.id.slide_class_spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
-                getActivity().getApplicationContext(), R.array.ClassLayer_List, android.R.layout.simple_spinner_item);
+                getActivity().getApplicationContext(), R.array.ClassLayer_List, R.layout.custom_spinner_item);
         adapter.setDropDownViewResource(R.layout.view_spinner_dropdown_item);
         stufeSpinner.setAdapter(adapter);
         stufeSpinner.setSelection(getPositionFromString(getResources().getStringArray(R.array.ClassLayer_List), sp.getString("Klassenstufe", "5")));
@@ -151,7 +151,7 @@ public class SettingsIntroSlide extends AppIntroBaseFragment {
         // Class:
         classSpinner = v.findViewById(R.id.slide_class_spinner2);
         ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(
-                getActivity().getApplicationContext(), R.array.Class_List, android.R.layout.simple_spinner_item);
+                getActivity().getApplicationContext(), R.array.Class_List, R.layout.custom_spinner_item);
         adapter2.setDropDownViewResource(R.layout.view_spinner_dropdown_item);
         classSpinner.setAdapter(adapter2);
         classSpinner.setSelection(getPositionFromString(getResources().getStringArray(R.array.Class_List), sp.getString("Klasse", "a")));
