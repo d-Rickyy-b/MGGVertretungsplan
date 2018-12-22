@@ -94,9 +94,9 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         mSwipeLayout.setOnRefreshListener(this);
         mSwipeLayout.setColorSchemeResources(R.color.refresh_progress_1, R.color.refresh_progress_2, R.color.refresh_progress_3);
 
-        String toolbarTitle = getString(R.string.toolbarTitle_WithClass);
+        String toolbarTitle = getString(R.string.toolbarTitle_WithClass, class_name);
         toolbar.setAlpha(1);
-        toolbar.setTitle(String.format(toolbarTitle, class_name));
+        toolbar.setTitle(toolbarTitle);
         setSupportActionBar(toolbar);
 
         recyclerView.setHasFixedSize(true);
@@ -173,10 +173,10 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         checkForThemeChange();
 
         toolbar = findViewById(R.id.toolbar);
-        String toolbarTitle_WithClass = getString(R.string.toolbarTitle_WithClass);
-
         class_name = sp.getString("KlasseGesamt", "5a");
-        toolbar.setTitle(String.format(toolbarTitle_WithClass, class_name));
+
+        String toolbarTitle_WithClass = getString(R.string.toolbarTitle_WithClass, class_name);
+        toolbar.setTitle(toolbarTitle_WithClass);
     }
 
     @Override
@@ -324,10 +324,10 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
      */
     private void displayData(TimeTable timeTable) {
         Log.d(TAG, "Display data on screen");
-        String toolbarTitle_WithClass = getString(R.string.toolbarTitle_WithClass);
-        toolbar.setTitle(String.format(toolbarTitle_WithClass, class_name));
 
         if (timeTable.getDaysCount() == 0 || (sp.getBoolean("", true) && timeTable.getFutureDaysCount() == 0)) {
+        String toolbarTitle_WithClass = getString(R.string.toolbarTitle_WithClass, class_name);
+        toolbar.setTitle(toolbarTitle_WithClass);
             recyclerView.setAdapter(new EmptyAdapter(getString(R.string.no_data_to_display)));
         } else {
             recyclerView.setAdapter(cAdapter);

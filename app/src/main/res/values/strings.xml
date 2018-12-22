@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">Vertretungsplan</string>
-    <string name="toolbarTitle_WithClass">Vertretungsplan (%s)</string>
+    <string name="toolbarTitle_WithClass">Vertretungsplan (%1$s)</string>
     <string name="bar_title">@string/app_name</string>
     <string name="downloadException">Es ist ein Fehler beim Herunterladen aufgetreten!</string>
 
