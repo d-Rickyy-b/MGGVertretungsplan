@@ -1,7 +1,6 @@
 package de.aurora.mggvertretungsplan.util;
 
 import android.content.Context;
-import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -20,7 +19,7 @@ public class StorageUtilities {
     private static final String FILENAME = "data.json";
 
     public static String readFile(Context context) {
-        Log.d(TAG, "Reading file!");
+        Logger.d(TAG, "Reading file!");
         String content = "";
         try {
             FileInputStream fileInputStream = context.openFileInput(FILENAME);
@@ -43,11 +42,11 @@ public class StorageUtilities {
         } catch (FileNotFoundException e) {
             writeToFile(context, "");
         } catch (IOException e) {
-            Log.e(TAG, "File read failed: " + e.toString());
+            Logger.e(TAG, "File read failed: " + e.toString());
             return "";
         }
 
-        Log.d(TAG, "Finished reading");
+        Logger.d(TAG, "Finished reading");
         return content;
     }
 
@@ -58,13 +57,13 @@ public class StorageUtilities {
             @Override
             public void run() {
                 try {
-                    Log.d(TAG, "Writing to file");
+                    Logger.d(TAG, "Writing to file");
                     FileOutputStream fos = context.openFileOutput(FILENAME, Context.MODE_PRIVATE);
                     fos.write(data.getBytes());
                     fos.close();
-                    Log.d(TAG, "Write finished");
+                    Logger.d(TAG, "Write finished");
                 } catch (IOException e) {
-                    Log.e(TAG, "File write failed: " + e.toString());
+                    Logger.e(TAG, "File write failed: " + e.toString());
                 }
             }
         }, "dataSaver").start();

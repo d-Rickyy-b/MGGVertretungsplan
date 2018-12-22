@@ -3,10 +3,11 @@ package de.aurora.mggvertretungsplan.services;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+
+import java.util.Locale;
 
 import androidx.annotation.NonNull;
 import androidx.work.Result;
@@ -18,6 +19,7 @@ import de.aurora.mggvertretungsplan.parsing.BaseParser;
 import de.aurora.mggvertretungsplan.parsing.BaseParser.ParsingCompleteListener;
 import de.aurora.mggvertretungsplan.parsing.MGGParser;
 import de.aurora.mggvertretungsplan.parsing.ParsingTask;
+import de.aurora.mggvertretungsplan.util.Logger;
 import de.aurora.mggvertretungsplan.util.NotificationHelper;
 import de.aurora.mggvertretungsplan.util.StorageUtilities;
 
@@ -36,18 +38,18 @@ public class DownloadTimeTableWorker extends Worker implements ParsingCompleteLi
     @Override
     public Result doWork() {
         startService();
-        Log.d(TAG, "Finished doing work!");
+        Logger.d(TAG, "Finished doing work!");
         return Result.success();
     }
 
     private void startService() {
-        Log.d(TAG, "DownloadTimeTableWorker started!");
+        Logger.d(TAG, "DownloadTimeTableWorker started!");
         parser = new MGGParser();
         updateData();
     }
 
     private void updateData() {
-        Log.d(TAG, "UpdateData");
+        Logger.d(TAG, "UpdateData");
         if (isConnectionActive(getApplicationContext())) {
             sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
@@ -56,19 +58,19 @@ public class DownloadTimeTableWorker extends Worker implements ParsingCompleteLi
                 parsingTask.startParsing();
                 parsingTask.get();
             } catch (Exception e) {
-                Log.e(TAG, e.getMessage());
+                Logger.e(TAG, e.getMessage());
             }
         } else {
-            Log.d(TAG, "No internet Connection.");
+            Logger.d(TAG, "No internet Connection.");
         }
     }
 
     @Override
     public void onParsingComplete(TimeTable timeTable) {
-        Log.d(TAG, "Parsing complete - Checking for changes");
+        Logger.d(TAG, "Parsing complete - Checking for changes");
 
         if (timeTable == null) {
-            Log.d(TAG, "TimeTable is null");
+            Logger.d(TAG, "TimeTable is null");
             return;
         }
 
@@ -84,7 +86,7 @@ public class DownloadTimeTableWorker extends Worker implements ParsingCompleteLi
                 JSONArray jsonArray = new JSONArray(data);
                 timeTable_saved = new TimeTable(jsonArray);
             } catch (JSONException e) {
-                Log.e(TAG, e.getMessage());
+                Logger.e(TAG, e.getMessage());
                 return;
             }
         }
@@ -106,7 +108,7 @@ public class DownloadTimeTableWorker extends Worker implements ParsingCompleteLi
         // "..."
 
 
-        Log.d(TAG, String.format("Total differences: %d", totalDiffs));
+        Logger.d(TAG, String.format(Locale.GERMANY, "Total differences: %d", totalDiffs));
 
         Context context = getApplicationContext();
         String ticker = context.getResources().getString(R.string.notification_cancellations_ticker);
@@ -116,19 +118,21 @@ public class DownloadTimeTableWorker extends Worker implements ParsingCompleteLi
         NotificationHelper notificationHelper = new NotificationHelper(getApplicationContext());
 
         if (totalDiffs <= 0) {
+            Logger.d(TAG, "Not sending a notification!");
             return;
         }
 
+        Logger.d(TAG, "Notifying user");
         notificationHelper.notifyChanges(ticker, title, info);
         saveData(timeTable);
     }
 
     private void saveData(TimeTable timeTable) {
-        Log.d(TAG, "Saving data.json to disk");
+        Logger.d(TAG, "Saving data.json to disk");
         try {
             StorageUtilities.writeToFile(getApplicationContext(), timeTable.toJSON().toString());
         } catch (JSONException e) {
-            Log.e(TAG, e.getMessage());
+            Logger.e(TAG, e.getMessage());
         }
     }
 

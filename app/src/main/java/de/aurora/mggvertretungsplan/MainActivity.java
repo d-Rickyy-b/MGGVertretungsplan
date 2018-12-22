@@ -13,7 +13,6 @@ import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.text.Html;
 import android.text.Spanned;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -43,6 +42,7 @@ import de.aurora.mggvertretungsplan.ui.CardsAdapter;
 import de.aurora.mggvertretungsplan.ui.EmptyAdapter;
 import de.aurora.mggvertretungsplan.ui.intro.IntroActivity;
 import de.aurora.mggvertretungsplan.ui.theming.ThemeManager;
+import de.aurora.mggvertretungsplan.util.Logger;
 import de.aurora.mggvertretungsplan.util.StorageUtilities;
 
 import static de.aurora.mggvertretungsplan.networking.ConnectionManager.isConnectionActive;
@@ -268,7 +268,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         new Thread(new Runnable() {
             @Override
             public void run() {
-                Log.d(TAG, "Fetch saved data from disk");
+                Logger.d(TAG, "Fetch saved data from disk");
                 final TimeTable timeTable;
                 String data = StorageUtilities.readFile(MainActivity.this);
 
@@ -279,7 +279,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
                         JSONArray jsonArray = new JSONArray(data);
                         timeTable = new TimeTable(jsonArray);
                     } catch (JSONException e) {
-                        Log.e(TAG, e.getMessage());
+                        Logger.e(TAG, e.getMessage());
                         return;
                     }
                 }
@@ -323,9 +323,9 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
      * @param timeTable A TimeTable element to be displayed on screen
      */
     private void displayData(TimeTable timeTable) {
-        Log.d(TAG, "Display data on screen");
 
         if (timeTable.getDaysCount() == 0 || (sp.getBoolean("", true) && timeTable.getFutureDaysCount() == 0)) {
+        Logger.d(TAG, "Display data on screen");
         String toolbarTitle_WithClass = getString(R.string.toolbarTitle_WithClass, class_name);
         toolbar.setTitle(toolbarTitle_WithClass);
             recyclerView.setAdapter(new EmptyAdapter(getString(R.string.no_data_to_display)));
@@ -334,23 +334,23 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             cAdapter.clearItems();
             cAdapter.addDays(timeTable);
             cAdapter.notifyDataSetChanged();
-            Log.d(TAG, "Notify changes");
+            Logger.d(TAG, "Notify changes");
         }
     }
 
     private void saveData(final TimeTable timeTable) {
-        Log.d(TAG, "Saving data.json to disk");
+        Logger.d(TAG, "Saving data.json to disk");
         try {
             StorageUtilities.writeToFile(this.context, timeTable.toJSON().toString());
         } catch (JSONException e) {
-            Log.e(TAG, e.getMessage());
+            Logger.e(TAG, e.getMessage());
         }
     }
 
     // Gets called, when website was downloaded and parsed by the parser
     @Override
     public void onParsingComplete(TimeTable timeTable) {
-        Log.d(TAG, "Parsing complete!");
+        Logger.d(TAG, "Parsing complete!");
         mSwipeLayout.setRefreshing(false);
 
         if (timeTable == null || timeTable.getDaysCount() == 0) {

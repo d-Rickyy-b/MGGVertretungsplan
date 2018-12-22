@@ -8,7 +8,6 @@ import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.Intent;
 import android.os.Build;
-import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
 import de.aurora.mggvertretungsplan.MainActivity;
@@ -32,7 +31,7 @@ public class NotificationHelper extends ContextWrapper {
 
     private void createNotificationChannels() {
         if (Build.VERSION.SDK_INT >= 26) {
-            Log.d(TAG, "Creating Notification Channels");
+            Logger.d(TAG, "Creating Notification Channels");
 
             String defaultChannelDisplayName = getApplicationContext().getString(R.string.defaultChannelDisplayName);
             String defaultChannelDesc = getApplicationContext().getString(R.string.defaultChannelDesc);

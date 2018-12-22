@@ -1,9 +1,9 @@
 package de.aurora.mggvertretungsplan.datamodel;
 
-import android.util.Log;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import de.aurora.mggvertretungsplan.util.Logger;
 
 /**
  * Created by Rico on 16.11.2017.
@@ -14,7 +14,7 @@ public class Grade {
     private String classLayer, classTitle;
 
     Grade(String grade) {
-        Log.d(TAG, String.format("Creating new Grade object for class: %s", grade));
+        Logger.d(TAG, String.format("Creating new Grade object for class: %s", grade));
         if ("K1".equals(grade) || "K2".equals(grade)) {
             classLayer = grade;
             classTitle = "";
@@ -31,13 +31,13 @@ public class Grade {
                 classTitle = matcher.group(2);
             } catch (IllegalStateException e) {
                 initializeOnException();
-                Log.e(TAG, String.format("IllegalStateException: %s", e.getMessage()));
+                Logger.e(TAG, String.format("IllegalStateException: %s", e.getMessage()));
             } catch (IndexOutOfBoundsException e) {
                 initializeOnException();
-                Log.e(TAG, String.format("IndexOutOfBoundsException: %s", e.getMessage()));
+                Logger.e(TAG, String.format("IndexOutOfBoundsException: %s", e.getMessage()));
             } catch (NullPointerException e) {
                 initializeOnException();
-                Log.e(TAG, String.format("NullPointerException: %s", e.getMessage()));
+                Logger.e(TAG, String.format("NullPointerException: %s", e.getMessage()));
             }
         }
     }
@@ -73,10 +73,10 @@ public class Grade {
 
                 return inputClassLayer.equals(classLayer) && inputClassTitle.contains(classTitle);
             } catch (IllegalStateException e) {
-                Log.e("Grade", String.format("IllegalStateException: %s", e.getMessage()));
+                Logger.e("Grade", String.format("IllegalStateException: %s", e.getMessage()));
                 return false;
             } catch (IndexOutOfBoundsException e) {
-                Log.e("Grade", String.format("IndexOutOfBoundsException: %s", e.getMessage()));
+                Logger.e("Grade", String.format("IndexOutOfBoundsException: %s", e.getMessage()));
                 return false;
             }
         }

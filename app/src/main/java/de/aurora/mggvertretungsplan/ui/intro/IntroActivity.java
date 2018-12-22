@@ -8,7 +8,6 @@ import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.util.TypedValue;
 
 import com.github.paolorotolo.appintro.AppIntro;
@@ -19,6 +18,7 @@ import androidx.fragment.app.Fragment;
 import de.aurora.mggvertretungsplan.R;
 import de.aurora.mggvertretungsplan.ui.intro.slides.SettingsIntroSlide;
 import de.aurora.mggvertretungsplan.ui.theming.ThemeManager;
+import de.aurora.mggvertretungsplan.util.Logger;
 
 public class IntroActivity extends AppIntro {
     @Override
@@ -50,7 +50,7 @@ public class IntroActivity extends AppIntro {
             SettingsIntroSlide slide = (SettingsIntroSlide) getSlides().get(1);
             slide.saveData();
         } catch (Exception e) {
-            Log.e("IntroActivity", e.getMessage());
+            Logger.e("IntroActivity", e.getMessage());
         }
         finish();
     }

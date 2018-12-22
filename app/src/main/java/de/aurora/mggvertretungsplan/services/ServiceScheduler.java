@@ -3,7 +3,6 @@ package de.aurora.mggvertretungsplan.services;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.util.Log;
 
 import java.util.concurrent.TimeUnit;
 
@@ -11,6 +10,7 @@ import androidx.work.Constraints;
 import androidx.work.NetworkType;
 import androidx.work.PeriodicWorkRequest;
 import androidx.work.WorkManager;
+import de.aurora.mggvertretungsplan.util.Logger;
 
 /**
  * Created by Rico on 14.11.2017.
@@ -39,14 +39,14 @@ public class ServiceScheduler {
         workManager.cancelAllWorkByTag(WORK_TAG);
         workManager.enqueue(backgroundWork);
 
-        Log.d(TAG, "Work scheduled!");
+        Logger.d(TAG, "Work scheduled!");
     }
 
     /**
      * Method to unschedule the DownloadTimeTableWorker
      */
     private void unscheduleService() {
-        Log.d(TAG, "Canceling service execution!");
+        Logger.d(TAG, "Canceling service execution!");
         WorkManager workManager = WorkManager.getInstance();
         workManager.cancelAllWorkByTag(WORK_TAG);
     }
@@ -60,10 +60,10 @@ public class ServiceScheduler {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
 
         if (sp.getBoolean("notification", true)) {
-            Log.d(TAG, "Scheduling background work");
+            Logger.d(TAG, "Scheduling background work");
             scheduleService();
         } else {
-            Log.d(TAG, "Cancelling ScheduleDownloaderWorker, because user does not want notifications!");
+            Logger.d(TAG, "Cancelling ScheduleDownloaderWorker, because user does not want notifications!");
             unscheduleService();
         }
     }

@@ -1,7 +1,5 @@
 package de.aurora.mggvertretungsplan.datamodel;
 
-import android.util.Log;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -12,6 +10,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
+
+import de.aurora.mggvertretungsplan.util.Logger;
 
 /**
  * Created by Rico on 19.09.2017.
@@ -52,7 +52,7 @@ public class TimeTableDay {
                 addElement(tte);
             }
         } catch (JSONException e) {
-            Log.e(TAG, e.getMessage());
+            Logger.e(TAG, e.getMessage());
         }
     }
 
@@ -87,7 +87,7 @@ public class TimeTableDay {
                 this.date = fullDateFormat.parse(date);
             }
         } catch (ParseException e) {
-            Log.e(TAG, e.getMessage());
+            Logger.e(TAG, e.getMessage());
             this.date = new Date();
         }
     }

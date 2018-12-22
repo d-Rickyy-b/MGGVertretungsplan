@@ -1,12 +1,11 @@
 package de.aurora.mggvertretungsplan.parsing;
 
-import android.util.Log;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 
 import de.aurora.mggvertretungsplan.datamodel.TimeTable;
 import de.aurora.mggvertretungsplan.datamodel.TimeTableDay;
+import de.aurora.mggvertretungsplan.util.Logger;
 
 /**
  * Created by Rico on 01.10.2017.
@@ -60,7 +59,7 @@ public class MockParser extends BaseParser {
         timeTable2.addDay(ttd2);
 
         int diffs = timeTable1.getTotalDifferences(timeTable2, "K1");
-        Log.d("MockParser", String.format("Diffs: %s", diffs));
+        Logger.d("MockParser", String.format("Diffs: %s", diffs));
 
         timeTableReturn.addDay(ttd1);
 

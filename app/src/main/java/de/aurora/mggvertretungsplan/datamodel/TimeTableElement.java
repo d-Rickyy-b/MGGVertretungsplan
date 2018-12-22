@@ -1,7 +1,6 @@
 package de.aurora.mggvertretungsplan.datamodel;
 
 import android.annotation.SuppressLint;
-import android.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -9,6 +8,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Locale;
+
+import de.aurora.mggvertretungsplan.util.Logger;
 
 /**
  * Created by Rico on 26.09.2016.
@@ -158,7 +159,7 @@ public class TimeTableElement {
             else
                 return Integer.parseInt(hour.replaceAll("^([0-9]{1,2}).*", "$1"));
         } catch (NumberFormatException nfe) {
-            Log.e(TAG, String.format("Hour doesn't match pattern: %s", hour));
+            Logger.e(TAG, String.format("Hour doesn't match pattern: %s", hour));
             return 12;
         }
     }
