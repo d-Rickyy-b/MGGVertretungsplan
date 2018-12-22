@@ -75,8 +75,9 @@
     <string name="notification_cancellations_infoMany">%d Änderungen!</string>
 
     <plurals name="notification_cancellations_info">
-        <item quantity="one">%d Änderung!</item>
-        <item quantity="many">%d Änderungen!</item>
+        <item quantity="zero">%d Änderungen!</item>
+        <item quantity="one">Eine Änderung!</item>
+        <item quantity="other">%d Änderungen!</item>
     </plurals>
 
     <string name="defaultChannelDisplayName">Stundenplanänderungen</string>
