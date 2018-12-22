@@ -170,11 +170,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     @Override
     public void onResume() {
         super.onResume();
-
-        int newThemeID = sp.getInt("Theme", 0);
-        if (themeID != newThemeID) {
-            recreate();
-        }
+        checkForThemeChange();
 
         toolbar = findViewById(R.id.toolbar);
         String toolbarTitle_WithClass = getString(R.string.toolbarTitle_WithClass);
@@ -371,15 +367,19 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
         if (hasFocus) {
-            int newThemeID = sp.getInt("Theme", 0);
-            if (themeID != newThemeID) {
-                recreate();
-            }
+            checkForThemeChange();
 
             String newClassName = sp.getString("KlasseGesamt", "5a");
             if (!class_name.equals(newClassName)) {
                 displaySavedData();
             }
+        }
+    }
+
+    private void checkForThemeChange() {
+        int newThemeID = sp.getInt("Theme", 0);
+        if (themeID != newThemeID) {
+            recreate();
         }
     }
 
