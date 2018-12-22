@@ -7,7 +7,7 @@ package de.aurora.mggvertretungsplan.datamodel;
 public class Week {
     public static final int WEEK_A = 0;
     public static final int WEEK_B = 1;
-    private int week = WEEK_A;
+    private int week;
 
     public Week(String week) {
         switch (week) {

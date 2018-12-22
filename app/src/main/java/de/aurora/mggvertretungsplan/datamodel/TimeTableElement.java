@@ -73,7 +73,7 @@ public class TimeTableElement {
         } else
             abbr = subj;
 
-        if (abbr == null || abbr.equals("")) {
+        if (abbr.equals("")) {
             return "Kein Fach";
         } else {
             switch (abbr.toUpperCase()) {
