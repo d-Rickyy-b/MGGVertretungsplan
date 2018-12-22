@@ -10,7 +10,6 @@ import org.json.JSONException;
 import java.util.Locale;
 
 import androidx.annotation.NonNull;
-import androidx.work.Result;
 import androidx.work.Worker;
 import androidx.work.WorkerParameters;
 import de.aurora.mggvertretungsplan.R;

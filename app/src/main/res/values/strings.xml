@@ -19,7 +19,6 @@
     <!-- Intro Slides Strings -->
     <string name="slide_welcome_title">Willkommen</string>
     <string name="slide_welcome_descr">Vielen Dank, dass du diese App nutzt. Auf der folgenden Seite findest du einige Einstellungen, die du setzen solltest.</string>
-    <string name="slide_welcome_content_descr">App-Logo</string>
 
     <string name="slide_settings_title">@string/action_settings</string>
     <string name="slide_settings_descr">Bitte stelle deine Klasse ein!\nFalls du keine Benachrichtigungen wünschst, dann schalte sie oben aus!\nAlle Einstellungen kannst du später wieder ändern.</string>
@@ -30,7 +29,6 @@
     <string name="settings_name">Einstellungen</string>
     <string name="toast_settings_saved">Einstellungen übernommen!</string>
     <string name="toast_noInternetConnection">Keine Internetverbindung!</string>
-    <string name="toast_errorOccurred">Ein Fehler ist aufgetreten!</string>
 
     <!-- Class SettingsActivity Section -->
     <string name="settings_section_class">Klasse</string>
@@ -44,10 +42,6 @@
     <string name="settings_section_miscellaneous">Verschiedenes</string>
     <string name="settings_notification_title">Benachrichtigungen</string>
     <string name="settings_notification_summary">Benachrichtigung bei Änderung des Vertretungsplans</string>
-    <string name="settings_notification_interval_title">Prüfintervall</string>
-    <string name="settings_notification_interval_summary">Bitte wähle das Zeitintervall, in welchem der Vertretungsplan geprüft werden soll</string>
-    <string name="settings_notification_interval_dialog_title">Intervall</string>
-    <string name="settings_notification_interval_dialog_back">Zurück!</string>
 
     <string name="settings_section_display">Anzeige</string>
     <string name="settings_past_days_title">Alte Tage zeigen</string>
@@ -71,8 +65,6 @@
 
     <string name="notification_cancellations_title">MGG Vertretungsplan</string>
     <string name="notification_cancellations_ticker">Stundenplan Änderung!</string>
-    <string name="notification_cancellations_infoOne">%d Änderung!</string>
-    <string name="notification_cancellations_infoMany">%d Änderungen!</string>
 
     <plurals name="notification_cancellations_info">
         <item quantity="zero">%d Änderungen!</item>
