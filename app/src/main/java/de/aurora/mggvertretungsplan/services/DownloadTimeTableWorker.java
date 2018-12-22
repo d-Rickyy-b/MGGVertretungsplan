@@ -111,17 +111,15 @@ public class DownloadTimeTableWorker extends Worker implements ParsingCompleteLi
         Context context = getApplicationContext();
         String ticker = context.getResources().getString(R.string.notification_cancellations_ticker);
         String title = context.getResources().getString(R.string.notification_cancellations_title);
-        String infoOne = context.getResources().getString(R.string.notification_cancellations_infoOne);
-        String infoMany = context.getResources().getString(R.string.notification_cancellations_infoMany);
+        String info = context.getResources().getQuantityString(R.plurals.notification_cancellations_info, totalDiffs, totalDiffs);
 
         NotificationHelper notificationHelper = new NotificationHelper(getApplicationContext());
 
-        if (totalDiffs == 1) {
-            notificationHelper.notifyChanges(ticker, title, String.format(infoOne, 1));
-        } else if (totalDiffs > 1) {
-            notificationHelper.notifyChanges(ticker, title, String.format(infoMany, totalDiffs));
+        if (totalDiffs <= 0) {
+            return;
         }
 
+        notificationHelper.notifyChanges(ticker, title, info);
         saveData(timeTable);
     }
 
