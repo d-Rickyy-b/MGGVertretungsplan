@@ -53,7 +53,10 @@ public class TimeTable {
         return timeTableDays.size();
     }
 
-    // Returns the number of days, which date is in the future
+    /**
+     * Calculates the number of days of the current TimeTable, which are in the future
+     * @return Number of days which are in the future
+     */
     public int getFutureDaysCount() {
         int futureDays = 0;
 
