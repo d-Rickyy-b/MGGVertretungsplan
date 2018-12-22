@@ -18,7 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.github.paolorotolo.appintro.AppIntroBaseFragment;
-import com.github.paolorotolo.appintro.util.CustomFontCache;
+import com.github.paolorotolo.appintro.util.TypefaceContainer;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatSpinner;
@@ -31,17 +31,19 @@ public class SettingsIntroSlide extends AppIntroBaseFragment {
     private static final String DATA_CLASS = "de.aurora.mggvertretungsplan.ui.intro.slides.SettingsSlide_classSpinner";
     private static final String DATA_STUFE = "de.aurora.mggvertretungsplan.ui.intro.slides.SettingsSlide_stufeSpinner";
 
-    private AppCompatSpinner stufeSpinner, classSpinner;
+    private AppCompatSpinner layerSpinner, classSpinner;
     private SwitchCompat notificationsSwitch;
     private SharedPreferences sp;
 
-    private boolean isSwitchChecked = true;
-    private String title, titleTypeface, description, descTypeface;
-    private int drawable, bgColor, titleColor, descColor;
+    private int bgColor, titleColor, descColor;
+    private String title, description;
+    private TypefaceContainer titleTypeface = null, descTypeface = null;
 
+    private boolean isSwitchChecked = true;
 
     public static SettingsIntroSlide newInstance(String title, String description, int bgColor, int titleColor, int descColor) {
         SettingsIntroSlide slide = new SettingsIntroSlide();
+
         Bundle args = new Bundle();
         args.putString(ARG_TITLE, title);
         args.putString(ARG_DESC, description);
@@ -52,6 +54,30 @@ public class SettingsIntroSlide extends AppIntroBaseFragment {
         return slide;
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setRetainInstance(true);
+
+        if (getArguments() != null && !getArguments().isEmpty()) {
+            title = getArguments().getString(ARG_TITLE);
+            description = getArguments().getString(ARG_DESC);
+            bgColor = getArguments().getInt(ARG_BG_COLOR);
+            titleColor = getArguments().getInt(ARG_TITLE_COLOR, 0);
+            descColor = getArguments().getInt(ARG_DESC_COLOR, 0);
+
+            String argsTitleTypeface = getArguments().getString(ARG_TITLE_TYPEFACE, "");
+            String argsDescTypeface = getArguments().getString(ARG_DESC_TYPEFACE, "");
+
+            int argsTitleTypefaceRes = getArguments().getInt(ARG_TITLE_TYPEFACE_RES, 0);
+            int argsDescTypefaceRes = getArguments().getInt(ARG_DESC_TYPEFACE_RES, 0);
+
+            if (!argsTitleTypeface.equals(""))
+                titleTypeface = new TypefaceContainer(argsTitleTypeface, argsTitleTypefaceRes);
+            if (!argsDescTypeface.equals(""))
+                descTypeface = new TypefaceContainer(argsDescTypeface, argsDescTypefaceRes);
+        }
+    }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -59,27 +85,24 @@ public class SettingsIntroSlide extends AppIntroBaseFragment {
 
         if (savedInstanceState != null) {
             isSwitchChecked = savedInstanceState.getBoolean(DATA_SWITCH);
-            title = savedInstanceState.getString(ARG_TITLE);
-            titleTypeface = savedInstanceState.getString(ARG_TITLE_TYPEFACE);
-            description = savedInstanceState.getString(ARG_DESC);
-            descTypeface = savedInstanceState.getString(ARG_DESC_TYPEFACE);
-            bgColor = savedInstanceState.getInt(ARG_BG_COLOR);
-            titleColor = savedInstanceState.getInt(ARG_TITLE_COLOR);
-            descColor = savedInstanceState.getInt(ARG_DESC_COLOR);
         }
     }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
-        outState.putInt(ARG_DRAWABLE, drawable);
-        outState.putString(ARG_TITLE, title);
-        outState.putString(ARG_DESC, description);
-        outState.putInt(ARG_BG_COLOR, bgColor);
-        outState.putInt(ARG_TITLE_COLOR, titleColor);
-        outState.putInt(ARG_DESC_COLOR, descColor);
         outState.putString(DATA_CLASS, classSpinner.getSelectedItem().toString());
-        outState.putString(DATA_STUFE, stufeSpinner.getSelectedItem().toString());
+        outState.putString(DATA_STUFE, layerSpinner.getSelectedItem().toString());
         outState.putBoolean(DATA_SWITCH, notificationsSwitch.isChecked());
+
+        if (titleTypeface != null) {
+            outState.putString(ARG_TITLE_TYPEFACE, titleTypeface.getTypeFaceUrl());
+            outState.putInt(ARG_TITLE_TYPEFACE_RES, titleTypeface.getTypeFaceResource());
+        }
+        if (descTypeface != null) {
+            outState.putString(ARG_DESC_TYPEFACE, descTypeface.getTypeFaceUrl());
+            outState.putInt(ARG_DESC_TYPEFACE_RES, descTypeface.getTypeFaceResource());
+        }
+
         super.onSaveInstanceState(outState);
 
         saveData();
@@ -91,38 +114,34 @@ public class SettingsIntroSlide extends AppIntroBaseFragment {
         sp = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
         isSwitchChecked = sp.getBoolean("notification", true);
 
-        View v = inflater.inflate(R.layout.intro_fragment_settings, container, false);
-        TextView t = v.findViewById(com.github.paolorotolo.appintro.R.id.title);
-        TextView d = v.findViewById(com.github.paolorotolo.appintro.R.id.description);
-        LinearLayout mainLayout = v.findViewById(com.github.paolorotolo.appintro.R.id.main);
+        View view = inflater.inflate(R.layout.intro_fragment_settings, container, false);
+        TextView titleText = view.findViewById(com.github.paolorotolo.appintro.R.id.title);
+        TextView descriptionText = view.findViewById(com.github.paolorotolo.appintro.R.id.description);
+        LinearLayout mainLayout = view.findViewById(com.github.paolorotolo.appintro.R.id.main);
 
-        t.setText(title);
-        t.setTextColor(titleColor);
+        titleText.setText(title);
 
-        if (titleTypeface != null && titleTypeface.equals("")) {
-            if (CustomFontCache.get(titleTypeface, getContext()) != null) {
-                t.setTypeface(CustomFontCache.get(titleTypeface, getContext()));
-            }
+        if (titleColor != 0) {
+            titleText.setTextColor(titleColor);
         }
 
-        d.setText(description);
-        d.setTextColor(descColor);
+        if (titleTypeface != null)
+            titleTypeface.applyTo(titleText);
 
-        if (descTypeface != null && descTypeface.equals("")) {
-            if (CustomFontCache.get(descTypeface, getContext()) != null) {
-                d.setTypeface(CustomFontCache.get(descTypeface, getContext()));
-            }
-        }
+        descriptionText.setText(description);
+        descriptionText.setTextColor(descColor);
+        if (descTypeface != null)
+            descTypeface.applyTo(descriptionText);
 
         // ClassLayer:
-        stufeSpinner = v.findViewById(R.id.slide_class_spinner);
+        layerSpinner = view.findViewById(R.id.slide_class_spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
                 getActivity().getApplicationContext(), R.array.ClassLayer_List, R.layout.custom_spinner_item);
         adapter.setDropDownViewResource(R.layout.view_spinner_dropdown_item);
-        stufeSpinner.setAdapter(adapter);
-        stufeSpinner.setSelection(getPositionFromString(getResources().getStringArray(R.array.ClassLayer_List), sp.getString("Klassenstufe", "5")));
+        layerSpinner.setAdapter(adapter);
+        layerSpinner.setSelection(getPositionFromString(getResources().getStringArray(R.array.ClassLayer_List), sp.getString("Klassenstufe", "5")));
 
-        stufeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        layerSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             Adapter initializedAdapter = null;
 
             @Override
@@ -149,46 +168,24 @@ public class SettingsIntroSlide extends AppIntroBaseFragment {
         });
 
         // Class:
-        classSpinner = v.findViewById(R.id.slide_class_spinner2);
+        classSpinner = view.findViewById(R.id.slide_class_spinner2);
         ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(
                 getActivity().getApplicationContext(), R.array.Class_List, R.layout.custom_spinner_item);
         adapter2.setDropDownViewResource(R.layout.view_spinner_dropdown_item);
         classSpinner.setAdapter(adapter2);
         classSpinner.setSelection(getPositionFromString(getResources().getStringArray(R.array.Class_List), sp.getString("Klasse", "a")));
 
-        if (stufeSpinner.getSelectedItem().toString().equals("K1") || stufeSpinner.getSelectedItem().toString().equals("K2")) {
+        if (layerSpinner.getSelectedItem().toString().equals("K1") || layerSpinner.getSelectedItem().toString().equals("K2")) {
             classSpinner.setActivated(false);
             classSpinner.setEnabled(false);
         }
 
-        notificationsSwitch = v.findViewById(R.id.slide_notifications_switch);
+        notificationsSwitch = view.findViewById(R.id.slide_notifications_switch);
         notificationsSwitch.setTextColor(Color.WHITE);
 
         notificationsSwitch.setChecked(sp.getBoolean("notification", true));
         mainLayout.setBackgroundColor(bgColor);
-        return v;
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        setRetainInstance(true);
-
-        if (getArguments() != null && !getArguments().isEmpty()) {
-            drawable = getArguments().getInt(ARG_DRAWABLE);
-            title = getArguments().getString(ARG_TITLE);
-            titleTypeface = getArguments().containsKey(ARG_TITLE_TYPEFACE) ?
-                    getArguments().getString(ARG_TITLE_TYPEFACE) : "";
-            description = getArguments().getString(ARG_DESC);
-            descTypeface = getArguments().containsKey(ARG_DESC_TYPEFACE) ?
-                    getArguments().getString(ARG_DESC_TYPEFACE) : "";
-            bgColor = getArguments().getInt(ARG_BG_COLOR);
-            titleColor = getArguments().containsKey(ARG_TITLE_COLOR) ?
-                    getArguments().getInt(ARG_TITLE_COLOR) : 0;
-            descColor = getArguments().containsKey(ARG_DESC_COLOR) ?
-                    getArguments().getInt(ARG_DESC_COLOR) : 0;
-        }
+        return view;
     }
 
     @Override
