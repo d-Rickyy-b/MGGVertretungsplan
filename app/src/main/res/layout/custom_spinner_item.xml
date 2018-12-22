@@ -7,4 +7,4 @@
     android:layout_height="wrap_content"
     android:ellipsize="marquee"
     android:textAlignment="inherit"
-    android:textColor="#ffffff"/>
+    android:textColor="@color/spinner_text_color_enabled_disabled"/>
