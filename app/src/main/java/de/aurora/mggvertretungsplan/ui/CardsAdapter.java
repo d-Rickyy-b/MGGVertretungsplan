@@ -10,7 +10,6 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 import androidx.recyclerview.widget.RecyclerView;
 import de.aurora.mggvertretungsplan.R;
@@ -178,26 +177,20 @@ public class CardsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     }
 
     public void addDay(TimeTableDay ttd) {
-        Date date = ttd.getDate();
-
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
         boolean displayPastDays = sp.getBoolean("displayPastDays", true);
-
-        Date currentDate = new Date();
-        int sixteenHrsInMillisecs = 60 * 60 * 16 * 1000;
-        long secondsDiff = ((date.getTime() + sixteenHrsInMillisecs) - currentDate.getTime()) / 1000; // Difference between today and future date. If negative: date in the past. If positive: date in the future
 
         // Displays the current day only when the setting is active
         // OR when it's not set, but it's before 16:00
         // If the setting for displaying old days is deactivated, they will be removed here.
-        if (!displayPastDays && (secondsDiff < 0)) {
+        if (!displayPastDays && !ttd.isInFuture()) {
             return;
         }
 
         String className = sp.getString("KlasseGesamt", "5a");
         ArrayList<TimeTableElement> timeTableElements = ttd.getElements(className);
 
-        DateHeading dateHeading = new DateHeading(date, ttd.getWeek());
+        DateHeading dateHeading = new DateHeading(ttd.getDate(), ttd.getWeek());
         items.add(dateHeading);
 
         // TODO should be improved in the future
