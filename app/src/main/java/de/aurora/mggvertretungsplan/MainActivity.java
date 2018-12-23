@@ -323,11 +323,14 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
      * @param timeTable A TimeTable element to be displayed on screen
      */
     private void displayData(TimeTable timeTable) {
-
-        if (timeTable.getDaysCount() == 0 || (sp.getBoolean("", true) && timeTable.getFutureDaysCount() == 0)) {
         Logger.d(TAG, "Display data on screen");
         String toolbarTitle_WithClass = getString(R.string.toolbarTitle_WithClass, class_name);
         toolbar.setTitle(toolbarTitle_WithClass);
+
+        if (timeTable.getDaysCount() == 0 || (!sp.getBoolean("displayPastDays", true) && timeTable.getFutureDaysCount() == 0)) {
+            // If there are no days in the timetable or if the option "displayPastDays" is not set and the futureDaysCount equals zero
+            // (If there is a day which date is today but the current time is < 16h, that day will be shown anyway)
+            // Display a *shrug*, when there is no data to be displayed
             recyclerView.setAdapter(new EmptyAdapter(getString(R.string.no_data_to_display)));
         } else {
             recyclerView.setAdapter(cAdapter);
