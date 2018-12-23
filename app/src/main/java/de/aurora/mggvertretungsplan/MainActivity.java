@@ -337,7 +337,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             cAdapter.clearItems();
             cAdapter.addDays(timeTable);
             cAdapter.notifyDataSetChanged();
-            Logger.d(TAG, "Notify changes");
+            Logger.d(TAG, "Update View");
         }
     }
 
