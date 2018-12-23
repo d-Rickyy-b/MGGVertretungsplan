@@ -60,8 +60,6 @@ public class TimeTableTest extends TestCase {
 
     public void testGetFutureDaysCount() {
         assertEquals(0, timeTable.getFutureDaysCount());
-        Date date = new Date();
-        System.out.println(date.toString());
 
         Calendar cal = Calendar.getInstance();
         cal.set(Calendar.HOUR_OF_DAY,15);
@@ -70,12 +68,10 @@ public class TimeTableTest extends TestCase {
         cal.set(Calendar.MILLISECOND,0);
 
         Date today1559 = cal.getTime();
-        System.out.println(today1559.toString());
 
         cal.set(Calendar.HOUR_OF_DAY,16);
         cal.set(Calendar.MINUTE,1);
         Date today1601 = cal.getTime();
-        System.out.println(today1601.toString());
 
         ArrayList<ArrayList<String>> arrayLists = new ArrayList<>();
         TimeTableDay ttd = new TimeTableDay("31.12.", WEEK_A, arrayLists);
