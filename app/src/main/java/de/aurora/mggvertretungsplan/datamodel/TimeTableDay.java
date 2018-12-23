@@ -68,6 +68,15 @@ public class TimeTableDay {
         timeTableElements.add(index, tte);
     }
 
+    public boolean isInFuture(Date currentDate) {
+        int sixteenHrsInMillis = 16 * 60 * 60 * 1000;
+        return (getDate().getTime() + sixteenHrsInMillis >= currentDate.getTime());
+    }
+
+    public boolean isInFuture() {
+        return isInFuture(new Date());
+    }
+
     public Week getWeek() {
         return this.week;
     }

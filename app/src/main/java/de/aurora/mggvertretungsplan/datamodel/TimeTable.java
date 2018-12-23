@@ -58,11 +58,14 @@ public class TimeTable {
      * @return Number of days which are in the future
      */
     public int getFutureDaysCount() {
+        return getFutureDaysCount(new Date());
+    }
+
+    public int getFutureDaysCount(Date currentDate) {
         int futureDays = 0;
 
         for (TimeTableDay ttd : timeTableDays) {
-            int sixteenHrsInMillis = 16 * 60 * 60 * 1000;
-            if (ttd.getDate().getTime() + sixteenHrsInMillis >= (new Date()).getTime()) {
+            if (ttd.isInFuture(currentDate)) {
                 futureDays++;
             }
         }
