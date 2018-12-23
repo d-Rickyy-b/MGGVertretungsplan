@@ -44,8 +44,8 @@
     <string name="settings_notification_summary">Benachrichtigung bei Änderung des Vertretungsplans</string>
 
     <string name="settings_section_display">Anzeige</string>
-    <string name="settings_past_days_title">Alte Tage zeigen</string>
-    <string name="settings_past_days_summary">Sollen vergangene Tage noch angezeigt werden?</string>
+    <string name="settings_past_days_title">Vergangene Tage zeigen</string>
+    <string name="settings_past_days_summary">Sollen vergangene Tage noch in der App angezeigt werden?</string>
 
     <string name="colored_cards_title">Farbige Karten</string>
     <string name="colored_cards_summary">Ausfälle in Übersicht farbig anzeigen</string>
