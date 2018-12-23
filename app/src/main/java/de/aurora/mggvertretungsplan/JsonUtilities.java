@@ -1,11 +1,11 @@
 package de.aurora.mggvertretungsplan;
 
-import android.util.Log;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.util.ArrayList;
+
+import de.aurora.mggvertretungsplan.util.Logger;
 
 
 class JsonUtilities {
@@ -25,7 +25,7 @@ class JsonUtilities {
             JSONArray jsonArray = new JSONArray(jsonArraytext);
             return getArrayList(jsonArray);
         } catch (JSONException jsonException) {
-            Log.e("Vertretungsplan_utility", jsonException.getMessage());
+            Logger.e("Vertretungsplan_utility", jsonException.getMessage());
             return new ArrayList<>();
         }
     }
@@ -45,7 +45,7 @@ class JsonUtilities {
                 resultList.add(row);
             }
         } catch (JSONException jsonException) {
-            Log.e("Vertretungsplan_utility", jsonException.getMessage());
+            Logger.e("Vertretungsplan_utility", jsonException.getMessage());
             return new ArrayList<>();
         }
 

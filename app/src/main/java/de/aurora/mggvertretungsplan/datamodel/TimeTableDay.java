@@ -1,7 +1,5 @@
 package de.aurora.mggvertretungsplan.datamodel;
 
-import android.util.Log;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -12,6 +10,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
+
+import de.aurora.mggvertretungsplan.util.Logger;
 
 /**
  * Created by Rico on 19.09.2017.
@@ -52,7 +52,7 @@ public class TimeTableDay {
                 addElement(tte);
             }
         } catch (JSONException e) {
-            Log.e(TAG, e.getMessage());
+            Logger.e(TAG, e.getMessage());
         }
     }
 
@@ -66,6 +66,15 @@ public class TimeTableDay {
         }
 
         timeTableElements.add(index, tte);
+    }
+
+    public boolean isInFuture(Date currentDate) {
+        int sixteenHrsInMillis = 16 * 60 * 60 * 1000;
+        return (getDate().getTime() + sixteenHrsInMillis >= currentDate.getTime());
+    }
+
+    public boolean isInFuture() {
+        return isInFuture(new Date());
     }
 
     public Week getWeek() {
@@ -87,7 +96,7 @@ public class TimeTableDay {
                 this.date = fullDateFormat.parse(date);
             }
         } catch (ParseException e) {
-            Log.e(TAG, e.getMessage());
+            Logger.e(TAG, e.getMessage());
             this.date = new Date();
         }
     }
@@ -108,6 +117,7 @@ public class TimeTableDay {
 
         for (TimeTableElement tte : timeTableElements) {
             String elementClassName = tte.getClass_name();
+            // TODO Remove the "contains" part
             if (grade.matches(elementClassName) || elementClassName.contains(className))
                 elementsOfClass.add(tte);
         }

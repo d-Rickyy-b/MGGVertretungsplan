@@ -1,7 +1,5 @@
 package de.aurora.mggvertretungsplan.parsing;
 
-import android.util.Log;
-
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -17,6 +15,7 @@ import java.util.regex.Pattern;
 
 import de.aurora.mggvertretungsplan.datamodel.TimeTable;
 import de.aurora.mggvertretungsplan.datamodel.TimeTableDay;
+import de.aurora.mggvertretungsplan.util.Logger;
 
 /**
  * Created by Rico on 22.09.2017.
@@ -86,7 +85,7 @@ public class MGGParser extends BaseParser {
             table = deleteDoubles(table);
 
             if (index >= datesList.size()) {
-                return day;
+                return null;
             }
 
             String date_header = datesList.get(index);
@@ -104,7 +103,7 @@ public class MGGParser extends BaseParser {
                     date_text = matcher.group(1);
                     week_text = matcher.group(3);
                 } catch (Exception e) {
-                    Log.e(TAG, e.getMessage());
+                    Logger.e(TAG, e.getMessage());
                 }
             }
 
@@ -113,8 +112,8 @@ public class MGGParser extends BaseParser {
             } else
                 day = new TimeTableDay(date_text, week_text, new ArrayList<ArrayList<String>>());
         } catch (IndexOutOfBoundsException e) {
-            Log.e(TAG, "parseDay(): There is probably no content to extract!");
-            Log.e(TAG, e.getMessage());
+            Logger.e(TAG, "parseDay(): There is probably no content to extract!");
+            Logger.e(TAG, e.getMessage());
         }
 
         return day;
@@ -122,6 +121,7 @@ public class MGGParser extends BaseParser {
 
     @Override
     public TimeTable parse(ArrayList<String> websites) {
+        Logger.d(TAG, "Start parsing");
         TimeTable timeTable = new TimeTable();
         int index = 0;
 
@@ -130,13 +130,14 @@ public class MGGParser extends BaseParser {
                 TimeTableDay day = parseDay(website, index);
 
                 if (null == day) {
+                    // If the day can't be parsed, just ignore it and continue
                     index++;
                     continue;
                 }
 
                 timeTable.addDay(day);
             } catch (Exception e) {
-                Log.e(TAG, e.getMessage());
+                Logger.e(TAG, e.getMessage());
             }
             index++;
         }

@@ -57,7 +57,7 @@
                     android:textSize="20sp"
                     tools:textColor="@android:color/black" />
 
-                <android.support.v7.widget.AppCompatSpinner
+                <androidx.appcompat.widget.AppCompatSpinner
                     android:id="@+id/slide_class_spinner"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -95,7 +95,7 @@
                     android:textSize="20sp"
                     tools:textColor="@android:color/black" />
 
-                <android.support.v7.widget.AppCompatSpinner
+                <androidx.appcompat.widget.AppCompatSpinner
                     android:id="@+id/slide_class_spinner2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -107,12 +107,12 @@
                     android:paddingBottom="10dp"
 
                     android:paddingTop="10dp"
-                    tools:text="Stufe" />
+                    tools:text="Stufe"
+                    tools:textColor="@android:color/black"/>
 
             </RelativeLayout>
 
-
-            <android.support.v7.widget.SwitchCompat
+            <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/slide_notifications_switch"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -120,8 +120,8 @@
                 android:paddingBottom="10dp"
                 android:paddingTop="10dp"
                 android:textColorHint="@android:color/white"
-                android:textSize="20sp" />
-
+                android:textSize="20sp"
+                tools:textColor="@android:color/black" />
         </LinearLayout>
     </ScrollView>
 

@@ -8,24 +8,24 @@ import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.annotation.ColorInt;
-import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.util.TypedValue;
 
 import com.github.paolorotolo.appintro.AppIntro;
 import com.github.paolorotolo.appintro.AppIntroFragment;
 
+import androidx.annotation.ColorInt;
+import androidx.fragment.app.Fragment;
 import de.aurora.mggvertretungsplan.R;
 import de.aurora.mggvertretungsplan.ui.intro.slides.SettingsIntroSlide;
 import de.aurora.mggvertretungsplan.ui.theming.ThemeManager;
+import de.aurora.mggvertretungsplan.util.Logger;
 
 public class IntroActivity extends AppIntro {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        int themeID = PreferenceManager.getDefaultSharedPreferences(this).getInt("Theme", 0);
-        setTheme(ThemeManager.getTheme(themeID));
         super.onCreate(savedInstanceState);
+        int themeID = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getInt("Theme", 0);
+        setTheme(ThemeManager.getTheme(themeID));
 
         TypedValue typedValue = new TypedValue();
         Resources.Theme theme = getTheme();
@@ -35,7 +35,7 @@ public class IntroActivity extends AppIntro {
         int image = R.drawable.app_logo_material;
         int titleColor = Color.WHITE;
 
-        addSlide(AppIntroFragment.newInstance(getString(R.string.slide_welcome_title), getString(R.string.slide_welcome_descr), image, backgroundColor));
+        addSlide(AppIntroFragment.newInstance(getString(R.string.slide_welcome_title), null, getString(R.string.slide_welcome_descr), null, image, backgroundColor, 0, 0));
         addSlide(SettingsIntroSlide.newInstance(getString(R.string.slide_settings_title), getString(R.string.slide_settings_descr), backgroundColor, titleColor, titleColor));
 
         setGoBackLock(true);
@@ -50,7 +50,7 @@ public class IntroActivity extends AppIntro {
             SettingsIntroSlide slide = (SettingsIntroSlide) getSlides().get(1);
             slide.saveData();
         } catch (Exception e) {
-            Log.e("IntroActivity", e.getMessage());
+            Logger.e("IntroActivity", e.getMessage());
         }
         finish();
     }

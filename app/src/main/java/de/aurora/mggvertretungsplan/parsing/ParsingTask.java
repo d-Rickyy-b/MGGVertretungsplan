@@ -1,7 +1,6 @@
 package de.aurora.mggvertretungsplan.parsing;
 
 import android.os.AsyncTask;
-import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -13,12 +12,14 @@ import java.util.ArrayList;
 
 import de.aurora.mggvertretungsplan.datamodel.TimeTable;
 import de.aurora.mggvertretungsplan.parsing.BaseParser.ParsingCompleteListener;
+import de.aurora.mggvertretungsplan.util.Logger;
 
 /**
  * Created by Rico on 04.12.2017.
  */
 
 public class ParsingTask extends AsyncTask<String, Void, TimeTable> {
+    private static final String TAG = "ParsingTask";
     private final ParsingCompleteListener callback;
     private final BaseParser parser;
 
@@ -28,6 +29,7 @@ public class ParsingTask extends AsyncTask<String, Void, TimeTable> {
     }
 
     public void startParsing() {
+        Logger.d(TAG, "Start ParsingTask");
         this.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, parser.getTimeTableURLs());
     }
 
@@ -36,6 +38,7 @@ public class ParsingTask extends AsyncTask<String, Void, TimeTable> {
 
         try {
             URL url = new URL(urlString);
+            Logger.d(TAG, String.format("Downloading webpage: %s", url.toString()));
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setReadTimeout(10000);
             conn.setConnectTimeout(15000);
@@ -69,7 +72,7 @@ public class ParsingTask extends AsyncTask<String, Void, TimeTable> {
             try {
                 websites.add(downloadURL(url));
             } catch (IOException e) {
-                Log.e("ParsingTask", e.getMessage());
+                Logger.e(TAG, e.getMessage());
             }
         }
 
@@ -81,6 +84,7 @@ public class ParsingTask extends AsyncTask<String, Void, TimeTable> {
 
     @Override
     protected void onPostExecute(TimeTable timeTable) {
+        // TODO move to background task
         callback.onParsingComplete(timeTable);
     }
 

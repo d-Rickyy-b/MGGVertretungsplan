@@ -10,8 +10,8 @@ import java.util.Locale;
 
 public class DateHeading {
     @SuppressWarnings("CanBeFinal")
-    private Date date;
-    private Week week;
+    private final Date date;
+    private final Week week;
 
     public DateHeading(Date date, Week week) {
         this.date = date;

@@ -1,19 +1,21 @@
 package de.aurora.mggvertretungsplan.datamodel;
 
-import android.util.Log;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
+
+import de.aurora.mggvertretungsplan.util.Logger;
 
 /**
  * Created by Rico on 19.09.2017.
  */
 
 public class TimeTable {
+    private static final String TAG = "TimeTable";
     private final ArrayList<TimeTableDay> timeTableDays = new ArrayList<>();
 
     public TimeTable() {
@@ -21,17 +23,17 @@ public class TimeTable {
     }
 
     public TimeTable(JSONArray jsonArray) {
-        Log.d("TimeTable", "Creating new TimeTable object from JSON");
+        Logger.d(TAG, "Creating new TimeTable object from JSON");
         for (int i = 0; i < jsonArray.length(); i++) {
             try {
                 JSONObject jsonDay = (JSONObject) jsonArray.get(i);
                 TimeTableDay ttd = new TimeTableDay(jsonDay);
                 addDay(ttd);
             } catch (JSONException e) {
-                Log.e("TimeTable", e.getMessage());
+                Logger.e(TAG, e.getMessage());
             }
         }
-        Log.d("TimeTable", "TimeTable object created");
+        Logger.d(TAG, "TimeTable object created");
     }
 
     // Adds a day to the right place via insertionsort
@@ -51,13 +53,19 @@ public class TimeTable {
         return timeTableDays.size();
     }
 
-    // Returns the number of days, which date is in the future
+    /**
+     * Calculates the number of days of the current TimeTable, which are in the future
+     * @return Number of days which are in the future
+     */
     public int getFutureDaysCount() {
+        return getFutureDaysCount(new Date());
+    }
+
+    public int getFutureDaysCount(Date currentDate) {
         int futureDays = 0;
 
         for (TimeTableDay ttd : timeTableDays) {
-            int sixteenHrsInMillis = 16 * 60 * 60 * 1000;
-            if (ttd.getDate().getTime() + sixteenHrsInMillis >= (new Date()).getTime()) {
+            if (ttd.isInFuture(currentDate)) {
                 futureDays++;
             }
         }
@@ -81,6 +89,7 @@ public class TimeTable {
     }
 
     public int getTotalDifferences(TimeTable savedTimeTable, String className) {
+        Logger.d(TAG, "Getting differences of saved and downloaded timetable!");
         int differences = 0;
         Date currentDate = new Date();
         ArrayList<TimeTableDay> savedDays = savedTimeTable.getAllDays();
@@ -90,15 +99,15 @@ public class TimeTable {
             int sixteenHrsInMillisecs = 60 * 60 * 16 * 1000;
 
             if (currentDate.getTime() > ttd.getDate().getTime() + sixteenHrsInMillisecs) {
-                Log.d("TimeTable", String.format("Date in the past: %s, ignoring!", ttd.getDateString()));
+                Logger.d(TAG, String.format("Date in the past: %s, ignoring!", ttd.getDateString()));
                 continue;
             }
 
             for (TimeTableDay saved_ttd : savedDays) {
                 if (ttd.isSameDay(saved_ttd)) {
-                    Log.d("TimeTable", String.format("Dates are the same - %s | %s", ttd.getDateString(), saved_ttd.getDateString()));
-                    Log.d("TimeTable", String.format("%s", ttd.getElements(className).toString()));
-                    Log.d("TimeTable", String.format("%s", saved_ttd.getElements(className).toString()));
+                    Logger.d(TAG, String.format("Dates are the same - %s | %s", ttd.getDateString(), saved_ttd.getDateString()));
+                    Logger.d(TAG, String.format("%s", ttd.getElements(className).toString()));
+                    Logger.d(TAG, String.format("%s", saved_ttd.getElements(className).toString()));
                     differences += ttd.getDifferences(saved_ttd, className);
                     newDay = false;
                     break;
@@ -108,7 +117,7 @@ public class TimeTable {
             if (newDay) {
                 int dayDiffs = ttd.getElementsCount(className);
                 differences += dayDiffs;
-                Log.d("TimeTable", String.format("New Day found - %d cancellations for %s", dayDiffs, className));
+                Logger.d(TAG, String.format(Locale.GERMANY,"New Day found - %d cancellations for %s", dayDiffs, className));
             }
         }
 

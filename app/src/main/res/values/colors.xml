@@ -7,13 +7,13 @@
     <color name="textColor">#FAFAFA</color>
     <color name="textColorInverse">#0e0e0e</color>
 
-    <color name="Schrift1">#424242</color>
-    <color name="Schrift2">#5c5c5c</color>
+    <color name="lightTextColor">#5c5c5c</color>
+    <color name="lightTextColor2">#424242</color>
 
     <color name="reallyLightGrey">#f5f5f5</color>
 
-    <color name="disabled">#a0a0a0</color>
-    <color name="disabled2">#bababa</color>
+    <color name="disabled">#bababa</color>
+    <color name="disabled_darker">#a0a0a0</color>
 
     <color name="colorPrimary">#757575</color>
     <color name="colorPrimaryDark">#616161</color>
@@ -23,6 +23,11 @@
     <color name="cardSubstitution">#779ECB</color>
     <color name="cardNoColor">#F5F5F5</color>
 
+    <!-- Dark theme colors -->
+    <color name="cardCancellationDark">#e43d3d</color>
+    <color name="cardSubstitutionDark">#5588c2</color>
+    <color name="cardNoColorDark">#1c2632</color>
+
     <!-- Colors shown in the color picker in the settings -->
     <array name="theme_picker">
         <item name="standard">#757575</item>
@@ -30,7 +35,40 @@
         <item name="pink">#f06292</item>
         <item name="green">#9ccc65</item>
         <item name="orange">#ff9800</item>
+        <item name="dark">#212d3b</item>
     </array>
+
+    <!-- Blue Theme -->
+    <color name="bluePrimary">#64b5f6</color>
+    <color name="bluePrimaryDark">#2286c3</color>
+    <color name="blueAccent">#4d2c91</color>
+
+    <!-- Pink Theme -->
+    <color name="pinkPrimary">#f06292</color>
+    <color name="pinkPrimaryDark">#ba2d65</color>
+    <color name="pinkAccent">#673ab7</color>
+
+    <!-- Green Theme -->
+    <color name="greenPrimary">#9ccc65</color>
+    <color name="greenPrimaryDark">#6b9b37</color>
+    <color name="greenAccent">#8d6e63</color>
+
+    <!-- Orange Theme -->
+    <color name="orangePrimary">#ff9800</color>
+    <color name="orangePrimaryDark">#c66900</color>
+    <color name="orangeAccent">#9c64a6</color>
+
+    <!-- Dark Theme -->
+    <color name="darkPrimary">#212d3b</color>
+    <color name="darkPrimaryDark">#19212c</color>
+    <color name="darkAccent">#446891</color>
+    <color name="darkBackground">#151d26</color>
+
+    <color name="darkTextColor">#ffffff</color>
+    <color name="darkTextColor2">#dcdcdc</color>
+
+    <color name="darkDisabled">#777777</color>
+    <color name="darkDisabled2">#aaaaaa</color>
 
     <color name="tagBackground">#00bcce</color>
 </resources>

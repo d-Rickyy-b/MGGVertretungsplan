@@ -20,7 +20,7 @@ public class TimeTableElementTest {
     private String info;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         hour = "3-4";
         class_name = "10a";
         subject = "D";
@@ -31,14 +31,14 @@ public class TimeTableElementTest {
     }
 
     @Test
-    public void testGetHour_I() throws Exception {
+    public void testGetHour_I() {
         TimeTableElement tte = new TimeTableElement(hour, class_name, subject, newSubject, room, newRoom, info);
 
         assertEquals(3, tte.getHour_I());
     }
 
     @Test
-    public void testGetType() throws Exception {
+    public void testGetType() {
         TimeTableElement tte = new TimeTableElement(hour, class_name, subject, newSubject, room, newRoom, info);
         assertEquals(TimeTableElement.SUBSTITUTION, tte.getType());
 
@@ -50,14 +50,14 @@ public class TimeTableElementTest {
     }
 
     @Test
-    public void testGetInfoForDisplay() throws Exception {
+    public void testGetInfoForDisplay() {
         TimeTableElement tte = new TimeTableElement(hour, class_name, subject, newSubject, room, newRoom, "Raumänderung");
 
         assertEquals(String.format("%s - %s", "Englisch", "Raumänderung"), tte.getInfoForDisplay());
     }
 
     @Test
-    public void testEquals() throws Exception {
+    public void testEquals() {
         TimeTableElement tte = new TimeTableElement(hour, class_name, subject, newSubject, room, newRoom, info);
         TimeTableElement tte2 = new TimeTableElement(hour, class_name, subject, newSubject, room, newRoom, info);
 
@@ -69,7 +69,7 @@ public class TimeTableElementTest {
     }
 
     @Test
-    public void testGetDiffAmount() throws Exception {
+    public void testGetDiffAmount() {
         String hour = "3";
         String class_name = "10a";
         String subject = "D";
@@ -90,7 +90,7 @@ public class TimeTableElementTest {
     }
 
     @Test
-    public void testToString() throws Exception {
+    public void testToString() {
         TimeTableElement tte = new TimeTableElement(hour, class_name, subject, newSubject, room, newRoom, info);
 
         assertEquals(String.format("%s | %s | %s | %s | %s | %s | %s", hour, class_name, "Deutsch", "Englisch", room, newRoom, info), tte.toString());

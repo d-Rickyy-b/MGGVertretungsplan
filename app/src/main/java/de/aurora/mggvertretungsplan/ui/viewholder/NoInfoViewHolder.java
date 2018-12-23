@@ -1,9 +1,10 @@
 package de.aurora.mggvertretungsplan.ui.viewholder;
 
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.RecyclerView;
 import de.aurora.mggvertretungsplan.R;
 
 /**
@@ -11,9 +12,11 @@ import de.aurora.mggvertretungsplan.R;
  */
 public class NoInfoViewHolder extends RecyclerView.ViewHolder {
     public final TextView noInfo;
+    public final CardView cardView;
 
     public NoInfoViewHolder(View view) {
         super(view);
+        cardView = view.findViewById(R.id.card_view);
         noInfo = view.findViewById(R.id.no_info_textview);
     }
 }

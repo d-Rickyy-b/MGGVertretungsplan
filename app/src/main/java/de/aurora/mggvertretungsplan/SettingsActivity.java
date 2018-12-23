@@ -10,10 +10,10 @@ import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.appcompat.widget.Toolbar;
 import de.aurora.mggvertretungsplan.ui.settings.PreferenceFragmentMain;
 import de.aurora.mggvertretungsplan.ui.theming.ThemeManager;
 
@@ -75,7 +75,7 @@ public class SettingsActivity extends PreferenceActivity implements OnSharedPref
             setTheme(ThemeManager.getTheme(themeID));
 
             if (Build.VERSION.SDK_INT >= 16) {
-                Intent intent = new Intent(this, SettingsActivity.class);
+                Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
                 ActivityOptions options = ActivityOptions.makeCustomAnimation(this, R.anim.fadein, R.anim.fadeout);
                 startActivity(intent, options.toBundle());
                 finish();

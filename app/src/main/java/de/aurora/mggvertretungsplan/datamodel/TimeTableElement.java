@@ -1,25 +1,25 @@
 package de.aurora.mggvertretungsplan.datamodel;
 
 import android.annotation.SuppressLint;
-import android.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Locale;
+
+import de.aurora.mggvertretungsplan.util.Logger;
 
 /**
  * Created by Rico on 26.09.2016.
  */
 
 public class TimeTableElement {
-    private static final String TAG = "TimeTableElement";
-
     public static final int EMPTY = -1;
     public static final int CANCELLATION = 0;
     public static final int SUBSTITUTION = 1;
-
+    private static final String TAG = "TimeTableElement";
     private final String hour;
     private final String class_name;
     private final String subject;
@@ -73,7 +73,7 @@ public class TimeTableElement {
         } else
             abbr = subj;
 
-        if (abbr == null || abbr.equals("")) {
+        if (abbr.equals("")) {
             return "Kein Fach";
         } else {
             switch (abbr.toUpperCase()) {
@@ -159,7 +159,7 @@ public class TimeTableElement {
             else
                 return Integer.parseInt(hour.replaceAll("^([0-9]{1,2}).*", "$1"));
         } catch (NumberFormatException nfe) {
-            Log.e(TAG, String.format("Hour doesn't match pattern: %s", hour));
+            Logger.e(TAG, String.format("Hour doesn't match pattern: %s", hour));
             return 12;
         }
     }
@@ -197,25 +197,28 @@ public class TimeTableElement {
     }
 
     public String getInfoForDisplay() {
-        String info_e;
-        if (!info.isEmpty() && !" ".equals(info)) {
-            info_e = info.substring(0, 1).toUpperCase() + info.substring(1);
-
-            if (!subject.equals(newSubject) && !newSubject.equals("---") && !newSubject.isEmpty()) {
-                info_e = String.format("%s - %s", this.newSubject, info);
-            }
-        } else if (type == CANCELLATION) {
-            info_e = "Entfällt";
-        } else if (type == SUBSTITUTION) {
-            if (!subject.equals(newSubject) && !newSubject.equals("---") && !newSubject.isEmpty()) {
-                info_e = String.format("%s - %s", this.newSubject, "Vertretung");
-            } else
-                info_e = "Vertretung";
-        } else {
-            info_e = this.newSubject;
+        if ("! Raum".equals(info)) {
+            return "Raumänderung";
         }
 
-        return info_e;
+        if (!info.isEmpty() && !" ".equals(info)) {
+            String info_e = info.substring(0, 1).toUpperCase(Locale.getDefault()) + info.substring(1);
+
+            if (!subject.equals(newSubject) && !newSubject.equals("---") && !newSubject.isEmpty()) {
+                return String.format("%s - %s", this.newSubject, info_e);
+            } else {
+                return info_e;
+            }
+        } else if (type == CANCELLATION) {
+            return "Entfällt";
+        } else if (type == SUBSTITUTION) {
+            if (!subject.equals(newSubject) && !newSubject.equals("---") && !newSubject.isEmpty()) {
+                return String.format("%s - %s", this.newSubject, "Vertretung");
+            } else
+                return "Vertretung";
+        } else {
+            return this.newSubject;
+        }
     }
 
     boolean equals(TimeTableElement tte) {

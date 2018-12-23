@@ -1,9 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+
 <resources>
 
     <!-- Drop down menu style of main layout -->
     <style name="DropDownMenuTheme" parent="@style/Widget.AppCompat.Light.ListView.DropDown">
         <item name="android:textColorPrimary">@android:color/black</item>
         <item name="android:background">@android:color/white</item>
+    </style>
+
+    <!-- Drop down menu dark style of main layout -->
+    <style name="DropDownMenuThemeDark" parent="@style/Widget.AppCompat.Light.ListView.DropDown">
+        <item name="android:textColorPrimary">@color/text_color_dark_enabled_disabled_2</item>
+        <item name="android:background">@color/darkBackground</item>
     </style>
 
     <!-- Base Theme -->
@@ -19,10 +27,36 @@
         <item name="android:textColorPrimary">@color/textColor</item>
         <item name="android:textColorPrimaryInverse">@color/textColorInverse</item>
         <item name="android:alertDialogStyle">@style/AlertDialogTheme</item>
+        <item name="alertDialogStyle">@style/AlertDialogTheme</item>
         <item name="android:alertDialogTheme">@style/AlertDialogTheme</item>
+        <item name="alertDialogTheme">@style/AlertDialogTheme</item>
 
-        <item name="android:textColor">@drawable/two_value_colors_2</item>
-        <item name="android:textColorSecondary">@drawable/two_value_colors</item>
+        <item name="android:textColor">@color/text_color_enabled_disabled_2</item>
+        <item name="android:textColorSecondary">@color/text_color_enabled_disabled</item>
+
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.Dark" parent="Theme.AppCompat">
+        <item name="android:dropDownListViewStyle">@style/DropDownMenuThemeDark</item>
+        <item name="dropDownListViewStyle">@style/DropDownMenuThemeDark</item>
+
+        <item name="colorControlNormal">@color/textColor</item>
+        <item name="android:textColorPrimary">@color/textColor</item>
+        <item name="android:textColorPrimaryInverse">@color/textColorInverse</item>
+        <item name="android:alertDialogStyle">@style/AlertDialogThemeDark</item>
+        <item name="alertDialogStyle">@style/AlertDialogThemeDark</item>
+        <item name="android:alertDialogTheme">@style/AlertDialogThemeDark</item>
+        <item name="alertDialogTheme">@style/AlertDialogThemeDark</item>
+
+        <item name="android:textColorAlertDialogListItem">@color/textColor</item>
+        <item name="textColorAlertDialogListItem">@color/textColor</item>
+
+        <item name="android:windowBackground">@color/darkBackground</item>
+
+        <item name="android:textColor">@color/text_color_dark_enabled_disabled</item>
+        <item name="android:textColorSecondary">@color/text_color_dark_enabled_disabled_2</item>
 
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
@@ -30,29 +64,34 @@
 
     <!-- Colored themes, changable in settings -->
     <style name="BlueTheme" parent="AppTheme.Light">
-        <item name="colorPrimary">#64b5f6</item>
-        <item name="colorPrimaryDark">#2286c3</item>
-        <item name="colorAccent">#4d2c91</item>
+        <item name="colorPrimary">@color/bluePrimary</item>
+        <item name="colorPrimaryDark">@color/bluePrimaryDark</item>
+        <item name="colorAccent">@color/blueAccent</item>
     </style>
 
     <style name="PinkTheme" parent="AppTheme.Light">
-        <item name="colorPrimary">#f06292</item>
-        <item name="colorPrimaryDark">#ba2d65</item>
-        <item name="colorAccent">#673ab7</item>
+        <item name="colorPrimary">@color/pinkPrimary</item>
+        <item name="colorPrimaryDark">@color/pinkPrimaryDark</item>
+        <item name="colorAccent">@color/pinkAccent</item>
     </style>
 
     <style name="GreenTheme" parent="AppTheme.Light">
-        <item name="colorPrimary">#9ccc65</item>
-        <item name="colorPrimaryDark">#6b9b37</item>
-        <item name="colorAccent">#8d6e63</item>
+        <item name="colorPrimary">@color/greenPrimary</item>
+        <item name="colorPrimaryDark">@color/greenPrimaryDark</item>
+        <item name="colorAccent">@color/greenAccent</item>
     </style>
 
     <style name="OrangeTheme" parent="AppTheme.Light">
-        <item name="colorPrimary">#ff9800</item>
-        <item name="colorPrimaryDark">#c66900</item>
-        <item name="colorAccent">#9c64a6</item>
+        <item name="colorPrimary">@color/orangePrimary</item>
+        <item name="colorPrimaryDark">@color/orangePrimaryDark</item>
+        <item name="colorAccent">@color/orangeAccent</item>
     </style>
-    <!-- -->
+
+    <style name="DarkTheme" parent="AppTheme.Dark">
+        <item name="colorPrimary">@color/darkPrimary</item>
+        <item name="colorPrimaryDark">@color/darkPrimaryDark</item>
+        <item name="colorAccent">@color/darkAccent</item>
+    </style>
 
     <style name="AppTheme.Light.NoActionBar">
         <item name="windowActionBar">false</item>

@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">Vertretungsplan</string>
-    <string name="toolbarTitle_WithClass">Vertretungsplan (%s)</string>
+    <string name="toolbarTitle_WithClass">Vertretungsplan (%1$s)</string>
     <string name="bar_title">@string/app_name</string>
     <string name="downloadException">Es ist ein Fehler beim Herunterladen aufgetreten!</string>
 
@@ -14,11 +14,11 @@
     <string name="card_no_information">Keine Ausfälle!</string>
     <string name="no_data_to_display">Es liegen keine Daten vor!\n\n¯\\_(ツ)_/¯</string>
     <string name="no_url_to_open">Keine URL zum öffnen!</string>
+    <string name="AB_week_default">A</string>
 
     <!-- Intro Slides Strings -->
     <string name="slide_welcome_title">Willkommen</string>
     <string name="slide_welcome_descr">Vielen Dank, dass du diese App nutzt. Auf der folgenden Seite findest du einige Einstellungen, die du setzen solltest.</string>
-    <string name="slide_welcome_content_descr">App-Logo</string>
 
     <string name="slide_settings_title">@string/action_settings</string>
     <string name="slide_settings_descr">Bitte stelle deine Klasse ein!\nFalls du keine Benachrichtigungen wünschst, dann schalte sie oben aus!\nAlle Einstellungen kannst du später wieder ändern.</string>
@@ -29,7 +29,6 @@
     <string name="settings_name">Einstellungen</string>
     <string name="toast_settings_saved">Einstellungen übernommen!</string>
     <string name="toast_noInternetConnection">Keine Internetverbindung!</string>
-    <string name="toast_errorOccurred">Ein Fehler ist aufgetreten!</string>
 
     <!-- Class SettingsActivity Section -->
     <string name="settings_section_class">Klasse</string>
@@ -43,14 +42,10 @@
     <string name="settings_section_miscellaneous">Verschiedenes</string>
     <string name="settings_notification_title">Benachrichtigungen</string>
     <string name="settings_notification_summary">Benachrichtigung bei Änderung des Vertretungsplans</string>
-    <string name="settings_notification_interval_title">Prüfintervall</string>
-    <string name="settings_notification_interval_summary">Bitte wähle das Zeitintervall, in welchem der Vertretungsplan geprüft werden soll</string>
-    <string name="settings_notification_interval_dialog_title">Intervall</string>
-    <string name="settings_notification_interval_dialog_back">Zurück!</string>
 
     <string name="settings_section_display">Anzeige</string>
-    <string name="settings_past_days_title">Alte Tage zeigen</string>
-    <string name="settings_past_days_summary">Sollen vergangene Tage noch angezeigt werden?</string>
+    <string name="settings_past_days_title">Vergangene Tage zeigen</string>
+    <string name="settings_past_days_summary">Sollen vergangene Tage noch in der App angezeigt werden?</string>
 
     <string name="colored_cards_title">Farbige Karten</string>
     <string name="colored_cards_summary">Ausfälle in Übersicht farbig anzeigen</string>
@@ -70,13 +65,17 @@
 
     <string name="notification_cancellations_title">MGG Vertretungsplan</string>
     <string name="notification_cancellations_ticker">Stundenplan Änderung!</string>
-    <string name="notification_cancellations_infoOne">%d Änderung!</string>
-    <string name="notification_cancellations_infoMany">%d Änderungen!</string>
 
     <plurals name="notification_cancellations_info">
-        <item quantity="one">%d Änderung!</item>
-        <item quantity="many">%d Änderungen!</item>
+        <item quantity="zero">%d Änderungen!</item>
+        <item quantity="one">Eine Änderung!</item>
+        <item quantity="other">%d Änderungen!</item>
     </plurals>
+
+    <string name="defaultChannelDisplayName">Stundenplanänderungen</string>
+    <string name="defaultChannelDesc">Benachrichtigungen über Änderungen des Vertretungsplans</string>
+    <string name="newsChannelDisplayName">Neuigkeiten</string>
+    <string name="newsChannelDesc">Nachrichten der MGG Webseite</string>
 
     <string-array name="ClassLayer_List">
         <item>5</item>
@@ -96,22 +95,6 @@
         <item>d</item>
         <item>e</item>
         <item>f</item>
-    </string-array>
-
-    <string-array name="Intervall">
-        <item name="15 min">15 min</item>
-        <item name="30 min">30 min</item>
-        <item name="60 min">1 std</item>
-        <item name="4 std">4 std</item>
-        <item name="6 std">6 std</item>
-    </string-array>
-
-    <string-array name="Intervall_values">
-        <item name="15 min">900000</item>
-        <item name="30 min">1800000</item>
-        <item name="60 min">3600000</item>
-        <item name="4 std">14400000</item>
-        <item name="6 std">21600000</item>
     </string-array>
 
 </resources>

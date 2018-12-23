@@ -2,8 +2,11 @@ package de.aurora.mggvertretungsplan.datamodel;
 
 import junit.framework.TestCase;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  * Created by Rico on 20.11.2017.
@@ -19,7 +22,7 @@ public class TimeTableTest extends TestCase {
         timeTable = new TimeTable();
     }
 
-    public void testAddDay() throws Exception {
+    public void testAddDay() {
         ArrayList<ArrayList<String>> arrayLists = new ArrayList<>();
 
         TimeTableDay ttd = new TimeTableDay("01.01.2018", WEEK_A, arrayLists);
@@ -39,7 +42,7 @@ public class TimeTableTest extends TestCase {
         assertEquals(ttd2, timeTableDay2);
     }
 
-    public void testGetDaysCount() throws Exception {
+    public void testGetDaysCount() {
         assertEquals(0, timeTable.getDaysCount());
 
         ArrayList<ArrayList<String>> arrayLists = new ArrayList<>();
@@ -55,8 +58,20 @@ public class TimeTableTest extends TestCase {
         assertEquals(4, timeTable.getDaysCount());
     }
 
-    public void testGetFutureDaysCount() throws Exception {
+    public void testGetFutureDaysCount() {
         assertEquals(0, timeTable.getFutureDaysCount());
+
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.HOUR_OF_DAY,15);
+        cal.set(Calendar.MINUTE,59);
+        cal.set(Calendar.SECOND,0);
+        cal.set(Calendar.MILLISECOND,0);
+
+        Date today1559 = cal.getTime();
+
+        cal.set(Calendar.HOUR_OF_DAY,16);
+        cal.set(Calendar.MINUTE,1);
+        Date today1601 = cal.getTime();
 
         ArrayList<ArrayList<String>> arrayLists = new ArrayList<>();
         TimeTableDay ttd = new TimeTableDay("31.12.", WEEK_A, arrayLists);
@@ -67,13 +82,35 @@ public class TimeTableTest extends TestCase {
         TimeTableDay ttd2 = new TimeTableDay("30.12.", WEEK_A, arrayLists);
         timeTable.addDay(ttd2);
 
+        assertEquals(2, timeTable.getFutureDaysCount());
+
         TimeTableDay ttd3 = new TimeTableDay("01.01.", WEEK_A, arrayLists);
         timeTable.addDay(ttd3);
 
         assertEquals(2, timeTable.getFutureDaysCount());
+
+        // Check if a TimeTableDay on the same date is considered "future", if it is currently 15:59.
+        Calendar testCal = Calendar.getInstance();
+        testCal.set(Calendar.HOUR_OF_DAY,0);
+        testCal.set(Calendar.MINUTE,0);
+        testCal.set(Calendar.SECOND,0);
+        testCal.set(Calendar.MILLISECOND,0);
+        Date testDate = testCal.getTime();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.");
+        String dateString = sdf.format(testDate);
+
+        TimeTableDay ttd4 = new TimeTableDay(dateString, WEEK_A, arrayLists);
+        timeTable.addDay(ttd4);
+
+        // The day should count as a future day
+        assertEquals(3, timeTable.getFutureDaysCount(today1559));
+
+        // Check if a TimeTableDay on the same date is considered "future", if it is currently >= 16:00.
+        // Should be 2 results again, because the latest does not count
+        assertEquals(2, timeTable.getFutureDaysCount(today1601));
     }
 
-    public void testGetAllDays() throws Exception {
+    public void testGetAllDays() {
         assertEquals(new ArrayList<TimeTableDay>(), timeTable.getAllDays());
 
         ArrayList<ArrayList<String>> dayList = new ArrayList<>();
@@ -106,7 +143,7 @@ public class TimeTableTest extends TestCase {
         assertEquals(rttd, timeTable.getAllDays());
     }
 
-    public void testGetTotalCancellations() throws Exception {
+    public void testGetTotalCancellations() {
         assertEquals(0, timeTable.getTotalCancellations("K1"));
 
         ArrayList<ArrayList<String>> dayList = new ArrayList<>();
@@ -139,10 +176,10 @@ public class TimeTableTest extends TestCase {
         assertEquals(3, timeTable.getTotalCancellations("9c"));
     }
 
-    public void testGetTotalDifferences() throws Exception {
+    public void testGetTotalDifferences() {
     }
 
-    public void testToString() throws Exception {
+    public void testToString() {
         assertEquals("", timeTable.toString());
 
         ArrayList<ArrayList<String>> arrayLists = new ArrayList<>();
