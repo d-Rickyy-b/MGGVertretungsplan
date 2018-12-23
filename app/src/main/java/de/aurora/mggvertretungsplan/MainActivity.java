@@ -6,6 +6,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources.Theme;
+import android.graphics.ColorMatrixColorFilter;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -227,9 +229,31 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
                     informationText = Html.fromHtml("Programmiert von Rico Jambor<br><br>Bei Fehlern entweder eine Email an:<br><b>rico.jambor@gmail.com</b><br><br>Oder per Telegram an:<br><center><b>@d_Rickyy_b</b></center>");
                 }
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.AlertDialogTheme);
+                Drawable icon = ContextCompat.getDrawable(this.context, R.drawable.ic_info_outline_black).mutate();
+
+
+                int theme_res_id;
+                if (sp.getInt("Theme", 0) == 5) {
+                    // Invert colors for dark theme
+                    try {
+                        icon.setColorFilter(new ColorMatrixColorFilter(new float[]{
+                                -1, 0, 0, 0, 255, // red = 255 - red
+                                0, -1, 0, 0, 255, // green = 255 - green
+                                0, 0, -1, 0, 255, // blue = 255 - blue
+                                0, 0, 0, 1, 0     // alpha = alpha
+                        }));
+                    } catch (Exception e) {
+                        Logger.e(TAG, e.getMessage());
+                    }
+
+                    theme_res_id = R.style.AlertDialogThemeDark;
+                } else {
+                    theme_res_id = R.style.AlertDialogTheme;
+                }
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(this, theme_res_id);
                 builder
-                        .setIcon(R.drawable.ic_info_outline_black)
+                        .setIcon(icon)
                         .setTitle("MGG Vertretungsplan v" + BuildConfig.VERSION_NAME)
                         .setMessage(informationText)
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
