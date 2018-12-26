@@ -1,5 +1,16 @@
-apply plugin: 'com.android.application'
-apply plugin: 'com.github.kt3k.coveralls'
+plugins {
+    id 'com.android.application'
+    id 'jacoco'
+    id 'com.github.kt3k.coveralls'
+}
+
+jacoco {
+    toolVersion = "0.8.2"
+}
+
+tasks.withType(Test) {
+    jacoco.includeNoLocationClasses = true
+}
 
 android {
     compileSdkVersion 28
@@ -17,6 +28,8 @@ android {
         versionCode 26
         versionName "3.2.0"
         multiDexEnabled true
+
+        testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
     }
 
     compileOptions.encoding = "utf-8"
@@ -42,6 +55,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 
             if (isRunningOnTravis) {
+                testCoverageEnabled = true
                 signingConfig signingConfigs.release
             }
         }
@@ -82,10 +96,30 @@ dependencies {
     implementation 'com.thebluealliance:spectrum:0.7.1'
 }
 
-coveralls {
-    jacocoReportPath = "${buildDir}/reports/jacoco/testDebugUnitTestCoverage/testDebugUnitTestCoverage.xml"
+// https://proandroiddev.com/unified-code-coverage-for-android-revisited-44789c9b722f
+task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest', 'createDebugCoverageReport']) {
+
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+
+    def fileFilter = ['**/R.class', '**/R$*.class', '**/BuildConfig.*', '**/Manifest*.*', '**/*Test*.*', 'android/**/*.*']
+    def debugTree = fileTree(dir: "$project.buildDir/intermediates/javac/debug", excludes: fileFilter)
+    def mainSrc = "$project.projectDir/src/main/java"
+
+    sourceDirectories = files([mainSrc])
+    classDirectories = files([debugTree])
+    executionData = fileTree(dir: project.buildDir, includes: [
+            'jacoco/testDebugUnitTest.exec', 'outputs/code-coverage/connected/*coverage.ec'
+    ])
 }
+
+coveralls {
+    jacocoReportPath = "${buildDir}/reports/jacoco/jacocoTestReport/jacocoTestReport.xml"
+}
+
 tasks.coveralls {
-    dependsOn 'testDebugUnitTestCoverage'
     onlyIf { System.env.'CI' }
+    dependsOn 'jacocoTestReport'
 }
