@@ -2,6 +2,7 @@ apply plugin: 'jacoco'
 jacoco {
     toolVersion = "0.7.5.201505241946"
 }
+
 project.afterEvaluate {
     // Grab all build types and product flavors
     def buildTypes = android.buildTypes.collect { type ->
@@ -23,28 +24,24 @@ project.afterEvaluate {
             }
             def testTaskName = "test${sourceName.capitalize()}UnitTest"
             // Create coverage task of form 'testFlavorTypeCoverage' depending on 'testFlavorTypeUnitTest'
+
             task "${testTaskName}Coverage" (type:JacocoReport, dependsOn: "$testTaskName") {
                 group = "Reporting"
                 description = "Generate Jacoco coverage reports on the ${sourceName.capitalize()} build."
-                classDirectories = fileTree(
-                        dir: "${project.buildDir}/intermediates/classes/${sourcePath}",
-                        excludes: [
-                                '**/R.class',
-                                '**/R$*.class',
-                                '**/*$ViewInjector*.*',
-                                '**/*$ViewBinder*.*',
-                                '**/BuildConfig.*',
-                                '**/Manifest*.*'
-                        ]
-                )
-                def coverageSourceDirs = [
-                        "src/main/java",
-                        "src/$productFlavorName/java",
-                        "src/$buildTypeName/java"
-                ]
-                additionalSourceDirs = files(coverageSourceDirs)
-                sourceDirectories = files(coverageSourceDirs)
-                executionData = files("${project.buildDir}/jacoco/${testTaskName}.exec")
+
+                def fileFilter = ['**/R.class', '**/R$*.class', '**/BuildConfig.*', '**/Manifest*.*', '**/*Test*.*', 'android/**/*.*']
+                def debugTree = fileTree(dir: "${project.buildDir}/intermediates/classes/$sourcePath", excludes: fileFilter)
+                def mainSrc = [ "${project.projectDir}/src/main/java",
+                                "${project.projectDir}/src/$productFlavorName/java",
+                                "${project.projectDir}/src/$buildTypeName/java"
+                              ]
+
+                sourceDirectories = files([mainSrc])
+                classDirectories = files([debugTree])
+                executionData = fileTree(dir: project.buildDir, includes: [
+                        "jacoco/${testTaskName}.exec", 'outputs/code-coverage/connected/*coverage.ec'
+                ])
+
                 reports {
                     xml.enabled = true
                     html.enabled = true
