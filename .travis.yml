@@ -37,8 +37,7 @@ before_install:
   - openssl aes-256-cbc -K $encrypted_6ab911f61ce6_key -iv $encrypted_6ab911f61ce6_iv -in keystore.ks.enc -out keystore.ks -d
 
 script:
-  - ./gradlew testDebugUnitTestCoverage coveralls
-  - ls -l /home/travis/build/d-Rickyy-b/MGGVertretungsplan/app/build/reports/jacoco/testDebugUnitTestCoverage
+  - ./gradlew jacocoTestReport coveralls
   - ./gradlew clean build
 
 deploy:
