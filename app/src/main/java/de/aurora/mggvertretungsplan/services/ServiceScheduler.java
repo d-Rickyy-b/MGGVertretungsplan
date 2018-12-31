@@ -24,6 +24,7 @@ public class ServiceScheduler {
      * Method to schedule the periodic execution of DownloadTimeTableWorker
      */
     private void scheduleService() {
+        Logger.d(TAG, "Scheduling DownloadTimeTableWorker");
         long repeatInterval = 30L;
 
         // Only run task when network is connected
@@ -46,7 +47,7 @@ public class ServiceScheduler {
      * Method to unschedule the DownloadTimeTableWorker
      */
     private void unscheduleService() {
-        Logger.d(TAG, "Canceling service execution!");
+        Logger.d(TAG, "Unscheduling DownloadTimeTableWorker");
         WorkManager workManager = WorkManager.getInstance();
         workManager.cancelAllWorkByTag(WORK_TAG);
     }

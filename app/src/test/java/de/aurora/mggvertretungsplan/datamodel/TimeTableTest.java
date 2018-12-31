@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 /**
  * Created by Rico on 20.11.2017.
@@ -59,47 +60,61 @@ public class TimeTableTest extends TestCase {
     }
 
     public void testGetFutureDaysCount() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss", Locale.GERMANY);
         assertEquals(0, timeTable.getFutureDaysCount());
 
         Calendar cal = Calendar.getInstance();
-        cal.set(Calendar.HOUR_OF_DAY,15);
-        cal.set(Calendar.MINUTE,59);
+
+        // Check if one day in the future is counted towards "future days"
+        cal.set(Calendar.HOUR_OF_DAY,0);
+        cal.set(Calendar.MINUTE,0);
         cal.set(Calendar.SECOND,0);
-        cal.set(Calendar.MILLISECOND,0);
-
-        Date today1559 = cal.getTime();
-
-        cal.set(Calendar.HOUR_OF_DAY,16);
-        cal.set(Calendar.MINUTE,1);
-        Date today1601 = cal.getTime();
-
+        cal.add(Calendar.DATE, 1);
+        Date tomorrow = cal.getTime();
+        System.out.println(sdf.format(tomorrow));
         ArrayList<ArrayList<String>> arrayLists = new ArrayList<>();
-        TimeTableDay ttd = new TimeTableDay("31.12.", WEEK_A, arrayLists);
+        TimeTableDay ttd = new TimeTableDay(sdf.format(tomorrow), WEEK_A, arrayLists);
         timeTable.addDay(ttd);
 
         assertEquals(1, timeTable.getFutureDaysCount());
 
-        TimeTableDay ttd2 = new TimeTableDay("30.12.", WEEK_A, arrayLists);
+        // Check if 2 days in the future are counted towards "future days"
+
+        cal.add(Calendar.DATE, 1);
+        Date dayAfterTomorrow = cal.getTime();
+        TimeTableDay ttd2 = new TimeTableDay(sdf.format(dayAfterTomorrow), WEEK_A, arrayLists);
         timeTable.addDay(ttd2);
 
         assertEquals(2, timeTable.getFutureDaysCount());
 
-        TimeTableDay ttd3 = new TimeTableDay("01.01.", WEEK_A, arrayLists);
+        // Check if prior days are counted towards "future days"
+        cal.add(Calendar.DATE, -3);
+        Date yesterday = cal.getTime();
+        TimeTableDay ttd3 = new TimeTableDay(sdf.format(yesterday), WEEK_A, arrayLists);
         timeTable.addDay(ttd3);
 
         assertEquals(2, timeTable.getFutureDaysCount());
 
         // Check if a TimeTableDay on the same date is considered "future", if it is currently 15:59.
-        Calendar testCal = Calendar.getInstance();
+        Calendar testCal = Calendar.getInstance(Locale.GERMANY);
+        testCal.set(Calendar.HOUR_OF_DAY,15);
+        testCal.set(Calendar.MINUTE,59);
+        testCal.set(Calendar.SECOND,0);
+        testCal.set(Calendar.MILLISECOND,0);
+
+        Date today1559 = testCal.getTime();
+
+        testCal.set(Calendar.HOUR_OF_DAY,16);
+        testCal.set(Calendar.MINUTE,1);
+        Date today1601 = testCal.getTime();
+
         testCal.set(Calendar.HOUR_OF_DAY,0);
         testCal.set(Calendar.MINUTE,0);
         testCal.set(Calendar.SECOND,0);
         testCal.set(Calendar.MILLISECOND,0);
-        Date testDate = testCal.getTime();
-        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.");
-        String dateString = sdf.format(testDate);
+        Date currentDate = new Date(testCal.getTime().getTime());
 
-        TimeTableDay ttd4 = new TimeTableDay(dateString, WEEK_A, arrayLists);
+        TimeTableDay ttd4 = new TimeTableDay(sdf.format(currentDate), WEEK_A, arrayLists);
         timeTable.addDay(ttd4);
 
         // The day should count as a future day
