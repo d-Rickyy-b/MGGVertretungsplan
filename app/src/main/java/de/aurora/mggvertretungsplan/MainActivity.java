@@ -276,11 +276,11 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
      * @param url   The url to be called as string
      */
     private void launchCustomTabsIntent(int color, String url) {
-        CustomTabsIntent.Builder chromeTabsFeedbackBuilder = new CustomTabsIntent.Builder();
-        chromeTabsFeedbackBuilder.setToolbarColor(color);
-        chromeTabsFeedbackBuilder.setShowTitle(true);
-        CustomTabsIntent feedbackIntent = chromeTabsFeedbackBuilder.build();
-        feedbackIntent.launchUrl(this.context, Uri.parse(url));
+        CustomTabsIntent.Builder customTabsIntentBuilder = new CustomTabsIntent.Builder();
+        customTabsIntentBuilder.setToolbarColor(color);
+        customTabsIntentBuilder.setShowTitle(true);
+        CustomTabsIntent customTabsIntent = customTabsIntentBuilder.build();
+        customTabsIntent.launchUrl(this, Uri.parse(url));
     }
 
     /**
