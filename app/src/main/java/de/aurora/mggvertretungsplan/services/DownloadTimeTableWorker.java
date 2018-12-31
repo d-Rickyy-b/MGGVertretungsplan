@@ -29,7 +29,7 @@ public class DownloadTimeTableWorker extends Worker implements ParsingCompleteLi
     private BaseParser parser;
     private SharedPreferences sp;
 
-    DownloadTimeTableWorker(Context context, WorkerParameters workerParameters) {
+    public DownloadTimeTableWorker(Context context, WorkerParameters workerParameters) {
         super(context, workerParameters);
     }
 
