@@ -71,7 +71,6 @@ public class TimeTableTest extends TestCase {
         cal.set(Calendar.SECOND,0);
         cal.add(Calendar.DATE, 1);
         Date tomorrow = cal.getTime();
-        System.out.println(sdf.format(tomorrow));
         ArrayList<ArrayList<String>> arrayLists = new ArrayList<>();
         TimeTableDay ttd = new TimeTableDay(sdf.format(tomorrow), WEEK_A, arrayLists);
         timeTable.addDay(ttd);
