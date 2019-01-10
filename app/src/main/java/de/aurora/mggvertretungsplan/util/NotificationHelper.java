@@ -12,6 +12,7 @@ import android.os.Build;
 import androidx.core.app.NotificationCompat;
 import de.aurora.mggvertretungsplan.MainActivity;
 import de.aurora.mggvertretungsplan.R;
+import de.aurora.mggvertretungsplan.datamodel.TimeTableDay;
 
 public class NotificationHelper extends ContextWrapper {
     private static final String TAG = "NotificationHelper";
@@ -89,5 +90,14 @@ public class NotificationHelper extends ContextWrapper {
         Notification notification = buildNotification(ticker, title, text, defaultChannelName, pIntent);
         notificationManager.notify(notificationCounter, notification);
         notificationCounter++;
+    }
+
+
+    public void notifyChange(TimeTableDay ttd) {
+        String ticker = ttd.getNotificationTicker(context);
+        String text = ttd.getNotificationText(context);
+        String title = ttd.getNotificationTitle(context);
+
+        notifyChanges(ticker, title, text);
     }
 }
