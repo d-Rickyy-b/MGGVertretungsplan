@@ -62,6 +62,25 @@ public class TimeTableDayTest {
     }
 
     @Test
+    public void getNotificationText() {
+        when(context.getString(R.string.cardInfo_cancelled)).thenReturn("entfällt");
+        when(context.getString(R.string.cardInfo_representation)).thenReturn("Vertretung");
+
+        String className = "K1";
+        testList.add(new ArrayList<>(Arrays.asList("1", className, "4BK", "---", "BK3", "---", "")));
+        testList.add(new ArrayList<>(Arrays.asList("3", className, "G", "D", "H202", "H202", "")));
+        testList.add(new ArrayList<>(Arrays.asList("5-6", className, "E", "---", "H105", "---", "Teacher on holiday!")));
+
+        TimeTableDay ttd = new TimeTableDay("01.01.2018", WEEK_A, testList);
+
+        String expectedText = "1. Std: Bildende Kunst entfällt\n" +
+                              "3. Std: Geschichte Vertretung\n" +
+                              "5-6. Std: Englisch entfällt";
+
+        assertEquals(expectedText, ttd.getNotificationText(context));
+    }
+
+    @Test
     public void getDate() throws Exception {
         Calendar calendar = Calendar.getInstance();
         calendar.set(2018, 0, 1);

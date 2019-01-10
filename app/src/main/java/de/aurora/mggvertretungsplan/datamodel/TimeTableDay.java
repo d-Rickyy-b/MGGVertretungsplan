@@ -75,6 +75,30 @@ public class TimeTableDay {
         return context.getString(R.string.notification_ticker);
     }
 
+    public String getNotificationText(Context context) {
+        StringBuilder sb = new StringBuilder();
+
+        //'{hr}. Std: {subj} {action}'
+        String formatString = "%s. Std: %s %s\n";
+        for (TimeTableElement tte: this.timeTableElements) {
+            String action = "";
+            switch (tte.getType()) {
+                case TimeTableElement.SUBSTITUTION:
+                    action = context.getString(R.string.cardInfo_representation);
+                    break;
+                case TimeTableElement.CANCELLATION:
+                    action = context.getString(R.string.cardInfo_cancelled);
+                    break;
+                case TimeTableElement.EMPTY:
+                    continue;
+            }
+
+            sb.append(String.format(formatString, tte.getHour(), tte.getSubject(), action));
+        }
+
+        return sb.toString().trim();
+    }
+
     private void addElement(TimeTableElement tte) {
         int index = 0;
         for (int i = 0; i < timeTableElements.size(); i++) {
