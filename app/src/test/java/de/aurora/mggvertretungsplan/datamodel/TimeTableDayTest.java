@@ -1,7 +1,12 @@
 package de.aurora.mggvertretungsplan.datamodel;
 
+import android.content.Context;
+
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -11,21 +16,41 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 
+import de.aurora.mggvertretungsplan.R;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.when;
 
 /**
  * Created by Rico on 20.11.2017.
  */
+@RunWith(MockitoJUnitRunner.class)
 public class TimeTableDayTest {
     private static final String WEEK_A = "A";
     private static final String WEEK_B = "B";
     private ArrayList<ArrayList<String>> testList;
 
+    @Mock
+    private Context context;
+
     @Before
     public void setUp() {
         testList = new ArrayList<>();
+    }
+
+    @Test
+    public void getNotificationTitle() {
+        when(context.getString(R.string.notification_title_dateformat)).thenReturn("EEEE, dd.MM.");
+        TimeTableDay ttd = new TimeTableDay("01.01.2018", WEEK_A, testList);
+        assertEquals("Montag, 01.01.", ttd.getNotificationTitle(context));
+
+        TimeTableDay ttd1 = new TimeTableDay("01.01.2019", WEEK_A, testList);
+        assertEquals("Dienstag, 01.01.", ttd1.getNotificationTitle(context));
+
+        TimeTableDay ttd2 = new TimeTableDay("19.07.2019", WEEK_A, testList);
+        assertEquals("Freitag, 19.07.", ttd2.getNotificationTitle(context));
     }
 
     @Test

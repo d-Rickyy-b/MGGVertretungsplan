@@ -1,5 +1,7 @@
 package de.aurora.mggvertretungsplan.datamodel;
 
+import android.content.Context;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -11,6 +13,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 
+import de.aurora.mggvertretungsplan.R;
 import de.aurora.mggvertretungsplan.util.Logger;
 
 /**
@@ -60,6 +63,12 @@ public class TimeTableDay {
         } catch (JSONException e) {
             Logger.e(TAG, e.getMessage());
         }
+    }
+
+    public String getNotificationTitle(Context context) {
+        String formatString = context.getString(R.string.notification_title_dateformat);
+        SimpleDateFormat sdf = new SimpleDateFormat(formatString, Locale.GERMANY);
+        return sdf.format(this.date);
     }
 
     private void addElement(TimeTableElement tte) {
