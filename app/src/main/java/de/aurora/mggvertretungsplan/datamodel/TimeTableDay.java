@@ -28,8 +28,8 @@ public class TimeTableDay {
         this.week = new Week(week);
         setDate(date);
 
-        for (ArrayList<String> zeile : timeTableDay_List) {
-            TimeTableElement timeTableElement = new TimeTableElement(zeile.get(0), zeile.get(1), zeile.get(2), zeile.get(3), zeile.get(4), zeile.get(5), zeile.get(6));
+        for (ArrayList<String> row : timeTableDay_List) {
+            TimeTableElement timeTableElement = new TimeTableElement(row.get(0), row.get(1), row.get(2), row.get(3), row.get(4), row.get(5), row.get(6));
             addElement(timeTableElement);
         }
 
