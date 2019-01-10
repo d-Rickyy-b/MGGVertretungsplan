@@ -57,11 +57,10 @@
     <string name="settings_app_color_summary">Wähle die Farbe der App</string>
     <!--  -->
 
-
-    <!-- Not Added yet :( -->
-    <string name="crardInfo_cancelled">Entfällt</string>
+    <string name="cardInfo_cancelled">entfällt</string>
     <string name="cardInfo_representation">Vertretung</string>
-    <!--  -->
+    <string name="notification_ticker">Neue Stundenplanänderung</string>
+    <string name="notification_title_dateformat">EEEE, dd.MM.</string>
 
     <string name="notification_cancellations_title">MGG Vertretungsplan</string>
     <string name="notification_cancellations_ticker">Stundenplan Änderung!</string>
