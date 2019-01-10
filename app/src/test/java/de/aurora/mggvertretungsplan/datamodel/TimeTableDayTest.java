@@ -54,6 +54,14 @@ public class TimeTableDayTest {
     }
 
     @Test
+    public void getNotificationTicker() {
+        //TimeTableElement tte = new TimeTableElement(hour, class_name, subject, newSubject, room, newRoom, info);
+        when(context.getString(R.string.notification_ticker)).thenReturn("Neue Stundenplanänderung");
+        TimeTableDay ttd = new TimeTableDay("01.01.2018", WEEK_A, testList);
+        assertEquals("Neue Stundenplanänderung", ttd.getNotificationTicker(context));
+    }
+
+    @Test
     public void getDate() throws Exception {
         Calendar calendar = Calendar.getInstance();
         calendar.set(2018, 0, 1);

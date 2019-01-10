@@ -71,6 +71,10 @@ public class TimeTableDay {
         return sdf.format(this.date);
     }
 
+    public String getNotificationTicker(Context context) {
+        return context.getString(R.string.notification_ticker);
+    }
+
     private void addElement(TimeTableElement tte) {
         int index = 0;
         for (int i = 0; i < timeTableElements.size(); i++) {
