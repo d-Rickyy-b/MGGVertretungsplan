@@ -88,9 +88,9 @@ public class TimeTable {
         return cancellations;
     }
 
-    public int getTotalDifferences(TimeTable savedTimeTable, String className) {
+    public TimeTable getTotalDifferences(TimeTable savedTimeTable, String className) {
         Logger.d(TAG, "Getting differences of saved and downloaded timetable!");
-        int differences = 0;
+        TimeTable differencesTimeTable = new TimeTable();
         Date currentDate = new Date();
         ArrayList<TimeTableDay> savedDays = savedTimeTable.getAllDays();
 
@@ -108,7 +108,7 @@ public class TimeTable {
                     Logger.d(TAG, String.format("Dates are the same - %s | %s", ttd.getDateString(), saved_ttd.getDateString()));
                     Logger.d(TAG, String.format("%s", ttd.getElements(className).toString()));
                     Logger.d(TAG, String.format("%s", saved_ttd.getElements(className).toString()));
-                    differences += ttd.getDifferences(saved_ttd, className);
+                    differencesTimeTable.addDay(ttd.getDifferences(saved_ttd, className));
                     newDay = false;
                     break;
                 }
@@ -116,12 +116,12 @@ public class TimeTable {
 
             if (newDay) {
                 int dayDiffs = ttd.getElementsCount(className);
-                differences += dayDiffs;
+                differencesTimeTable.addDay(ttd);
                 Logger.d(TAG, String.format(Locale.GERMANY,"New Day found - %d cancellations for %s", dayDiffs, className));
             }
         }
 
-        return differences;
+        return differencesTimeTable;
     }
 
     @Override

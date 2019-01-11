@@ -14,6 +14,7 @@ import androidx.work.Worker;
 import androidx.work.WorkerParameters;
 import de.aurora.mggvertretungsplan.R;
 import de.aurora.mggvertretungsplan.datamodel.TimeTable;
+import de.aurora.mggvertretungsplan.datamodel.TimeTableDay;
 import de.aurora.mggvertretungsplan.parsing.BaseParser;
 import de.aurora.mggvertretungsplan.parsing.BaseParser.ParsingCompleteListener;
 import de.aurora.mggvertretungsplan.parsing.MGGParser;
@@ -90,39 +91,29 @@ public class DownloadTimeTableWorker extends Worker implements ParsingCompleteLi
             }
         }
 
-        // Compare new data with old data
-        int totalDiffs = timeTable.getTotalDifferences(timeTable_saved, class_name);
-
-        // Get new cancellations
-        // new_cancellations = ...
-
-        // Get removed cancellations
-        // removed_cancellations = ...
-
-        // Get changed cancellations
-        // changed_cancellations = ...
-
-        // "x neue Ausfälle"
-        // "x Änderung/en am Vertretugnsplan"
-        // "..."
-
-
-        Logger.d(TAG, String.format(Locale.GERMANY, "Total differences: %d", totalDiffs));
-
-        Context context = getApplicationContext();
-        String ticker = context.getResources().getString(R.string.notification_cancellations_ticker);
-        String title = context.getResources().getString(R.string.notification_cancellations_title);
-        String info = context.getResources().getQuantityString(R.plurals.notification_cancellations_info, totalDiffs, totalDiffs);
-
         NotificationHelper notificationHelper = new NotificationHelper(getApplicationContext());
+
+        TimeTable diffTimeTable = timeTable.getTotalDifferences(timeTable_saved, class_name);
+        int totalDiffs = diffTimeTable.getTotalCancellations(class_name);
+        Logger.d(TAG, String.format(Locale.GERMANY, "Total differences: %d", totalDiffs));
 
         if (totalDiffs <= 0) {
             Logger.d(TAG, "Not sending a notification!");
             return;
         }
 
-        Logger.d(TAG, "Notifying user");
-        notificationHelper.notifyChanges(ticker, title, info);
+        if (sp.getBoolean("show_detailed_notifications", true)) {
+            for (TimeTableDay ttd : diffTimeTable.getAllDays()) {
+                Logger.d(TAG, "Notifying user");
+                notificationHelper.notifyChange(ttd);
+            }
+        } else {
+            Context context = getApplicationContext();
+            String ticker = context.getResources().getString(R.string.notification_cancellations_ticker);
+            String title = context.getResources().getString(R.string.notification_cancellations_title);
+            String info = context.getResources().getQuantityString(R.plurals.notification_cancellations_info, totalDiffs, totalDiffs);
+            notificationHelper.notifyChanges(ticker, title, info);
+        }
         saveData(timeTable);
     }
 

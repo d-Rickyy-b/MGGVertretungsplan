@@ -316,14 +316,13 @@ public class TimeTableDayTest {
         TimeTableDay day7 = new TimeTableDay("01.01.2018", WEEK_A, day7List);
 
 
-        assertEquals(0, day1.getDifferences(day1, className));
-        assertEquals(1, day1.getDifferences(day2, className));
-        assertEquals(1, day1.getDifferences(day3, className));
-        assertEquals(1, day1.getDifferences(day4, className));
-        assertEquals(2, day1.getDifferences(day5, className));
-        assertEquals(2, day1.getDifferences(day6, className));
-        assertEquals(4, day1.getDifferences(day7, className));
-
+        assertEquals(0, day1.getDifferences(day1, className).getElementsCount(className));
+        assertEquals(1, day1.getDifferences(day2, className).getElementsCount(className));
+        assertEquals(1, day1.getDifferences(day3, className).getElementsCount(className));
+        assertEquals(1, day1.getDifferences(day4, className).getElementsCount(className));
+        assertEquals(2, day1.getDifferences(day5, className).getElementsCount(className));
+        assertEquals(2, day1.getDifferences(day6, className).getElementsCount(className));
+        assertEquals(4, day1.getDifferences(day7, className).getElementsCount(className));
     }
 
     @Test

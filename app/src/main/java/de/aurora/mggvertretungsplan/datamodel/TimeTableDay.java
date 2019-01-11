@@ -191,8 +191,7 @@ public class TimeTableDay {
         return getElements(className).size();
     }
 
-    // Returns the number of differences between two lists
-    public int getDifferences(TimeTableDay ttd, String className) {
+    TimeTableDay getDifferences(TimeTableDay ttd, String className) {
         ArrayList<TimeTableElement> savedElements = ttd.getElements(className);
         ArrayList<TimeTableElement> newElements = this.getElements(className);
 
@@ -228,10 +227,10 @@ public class TimeTableDay {
 
         // savedElements now contains only those elements which are no longer in the TimeTable
         // newElements now only contains those elements which are new (not saved yet) or have changed in a single part
-        int changesToOldCancellations = savedElements.size();
-        int newCancellations = newElements.size();
+        savedElements.addAll(newElements);
+        ArrayList<TimeTableElement> tmp = savedElements;
 
-        return changesToOldCancellations + newCancellations;
+        return new TimeTableDay(date, week, tmp);
     }
 
     // Checks if this and the given day are at the same date

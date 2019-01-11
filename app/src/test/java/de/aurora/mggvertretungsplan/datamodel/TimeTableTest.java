@@ -191,6 +191,71 @@ public class TimeTableTest extends TestCase {
     }
 
     public void testGetTotalDifferences() {
+        ArrayList<ArrayList<String>> dayList = new ArrayList<>();
+        dayList.add(new ArrayList<>(Arrays.asList("1", "K1", "D", "---", "H202", "---", "")));
+        dayList.add(new ArrayList<>(Arrays.asList("2", "7a", "E", "---", "H105", "---", "")));
+        dayList.add(new ArrayList<>(Arrays.asList("3", "7a", "BIO", "---", "S320", "---", "")));
+        dayList.add(new ArrayList<>(Arrays.asList("3", "5c", "G", "---", "M315", "---", "Test")));
+        TimeTableDay ttd = new TimeTableDay("31.12.", WEEK_A, dayList);
+        timeTable.addDay(ttd);
+
+        ArrayList<ArrayList<String>> dayList2 = new ArrayList<>();
+        dayList2.add(new ArrayList<>(Arrays.asList("1", "K2", "D", "---", "H202", "---", "")));
+        //dayList2.add(new ArrayList<>(Arrays.asList("1", "K2", "D", "---", "H202", "---", ""))); //Duplicate - should not count
+        dayList2.add(new ArrayList<>(Arrays.asList("2", "5b", "E", "---", "H105", "---", "")));
+        dayList2.add(new ArrayList<>(Arrays.asList("3", "7a", "BIO", "---", "S320", "---", "")));
+        dayList2.add(new ArrayList<>(Arrays.asList("4", "7a", "BIO", "---", "S320", "---", ""))); // Getting merged with 3. lesson
+        dayList2.add(new ArrayList<>(Arrays.asList("3-4", "9c", "G", "---", "M315", "---", "Test")));
+        dayList2.add(new ArrayList<>(Arrays.asList("5", "9c", "D", "---", "M315", "---", "Test")));
+        dayList2.add(new ArrayList<>(Arrays.asList("8-9", "9c", "Sp", "---", "M315", "---", "Test")));
+        TimeTableDay ttd2 = new TimeTableDay("30.12.", WEEK_A, dayList2);
+        timeTable.addDay(ttd2);
+
+        // Second tt
+        TimeTable timeTable1 = new TimeTable();
+        ArrayList<ArrayList<String>> dayList3 = new ArrayList<>();
+        dayList3.add(new ArrayList<>(Arrays.asList("1", "K1", "D", "---", "H202", "---", "")));
+        dayList3.add(new ArrayList<>(Arrays.asList("2", "7a", "E", "---", "H105", "---", "")));
+        dayList3.add(new ArrayList<>(Arrays.asList("3", "7a", "BIO", "---", "S320", "---", "")));
+        dayList3.add(new ArrayList<>(Arrays.asList("3", "5c", "G", "---", "M315", "---", "Test")));
+        TimeTableDay ttd3 = new TimeTableDay("31.12.", WEEK_A, dayList3);
+        timeTable1.addDay(ttd3);
+
+        ArrayList<ArrayList<String>> dayList4 = new ArrayList<>();
+        dayList4.add(new ArrayList<>(Arrays.asList("1", "K2", "D", "---", "H202", "---", "")));
+        dayList4.add(new ArrayList<>(Arrays.asList("2", "5b", "E", "---", "H105", "---", "")));
+        dayList4.add(new ArrayList<>(Arrays.asList("3", "7a", "BIO", "---", "S320", "---", "")));
+        dayList4.add(new ArrayList<>(Arrays.asList("4", "7a", "BIO", "---", "S320", "---", ""))); // Getting merged with 3. lesson
+        dayList4.add(new ArrayList<>(Arrays.asList("3-4", "9c", "G", "---", "M315", "---", "Test")));
+        dayList4.add(new ArrayList<>(Arrays.asList("5", "9c", "D", "---", "M315", "---", "Test")));
+        dayList4.add(new ArrayList<>(Arrays.asList("8-9", "9c", "Sp", "---", "M315", "---", "Test")));
+        TimeTableDay ttd4 = new TimeTableDay("30.12.", WEEK_A, dayList4);
+        timeTable1.addDay(ttd4);
+
+        assertEquals(0, timeTable.getTotalDifferences(timeTable1, "7a").getTotalCancellations("7a"));
+        assertEquals(0, timeTable.getTotalDifferences(timeTable1, "K2").getTotalCancellations("K2"));
+        assertEquals(0, timeTable.getTotalDifferences(timeTable1, "8f").getTotalCancellations("8f"));
+
+        // The other way around
+        assertEquals(0, timeTable1.getTotalDifferences(timeTable, "7a").getTotalCancellations("7a"));
+        assertEquals(0, timeTable1.getTotalDifferences(timeTable, "K2").getTotalCancellations("K2"));
+        assertEquals(0, timeTable1.getTotalDifferences(timeTable, "8f").getTotalCancellations("8f"));
+
+        // Another check
+        assertEquals(timeTable.getTotalDifferences(timeTable1, "7a").getTotalCancellations("7a"), timeTable1.getTotalDifferences(timeTable, "7a").getTotalCancellations("7a"));
+        assertEquals(timeTable.getTotalDifferences(timeTable1, "K2").getTotalCancellations("K2"), timeTable1.getTotalDifferences(timeTable, "K2").getTotalCancellations("K2"));
+        assertEquals(timeTable.getTotalDifferences(timeTable1, "8f").getTotalCancellations("8f"), timeTable1.getTotalDifferences(timeTable, "8f").getTotalCancellations("8f"));
+
+        TimeTable timeTable2 = new TimeTable();
+        timeTable2.addDay(ttd3);
+
+        dayList4.add(new ArrayList<>(Arrays.asList("1-2", "K1", "D", "---", "H001", "---", "Test")));
+        ttd4 = new TimeTableDay("30.12.", WEEK_A, dayList4);
+        timeTable2.addDay(ttd4);
+
+        assertEquals(0, timeTable.getTotalDifferences(timeTable2, "7a").getTotalCancellations("7a"));
+        assertEquals(0, timeTable.getTotalDifferences(timeTable2, "K2").getTotalCancellations("K2"));
+        assertEquals(0, timeTable.getTotalDifferences(timeTable2, "8f").getTotalCancellations("8f"));
     }
 
     public void testToString() {
