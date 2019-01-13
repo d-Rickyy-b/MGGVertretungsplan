@@ -240,16 +240,20 @@ public class TimeTableElement {
             } else {
                 return info_e;
             }
-        } else if (type == CANCELLATION) {
+        }
+
+        if (type == CANCELLATION) {
             return "Entfällt";
-        } else if (type == SUBSTITUTION) {
+        }
+
+        if (type == SUBSTITUTION) {
             if (!subject.equals(newSubject) && !newSubject.equals("---") && !newSubject.isEmpty()) {
                 return String.format("%s - %s", this.newSubject, "Vertretung");
             } else
                 return "Vertretung";
-        } else {
-            return this.newSubject;
         }
+
+        return this.newSubject;
     }
 
     boolean equals(TimeTableElement tte) {
