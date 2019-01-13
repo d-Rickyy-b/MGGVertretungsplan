@@ -95,7 +95,7 @@ public class DownloadTimeTableWorker extends Worker implements ParsingCompleteLi
 
         TimeTable diffTimeTable = timeTable.getTotalDifferences(timeTable_saved, class_name);
         int totalDiffs = diffTimeTable.getTotalCancellations(class_name);
-        Logger.d(TAG, String.format(Locale.GERMANY, "Total differences: %d", totalDiffs));
+        Logger.d(TAG, String.format(Locale.getDefault(), "Total differences: %d", totalDiffs));
 
         if (totalDiffs <= 0) {
             Logger.d(TAG, "Not sending a notification!");

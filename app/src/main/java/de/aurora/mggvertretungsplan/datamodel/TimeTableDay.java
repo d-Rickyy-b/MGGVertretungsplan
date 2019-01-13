@@ -67,7 +67,7 @@ public class TimeTableDay {
 
     public String getNotificationTitle(Context context) {
         String formatString = context.getString(R.string.notification_title_dateformat);
-        SimpleDateFormat sdf = new SimpleDateFormat(formatString, Locale.GERMANY);
+        SimpleDateFormat sdf = new SimpleDateFormat(formatString, Locale.getDefault());
         return sdf.format(this.date);
     }
 
@@ -129,7 +129,7 @@ public class TimeTableDay {
     }
 
     private void setDate(String date) {
-        SimpleDateFormat fullDateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.GERMANY);
+        SimpleDateFormat fullDateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());
         int currentYear = new GregorianCalendar().get(GregorianCalendar.YEAR);
 
         try {
@@ -145,12 +145,12 @@ public class TimeTableDay {
     }
 
     public String getDateString() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.GERMANY);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());
         return dateFormat.format(date);
     }
 
     public String getFullDateString() {
-        SimpleDateFormat fullDateFormat = new SimpleDateFormat("EEEE, dd.MM.yyyy", Locale.GERMANY);
+        SimpleDateFormat fullDateFormat = new SimpleDateFormat("EEEE, dd.MM.yyyy", Locale.getDefault());
         return fullDateFormat.format(date);
     }
 

@@ -85,7 +85,7 @@ public class TimeTableDayTest {
         Calendar calendar = Calendar.getInstance();
         calendar.set(2018, 0, 1);
 
-        SimpleDateFormat fullDateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.GERMANY);
+        SimpleDateFormat fullDateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());
         Date date = fullDateFormat.parse("01.01.2018");
 
         TimeTableDay ttd = new TimeTableDay("01.01.2018", WEEK_A, testList);
@@ -113,12 +113,12 @@ public class TimeTableDayTest {
 
     @Test
     public void getFullDateString() throws Exception {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.GERMANY);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());
         Date date = dateFormat.parse("01.01.2018");
 
         TimeTableDay ttd = new TimeTableDay("01.01.2018", WEEK_A, testList);
 
-        SimpleDateFormat fullDateFormat = new SimpleDateFormat("EEEE, dd.MM.yyyy", Locale.GERMANY);
+        SimpleDateFormat fullDateFormat = new SimpleDateFormat("EEEE, dd.MM.yyyy", Locale.getDefault());
 
         assertEquals(fullDateFormat.format(date), ttd.getFullDateString());
     }

@@ -18,7 +18,7 @@ public class Logger {
     private static volatile Logger instance = null;
     private OutputStreamWriter streamWriter;
     private File logFile;
-    private SimpleDateFormat fullDateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss.SSS", Locale.GERMAN);
+    private SimpleDateFormat fullDateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss.SSS", Locale.getDefault());
 
     public static Logger getInstance() {
         Logger localInstance = instance;
@@ -36,7 +36,7 @@ public class Logger {
     }
 
     public Logger() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd_MM_yyyy_HH_mm_ss", Locale.GERMANY);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd_MM_yyyy_HH_mm_ss", Locale.getDefault());
         try {
             File sdCard = AppContext.applicationContext.getExternalFilesDir(null);
 

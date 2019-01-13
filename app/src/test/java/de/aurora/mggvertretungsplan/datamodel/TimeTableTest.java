@@ -60,7 +60,7 @@ public class TimeTableTest extends TestCase {
     }
 
     public void testGetFutureDaysCount() {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss", Locale.GERMANY);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss", Locale.getDefault());
         assertEquals(0, timeTable.getFutureDaysCount());
 
         Calendar cal = Calendar.getInstance();
@@ -95,7 +95,7 @@ public class TimeTableTest extends TestCase {
         assertEquals(2, timeTable.getFutureDaysCount());
 
         // Check if a TimeTableDay on the same date is considered "future", if it is currently 15:59.
-        Calendar testCal = Calendar.getInstance(Locale.GERMANY);
+        Calendar testCal = Calendar.getInstance(Locale.getDefault());
         testCal.set(Calendar.HOUR_OF_DAY,15);
         testCal.set(Calendar.MINUTE,59);
         testCal.set(Calendar.SECOND,0);
