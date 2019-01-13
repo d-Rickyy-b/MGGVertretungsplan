@@ -7,7 +7,7 @@ env:
     - ANDROID_API=28
     - EMULATOR_API=28
     - ANDROID_BUILD_TOOLS=28.0.3
-    - LC_ALL=de_DE
+    - LC_ALL='de_DE.UTF-8'
  
 android:
   components:
@@ -25,7 +25,6 @@ android:
 addons:
   apt:
     packages:
-      - language-pack-en
       - language-pack-de
 
 notifications:
