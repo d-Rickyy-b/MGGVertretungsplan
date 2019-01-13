@@ -240,7 +240,7 @@ public class TimeTableElement {
 
     // Returns the TTE object as ArrayList
     ArrayList<String> getElementAsList() {
-        return new ArrayList<>(Arrays.asList(hour, class_name, subject, newSubject, room, newRoom, info));
+        return new ArrayList<>(Arrays.asList(hour, className, subject, newSubject, room, newRoom, info));
     }
 
     private int calcType() {
