@@ -93,6 +93,7 @@ public class TimeTableElement {
         String abbreviation;
 
         if (subject.matches(pattern)) {
+            abbreviation = subject.replaceAll(pattern, "$1");
         } else
             abbreviation = subject;
 
