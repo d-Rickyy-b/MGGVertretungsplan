@@ -64,19 +64,18 @@ public class TimeTableElement {
 
     // Returns the full name of a subject abbreviation
     @SuppressLint("DefaultLocale")
-    private static String getFullSubject(String subj) {
+    private static String getFullSubject(String subject) {
         String pattern = "[0-9]+([a-zA-Z]+)[0-9]*";
-        String abbr;
+        String abbreviation;
 
-        if (subj.matches(pattern)) {
-            abbr = subj.replaceAll(pattern, "$1");
+        if (subject.matches(pattern)) {
         } else
-            abbr = subj;
+            abbreviation = subject;
 
-        if (abbr.equals("")) {
+        if (abbreviation.equals("")) {
             return "Kein Fach";
         } else {
-            switch (abbr.toUpperCase()) {
+            switch (abbreviation.toUpperCase(Locale.getDefault())) {
                 case "D":
                     return "Deutsch";
                 case "PH":
@@ -144,7 +143,7 @@ public class TimeTableElement {
                 case "PHIL":
                     return "Philosophie";
                 default:
-                    return subj;
+                    return subject;
             }
         }
     }
