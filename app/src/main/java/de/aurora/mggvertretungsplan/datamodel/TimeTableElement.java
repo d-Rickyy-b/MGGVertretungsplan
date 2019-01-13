@@ -29,6 +29,9 @@ public class TimeTableElement {
     private final int type;
     private final String info;
 
+    /**
+     * Create an empty TimeTableElement
+     */
     public TimeTableElement() {
         hour = "";
         className = "";
@@ -40,6 +43,17 @@ public class TimeTableElement {
         info = "";
     }
 
+    /**
+     * Create TimeTableElement by providing all the single data fields
+     *
+     * @param hour       String describing the hour on which the element takes place
+     * @param className  Name of the class as String
+     * @param subject    Subject as String
+     * @param newSubject New subject (in case of substitution) as String
+     * @param room       Room as String
+     * @param newRoom    New room (in case of substitution) as String
+     * @param info       String adding additional information to the
+     */
     TimeTableElement(String hour, String className, String subject, String newSubject, String room, String newRoom, String info) {
         this.hour = hour.replace(" - ", "-");
         this.className = className;
@@ -51,6 +65,12 @@ public class TimeTableElement {
         this.info = info.trim();
     }
 
+    /**
+     * Creates a TimeTable Element by a given JSONObject
+     *
+     * @param jsonObject A JSONObject representation of a TimeTableElement
+     * @throws JSONException When the given JSONObject can't be converted to a TimeTableElement
+     */
     TimeTableElement(JSONObject jsonObject) throws JSONException {
         this.hour = jsonObject.getString("hour");
         this.className = jsonObject.getString("class_name");
@@ -62,8 +82,12 @@ public class TimeTableElement {
         this.type = calcType();
     }
 
-    // Returns the full name of a subject abbreviation
-    @SuppressLint("DefaultLocale")
+    /**
+     * Returns the full name to an sunject abbreviation
+     *
+     * @param subject An abbreviation subject string to be expanded to a full subject name
+     * @return Full subject name
+     */
     private static String getFullSubject(String subject) {
         String pattern = "[0-9]+([a-zA-Z]+)[0-9]*";
         String abbreviation;
@@ -148,8 +172,11 @@ public class TimeTableElement {
         }
     }
 
-    // Method to get the hour as integer value.
-    // Needed, because 'hour' can have values such as "1-2" which can't be converted to an integer
+    /**
+     * Calculates an integer value based on the hour String to be able to sort after the hour
+     *
+     * @return Integer value of the hour String
+     */
     int getHour_I() {
         String hour = getHour();
         try {
@@ -195,6 +222,11 @@ public class TimeTableElement {
         return this.info;
     }
 
+    /**
+     * Performs some changes to the info string, to display it in the GUI. Returns the modified string.
+     *
+     * @return Optimized info string
+     */
     public String getInfoForDisplay() {
         if ("! Raum".equals(info)) {
             return "Raumänderung";
@@ -224,7 +256,12 @@ public class TimeTableElement {
         return getDiffAmount(tte) == 0;
     }
 
-    // Returns the number of differences between two elements
+    /**
+     * Calculates the number of differences of this and a given tte.
+     *
+     * @param tte Another TimeTableElement to be checked against
+     * @return Number of differences of two TimeTableElements
+     */
     int getDiffAmount(TimeTableElement tte) {
         int diffs = 0;
         ArrayList<String> list1 = getElementAsList();
@@ -238,11 +275,20 @@ public class TimeTableElement {
         return diffs;
     }
 
-    // Returns the TTE object as ArrayList
+    /**
+     * Generates an ArrayList of this TimeTableElement
+     *
+     * @return ArrayList with the data of this TimeTableElement
+     */
     ArrayList<String> getElementAsList() {
         return new ArrayList<>(Arrays.asList(hour, className, subject, newSubject, room, newRoom, info));
     }
 
+    /**
+     * Calculates the type of this TimeTableElement, based on the newSubject and newRoom fields
+     *
+     * @return Type integer
+     */
     private int calcType() {
         if (newSubject.equals("---") && newRoom.equals("---"))
             return CANCELLATION;
@@ -250,11 +296,22 @@ public class TimeTableElement {
             return SUBSTITUTION;
     }
 
+    /**
+     * Generates a string representation of this TimeTableElement
+     *
+     * @return String representation of this TimeTableElement
+     */
     @Override
     public String toString() {
         return String.format("%s | %s | %s | %s | %s | %s | %s", hour, className, subject, newSubject, room, newRoom, info);
     }
 
+    /**
+     * Generates a JSONObject of this TimeTableElement
+     *
+     * @return JSONObject representation of this TimeTableElement
+     * @throws JSONException Thrown when the JSONObject coult not be generated
+     */
     public JSONObject toJSON() throws JSONException {
         JSONObject jsonObject = new JSONObject();
 
