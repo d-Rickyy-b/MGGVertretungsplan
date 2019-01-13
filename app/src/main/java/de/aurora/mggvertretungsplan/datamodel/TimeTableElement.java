@@ -21,7 +21,7 @@ public class TimeTableElement {
     public static final int SUBSTITUTION = 1;
     private static final String TAG = "TimeTableElement";
     private final String hour;
-    private final String class_name;
+    private final String className;
     private final String subject;
     private final String newSubject;
     private final String room;
@@ -31,7 +31,7 @@ public class TimeTableElement {
 
     public TimeTableElement() {
         hour = "";
-        class_name = "";
+        className = "";
         subject = "";
         newSubject = "";
         room = "";
@@ -40,9 +40,9 @@ public class TimeTableElement {
         info = "";
     }
 
-    TimeTableElement(String hour, String class_name, String subject, String newSubject, String room, String newRoom, String info) {
+    TimeTableElement(String hour, String className, String subject, String newSubject, String room, String newRoom, String info) {
         this.hour = hour.replace(" - ", "-");
-        this.class_name = class_name;
+        this.className = className;
         this.subject = getFullSubject(subject);
         this.newSubject = getFullSubject(newSubject);
         this.room = (room.isEmpty() ? "---" : room);
@@ -53,7 +53,7 @@ public class TimeTableElement {
 
     TimeTableElement(JSONObject jsonObject) throws JSONException {
         this.hour = jsonObject.getString("hour");
-        this.class_name = jsonObject.getString("class_name");
+        this.className = jsonObject.getString("class_name");
         this.subject = jsonObject.getString("subject");
         this.newSubject = jsonObject.getString("newSubject");
         this.room = jsonObject.getString("room");
@@ -168,8 +168,8 @@ public class TimeTableElement {
         return hour;
     }
 
-    public String getClass_name() {
-        return this.class_name;
+    public String getClassName() {
+        return this.className;
     }
 
     public String getSubject() {
@@ -253,14 +253,14 @@ public class TimeTableElement {
 
     @Override
     public String toString() {
-        return String.format("%s | %s | %s | %s | %s | %s | %s", hour, class_name, subject, newSubject, room, newRoom, info);
+        return String.format("%s | %s | %s | %s | %s | %s | %s", hour, className, subject, newSubject, room, newRoom, info);
     }
 
     public JSONObject toJSON() throws JSONException {
         JSONObject jsonObject = new JSONObject();
 
         jsonObject.put("hour", hour);
-        jsonObject.put("class_name", class_name);
+        jsonObject.put("class_name", className);
         jsonObject.put("subject", subject);
         jsonObject.put("newSubject", newSubject);
         jsonObject.put("room", room);

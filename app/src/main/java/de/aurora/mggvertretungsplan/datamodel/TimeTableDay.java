@@ -159,7 +159,7 @@ public class TimeTableDay {
         Grade grade = new Grade(className);
 
         for (TimeTableElement tte : timeTableElements) {
-            String elementClassName = tte.getClass_name();
+            String elementClassName = tte.getClassName();
             // TODO Remove the "contains" part
             if (grade.matches(elementClassName) || elementClassName.contains(className))
                 elementsOfClass.add(tte);
@@ -253,7 +253,7 @@ public class TimeTableDay {
                 if (tte.getHour().length() <= 2 && tte2.getHour().length() <= 2 &&
                         tte.getHour_I() == (tte2.getHour_I() - 1)) {
                     if (tte.getType() == tte2.getType() &&
-                            tte.getClass_name().equals(tte2.getClass_name()) &&
+                            tte.getClassName().equals(tte2.getClassName()) &&
                             tte.getRoom().equals(tte2.getRoom()) &&
                             tte.getNewRoom().equals(tte2.getNewRoom()) &&
                             tte.getSubject().equals(tte2.getSubject()) &&
@@ -269,7 +269,7 @@ public class TimeTableDay {
                         else
                             newInfo = String.format("%s - %s", tte.getInfo(), tte2.getInfo());
 
-                        TimeTableElement replacement = new TimeTableElement(newTime, tte.getClass_name(), tte.getSubject(), tte.getNewSubject(), tte.getRoom(), tte.getNewRoom(), newInfo);
+                        TimeTableElement replacement = new TimeTableElement(newTime, tte.getClassName(), tte.getSubject(), tte.getNewSubject(), tte.getRoom(), tte.getNewRoom(), newInfo);
 
                         timeTableElements.remove(tte);
                         timeTableElements.remove(tte2);
