@@ -257,6 +257,12 @@ public class TimeTableElement {
         return this.newSubject;
     }
 
+    /**
+     * Checks if this and a given tte are equal by comparing their fields.
+     *
+     * @param tte Another TimeTableElement to be checked for equality
+     * @return Boolean if both TimeTableElements are equal
+     */
     boolean equals(TimeTableElement tte) {
         return getDiffAmount(tte) == 0;
     }
