@@ -116,7 +116,8 @@ public class TimeTable {
 
             if (newDay) {
                 int dayDiffs = ttd.getElementsCount(className);
-                differencesTimeTable.addDay(ttd);
+
+                differencesTimeTable.addDay(ttd.getTTDbyClass(className));
                 Logger.d(TAG, String.format(Locale.getDefault(),"New Day found - %d cancellations for %s", dayDiffs, className));
             }
         }
