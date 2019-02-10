@@ -195,6 +195,12 @@ public class TimeTableDay {
         return getElements(className).size();
     }
 
+    /**
+     * Calculates the differences between two TimeTableDays
+     * @param ttd The old/saved Timetable to be compared against
+     * @param className The name of the class to search for
+     * @return New TimeTableDay containing only the new elements for a certain class
+     */
     TimeTableDay getDifferences(TimeTableDay ttd, String className) {
         ArrayList<TimeTableElement> savedElements = ttd.getElements(className);
         ArrayList<TimeTableElement> newElements = this.getElements(className);
@@ -215,15 +221,12 @@ public class TimeTableDay {
         }
 
         // Remove similar elements, which are contained in both lists
-        for (int i = 0; i < newElements.size(); i++) {
-            TimeTableElement element1 = newElements.get(i);
-            for (int j = 0; j < savedElements.size(); j++) {
-                TimeTableElement element2 = savedElements.get(j);
-
-                if (element1.getDiffAmount(element2) == 1) {
+        for (TimeTableElement tte1: newElements) {
+            for (TimeTableElement tte2: savedElements) {
+                if (tte1.getDiffAmount(tte2) == 1) {
                     // This else part catches elements where only one part (hour, subject, etc.) has changed
                     // Without it, every *change* of an existing element would be counted twice
-                    savedElements.remove(j);
+                    savedElements.remove(tte2);
                     break;
                 }
             }
@@ -232,9 +235,7 @@ public class TimeTableDay {
         // savedElements now contains only those elements which are no longer in the TimeTable
         // newElements now only contains those elements which are new (not saved yet) or have changed in a single part
         savedElements.addAll(newElements);
-        ArrayList<TimeTableElement> tmp = savedElements;
-
-        return new TimeTableDay(date, week, tmp);
+        return new TimeTableDay(date, week, savedElements);
     }
 
     // Checks if this and the given day are at the same date
