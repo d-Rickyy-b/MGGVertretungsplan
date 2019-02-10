@@ -26,6 +26,7 @@ public class TimeTableElement {
     private final String newRoom;
     private final int type;
     private final String info;
+    private boolean active;
 
     /**
      * Create an empty TimeTableElement
@@ -39,6 +40,7 @@ public class TimeTableElement {
         newRoom = "";
         type = EMPTY;
         info = "";
+        active = false;
     }
 
     /**
@@ -52,7 +54,24 @@ public class TimeTableElement {
      * @param newRoom    New room (in case of substitution) as String
      * @param info       String adding additional information to the
      */
+    @Deprecated
     TimeTableElement(String hour, String className, String subject, String newSubject, String room, String newRoom, String info) {
+        this(hour, className, subject, newSubject, room, newRoom, info, true);
+    }
+
+    /**
+     * Create TimeTableElement by providing all the single data fields
+     *
+     * @param hour       String describing the hour on which the element takes place
+     * @param className  Name of the class as String
+     * @param subject    Subject as String
+     * @param newSubject New subject (in case of substitution) as String
+     * @param room       Room as String
+     * @param newRoom    New room (in case of substitution) as String
+     * @param info       String adding additional information to the
+     * @param active     Indicator if this element is still active or if it has been removed
+     */
+    TimeTableElement(String hour, String className, String subject, String newSubject, String room, String newRoom, String info, boolean active) {
         this.hour = hour.replace(" - ", "-");
         this.className = className;
         this.subject = getFullSubject(subject);
@@ -61,6 +80,7 @@ public class TimeTableElement {
         this.newRoom = (newRoom.isEmpty() ? "---" : newRoom);
         this.type = calcType();
         this.info = info.trim();
+        this.active = active;
     }
 
     /**
@@ -169,6 +189,19 @@ public class TimeTableElement {
                     return subject;
             }
         }
+    }
+
+    /**
+     * Method to determine if a certain element is active and hasn't been removed from the TimeTable
+     *
+     * @return boolean, if an element is still active
+     */
+    public boolean isActive() {
+        return this.active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
     /**
