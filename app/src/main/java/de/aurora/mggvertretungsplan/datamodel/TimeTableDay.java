@@ -154,6 +154,10 @@ public class TimeTableDay {
         return fullDateFormat.format(date);
     }
 
+    public TimeTableDay getTTDbyClass(String className) {
+        return new TimeTableDay(this.date, this.week, this.getElements(className));
+    }
+
     public ArrayList<TimeTableElement> getElements(String className) {
         ArrayList<TimeTableElement> elementsOfClass = new ArrayList<>();
         Grade grade = new Grade(className);
