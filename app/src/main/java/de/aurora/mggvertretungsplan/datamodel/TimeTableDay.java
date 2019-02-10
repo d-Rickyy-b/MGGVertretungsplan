@@ -232,7 +232,12 @@ public class TimeTableDay {
             }
         }
 
-        // savedElements now contains only those elements which are no longer in the TimeTable
+        // Set the elements, which are no longer in the TimeTableDay to inactive, so they can be notified as "removed"
+        for (TimeTableElement tte: savedElements) {
+            tte.setActive(false);
+        }
+
+        // savedElements now contains only those elements which are no longer in the TimeTableDay
         // newElements now only contains those elements which are new (not saved yet) or have changed in a single part
         savedElements.addAll(newElements);
         return new TimeTableDay(date, week, savedElements);
