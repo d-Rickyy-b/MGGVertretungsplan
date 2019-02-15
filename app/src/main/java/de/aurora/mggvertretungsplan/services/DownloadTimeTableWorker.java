@@ -103,6 +103,7 @@ public class DownloadTimeTableWorker extends Worker implements ParsingCompleteLi
         }
 
         if (sp.getBoolean("show_detailed_notifications", true)) {
+            // If the user wants beautiful, daily seperated notifications -> Notify indivitually
             for (TimeTableDay ttd : diffTimeTable.getAllDays()) {
                 if (ttd.getElementsCount(class_name) > 0) {
                     Logger.d(TAG, "Notifying user");
@@ -110,6 +111,7 @@ public class DownloadTimeTableWorker extends Worker implements ParsingCompleteLi
                 }
             }
         } else {
+            // If the user does not want detailed notifications -> Notify about total number of changes
             Context context = getApplicationContext();
             String ticker = context.getResources().getString(R.string.notification_cancellations_ticker);
             String title = context.getResources().getString(R.string.notification_cancellations_title);
