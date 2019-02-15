@@ -104,8 +104,10 @@ public class DownloadTimeTableWorker extends Worker implements ParsingCompleteLi
 
         if (sp.getBoolean("show_detailed_notifications", true)) {
             for (TimeTableDay ttd : diffTimeTable.getAllDays()) {
-                Logger.d(TAG, "Notifying user");
-                notificationHelper.notifyChange(ttd);
+                if (ttd.getElementsCount(class_name) > 0) {
+                    Logger.d(TAG, "Notifying user");
+                    notificationHelper.notifyChange(ttd);
+                }
             }
         } else {
             Context context = getApplicationContext();
