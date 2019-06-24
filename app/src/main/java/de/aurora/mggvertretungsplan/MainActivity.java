@@ -23,6 +23,7 @@ import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import androidx.annotation.ColorInt;
 import androidx.appcompat.app.AlertDialog;
@@ -220,6 +221,68 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             case R.id.action_feedback:
                 launchCustomTabsIntent(color, getString(R.string.feedback_url));
                 break;
+            case R.id.action_share:
+                // Share
+                String shareText = "Vertretungsplan " + class_name;
+                String input = StorageUtilities.readFile(this);
+                try {
+                    JSONArray json = new JSONArray(input);
+                    // For every Week:
+                    for (int i = 0; i < json.length(); i++) {
+                        JSONObject dateData = json.getJSONObject(i);
+                        String Date = dateData.getString("date");
+                        String Week = dateData.getString("week");
+                        shareText = shareText + "\n" + Date + " Woche " + Week;
+                        JSONArray dateElements = dateData.getJSONArray("elements");
+                        // For every Element of the Week:
+                        for (int j = 0; j < dateElements.length(); j++){
+                            JSONObject actChange = dateElements.getJSONObject(j);
+                            String actClass = actChange.getString("class_name");
+                            String actHour = actChange.getString("hour");
+                            String actSubj = actChange.getString("subject");
+                            String act_newSubj = actChange.getString("newSubject");
+                            String actRoom = actChange.getString("room");
+                            String act_newRoom = actChange.getString("newRoom");
+                            String actInfo = actChange.getString("info");
+                            //Only if own Class:
+                            if (actClass.equals(class_name)) {
+                                shareText = shareText + "\n >" + actHour + ". Stunde: ";
+                                if (!actSubj.equals(act_newSubj)) {
+                                    if (!act_newSubj.equals("---")) {
+                                        shareText = shareText + " " + actSubj + " -> " + act_newSubj;
+                                    } else {
+                                        shareText = shareText + " entfällt";
+                                    }
+                                    ;
+                                }
+                                ;
+
+                                if (!actRoom.equals(act_newRoom)) {
+                                    if (!act_newRoom.equals("---")) {
+                                        shareText = shareText + " " + actRoom + " -> " + act_newRoom;
+                                    }
+                                    ;
+                                }
+                                ;
+                                if (!actInfo.equals("")) {
+                                    shareText = shareText + " " + actInfo;
+                                }
+                                ;
+
+
+                            }
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                shareIntent.setType("text/plain");
+                shareIntent.putExtra(Intent.EXTRA_SUBJECT, "Vertretungsplan des Markgrafen-Gymnasiums");
+                shareIntent.putExtra(Intent.EXTRA_TEXT, shareText);
+                startActivity(Intent.createChooser(shareIntent, "Teilen via..."));
+                break;
+
             case R.id.action_info:
                 Spanned informationText;
                 if (Build.VERSION.SDK_INT >= 24) {
