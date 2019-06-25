@@ -118,6 +118,7 @@ public class TimeTable {
                 int dayDiffs = ttd.getElementsCount(className);
 
                 differencesTimeTable.addDay(ttd.getTTDbyClass(className));
+                //TODO Bug - ALL elements are added regardless of the class
                 Logger.d(TAG, String.format(Locale.getDefault(),"New Day found - %d cancellations for %s", dayDiffs, className));
             }
         }
