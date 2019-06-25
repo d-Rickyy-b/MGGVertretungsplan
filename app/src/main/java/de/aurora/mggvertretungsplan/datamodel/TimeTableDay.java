@@ -36,6 +36,14 @@ public class TimeTableDay {
         mergeConsecutiveCancellations();
     }
 
+    public TimeTableDay(Date date, Week week, ArrayList<TimeTableElement> timeTableElements) {
+        this.date = date;
+        this.week = week;
+        for (TimeTableElement tte: timeTableElements) {
+            addElement(tte);
+        }
+    }
+
     public TimeTableDay(JSONObject jsonObject) {
         try {
             String date = jsonObject.getString("date");
@@ -123,6 +131,10 @@ public class TimeTableDay {
         }
 
         return elementsOfClass;
+    }
+
+    public TimeTableDay filter(String className) {
+        return new TimeTableDay(this.date, this.week, getElements(className));
     }
 
     public ArrayList<ArrayList<String>> getArrayList() {
