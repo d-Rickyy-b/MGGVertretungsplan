@@ -253,6 +253,33 @@ public class TimeTableDay {
         return result.toString().trim();
     }
 
+    /**
+     * Formats the TTD in a beautiful way to share the TT via other apps
+     * @return Beautiful formatted string of the TTD's content
+     */
+    public String toShareString() {
+        StringBuilder result = new StringBuilder();
+        result.append(getFullDateString());
+        result.append(", ");
+        result.append(this.week.toString());
+        result.append("-Woche\n");
+
+        if (timeTableElements.isEmpty()) {
+            //result.append(getString(R.string.card_no_information));
+            //TODO Remove hardcoded string
+            result.append("Keine Ausfälle!");
+            result.append("\n\n");
+            return result.toString();
+        }
+
+        for (TimeTableElement tte : timeTableElements) {
+            result.append(tte.toShareString());
+        }
+        result.append("\n");
+
+        return result.toString();
+    }
+
     public JSONObject toJSON() throws JSONException {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("date", getDateString());
