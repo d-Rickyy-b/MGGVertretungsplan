@@ -96,4 +96,9 @@ public class TimeTableElementTest {
         assertEquals(String.format("%s | %s | %s | %s | %s | %s | %s", hour, class_name, "Deutsch", "Englisch", room, newRoom, info), tte.toString());
     }
 
+    @Test
+    public void testToShareString() {
+        TimeTableElement tte = new TimeTableElement(hour, class_name, subject, newSubject, room, newRoom, info);
+        assertEquals(String.format(" > %s. Stunde: %s -> %s\n", hour, room, newRoom), tte.toShareString());
+    }
 }
