@@ -135,6 +135,21 @@ public class TimeTable {
         return result.toString().trim();
     }
 
+    /**
+     * Filters the timetable so that only entries of a certain class will stay. All other classes
+     * will be removed.
+     * @param class_name The name of the class, which should be filtered on.
+     * @return TimeTable object
+     */
+    public TimeTable filter(String className) {
+        final TimeTable tt = new TimeTable();
+        for (TimeTableDay ttd: timeTableDays) {
+            tt.addDay(ttd.filter(className));
+        }
+
+        return tt;
+    }
+
     public JSONArray toJSON() throws JSONException {
         JSONArray jsonArray = new JSONArray();
 
