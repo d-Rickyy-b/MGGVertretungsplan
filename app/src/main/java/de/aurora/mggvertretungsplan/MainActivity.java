@@ -21,9 +21,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-
 import androidx.annotation.ColorInt;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,7 +31,12 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+
 import de.aurora.mggvertretungsplan.datamodel.TimeTable;
+import de.aurora.mggvertretungsplan.datamodel.TimeTableDay;
 import de.aurora.mggvertretungsplan.parsing.BaseParser;
 import de.aurora.mggvertretungsplan.parsing.BaseParser.ParsingCompleteListener;
 import de.aurora.mggvertretungsplan.parsing.MGGParser;
@@ -220,6 +222,39 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             case R.id.action_feedback:
                 launchCustomTabsIntent(color, getString(R.string.feedback_url));
                 break;
+            case R.id.action_share:
+                StringBuilder sb = new StringBuilder();
+                String header = getString(R.string.toolbarTitle_WithClass, class_name);
+                sb.append(header);
+                sb.append("\n");
+
+                String input = StorageUtilities.readFile(this);
+                TimeTable timeTable;
+
+                if (input.isEmpty()) {
+                    timeTable = new TimeTable();
+                } else {
+                    try {
+                        JSONArray jsonArray = new JSONArray(input);
+                        timeTable = new TimeTable(jsonArray);
+                        timeTable = timeTable.filter(class_name);
+                    } catch (JSONException e) {
+                        Logger.e(TAG, e.getMessage());
+                        timeTable = new TimeTable();
+                    }
+                }
+
+                for (TimeTableDay ttd : timeTable.getAllDays()) {
+                    sb.append(ttd.toShareString());
+                }
+
+                Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                shareIntent.setType("text/plain");
+                shareIntent.putExtra(Intent.EXTRA_SUBJECT, "Vertretungsplan des Markgrafen-Gymnasiums");
+                shareIntent.putExtra(Intent.EXTRA_TEXT, sb.toString().trim());
+                startActivity(Intent.createChooser(shareIntent, "Teilen via..."));
+                break;
+
             case R.id.action_info:
                 Spanned informationText;
                 if (Build.VERSION.SDK_INT >= 24) {

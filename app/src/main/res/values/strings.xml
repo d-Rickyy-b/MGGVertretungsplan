@@ -81,6 +81,7 @@
     <string name="defaultChannelDesc">Benachrichtigungen über Änderungen des Vertretungsplans</string>
     <string name="newsChannelDisplayName">Neuigkeiten</string>
     <string name="newsChannelDesc">Nachrichten der MGG Webseite</string>
+    <string name="action_share_title">Teilen...</string>
 
     <string-array name="ClassLayer_List">
         <item>5</item>

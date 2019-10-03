@@ -349,6 +349,26 @@ public class TimeTableElement {
     }
 
     /**
+     * Formats the TTD in a beautiful way to share the TT via other apps
+     * @return Beautiful formatted string of the TTD's content
+     */
+    public String toShareString() {
+        // TODO There should be some way to see what subject is cancelled / substituted,
+        //  especially important for K1 / K2 because there are multiple subjects taking place
+        //  at the same time
+        int type = getType();
+        if (type == CANCELLATION) {
+            return String.format(" > %s. Stunde entfällt! %s\n", hour, info);
+        }
+        if (type == SUBSTITUTION) {
+            return String.format(" > %s. Stunde: %s -> %s\n", hour, room, newRoom);
+        }
+        return "FEHLER!\n";
+        //TODO remove hardcoded strings!
+    }
+
+
+    /**
      * Generates a JSONObject of this TimeTableElement
      *
      * @return JSONObject representation of this TimeTableElement
