@@ -51,7 +51,6 @@ public class Logger {
             logFile = new File(dir, dateFormat.format(System.currentTimeMillis()) + ".txt");
             Log.v(TAG, logFile.toString());
             boolean res = logFile.createNewFile();
-            Log.e(TAG, "Hi" + String.valueOf(res));
 
             FileOutputStream stream = new FileOutputStream(logFile);
             streamWriter = new OutputStreamWriter(stream);
@@ -67,7 +66,6 @@ public class Logger {
     }
 
     public static void deleteLogs() {
-        Logger logger = getInstance();
         File sdCard = AppContext.applicationContext.getExternalFilesDir(null);
 
         if (sdCard == null) {
@@ -119,21 +117,23 @@ public class Logger {
         writeLog("WTF", tag, message);
     }
 
+    private void writeLog(String data) {
+        try {
+            this.streamWriter.write(data);
+        } catch (Exception e) {
+            Log.e(TAG, e.getMessage());
+        }
+    }
+
     private static void writeLog(final String level, final String tag, final String message) {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(AppContext.applicationContext);
-        Boolean logToFile = sp.getBoolean("logToFile", false);
+        boolean logToFile = sp.getBoolean("logToFile", false);
 
         if (!logToFile)
             return;
 
         Logger logger = getInstance();
         String timestamp = logger.fullDateFormat.format(System.currentTimeMillis());
-
-        try {
-            logger.streamWriter.write(String.format("%s - %s/%s - %s\n", timestamp, level, tag, message));
-            logger.streamWriter.flush();
-        } catch (Exception e) {
-            Log.e(TAG, e.getMessage());
-        }
+        logger.writeLog(String.format("%s - %s/%s - %s\n", timestamp, level, tag, message));
     }
 }
