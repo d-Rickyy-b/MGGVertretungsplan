@@ -18,7 +18,7 @@ public class Logger {
     private static volatile Logger instance = null;
     private OutputStreamWriter streamWriter;
     private File logFile;
-    private SimpleDateFormat fullDateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss.SSS", Locale.getDefault());
+    public SimpleDateFormat fullDateFormat = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss.SSS", Locale.getDefault());
 
     public static Logger getInstance() {
         Logger localInstance = instance;
