@@ -36,7 +36,7 @@ public class Logger {
     }
 
     public Logger() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd_MM_yyyy_HH_mm_ss", Locale.getDefault());
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss", Locale.getDefault());
         try {
             File sdCard = AppContext.applicationContext.getExternalFilesDir(null);
 
