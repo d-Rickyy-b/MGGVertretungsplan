@@ -23,7 +23,7 @@ public class DateHeading {
     }
 
     public String getWholeDate() {
-        SimpleDateFormat wholeDate = new SimpleDateFormat("EEEE, dd.MM.yyyy", Locale.GERMANY);
+        SimpleDateFormat wholeDate = new SimpleDateFormat("EEEE, dd.MM.yyyy", Locale.getDefault());
         return wholeDate.format(date);
     }
 

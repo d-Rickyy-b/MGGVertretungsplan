@@ -88,9 +88,9 @@ public class TimeTable {
         return cancellations;
     }
 
-    public int getTotalDifferences(TimeTable savedTimeTable, String className) {
+    public TimeTable getTotalDifferences(TimeTable savedTimeTable, String className) {
         Logger.d(TAG, "Getting differences of saved and downloaded timetable!");
-        int differences = 0;
+        TimeTable differencesTimeTable = new TimeTable();
         Date currentDate = new Date();
         ArrayList<TimeTableDay> savedDays = savedTimeTable.getAllDays();
 
@@ -106,9 +106,9 @@ public class TimeTable {
             for (TimeTableDay saved_ttd : savedDays) {
                 if (ttd.isSameDay(saved_ttd)) {
                     Logger.d(TAG, String.format("Dates are the same - %s | %s", ttd.getDateString(), saved_ttd.getDateString()));
-                    Logger.d(TAG, String.format("%s", ttd.getElements(className).toString()));
-                    Logger.d(TAG, String.format("%s", saved_ttd.getElements(className).toString()));
-                    differences += ttd.getDifferences(saved_ttd, className);
+                    Logger.d(TAG, String.format("New TTD   : %s", ttd.getElements(className).toString()));
+                    Logger.d(TAG, String.format("Stored TTD: %s", saved_ttd.getElements(className).toString()));
+                    differencesTimeTable.addDay(ttd.getDifferences(saved_ttd, className));
                     newDay = false;
                     break;
                 }
@@ -116,12 +116,14 @@ public class TimeTable {
 
             if (newDay) {
                 int dayDiffs = ttd.getElementsCount(className);
-                differences += dayDiffs;
-                Logger.d(TAG, String.format(Locale.GERMANY,"New Day found - %d cancellations for %s", dayDiffs, className));
+
+                differencesTimeTable.addDay(ttd.getTTDbyClass(className));
+                //TODO Bug - ALL elements are added regardless of the class
+                Logger.d(TAG, String.format(Locale.getDefault(),"New Day found - %d cancellations for %s", dayDiffs, className));
             }
         }
 
-        return differences;
+        return differencesTimeTable;
     }
 
     @Override

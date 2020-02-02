@@ -56,5 +56,18 @@
             android:key="notification"
             android:title="@string/settings_notification_title" />
 
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="show_detailed_notifications"
+            android:title="@string/show_detailed_notifications_title"
+            android:summary="@string/show_detailed_notifications_summary"/>
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:enabled="false"
+            android:key="logToFile"
+            android:title="@string/logging_title"
+            android:summary="@string/logging_summary"/>
+
     </PreferenceCategory>
 </PreferenceScreen>

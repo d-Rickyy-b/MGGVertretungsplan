@@ -1,5 +1,7 @@
 package de.aurora.mggvertretungsplan.datamodel;
 
+import android.content.Context;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -11,6 +13,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 
+import de.aurora.mggvertretungsplan.R;
 import de.aurora.mggvertretungsplan.util.Logger;
 
 /**
@@ -28,8 +31,8 @@ public class TimeTableDay {
         this.week = new Week(week);
         setDate(date);
 
-        for (ArrayList<String> zeile : timeTableDay_List) {
-            TimeTableElement timeTableElement = new TimeTableElement(zeile.get(0), zeile.get(1), zeile.get(2), zeile.get(3), zeile.get(4), zeile.get(5), zeile.get(6));
+        for (ArrayList<String> row : timeTableDay_List) {
+            TimeTableElement timeTableElement = new TimeTableElement(row.get(0), row.get(1), row.get(2), row.get(3), row.get(4), row.get(5), row.get(6));
             addElement(timeTableElement);
         }
 
@@ -39,9 +42,7 @@ public class TimeTableDay {
     public TimeTableDay(Date date, Week week, ArrayList<TimeTableElement> timeTableElements) {
         this.date = date;
         this.week = week;
-        for (TimeTableElement tte: timeTableElements) {
-            addElement(tte);
-        }
+        this.timeTableElements.addAll(timeTableElements);
     }
 
     public TimeTableDay(JSONObject jsonObject) {
@@ -62,6 +63,40 @@ public class TimeTableDay {
         } catch (JSONException e) {
             Logger.e(TAG, e.getMessage());
         }
+    }
+
+    public String getNotificationTitle(Context context) {
+        String formatString = context.getString(R.string.notification_title_dateformat);
+        SimpleDateFormat sdf = new SimpleDateFormat(formatString, Locale.getDefault());
+        return sdf.format(this.date);
+    }
+
+    public String getNotificationTicker(Context context) {
+        return context.getString(R.string.notification_ticker);
+    }
+
+    public String getNotificationText(Context context) {
+        StringBuilder sb = new StringBuilder();
+
+        //'{hr}. Std: {subj} {action}'
+        String formatString = "%s. Std: %s %s\n";
+        for (TimeTableElement tte: this.timeTableElements) {
+            String action = "";
+            switch (tte.getType()) {
+                case TimeTableElement.SUBSTITUTION:
+                    action = context.getString(R.string.cardInfo_representation);
+                    break;
+                case TimeTableElement.CANCELLATION:
+                    action = context.getString(R.string.cardInfo_cancelled);
+                    break;
+                case TimeTableElement.EMPTY:
+                    continue;
+            }
+
+            sb.append(String.format(formatString, tte.getHour(), tte.getSubject(), action));
+        }
+
+        return sb.toString().trim();
     }
 
     private void addElement(TimeTableElement tte) {
@@ -94,7 +129,7 @@ public class TimeTableDay {
     }
 
     private void setDate(String date) {
-        SimpleDateFormat fullDateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.GERMANY);
+        SimpleDateFormat fullDateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());
         int currentYear = new GregorianCalendar().get(GregorianCalendar.YEAR);
 
         try {
@@ -110,13 +145,17 @@ public class TimeTableDay {
     }
 
     public String getDateString() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.GERMANY);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());
         return dateFormat.format(date);
     }
 
     public String getFullDateString() {
-        SimpleDateFormat fullDateFormat = new SimpleDateFormat("EEEE, dd.MM.yyyy", Locale.GERMANY);
+        SimpleDateFormat fullDateFormat = new SimpleDateFormat("EEEE, dd.MM.yyyy", Locale.getDefault());
         return fullDateFormat.format(date);
+    }
+
+    public TimeTableDay getTTDbyClass(String className) {
+        return new TimeTableDay(this.date, this.week, this.getElements(className));
     }
 
     public ArrayList<TimeTableElement> getElements(String className) {
@@ -124,7 +163,7 @@ public class TimeTableDay {
         Grade grade = new Grade(className);
 
         for (TimeTableElement tte : timeTableElements) {
-            String elementClassName = tte.getClass_name();
+            String elementClassName = tte.getClassName();
             // TODO Remove the "contains" part
             if (grade.matches(elementClassName) || elementClassName.contains(className))
                 elementsOfClass.add(tte);
@@ -160,8 +199,13 @@ public class TimeTableDay {
         return getElements(className).size();
     }
 
-    // Returns the number of differences between two lists
-    public int getDifferences(TimeTableDay ttd, String className) {
+    /**
+     * Calculates the differences between two TimeTableDays
+     * @param ttd The old/saved Timetable to be compared against
+     * @param className The name of the class to search for
+     * @return New TimeTableDay containing only the new elements for a certain class
+     */
+    TimeTableDay getDifferences(TimeTableDay ttd, String className) {
         ArrayList<TimeTableElement> savedElements = ttd.getElements(className);
         ArrayList<TimeTableElement> newElements = this.getElements(className);
 
@@ -181,26 +225,26 @@ public class TimeTableDay {
         }
 
         // Remove similar elements, which are contained in both lists
-        for (int i = 0; i < newElements.size(); i++) {
-            TimeTableElement element1 = newElements.get(i);
-            for (int j = 0; j < savedElements.size(); j++) {
-                TimeTableElement element2 = savedElements.get(j);
-
-                if (element1.getDiffAmount(element2) == 1) {
+        for (TimeTableElement tte1: newElements) {
+            for (TimeTableElement tte2: savedElements) {
+                if (tte1.getDiffAmount(tte2) == 1) {
                     // This else part catches elements where only one part (hour, subject, etc.) has changed
                     // Without it, every *change* of an existing element would be counted twice
-                    savedElements.remove(j);
+                    savedElements.remove(tte2);
                     break;
                 }
             }
         }
 
-        // savedElements now contains only those elements which are no longer in the TimeTable
-        // newElements now only contains those elements which are new (not saved yet) or have changed in a single part
-        int changesToOldCancellations = savedElements.size();
-        int newCancellations = newElements.size();
+        // Set the elements, which are no longer in the TimeTableDay to inactive, so they can be notified as "removed"
+        for (TimeTableElement tte: savedElements) {
+            tte.setActive(false);
+        }
 
-        return changesToOldCancellations + newCancellations;
+        // savedElements now contains only those elements which are no longer in the TimeTableDay
+        // newElements now only contains those elements which are new (not saved yet) or have changed in a single part
+        savedElements.addAll(newElements);
+        return new TimeTableDay(date, week, savedElements);
     }
 
     // Checks if this and the given day are at the same date
@@ -223,7 +267,7 @@ public class TimeTableDay {
                 if (tte.getHour().length() <= 2 && tte2.getHour().length() <= 2 &&
                         tte.getHour_I() == (tte2.getHour_I() - 1)) {
                     if (tte.getType() == tte2.getType() &&
-                            tte.getClass_name().equals(tte2.getClass_name()) &&
+                            tte.getClassName().equals(tte2.getClassName()) &&
                             tte.getRoom().equals(tte2.getRoom()) &&
                             tte.getNewRoom().equals(tte2.getNewRoom()) &&
                             tte.getSubject().equals(tte2.getSubject()) &&
@@ -239,7 +283,7 @@ public class TimeTableDay {
                         else
                             newInfo = String.format("%s - %s", tte.getInfo(), tte2.getInfo());
 
-                        TimeTableElement replacement = new TimeTableElement(newTime, tte.getClass_name(), tte.getSubject(), tte.getNewSubject(), tte.getRoom(), tte.getNewRoom(), newInfo);
+                        TimeTableElement replacement = new TimeTableElement(newTime, tte.getClassName(), tte.getSubject(), tte.getNewSubject(), tte.getRoom(), tte.getNewRoom(), newInfo);
 
                         timeTableElements.remove(tte);
                         timeTableElements.remove(tte2);

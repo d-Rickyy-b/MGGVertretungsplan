@@ -1,7 +1,12 @@
 package de.aurora.mggvertretungsplan.datamodel;
 
+import android.content.Context;
+
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -11,17 +16,24 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 
+import de.aurora.mggvertretungsplan.R;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.when;
 
 /**
  * Created by Rico on 20.11.2017.
  */
+@RunWith(MockitoJUnitRunner.class)
 public class TimeTableDayTest {
     private static final String WEEK_A = "A";
     private static final String WEEK_B = "B";
     private ArrayList<ArrayList<String>> testList;
+
+    @Mock
+    private Context context;
 
     @Before
     public void setUp() {
@@ -29,11 +41,51 @@ public class TimeTableDayTest {
     }
 
     @Test
+    public void getNotificationTitle() {
+        when(context.getString(R.string.notification_title_dateformat)).thenReturn("EEEE, dd.MM.");
+        TimeTableDay ttd = new TimeTableDay("01.01.2018", WEEK_A, testList);
+        assertEquals("Montag, 01.01.", ttd.getNotificationTitle(context));
+
+        TimeTableDay ttd1 = new TimeTableDay("01.01.2019", WEEK_A, testList);
+        assertEquals("Dienstag, 01.01.", ttd1.getNotificationTitle(context));
+
+        TimeTableDay ttd2 = new TimeTableDay("19.07.2019", WEEK_A, testList);
+        assertEquals("Freitag, 19.07.", ttd2.getNotificationTitle(context));
+    }
+
+    @Test
+    public void getNotificationTicker() {
+        //TimeTableElement tte = new TimeTableElement(hour, class_name, subject, newSubject, room, newRoom, info);
+        when(context.getString(R.string.notification_ticker)).thenReturn("Neue Stundenplanänderung");
+        TimeTableDay ttd = new TimeTableDay("01.01.2018", WEEK_A, testList);
+        assertEquals("Neue Stundenplanänderung", ttd.getNotificationTicker(context));
+    }
+
+    @Test
+    public void getNotificationText() {
+        when(context.getString(R.string.cardInfo_cancelled)).thenReturn("entfällt");
+        when(context.getString(R.string.cardInfo_representation)).thenReturn("Vertretung");
+
+        String className = "K1";
+        testList.add(new ArrayList<>(Arrays.asList("1", className, "4BK", "---", "BK3", "---", "")));
+        testList.add(new ArrayList<>(Arrays.asList("3", className, "G", "D", "H202", "H202", "")));
+        testList.add(new ArrayList<>(Arrays.asList("5-6", className, "E", "---", "H105", "---", "Teacher on holiday!")));
+
+        TimeTableDay ttd = new TimeTableDay("01.01.2018", WEEK_A, testList);
+
+        String expectedText = "1. Std: Bildende Kunst entfällt\n" +
+                              "3. Std: Geschichte Vertretung\n" +
+                              "5-6. Std: Englisch entfällt";
+
+        assertEquals(expectedText, ttd.getNotificationText(context));
+    }
+
+    @Test
     public void getDate() throws Exception {
         Calendar calendar = Calendar.getInstance();
         calendar.set(2018, 0, 1);
 
-        SimpleDateFormat fullDateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.GERMANY);
+        SimpleDateFormat fullDateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());
         Date date = fullDateFormat.parse("01.01.2018");
 
         TimeTableDay ttd = new TimeTableDay("01.01.2018", WEEK_A, testList);
@@ -61,12 +113,12 @@ public class TimeTableDayTest {
 
     @Test
     public void getFullDateString() throws Exception {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.GERMANY);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());
         Date date = dateFormat.parse("01.01.2018");
 
         TimeTableDay ttd = new TimeTableDay("01.01.2018", WEEK_A, testList);
 
-        SimpleDateFormat fullDateFormat = new SimpleDateFormat("EEEE, dd.MM.yyyy", Locale.GERMANY);
+        SimpleDateFormat fullDateFormat = new SimpleDateFormat("EEEE, dd.MM.yyyy", Locale.getDefault());
 
         assertEquals(fullDateFormat.format(date), ttd.getFullDateString());
     }
@@ -264,14 +316,13 @@ public class TimeTableDayTest {
         TimeTableDay day7 = new TimeTableDay("01.01.2018", WEEK_A, day7List);
 
 
-        assertEquals(0, day1.getDifferences(day1, className));
-        assertEquals(1, day1.getDifferences(day2, className));
-        assertEquals(1, day1.getDifferences(day3, className));
-        assertEquals(1, day1.getDifferences(day4, className));
-        assertEquals(2, day1.getDifferences(day5, className));
-        assertEquals(2, day1.getDifferences(day6, className));
-        assertEquals(4, day1.getDifferences(day7, className));
-
+        assertEquals(0, day1.getDifferences(day1, className).getElementsCount(className));
+        assertEquals(1, day1.getDifferences(day2, className).getElementsCount(className));
+        assertEquals(1, day1.getDifferences(day3, className).getElementsCount(className));
+        assertEquals(1, day1.getDifferences(day4, className).getElementsCount(className));
+        assertEquals(2, day1.getDifferences(day5, className).getElementsCount(className));
+        assertEquals(2, day1.getDifferences(day6, className).getElementsCount(className));
+        assertEquals(4, day1.getDifferences(day7, className).getElementsCount(className));
     }
 
     @Test

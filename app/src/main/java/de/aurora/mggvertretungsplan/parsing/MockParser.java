@@ -58,7 +58,7 @@ public class MockParser extends BaseParser {
         timeTable1.addDay(ttd1);
         timeTable2.addDay(ttd2);
 
-        int diffs = timeTable1.getTotalDifferences(timeTable2, "K1");
+        int diffs = timeTable1.getTotalDifferences(timeTable2, "K1").getDaysCount();
         Logger.d("MockParser", String.format("Diffs: %s", diffs));
 
         timeTableReturn.addDay(ttd1);

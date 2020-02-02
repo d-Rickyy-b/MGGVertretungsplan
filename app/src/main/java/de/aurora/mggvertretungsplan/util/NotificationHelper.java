@@ -12,6 +12,7 @@ import android.os.Build;
 import androidx.core.app.NotificationCompat;
 import de.aurora.mggvertretungsplan.MainActivity;
 import de.aurora.mggvertretungsplan.R;
+import de.aurora.mggvertretungsplan.datamodel.TimeTableDay;
 
 public class NotificationHelper extends ContextWrapper {
     private static final String TAG = "NotificationHelper";
@@ -53,7 +54,7 @@ public class NotificationHelper extends ContextWrapper {
         }
     }
 
-    private Notification buildNotification(String ticker, String titel, String text, String channel, PendingIntent pIntent) {
+    private Notification buildNotification(String ticker, String title, String text, String channel, PendingIntent pIntent) {
         int color;
         if (Build.VERSION.SDK_INT >= 23)
             color = getResources().getColor(R.color.colorAccent, getTheme());
@@ -62,7 +63,7 @@ public class NotificationHelper extends ContextWrapper {
             color = getResources().getColor(R.color.colorAccent);
 
         NotificationCompat.Builder notification_builder = new NotificationCompat.Builder(this.context, channel)
-                .setContentTitle(titel)
+                .setContentTitle(title)
                 .setContentText(text)
                 .setStyle(new NotificationCompat.BigTextStyle().bigText(text))
                 .setTicker(ticker)
@@ -75,19 +76,28 @@ public class NotificationHelper extends ContextWrapper {
         return notification_builder.build();
     }
 
-    public void notifyNews(String ticker, String titel, String text) {
+    public void notifyNews(String ticker, String title, String text) {
         Intent intent = new Intent(this.context, MainActivity.class);
         PendingIntent pIntent = PendingIntent.getActivity(this.context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-        Notification notification = buildNotification(ticker, titel, text, newsChannelName, pIntent);
+        Notification notification = buildNotification(ticker, title, text, newsChannelName, pIntent);
         notificationManager.notify(notificationCounter, notification);
         notificationCounter++;
     }
 
-    public void notifyChanges(String ticker, String titel, String text) {
+    public void notifyChanges(String ticker, String title, String text) {
         Intent intent = new Intent(this.context, MainActivity.class);
         PendingIntent pIntent = PendingIntent.getActivity(this.context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-        Notification notification = buildNotification(ticker, titel, text, defaultChannelName, pIntent);
+        Notification notification = buildNotification(ticker, title, text, defaultChannelName, pIntent);
         notificationManager.notify(notificationCounter, notification);
         notificationCounter++;
+    }
+
+
+    public void notifyChange(TimeTableDay ttd) {
+        String ticker = ttd.getNotificationTicker(context);
+        String text = ttd.getNotificationText(context);
+        String title = ttd.getNotificationTitle(context);
+
+        notifyChanges(ticker, title, text);
     }
 }
