@@ -156,6 +156,7 @@ public class TimeTableElement {
                 case "MU":
                     return "Musik";
                 case "SP":
+                case "SPO":
                     return "Sport";
                 case "SW":
                     return "Sport weibl.";
