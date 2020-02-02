@@ -57,7 +57,7 @@
     <string name="settings_app_color_summary">Wähle die Farbe der App</string>
     <!--  -->
 
-    <string name="logging_title">Logging</string>
+    <string name="logging_title">Logging (derzeit deaktiviert)</string>
     <string name="logging_summary">Aufzeichnen von Protokolldaten aktivieren</string>
 
     <string name="cardInfo_cancelled">entfällt</string>

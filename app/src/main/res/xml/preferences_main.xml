@@ -64,6 +64,7 @@
 
         <SwitchPreference
             android:defaultValue="false"
+            android:enabled="false"
             android:key="logToFile"
             android:title="@string/logging_title"
             android:summary="@string/logging_summary"/>
