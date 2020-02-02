@@ -106,8 +106,8 @@ public class TimeTable {
             for (TimeTableDay saved_ttd : savedDays) {
                 if (ttd.isSameDay(saved_ttd)) {
                     Logger.d(TAG, String.format("Dates are the same - %s | %s", ttd.getDateString(), saved_ttd.getDateString()));
-                    Logger.d(TAG, String.format("%s", ttd.getElements(className).toString()));
-                    Logger.d(TAG, String.format("%s", saved_ttd.getElements(className).toString()));
+                    Logger.d(TAG, String.format("New TTD   : %s", ttd.getElements(className).toString()));
+                    Logger.d(TAG, String.format("Stored TTD: %s", saved_ttd.getElements(className).toString()));
                     differencesTimeTable.addDay(ttd.getDifferences(saved_ttd, className));
                     newDay = false;
                     break;
