@@ -115,7 +115,7 @@ public class TimeTableElement {
         } else
             abbreviation = subject;
 
-        if (abbreviation.equals("")) {
+        if ("".equals(abbreviation)) {
             return "Kein Fach";
         } else {
             switch (abbreviation.toUpperCase(Locale.getDefault())) {
