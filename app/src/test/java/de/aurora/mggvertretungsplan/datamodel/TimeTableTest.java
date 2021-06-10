@@ -2,11 +2,11 @@ package de.aurora.mggvertretungsplan.datamodel;
 
 import junit.framework.TestCase;
 
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.Locale;
 
 /**
@@ -60,58 +60,40 @@ public class TimeTableTest extends TestCase {
     }
 
     public void testGetFutureDaysCount() {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss", Locale.getDefault());
+        DateTimeFormatter sdf = DateTimeFormatter.ofPattern("dd.MM.yyyy", Locale.getDefault());
+
         assertEquals(0, timeTable.getFutureDaysCount());
 
-        Calendar cal = Calendar.getInstance();
-
         // Check if one day in the future is counted towards "future days"
-        cal.set(Calendar.HOUR_OF_DAY,0);
-        cal.set(Calendar.MINUTE,0);
-        cal.set(Calendar.SECOND,0);
-        cal.add(Calendar.DATE, 1);
-        Date tomorrow = cal.getTime();
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime tomorrow = LocalDateTime.of(now.getYear(), now.getMonthValue(), now.getDayOfMonth(), 0, 0, 0).plusDays(1);
         ArrayList<ArrayList<String>> arrayLists = new ArrayList<>();
-        TimeTableDay ttd = new TimeTableDay(sdf.format(tomorrow), WEEK_A, arrayLists);
+        TimeTableDay ttd = new TimeTableDay(tomorrow.format(sdf), WEEK_A, arrayLists);
         timeTable.addDay(ttd);
 
         assertEquals(1, timeTable.getFutureDaysCount());
 
         // Check if 2 days in the future are counted towards "future days"
-
-        cal.add(Calendar.DATE, 1);
-        Date dayAfterTomorrow = cal.getTime();
-        TimeTableDay ttd2 = new TimeTableDay(sdf.format(dayAfterTomorrow), WEEK_A, arrayLists);
+        LocalDateTime dayAfterTomorrow = LocalDateTime.now().plusDays(2);
+        TimeTableDay ttd2 = new TimeTableDay(dayAfterTomorrow.format(sdf), WEEK_A, arrayLists);
         timeTable.addDay(ttd2);
 
         assertEquals(2, timeTable.getFutureDaysCount());
 
         // Check if prior days are counted towards "future days"
-        cal.add(Calendar.DATE, -3);
-        Date yesterday = cal.getTime();
+        LocalDateTime yesterday = LocalDateTime.now().minusDays(3);
         TimeTableDay ttd3 = new TimeTableDay(sdf.format(yesterday), WEEK_A, arrayLists);
         timeTable.addDay(ttd3);
 
+        // If the first assertion is wrong, we got a date parsing issue!
+        assertTrue(now.isAfter(ttd3.getDate()));
         assertEquals(2, timeTable.getFutureDaysCount());
+        LocalDate today = LocalDate.now();
 
         // Check if a TimeTableDay on the same date is considered "future", if it is currently 15:59.
-        Calendar testCal = Calendar.getInstance(Locale.getDefault());
-        testCal.set(Calendar.HOUR_OF_DAY,15);
-        testCal.set(Calendar.MINUTE,59);
-        testCal.set(Calendar.SECOND,0);
-        testCal.set(Calendar.MILLISECOND,0);
-
-        Date today1559 = testCal.getTime();
-
-        testCal.set(Calendar.HOUR_OF_DAY,16);
-        testCal.set(Calendar.MINUTE,1);
-        Date today1601 = testCal.getTime();
-
-        testCal.set(Calendar.HOUR_OF_DAY,0);
-        testCal.set(Calendar.MINUTE,0);
-        testCal.set(Calendar.SECOND,0);
-        testCal.set(Calendar.MILLISECOND,0);
-        Date currentDate = new Date(testCal.getTime().getTime());
+        LocalDateTime today1559 = LocalDateTime.of(today.getYear(), today.getMonthValue(), today.getDayOfMonth(), 15,59,0);
+        LocalDateTime today1601 = LocalDateTime.of(today.getYear(), today.getMonthValue(), today.getDayOfMonth(), 16,1,0);
+        LocalDateTime currentDate = LocalDateTime.of(today.getYear(), today.getMonthValue(), today.getDayOfMonth(), 0,0, 0);
 
         TimeTableDay ttd4 = new TimeTableDay(sdf.format(currentDate), WEEK_A, arrayLists);
         timeTable.addDay(ttd4);

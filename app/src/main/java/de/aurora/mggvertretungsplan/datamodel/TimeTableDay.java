@@ -6,11 +6,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.Locale;
 
 import de.aurora.mggvertretungsplan.R;
@@ -24,7 +24,7 @@ public class TimeTableDay {
     private static final String TAG = "TimeTableDay";
 
     private final ArrayList<TimeTableElement> timeTableElements = new ArrayList<>();
-    private Date date = new Date();
+    private LocalDateTime date = LocalDateTime.now();
     private Week week;
 
     public TimeTableDay(String date, String week, ArrayList<ArrayList<String>> timeTableDay_List) {
@@ -39,7 +39,7 @@ public class TimeTableDay {
         mergeConsecutiveCancellations();
     }
 
-    public TimeTableDay(Date date, Week week, ArrayList<TimeTableElement> timeTableElements) {
+    public TimeTableDay(LocalDateTime date, Week week, ArrayList<TimeTableElement> timeTableElements) {
         this.date = date;
         this.week = week;
         this.timeTableElements.addAll(timeTableElements);
@@ -67,8 +67,8 @@ public class TimeTableDay {
 
     public String getNotificationTitle(Context context) {
         String formatString = context.getString(R.string.notification_title_dateformat);
-        SimpleDateFormat sdf = new SimpleDateFormat(formatString, Locale.getDefault());
-        return sdf.format(this.date);
+        DateTimeFormatter sdf = DateTimeFormatter.ofPattern(formatString, Locale.getDefault());
+        return this.date.format(sdf);
     }
 
     public String getNotificationTicker(Context context) {
@@ -111,46 +111,49 @@ public class TimeTableDay {
         timeTableElements.add(index, tte);
     }
 
-    public boolean isInFuture(Date currentDate) {
-        int sixteenHrsInMillis = 16 * 60 * 60 * 1000;
-        return (getDate().getTime() + sixteenHrsInMillis >= currentDate.getTime());
+    public boolean isInFuture(LocalDateTime currentDate) {
+        return (getDate().plusHours(16).isAfter(currentDate));
     }
 
     public boolean isInFuture() {
-        return isInFuture(new Date());
+        return isInFuture(LocalDateTime.now());
     }
 
     public Week getWeek() {
         return this.week;
     }
 
-    public Date getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
     private void setDate(String date) {
-        SimpleDateFormat fullDateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());
-        int currentYear = new GregorianCalendar().get(GregorianCalendar.YEAR);
+        DateTimeFormatter fullDateFormat = DateTimeFormatter.ofPattern("dd.MM.yyyy", Locale.getDefault());
+        int currentYear = LocalDate.now().getYear();
 
         try {
-            if (date.length() == 6)
-                this.date = fullDateFormat.parse(date + currentYear);
-            else {
-                this.date = fullDateFormat.parse(date);
+            if (date.length() == 6) {
+                LocalDate parsedDate = LocalDate.parse(date + currentYear, fullDateFormat);
+                LocalTime zeroTime = LocalTime.of(0,0,0);
+                this.date = LocalDateTime.of(parsedDate, zeroTime);
+            } else {
+                LocalDate parsedDate = LocalDate.parse(date, fullDateFormat);
+                LocalTime zeroTime = LocalTime.of(0,0,0);
+                this.date = LocalDateTime.of(parsedDate, zeroTime);
             }
-        } catch (ParseException e) {
+        } catch (RuntimeException e) {
             Logger.e(TAG, e.getMessage());
-            this.date = new Date();
+            this.date = LocalDateTime.now();
         }
     }
 
     public String getDateString() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());
-        return dateFormat.format(date);
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd.MM.yyyy", Locale.getDefault());
+        return date.format(dateFormat);
     }
 
     public String getFullDateString() {
-        SimpleDateFormat fullDateFormat = new SimpleDateFormat("EEEE, dd.MM.yyyy", Locale.getDefault());
+        DateTimeFormatter fullDateFormat = DateTimeFormatter.ofPattern("EEEE, dd.MM.yyyy", Locale.getDefault());
         return fullDateFormat.format(date);
     }
 
@@ -249,7 +252,7 @@ public class TimeTableDay {
 
     // Checks if this and the given day are at the same date
     public boolean isSameDay(TimeTableDay ttd) {
-        return date.getTime() == ttd.getDate().getTime();
+        return date.isEqual(ttd.getDate());
     }
 
     // Merges cancellations together (3. & 4. -> 3-4)

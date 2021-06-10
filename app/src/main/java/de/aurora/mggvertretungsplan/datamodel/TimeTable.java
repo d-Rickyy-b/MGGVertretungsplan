@@ -4,8 +4,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Locale;
 
 import de.aurora.mggvertretungsplan.util.Logger;
@@ -40,7 +40,7 @@ public class TimeTable {
     public void addDay(TimeTableDay ttd) {
         int index = 0;
         for (int i = 0; i < timeTableDays.size(); i++) {
-            if (ttd.getDate().before(timeTableDays.get(i).getDate())) {
+            if (ttd.getDate().isBefore(timeTableDays.get(i).getDate())) {
                 break;
             }
             index++;
@@ -58,10 +58,10 @@ public class TimeTable {
      * @return Number of days which are in the future
      */
     public int getFutureDaysCount() {
-        return getFutureDaysCount(new Date());
+        return getFutureDaysCount(LocalDateTime.now());
     }
 
-    public int getFutureDaysCount(Date currentDate) {
+    public int getFutureDaysCount(LocalDateTime currentDate) {
         int futureDays = 0;
 
         for (TimeTableDay ttd : timeTableDays) {
@@ -91,14 +91,13 @@ public class TimeTable {
     public TimeTable getTotalDifferences(TimeTable savedTimeTable, String className) {
         Logger.d(TAG, "Getting differences of saved and downloaded timetable!");
         TimeTable differencesTimeTable = new TimeTable();
-        Date currentDate = new Date();
+        LocalDateTime currentDate = LocalDateTime.now();
         ArrayList<TimeTableDay> savedDays = savedTimeTable.getAllDays();
 
         for (TimeTableDay ttd : timeTableDays) {
             boolean newDay = true;
-            int sixteenHrsInMillisecs = 60 * 60 * 16 * 1000;
 
-            if (currentDate.getTime() > ttd.getDate().getTime() + sixteenHrsInMillisecs) {
+            if (currentDate.isAfter(ttd.getDate().plusHours(16))) {
                 Logger.d(TAG, String.format("Date in the past: %s, ignoring!", ttd.getDateString()));
                 continue;
             }

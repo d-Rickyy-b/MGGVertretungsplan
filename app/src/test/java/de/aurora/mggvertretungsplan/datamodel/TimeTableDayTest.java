@@ -8,12 +8,10 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.Locale;
 
 import de.aurora.mggvertretungsplan.R;
@@ -82,45 +80,41 @@ public class TimeTableDayTest {
 
     @Test
     public void getDate() throws Exception {
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(2018, 0, 1);
-
-        SimpleDateFormat fullDateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());
-        Date date = fullDateFormat.parse("01.01.2018");
+        DateTimeFormatter fullDateFormat = DateTimeFormatter.ofPattern("dd.MM.yyyy", Locale.getDefault());
+        LocalDateTime date = LocalDateTime.parse("01.01.2018", fullDateFormat);
 
         TimeTableDay ttd = new TimeTableDay("01.01.2018", WEEK_A, testList);
 
         assertEquals(date, ttd.getDate());
-        //assertEquals(calendar, ttd.getDate());
     }
 
     @Test
     public void getDateString() {
-        Calendar calendar = Calendar.getInstance();
-        int currentYear = new GregorianCalendar().get(GregorianCalendar.YEAR);
-        calendar.set(currentYear, 0, 1);
+        int currentYear = LocalDateTime.now().getYear();
+        LocalDateTime beginningOfYear = LocalDateTime.of(currentYear, 1, 1,0,0,0);
 
         TimeTableDay ttd = new TimeTableDay("01.01." + currentYear, WEEK_A, testList);
 
-        SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
+        //SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 
-        assertEquals(format.format(calendar.getTime()), ttd.getDateString());
+        assertEquals(beginningOfYear.format(format), ttd.getDateString());
 
         TimeTableDay ttd2 = new TimeTableDay("01.01.", WEEK_A, testList);
 
-        assertEquals(format.format(calendar.getTime()), ttd2.getDateString());
+        assertEquals(beginningOfYear.format(format), ttd2.getDateString());
     }
 
     @Test
     public void getFullDateString() throws Exception {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());
-        Date date = dateFormat.parse("01.01.2018");
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd.MM.yyyy", Locale.getDefault());
+        LocalDateTime date = LocalDateTime.parse("01.01.2018", dateFormat);
 
         TimeTableDay ttd = new TimeTableDay("01.01.2018", WEEK_A, testList);
 
-        SimpleDateFormat fullDateFormat = new SimpleDateFormat("EEEE, dd.MM.yyyy", Locale.getDefault());
+        DateTimeFormatter fullDateFormat = DateTimeFormatter.ofPattern("EEEE, dd.MM.yyyy", Locale.getDefault());
 
-        assertEquals(fullDateFormat.format(date), ttd.getFullDateString());
+        assertEquals(date.format(fullDateFormat), ttd.getFullDateString());
     }
 
     @Test

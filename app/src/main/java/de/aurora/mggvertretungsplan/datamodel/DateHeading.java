@@ -1,7 +1,7 @@
 package de.aurora.mggvertretungsplan.datamodel;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
 /**
@@ -10,20 +10,20 @@ import java.util.Locale;
 
 public class DateHeading {
     @SuppressWarnings("CanBeFinal")
-    private final Date date;
+    private final LocalDateTime date;
     private final Week week;
 
-    public DateHeading(Date date, Week week) {
+    public DateHeading(LocalDateTime date, Week week) {
         this.date = date;
         this.week = week;
     }
 
-    public DateHeading(Date date) {
+    public DateHeading(LocalDateTime date) {
         this(date, new Week("A"));
     }
 
     public String getWholeDate() {
-        SimpleDateFormat wholeDate = new SimpleDateFormat("EEEE, dd.MM.yyyy", Locale.getDefault());
+        DateTimeFormatter wholeDate = DateTimeFormatter.ofPattern("EEEE, dd.MM.yyyy", Locale.getDefault());
         return wholeDate.format(date);
     }
 
