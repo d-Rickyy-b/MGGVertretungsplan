@@ -39,9 +39,9 @@ android {
         release
     }
 
-    def isRunningOnTravis = System.getenv("CI") == "true"
+    def isRunningOnCI = System.getenv("CI") == "true"
 
-    if (isRunningOnTravis) {
+    if (isRunningOnCI) {
         // configure keystore
         signingConfigs.release.storeFile = file("../keystore.ks")
         signingConfigs.release.storePassword = System.getenv("keystore_password")
@@ -55,7 +55,7 @@ android {
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 
-            if (isRunningOnTravis) {
+            if (isRunningOnCI) {
                 testCoverageEnabled = true
                 signingConfig signingConfigs.release
             }
