@@ -128,7 +128,7 @@ public class TimeTableDay {
     }
 
     private void setDate(String date) {
-        DateTimeFormatter fullDateFormat = DateTimeFormatter.ofPattern("dd.MM.yyyy", Locale.getDefault());
+        DateTimeFormatter fullDateFormat = DateTimeFormatter.ofPattern("d.M.yyyy", Locale.getDefault());
         int currentYear = LocalDate.now().getYear();
 
         try {
