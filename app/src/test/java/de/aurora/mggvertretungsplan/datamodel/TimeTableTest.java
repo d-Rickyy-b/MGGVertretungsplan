@@ -175,6 +175,8 @@ public class TimeTableTest extends TestCase {
     }
 
     public void testGetTotalDifferences() {
+        // Calculate the total differences between two TimeTables
+        // Set up TimeTable 1, Day 1
         ArrayList<ArrayList<String>> dayList = new ArrayList<>();
         dayList.add(new ArrayList<>(Arrays.asList("1", "K1", "D", "---", "H202", "---", "")));
         dayList.add(new ArrayList<>(Arrays.asList("2", "7a", "E", "---", "H105", "---", "")));
@@ -183,6 +185,7 @@ public class TimeTableTest extends TestCase {
         TimeTableDay ttd = new TimeTableDay("31.12.", WEEK_A, dayList);
         timeTable.addDay(ttd);
 
+        // Set up TimeTable 1, Day 2
         ArrayList<ArrayList<String>> dayList2 = new ArrayList<>();
         dayList2.add(new ArrayList<>(Arrays.asList("1", "K2", "D", "---", "H202", "---", "")));
         //dayList2.add(new ArrayList<>(Arrays.asList("1", "K2", "D", "---", "H202", "---", ""))); //Duplicate - should not count
@@ -195,7 +198,7 @@ public class TimeTableTest extends TestCase {
         TimeTableDay ttd2 = new TimeTableDay("30.12.", WEEK_A, dayList2);
         timeTable.addDay(ttd2);
 
-        // Second tt
+        // Set up TimeTable 2, Day 1
         TimeTable timeTable1 = new TimeTable();
         ArrayList<ArrayList<String>> dayList3 = new ArrayList<>();
         dayList3.add(new ArrayList<>(Arrays.asList("1", "K1", "D", "---", "H202", "---", "")));
@@ -205,6 +208,7 @@ public class TimeTableTest extends TestCase {
         TimeTableDay ttd3 = new TimeTableDay("31.12.", WEEK_A, dayList3);
         timeTable1.addDay(ttd3);
 
+        // Set up TimeTable 2, Day 2
         ArrayList<ArrayList<String>> dayList4 = new ArrayList<>();
         dayList4.add(new ArrayList<>(Arrays.asList("1", "K2", "D", "---", "H202", "---", "")));
         dayList4.add(new ArrayList<>(Arrays.asList("2", "5b", "E", "---", "H105", "---", "")));
@@ -216,6 +220,7 @@ public class TimeTableTest extends TestCase {
         TimeTableDay ttd4 = new TimeTableDay("30.12.", WEEK_A, dayList4);
         timeTable1.addDay(ttd4);
 
+        // Calculate differences between Day 1 and Day 2 for several examples
         assertEquals(0, timeTable.getTotalDifferences(timeTable1, "7a").getTotalCancellations("7a"));
         assertEquals(0, timeTable.getTotalDifferences(timeTable1, "K2").getTotalCancellations("K2"));
         assertEquals(0, timeTable.getTotalDifferences(timeTable1, "8f").getTotalCancellations("8f"));

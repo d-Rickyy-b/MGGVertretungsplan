@@ -342,35 +342,35 @@ public class TimeTableDayTest {
         String className = "K1";
 
         // Basic data
-        dayList.add(new ArrayList<>(Arrays.asList("3", className, "G", "---", "H202", "---", "")));
-        dayList.add(new ArrayList<>(Arrays.asList("4", className, "G", "---", "H202", "---", "")));
-        dayList.add(new ArrayList<>(Arrays.asList("1", className, "4BK", "---", "BK3", "---", "")));
-        dayList.add(new ArrayList<>(Arrays.asList("2", className, "D", "D", "H208", "H210", "Raumänderung")));
-        dayList.add(new ArrayList<>(Arrays.asList("3", className, "E", "BIO", "S121", "S320", "")));
-        dayList.add(new ArrayList<>(Arrays.asList("5 - 6", className, "INF", "---", "S020", "---", "")));
+        dayList.add(new ArrayList<>(Arrays.asList("3", className, "G", "---", "H202", "---", ""))); // Gets merged with the one after -> 1
+        dayList.add(new ArrayList<>(Arrays.asList("4", className, "G", "---", "H202", "---", ""))); // Gets merged with the one before -> 1
+        dayList.add(new ArrayList<>(Arrays.asList("1", className, "4BK", "---", "BK3", "---", ""))); // -> 2
+        dayList.add(new ArrayList<>(Arrays.asList("2", className, "D", "D", "H208", "H210", "Raumänderung"))); // -> 3
+        dayList.add(new ArrayList<>(Arrays.asList("3", className, "E", "BIO", "S121", "S320", ""))); // -> 4
+        dayList.add(new ArrayList<>(Arrays.asList("5 - 6", className, "INF", "---", "S020", "---", ""))); // -> 5
         TimeTableDay day1 = new TimeTableDay("01.01.2018", WEEK_A, dayList);
 
         assertEquals(5, day1.getElements(className).size());
         dayList.clear();
 
-        dayList.add(new ArrayList<>(Arrays.asList("3", className, "G", "---", "H202", "---", "")));
-        dayList.add(new ArrayList<>(Arrays.asList("4", className, "G", "---", "H202", "---", "")));
-        dayList.add(new ArrayList<>(Arrays.asList("4", className, "G", "---", "H202", "---", "")));
-        dayList.add(new ArrayList<>(Arrays.asList("1", className, "4BK", "---", "BK3", "---", "")));
-        dayList.add(new ArrayList<>(Arrays.asList("2", className, "D", "D", "H208", "H210", "Raumänderung")));
-        dayList.add(new ArrayList<>(Arrays.asList("3", className, "E", "BIO", "S121", "S320", "")));
-        dayList.add(new ArrayList<>(Arrays.asList("5 - 6", className, "INF", "---", "S020", "---", "")));
+        dayList.add(new ArrayList<>(Arrays.asList("3", className, "G", "---", "H202", "---", ""))); // Gets merged with the one after -> 1
+        dayList.add(new ArrayList<>(Arrays.asList("4", className, "G", "---", "H202", "---", ""))); // Gets merged with the one before -> 1
+        dayList.add(new ArrayList<>(Arrays.asList("4", className, "G", "---", "H202", "---", ""))); // Gets removed because duplicate -> removed
+        dayList.add(new ArrayList<>(Arrays.asList("1", className, "4BK", "---", "BK3", "---", ""))); // -> 2
+        dayList.add(new ArrayList<>(Arrays.asList("2", className, "D", "D", "H208", "H210", "Raumänderung"))); // -> 3
+        dayList.add(new ArrayList<>(Arrays.asList("3", className, "E", "BIO", "S121", "S320", ""))); // -> 4
+        dayList.add(new ArrayList<>(Arrays.asList("5 - 6", className, "INF", "---", "S020", "---", ""))); // -> 5
         TimeTableDay day2 = new TimeTableDay("01.01.2018", WEEK_A, dayList);
 
         assertEquals(6, day2.getElements(className).size());
         dayList.clear();
 
-        dayList.add(new ArrayList<>(Arrays.asList("3", className, "G", "---", "H202", "---", "")));
-        dayList.add(new ArrayList<>(Arrays.asList("4", className, "G", "---", "H202", "---", "")));
-        dayList.add(new ArrayList<>(Arrays.asList("1", className, "4BK", "D", "BK3", "H105", "statt 02.01")));
-        dayList.add(new ArrayList<>(Arrays.asList("2", className, "4BK", "D", "BK3", "H105", "statt 02.01")));
-        dayList.add(new ArrayList<>(Arrays.asList("3", className, "E", "BIO", "S121", "S320", "")));
-        dayList.add(new ArrayList<>(Arrays.asList("5 - 6", className, "INF", "---", "S020", "---", "")));
+        dayList.add(new ArrayList<>(Arrays.asList("3", className, "G", "---", "H202", "---", ""))); // Gets merged with the one after -> 1
+        dayList.add(new ArrayList<>(Arrays.asList("4", className, "G", "---", "H202", "---", ""))); // Gets merged with the one before -> 1
+        dayList.add(new ArrayList<>(Arrays.asList("1", className, "4BK", "D", "BK3", "H105", "statt 02.01"))); // Gets merged with the one after -> 2
+        dayList.add(new ArrayList<>(Arrays.asList("2", className, "4BK", "D", "BK3", "H105", "statt 02.01"))); // Gets merged with the one before -> 2
+        dayList.add(new ArrayList<>(Arrays.asList("3", className, "E", "BIO", "S121", "S320", ""))); // -> 3
+        dayList.add(new ArrayList<>(Arrays.asList("5 - 6", className, "INF", "---", "S020", "---", ""))); // -> 4
         TimeTableDay day3 = new TimeTableDay("01.01.2018", WEEK_A, dayList);
 
         assertEquals(4, day3.getElements(className).size());
