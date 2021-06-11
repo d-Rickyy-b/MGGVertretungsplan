@@ -90,15 +90,20 @@ public class TimeTable {
     }
 
     public TimeTable getTotalDifferences(TimeTable savedTimeTable, String className) {
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        return getTotalDifferencesForSpecificTime(savedTimeTable, className, currentDateTime);
+    }
+
+    public TimeTable getTotalDifferencesForSpecificTime(TimeTable savedTimeTable, String className, LocalDateTime givenDateTime) {
         Logger.d(TAG, "Getting differences of saved and downloaded timetable!");
         TimeTable differencesTimeTable = new TimeTable();
-        LocalDateTime currentDate = LocalDateTime.now();
         ArrayList<TimeTableDay> savedDays = savedTimeTable.getAllDays();
 
         for (TimeTableDay ttd : timeTableDays) {
             boolean newDay = true;
+            LocalDateTime ttdDateTimeAt16 = LocalDateTime.of(ttd.getDate(), LocalTime.of(16, 0, 0));
 
-            if (currentDate.isAfter(ttd.getDate().plusHours(16))) {
+            if (givenDateTime.isAfter(ttdDateTimeAt16)) {
                 Logger.d(TAG, String.format("Date in the past: %s, ignoring!", ttd.getDateString()));
                 continue;
             }
