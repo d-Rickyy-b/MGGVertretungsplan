@@ -362,7 +362,7 @@ public class TimeTableDayTest {
         dayList.add(new ArrayList<>(Arrays.asList("5 - 6", className, "INF", "---", "S020", "---", ""))); // -> 5
         TimeTableDay day2 = new TimeTableDay("01.01.2018", WEEK_A, dayList);
 
-        assertEquals(6, day2.getElements(className).size());
+        assertEquals(5, day2.getElements(className).size());
         dayList.clear();
 
         dayList.add(new ArrayList<>(Arrays.asList("3", className, "G", "---", "H202", "---", ""))); // Gets merged with the one after -> 1

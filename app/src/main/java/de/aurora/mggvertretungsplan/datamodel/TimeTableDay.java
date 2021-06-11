@@ -100,6 +100,13 @@ public class TimeTableDay {
     }
 
     private void addElement(TimeTableElement tte) {
+        // Ignore elements that are already in the list
+        for (TimeTableElement t: timeTableElements) {
+            if (t.equals(tte)) {
+                return;
+            }
+        }
+
         int index = 0;
         for (int i = 0; i < timeTableElements.size(); i++) {
             if (tte.getHour_I() < timeTableElements.get(i).getHour_I()) {
