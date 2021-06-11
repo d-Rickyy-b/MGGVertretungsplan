@@ -56,6 +56,7 @@ public class TimeTable {
 
     /**
      * Calculates the number of days of the current TimeTable, which are in the future
+     *
      * @return Number of days which are in the future
      */
     public int getFutureDaysCount() {
@@ -124,7 +125,7 @@ public class TimeTable {
 
                 differencesTimeTable.addDay(ttd.getTTDbyClass(className));
                 //TODO Bug - ALL elements are added regardless of the class
-                Logger.d(TAG, String.format(Locale.getDefault(),"New Day found - %d cancellations for %s", dayDiffs, className));
+                Logger.d(TAG, String.format(Locale.getDefault(), "New Day found - %d cancellations for %s", dayDiffs, className));
             }
         }
 
@@ -150,7 +151,7 @@ public class TimeTable {
      */
     public TimeTable filter(String className) {
         final TimeTable tt = new TimeTable();
-        for (TimeTableDay ttd: timeTableDays) {
+        for (TimeTableDay ttd : timeTableDays) {
             tt.addDay(ttd.filter(className));
         }
 

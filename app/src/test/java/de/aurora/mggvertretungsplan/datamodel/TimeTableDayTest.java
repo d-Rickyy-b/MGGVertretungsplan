@@ -98,7 +98,7 @@ public class TimeTableDayTest {
     @Test
     public void getDateString() {
         int currentYear = LocalDateTime.now().getYear();
-        LocalDateTime beginningOfYear = LocalDateTime.of(currentYear, 1, 1,0,0,0);
+        LocalDateTime beginningOfYear = LocalDateTime.of(currentYear, 1, 1, 0, 0, 0);
 
         TimeTableDay ttd = new TimeTableDay("01.01." + currentYear, WEEK_A, testList);
 

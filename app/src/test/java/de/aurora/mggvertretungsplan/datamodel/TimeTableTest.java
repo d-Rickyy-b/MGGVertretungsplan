@@ -14,9 +14,9 @@ import java.util.Locale;
  * Created by Rico on 20.11.2017.
  */
 public class TimeTableTest extends TestCase {
-    private TimeTable timeTable;
     private static final String WEEK_A = "A";
     private static final String WEEK_B = "B";
+    private TimeTable timeTable;
 
     public void setUp() throws Exception {
         super.setUp();
@@ -87,15 +87,15 @@ public class TimeTableTest extends TestCase {
         timeTable.addDay(ttd3);
 
         // If the first assertion is wrong, we got a date parsing issue!
-        LocalDateTime ttd3DateTime = LocalDateTime.of(ttd3.getDate(), LocalTime.of(0,0,0));
+        LocalDateTime ttd3DateTime = LocalDateTime.of(ttd3.getDate(), LocalTime.of(0, 0, 0));
         assertTrue(now.isAfter(ttd3DateTime));
         assertEquals(2, timeTable.getFutureDaysCount());
         LocalDate today = LocalDate.now();
 
         // Check if a TimeTableDay on the same date is considered "future", if it is currently 15:59.
-        LocalDateTime today1559 = LocalDateTime.of(today.getYear(), today.getMonthValue(), today.getDayOfMonth(), 15,59,0);
-        LocalDateTime today1601 = LocalDateTime.of(today.getYear(), today.getMonthValue(), today.getDayOfMonth(), 16,1,0);
-        LocalDateTime currentDate = LocalDateTime.of(today.getYear(), today.getMonthValue(), today.getDayOfMonth(), 0,0, 0);
+        LocalDateTime today1559 = LocalDateTime.of(today.getYear(), today.getMonthValue(), today.getDayOfMonth(), 15, 59, 0);
+        LocalDateTime today1601 = LocalDateTime.of(today.getYear(), today.getMonthValue(), today.getDayOfMonth(), 16, 1, 0);
+        LocalDateTime currentDate = LocalDateTime.of(today.getYear(), today.getMonthValue(), today.getDayOfMonth(), 0, 0, 0);
 
         TimeTableDay ttd4 = new TimeTableDay(sdf.format(currentDate), WEEK_A, arrayLists);
         timeTable.addDay(ttd4);

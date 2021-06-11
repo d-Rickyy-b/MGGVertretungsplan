@@ -80,7 +80,7 @@ public class TimeTableDay {
 
         //'{hr}. Std: {subj} {action}'
         String formatString = "%s. Std: %s %s\n";
-        for (TimeTableElement tte: this.timeTableElements) {
+        for (TimeTableElement tte : this.timeTableElements) {
             String action = "";
             switch (tte.getType()) {
                 case TimeTableElement.SUBSTITUTION:
@@ -101,7 +101,7 @@ public class TimeTableDay {
 
     private void addElement(TimeTableElement tte) {
         // Ignore elements that are already in the list
-        for (TimeTableElement t: timeTableElements) {
+        for (TimeTableElement t : timeTableElements) {
             if (t.equals(tte)) {
                 return;
             }
@@ -119,7 +119,7 @@ public class TimeTableDay {
     }
 
     public boolean isInFuture(LocalDateTime currentDate) {
-        LocalDateTime dateTime = LocalDateTime.of(getDate(), LocalTime.of(0,0,0));
+        LocalDateTime dateTime = LocalDateTime.of(getDate(), LocalTime.of(0, 0, 0));
         return (dateTime.plusHours(16).isAfter(currentDate));
     }
 
@@ -208,7 +208,8 @@ public class TimeTableDay {
 
     /**
      * Calculates the differences between two TimeTableDays
-     * @param ttd The old/saved Timetable to be compared against
+     *
+     * @param ttd       The old/saved Timetable to be compared against
      * @param className The name of the class to search for
      * @return New TimeTableDay containing only the new elements for a certain class
      */
@@ -232,8 +233,8 @@ public class TimeTableDay {
         }
 
         // Remove similar elements, which are contained in both lists
-        for (TimeTableElement tte1: newElements) {
-            for (TimeTableElement tte2: savedElements) {
+        for (TimeTableElement tte1 : newElements) {
+            for (TimeTableElement tte2 : savedElements) {
                 if (tte1.getDiffAmount(tte2) == 1) {
                     // This else part catches elements where only one part (hour, subject, etc.) has changed
                     // Without it, every *change* of an existing element would be counted twice
@@ -244,7 +245,7 @@ public class TimeTableDay {
         }
 
         // Set the elements, which are no longer in the TimeTableDay to inactive, so they can be notified as "removed"
-        for (TimeTableElement tte: savedElements) {
+        for (TimeTableElement tte : savedElements) {
             tte.setActive(false);
         }
 
@@ -318,6 +319,7 @@ public class TimeTableDay {
 
     /**
      * Formats the TTD in a beautiful way to share the TT via other apps
+     *
      * @return Beautiful formatted string of the TTD's content
      */
     public String toShareString() {
