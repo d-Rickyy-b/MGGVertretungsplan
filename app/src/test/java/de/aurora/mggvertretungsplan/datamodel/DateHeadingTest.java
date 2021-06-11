@@ -3,7 +3,7 @@ package de.aurora.mggvertretungsplan.datamodel;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import static org.junit.Assert.assertEquals;
 
@@ -18,18 +18,18 @@ public class DateHeadingTest {
 
     @Test
     public void testGetWholeDate() {
-        LocalDateTime date = LocalDateTime.of(2017, 1, 20, 0, 0);
+        LocalDate date = LocalDate.of(2017, 1, 20);
         DateHeading dateHeading = new DateHeading(date);
         assertEquals("Freitag, 20.01.2017", dateHeading.getWholeDate());
 
-        LocalDateTime date2 = LocalDateTime.of(2020, 2, 29, 0, 0);
+        LocalDate date2 = LocalDate.of(2020, 2, 29);
         DateHeading dateHeading2 = new DateHeading(date2);
         assertEquals("Samstag, 29.02.2020", dateHeading2.getWholeDate());
     }
 
     @Test
     public void testGetWeek() {
-        LocalDateTime date = LocalDateTime.of(2017, 1, 20, 0, 0);
+        LocalDate date = LocalDate.of(2017, 1, 20);
         DateHeading dateHeading = new DateHeading(date);
         Week week = dateHeading.getWeek();
         Week comparison = new Week("A");

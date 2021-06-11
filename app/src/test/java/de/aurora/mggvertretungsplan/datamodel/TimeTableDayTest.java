@@ -8,6 +8,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -80,12 +81,18 @@ public class TimeTableDayTest {
 
     @Test
     public void getDate() throws Exception {
-        DateTimeFormatter fullDateFormat = DateTimeFormatter.ofPattern("dd.MM.yyyy", Locale.getDefault());
-        LocalDateTime date = LocalDateTime.parse("01.01.2018", fullDateFormat);
+        DateTimeFormatter fullDateFormat = DateTimeFormatter.ofPattern("d.M.yyyy", Locale.getDefault());
+        LocalDate date = LocalDate.parse("01.01.2018", fullDateFormat);
 
-        TimeTableDay ttd = new TimeTableDay("01.01.2018", WEEK_A, testList);
+        TimeTableDay ttd1 = new TimeTableDay("01.01.2018", WEEK_A, testList);
+        TimeTableDay ttd2 = new TimeTableDay("1.01.2018", WEEK_A, testList);
+        TimeTableDay ttd3 = new TimeTableDay("01.1.2018", WEEK_A, testList);
+        TimeTableDay ttd4 = new TimeTableDay("1.1.2018", WEEK_A, testList);
 
-        assertEquals(date, ttd.getDate());
+        assertEquals(date, ttd1.getDate());
+        assertEquals(date, ttd2.getDate());
+        assertEquals(date, ttd3.getDate());
+        assertEquals(date, ttd4.getDate());
     }
 
     @Test
@@ -108,7 +115,7 @@ public class TimeTableDayTest {
     @Test
     public void getFullDateString() throws Exception {
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd.MM.yyyy", Locale.getDefault());
-        LocalDateTime date = LocalDateTime.parse("01.01.2018", dateFormat);
+        LocalDate date = LocalDate.parse("01.01.2018", dateFormat);
 
         TimeTableDay ttd = new TimeTableDay("01.01.2018", WEEK_A, testList);
 

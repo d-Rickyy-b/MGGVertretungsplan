@@ -24,7 +24,7 @@ public class TimeTableDay {
     private static final String TAG = "TimeTableDay";
 
     private final ArrayList<TimeTableElement> timeTableElements = new ArrayList<>();
-    private LocalDateTime date = LocalDateTime.now();
+    private LocalDate date = LocalDate.now();
     private Week week;
 
     public TimeTableDay(String date, String week, ArrayList<ArrayList<String>> timeTableDay_List) {
@@ -39,7 +39,7 @@ public class TimeTableDay {
         mergeConsecutiveCancellations();
     }
 
-    public TimeTableDay(LocalDateTime date, Week week, ArrayList<TimeTableElement> timeTableElements) {
+    public TimeTableDay(LocalDate date, Week week, ArrayList<TimeTableElement> timeTableElements) {
         this.date = date;
         this.week = week;
         this.timeTableElements.addAll(timeTableElements);
@@ -112,7 +112,8 @@ public class TimeTableDay {
     }
 
     public boolean isInFuture(LocalDateTime currentDate) {
-        return (getDate().plusHours(16).isAfter(currentDate));
+        LocalDateTime dateTime = LocalDateTime.of(getDate(), LocalTime.of(0,0,0));
+        return (dateTime.plusHours(16).isAfter(currentDate));
     }
 
     public boolean isInFuture() {
@@ -123,7 +124,7 @@ public class TimeTableDay {
         return this.week;
     }
 
-    public LocalDateTime getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
@@ -133,17 +134,13 @@ public class TimeTableDay {
 
         try {
             if (date.length() == 6) {
-                LocalDate parsedDate = LocalDate.parse(date + currentYear, fullDateFormat);
-                LocalTime zeroTime = LocalTime.of(0,0,0);
-                this.date = LocalDateTime.of(parsedDate, zeroTime);
+                this.date = LocalDate.parse(date + currentYear, fullDateFormat);
             } else {
-                LocalDate parsedDate = LocalDate.parse(date, fullDateFormat);
-                LocalTime zeroTime = LocalTime.of(0,0,0);
-                this.date = LocalDateTime.of(parsedDate, zeroTime);
+                this.date = LocalDate.parse(date, fullDateFormat);
             }
         } catch (RuntimeException e) {
             Logger.e(TAG, e.getMessage());
-            this.date = LocalDateTime.now();
+            this.date = LocalDate.now();
         }
     }
 

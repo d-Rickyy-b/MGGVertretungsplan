@@ -1,6 +1,6 @@
 package de.aurora.mggvertretungsplan.datamodel;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
@@ -10,15 +10,15 @@ import java.util.Locale;
 
 public class DateHeading {
     @SuppressWarnings("CanBeFinal")
-    private final LocalDateTime date;
+    private final LocalDate date;
     private final Week week;
 
-    public DateHeading(LocalDateTime date, Week week) {
+    public DateHeading(LocalDate date, Week week) {
         this.date = date;
         this.week = week;
     }
 
-    public DateHeading(LocalDateTime date) {
+    public DateHeading(LocalDate date) {
         this(date, new Week("A"));
     }
 

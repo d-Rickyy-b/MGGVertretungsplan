@@ -4,6 +4,7 @@ import junit.framework.TestCase;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -86,7 +87,8 @@ public class TimeTableTest extends TestCase {
         timeTable.addDay(ttd3);
 
         // If the first assertion is wrong, we got a date parsing issue!
-        assertTrue(now.isAfter(ttd3.getDate()));
+        LocalDateTime ttd3DateTime = LocalDateTime.of(ttd3.getDate(), LocalTime.of(0,0,0));
+        assertTrue(now.isAfter(ttd3DateTime));
         assertEquals(2, timeTable.getFutureDaysCount());
         LocalDate today = LocalDate.now();
 
