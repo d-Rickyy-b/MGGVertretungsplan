@@ -214,6 +214,7 @@ public class TimeTableTest extends TestCase {
         dayList4.add(new ArrayList<>(Arrays.asList("2", "5b", "E", "---", "H105", "---", "")));
         dayList4.add(new ArrayList<>(Arrays.asList("3", "7a", "BIO", "---", "S320", "---", "")));
         dayList4.add(new ArrayList<>(Arrays.asList("4", "7a", "BIO", "---", "S320", "---", ""))); // Getting merged with 3. lesson
+        dayList4.add(new ArrayList<>(Arrays.asList("2", "5a", "D", "---", "H103", "---", ""))); // Added newly
         dayList4.add(new ArrayList<>(Arrays.asList("3-4", "9c", "G", "---", "M315", "---", "Test")));
         dayList4.add(new ArrayList<>(Arrays.asList("5", "9c", "D", "---", "M315", "---", "Test")));
         dayList4.add(new ArrayList<>(Arrays.asList("8-9", "9c", "Sp", "---", "M315", "---", "Test")));
@@ -224,11 +225,13 @@ public class TimeTableTest extends TestCase {
         assertEquals(0, timeTable.getTotalDifferences(timeTable1, "7a").getTotalCancellations("7a"));
         assertEquals(0, timeTable.getTotalDifferences(timeTable1, "K2").getTotalCancellations("K2"));
         assertEquals(0, timeTable.getTotalDifferences(timeTable1, "8f").getTotalCancellations("8f"));
+        assertEquals(1, timeTable.getTotalDifferences(timeTable1, "5a").getTotalCancellations("5a"));
 
         // The other way around
         assertEquals(0, timeTable1.getTotalDifferences(timeTable, "7a").getTotalCancellations("7a"));
         assertEquals(0, timeTable1.getTotalDifferences(timeTable, "K2").getTotalCancellations("K2"));
         assertEquals(0, timeTable1.getTotalDifferences(timeTable, "8f").getTotalCancellations("8f"));
+        assertEquals(1, timeTable1.getTotalDifferences(timeTable, "5a").getTotalCancellations("5a"));
 
         // Another check
         assertEquals(timeTable.getTotalDifferences(timeTable1, "7a").getTotalCancellations("7a"), timeTable1.getTotalDifferences(timeTable, "7a").getTotalCancellations("7a"));
@@ -245,6 +248,51 @@ public class TimeTableTest extends TestCase {
         assertEquals(0, timeTable.getTotalDifferences(timeTable2, "7a").getTotalCancellations("7a"));
         assertEquals(0, timeTable.getTotalDifferences(timeTable2, "K2").getTotalCancellations("K2"));
         assertEquals(0, timeTable.getTotalDifferences(timeTable2, "8f").getTotalCancellations("8f"));
+    }
+
+    public void testGetTotalDifferencesForSpecificTime() {
+        // Check if the time is set correctly - First test with 1:00 am
+        // We only want to compare timeTables that are either still considered "today" or are in the future (tomorrow, etc.)
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+        LocalDate date = LocalDate.now();
+        LocalTime time = LocalTime.of(1, 0, 0); // assume it's 1am and the day is yet to come
+        LocalDateTime dateTime = LocalDateTime.of(date, time);
+
+        // Set up test data
+        ArrayList<ArrayList<String>> dayList = new ArrayList<>();
+        dayList.add(new ArrayList<>(Arrays.asList("1", "K1", "D", "---", "H202", "---", "")));
+        TimeTableDay ttd = new TimeTableDay(dtf.format(date), WEEK_A, dayList);
+        timeTable.addDay(ttd);
+
+        TimeTable timeTable1 = new TimeTable();
+        ArrayList<ArrayList<String>> dayList1 = new ArrayList<>();
+        dayList1.add(new ArrayList<>(Arrays.asList("2", "K1", "D", "---", "H202", "---", "")));
+        TimeTableDay ttd1 = new TimeTableDay(dtf.format(date), WEEK_A, dayList1);
+        timeTable1.addDay(ttd1);
+
+        int res = timeTable.getTotalDifferencesForSpecificTime(timeTable1, "K1", dateTime).getTotalCancellations("K1");
+        assertEquals(1, res);
+
+        // Second test with 4:30pm
+        LocalTime time1 = LocalTime.of(16, 30, 0); // assume it's 4:30 pm and the day is coming to an end
+        LocalDateTime dateTime1 = LocalDateTime.of(date, time1);
+
+        // Set up test data
+        TimeTable timeTable2 = new TimeTable();
+        ArrayList<ArrayList<String>> dayList2 = new ArrayList<>();
+        dayList.add(new ArrayList<>(Arrays.asList("1", "K1", "D", "---", "H202", "---", "")));
+        TimeTableDay ttd2 = new TimeTableDay(dtf.format(date), WEEK_A, dayList2);
+        timeTable.addDay(ttd2);
+
+        TimeTable timeTable3 = new TimeTable();
+        ArrayList<ArrayList<String>> dayList3 = new ArrayList<>();
+        dayList1.add(new ArrayList<>(Arrays.asList("2", "K1", "D", "---", "H202", "---", "")));
+        TimeTableDay ttd3 = new TimeTableDay(dtf.format(date), WEEK_A, dayList3);
+        timeTable1.addDay(ttd3);
+
+        int res2 = timeTable2.getTotalDifferencesForSpecificTime(timeTable3, "K1", dateTime1).getTotalCancellations("K1");
+        assertEquals(0, res2);
+
     }
 
     public void testToString() {
