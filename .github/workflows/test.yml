@@ -7,10 +7,17 @@ on:
   pull_request:
     branches: [ master ]
 
-# Where will they run
+env:
+  LANG: "de_DE.UTF-8"
+
 jobs:
   test:
     runs-on: ubuntu-latest
+
+    - name: Set up Locale - de_DE.UTF-8
+      run: |
+        sudo locale-gen de_DE.UTF-8
+        sudo update-locale LANG=de_DE.UTF-8
 
     steps:
       - name: Checkout
