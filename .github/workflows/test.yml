@@ -3,16 +3,23 @@ name: test
 
 on:
   push:
-    branches: [ master, dev ]
+    branches: [ master, dev, date-fix ]
   pull_request:
     branches: [ master ]
 
-# Where will they run
+env:
+  LANG: "de_DE.UTF-8"
+
 jobs:
   test:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Set up Locale - de_DE.UTF-8
+        run: |
+          sudo locale-gen de_DE.UTF-8
+          sudo update-locale LANG=de_DE.UTF-8
+
       - name: Checkout
         uses: actions/checkout@v2
 
