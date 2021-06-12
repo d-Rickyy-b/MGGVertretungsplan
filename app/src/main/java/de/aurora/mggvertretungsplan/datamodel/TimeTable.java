@@ -146,7 +146,8 @@ public class TimeTable {
     /**
      * Filters the timetable so that only entries of a certain class will stay. All other classes
      * will be removed.
-     * @param class_name The name of the class, which should be filtered on.
+     *
+     * @param className The name of the class, which should be filtered on.
      * @return TimeTable object
      */
     public TimeTable filter(String className) {
