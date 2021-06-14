@@ -53,13 +53,6 @@ android {
 
     def isRunningOnCI = System.getenv("CI") == "true"
 
-    if (isRunningOnCI) {
-        // configure keystore
-        signingConfigs.release.storeFile = file("../keystore.ks")
-        signingConfigs.release.storePassword = System.getenv("keystore_password")
-        signingConfigs.release.keyAlias = System.getenv("keystore_alias")
-        signingConfigs.release.keyPassword = System.getenv("keystore_alias_password")
-    }
 
     buildTypes {
         release {
@@ -67,10 +60,6 @@ android {
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 
-            if (isRunningOnCI) {
-                testCoverageEnabled = true
-                signingConfig signingConfigs.release
-            }
             archivesBaseName = "mggvertretungsplan_v${defaultConfig.versionName}_${defaultConfig.versionCode}"
         }
 
