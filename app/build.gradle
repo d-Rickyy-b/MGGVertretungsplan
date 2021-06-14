@@ -71,6 +71,7 @@ android {
                 testCoverageEnabled = true
                 signingConfig signingConfigs.release
             }
+            archivesBaseName = "mggvertretungsplan_v${defaultConfig.versionName}_${defaultConfig.versionCode}"
         }
 
         debug {
