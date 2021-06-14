@@ -76,5 +76,5 @@ jobs:
       # Upload bundle, apk and mapping to release
       - uses: ncipollo/release-action@v1
         with:
-          artifacts: "app/build/outputs/apk/release/*.apk;app/build/outputs/bundle/release/*.aab;app\build\outputs\mapping\release\mapping.txt"
+          artifacts: "app/build/outputs/apk/release/*.apk,app/build/outputs/bundle/release/*.aab,app/build/outputs/mapping/release/mapping.txt"
           token: ${{ secrets.GITHUB_TOKEN }}
