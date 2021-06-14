@@ -28,24 +28,24 @@ jobs:
           distribution: 'adopt'
 
       - name: Run tests
-          id: runTests
-          uses: eskatos/gradle-command-action@v1
-          with:
-            gradle-version: current
-            wrapper-cache-enabled: true
-            dependencies-cache-enabled: true
-            configuration-cache-enabled: true
-            arguments: testReleaseUnitTest
+        id: runTests
+        uses: eskatos/gradle-command-action@v1
+        with:
+          gradle-version: current
+          wrapper-cache-enabled: true
+          dependencies-cache-enabled: true
+          configuration-cache-enabled: true
+          arguments: testReleaseUnitTest
 
       - name: Build all artifacts
-          id: buildAllApks
-          uses: eskatos/gradle-command-action@v1
-          with:
-            gradle-version: current
-            wrapper-cache-enabled: true
-            dependencies-cache-enabled: true
-            configuration-cache-enabled: true
-            arguments: clean assembleRelease bundleRelease
+        id: buildAllApks
+        uses: eskatos/gradle-command-action@v1
+        with:
+          gradle-version: current
+          wrapper-cache-enabled: true
+          dependencies-cache-enabled: true
+          configuration-cache-enabled: true
+          arguments: clean assembleRelease bundleRelease
 
       - uses: r0adkll/sign-android-release@v1
         name: Sign app APK
@@ -61,17 +61,17 @@ jobs:
           BUILD_TOOLS_VERSION: "30.0.2"
 
       - uses: r0adkll/sign-android-release@v1
-          name: Sign app bundle
-          # ID used to access action output
-          id: sign_bundle
-          with:
-            releaseDirectory: app/build/outputs/bundle/release
-            signingKeyBase64: ${{ secrets.SIGNING_KEY }}
-            alias: ${{ secrets.ALIAS }}
-            keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
-            keyPassword: ${{ secrets.KEY_PASSWORD }}
-          env:
-            BUILD_TOOLS_VERSION: "30.0.2"
+        name: Sign app bundle
+        # ID used to access action output
+        id: sign_bundle
+        with:
+          releaseDirectory: app/build/outputs/bundle/release
+          signingKeyBase64: ${{ secrets.SIGNING_KEY }}
+          alias: ${{ secrets.ALIAS }}
+          keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
+          keyPassword: ${{ secrets.KEY_PASSWORD }}
+        env:
+          BUILD_TOOLS_VERSION: "30.0.2"
 
       # Upload bundle, apk and mapping to release
       - uses: ncipollo/release-action@v1
