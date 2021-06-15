@@ -79,7 +79,7 @@ jobs:
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: ${{ steps.sign_app.outputs.signedReleaseFile }}
-          tag: ${{ githitub.ref }}
+          tag: ${{ github.ref }}
 
       - name: Upload bundle to release
         uses: svenstaro/upload-release-action@v2
