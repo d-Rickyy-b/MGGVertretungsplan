@@ -78,8 +78,8 @@ jobs:
         uses: Roang-zero1/github-upload-release-artifacts-action@master
         with:
           args:
-            - ${{steps.sign_app.outputs.signedReleaseFile}}
-            - ${{steps.sign_bundle.outputs.signedReleaseFile}}
-            - app/build/outputs/mapping/release/mapping.txt
+          - ${{steps.sign_app.outputs.signedReleaseFile}}
+          - ${{steps.sign_bundle.outputs.signedReleaseFile}}
+          - app/build/outputs/mapping/release/mapping.txt
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
