@@ -47,9 +47,6 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
 
-    signingConfigs {
-        release
-    }
 
     def isRunningOnCI = System.getenv("CI") == "true"
 
