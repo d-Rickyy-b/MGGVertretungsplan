@@ -61,6 +61,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 
             archivesBaseName = "mggvertretungsplan_v${defaultConfig.versionName}_${defaultConfig.versionCode}"
+            applicationVariants.all { variant -> renameAPK(variant) }
         }
 
         debug {
@@ -72,6 +73,14 @@ android {
 
     testOptions {
         unitTests.returnDefaultValues = true
+    }
+}
+
+static def renameAPK(variant) {
+    // Renames the output files so that we don't have "-unsigned.apk"
+    variant.outputs.each { output ->
+        String filename = output.outputFileName
+        output.outputFileName = filename.replace("-unsigned", "")
     }
 }
 
