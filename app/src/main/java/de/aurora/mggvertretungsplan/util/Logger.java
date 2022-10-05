@@ -7,7 +7,8 @@ import android.util.Log;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
-import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
 import de.aurora.mggvertretungsplan.AppContext;
@@ -18,7 +19,7 @@ public class Logger {
     private static volatile Logger instance = null;
     private OutputStreamWriter streamWriter;
     private File logFile;
-    public SimpleDateFormat fullDateFormat = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss.SSS", Locale.getDefault());
+    DateTimeFormatter fullDateFormat = DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm:ss.SSS", Locale.getDefault());
 
     public static Logger getInstance() {
         Logger localInstance = instance;
@@ -36,7 +37,7 @@ public class Logger {
     }
 
     public Logger() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss", Locale.getDefault());
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy_MM_dd_HH_mm_ss", Locale.getDefault());
         try {
             File sdCard = AppContext.applicationContext.getExternalFilesDir(null);
 
@@ -48,13 +49,13 @@ public class Logger {
             Log.v(TAG, dir.toString());
             //noinspection ResultOfMethodCallIgnored
             dir.mkdirs();
-            logFile = new File(dir, dateFormat.format(System.currentTimeMillis()) + ".txt");
+            logFile = new File(dir, dateFormat.format(LocalDateTime.now()) + ".txt");
             Log.v(TAG, logFile.toString());
             boolean res = logFile.createNewFile();
 
             FileOutputStream stream = new FileOutputStream(logFile);
             streamWriter = new OutputStreamWriter(stream);
-            streamWriter.write("-----Start log " + dateFormat.format(System.currentTimeMillis()) + "-----\n");
+            streamWriter.write("-----Start log " + dateFormat.format(LocalDateTime.now()) + "-----\n");
             streamWriter.flush();
         } catch (Exception e) {
             Log.e(TAG, e.getMessage());
@@ -133,7 +134,7 @@ public class Logger {
             return;
 
         Logger logger = getInstance();
-        String timestamp = logger.fullDateFormat.format(System.currentTimeMillis());
+        String timestamp = logger.fullDateFormat.format(LocalDateTime.now());
         logger.writeLog(String.format("%s - %s/%s - %s\n", timestamp, level, tag, message));
     }
 }

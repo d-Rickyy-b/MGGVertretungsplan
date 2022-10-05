@@ -1,20 +1,26 @@
 plugins {
     id 'com.android.application'
     id 'jacoco'
-    id 'com.github.kt3k.coveralls'
+    id 'com.github.kt3k.coveralls' version '2.12.0'
 }
 
 jacoco {
-    toolVersion = "0.8.2"
+    toolVersion = "0.8.7"
 }
 
 tasks.withType(Test) {
     jacoco.includeNoLocationClasses = true
+    jacoco.excludes = ['jdk.internal.*']
+    testLogging {
+        exceptionFormat "full"
+        events "skipped", "passed", "failed"
+        showStandardStreams true
+    }
 }
 
 android {
-    compileSdkVersion 28
-    buildToolsVersion '28.0.3'
+    compileSdkVersion 30
+    buildToolsVersion '30.0.2'
 
 
     lintOptions {
@@ -23,30 +29,27 @@ android {
 
     defaultConfig {
         applicationId "de.aurora.mggvertretungsplan"
-        minSdkVersion 15
-        targetSdkVersion 28
+        minSdkVersion 16
+        targetSdkVersion 30
         versionCode 31
-        versionName "3.2.2"
+        versionName "3.2.4"
         multiDexEnabled true
 
         testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
     }
 
-    compileOptions.encoding = "utf-8"
-
-    signingConfigs {
-        release
+    compileOptions {
+        encoding = "utf-8"
+        // Flag to enable support for the new language APIs
+        coreLibraryDesugaringEnabled = true
+        // Sets Java compatibility to Java 8
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
 
-    def isRunningOnTravis = System.getenv("CI") == "true"
 
-    if (isRunningOnTravis) {
-        // configure keystore
-        signingConfigs.release.storeFile = file("../keystore.ks")
-        signingConfigs.release.storePassword = System.getenv("keystore_password")
-        signingConfigs.release.keyAlias = System.getenv("keystore_alias")
-        signingConfigs.release.keyPassword = System.getenv("keystore_alias_password")
-    }
+    def isRunningOnCI = System.getenv("CI") == "true"
+
 
     buildTypes {
         release {
@@ -54,10 +57,8 @@ android {
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 
-            if (isRunningOnTravis) {
-                testCoverageEnabled = true
-                signingConfig signingConfigs.release
-            }
+            archivesBaseName = "mggvertretungsplan_v${defaultConfig.versionName}_${defaultConfig.versionCode}"
+            applicationVariants.all { variant -> renameAPK(variant) }
         }
 
         debug {
@@ -72,20 +73,30 @@ android {
     }
 }
 
+static def renameAPK(variant) {
+    // Renames the output files so that we don't have "-unsigned.apk"
+    variant.outputs.each { output ->
+        String filename = output.outputFileName
+        output.outputFileName = filename.replace("-unsigned", "")
+    }
+}
+
 dependencies {
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.5")
+
     // Required -- JUnit 4 framework (Unit tests)
-    testImplementation 'junit:junit:4.12'
-    testImplementation 'org.mockito:mockito-core:2.8.47'
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation 'org.mockito:mockito-core:3.11.0'
 
     // Support libraries
-    implementation 'com.google.android.material:material:1.1.0-rc02'
+    implementation 'com.google.android.material:material:1.4.0-rc01'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'androidx.appcompat:appcompat:1.3.0'
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
     implementation 'androidx.cardview:cardview:1.0.0'
-    implementation 'androidx.preference:preference:1.1.0'
-    implementation 'androidx.browser:browser:1.0.0'
-    implementation 'androidx.core:core:1.2.0-rc01'
+    implementation 'androidx.preference:preference:1.1.1'
+    implementation 'androidx.browser:browser:1.3.0'
+    implementation 'androidx.core:core:1.5.0'
 
     implementation "android.arch.work:work-runtime:1.0.1"
 
@@ -108,9 +119,9 @@ task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest', 'crea
     def debugTree = fileTree(dir: "$project.buildDir/intermediates/javac/debug", excludes: fileFilter)
     def mainSrc = "$project.projectDir/src/main/java"
 
-    sourceDirectories = files([mainSrc])
-    classDirectories = files([debugTree])
-    executionData = fileTree(dir: project.buildDir, includes: [
+    sourceDirectories.from files([mainSrc])
+    classDirectories.from files([debugTree])
+    executionData.from fileTree(dir: project.buildDir, includes: [
             'jacoco/testDebugUnitTest.exec', 'outputs/code-coverage/connected/*coverage.ec'
     ])
 }

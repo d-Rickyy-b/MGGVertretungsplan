@@ -6,11 +6,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.Locale;
 
 import de.aurora.mggvertretungsplan.R;
@@ -24,7 +24,7 @@ public class TimeTableDay {
     private static final String TAG = "TimeTableDay";
 
     private final ArrayList<TimeTableElement> timeTableElements = new ArrayList<>();
-    private Date date = new Date();
+    private LocalDate date = LocalDate.now();
     private Week week;
 
     public TimeTableDay(String date, String week, ArrayList<ArrayList<String>> timeTableDay_List) {
@@ -39,7 +39,7 @@ public class TimeTableDay {
         mergeConsecutiveCancellations();
     }
 
-    public TimeTableDay(Date date, Week week, ArrayList<TimeTableElement> timeTableElements) {
+    public TimeTableDay(LocalDate date, Week week, ArrayList<TimeTableElement> timeTableElements) {
         this.date = date;
         this.week = week;
         this.timeTableElements.addAll(timeTableElements);
@@ -67,8 +67,8 @@ public class TimeTableDay {
 
     public String getNotificationTitle(Context context) {
         String formatString = context.getString(R.string.notification_title_dateformat);
-        SimpleDateFormat sdf = new SimpleDateFormat(formatString, Locale.getDefault());
-        return sdf.format(this.date);
+        DateTimeFormatter sdf = DateTimeFormatter.ofPattern(formatString, Locale.getDefault());
+        return this.date.format(sdf);
     }
 
     public String getNotificationTicker(Context context) {
@@ -80,7 +80,7 @@ public class TimeTableDay {
 
         //'{hr}. Std: {subj} {action}'
         String formatString = "%s. Std: %s %s\n";
-        for (TimeTableElement tte: this.timeTableElements) {
+        for (TimeTableElement tte : this.timeTableElements) {
             String action = "";
             switch (tte.getType()) {
                 case TimeTableElement.SUBSTITUTION:
@@ -100,6 +100,13 @@ public class TimeTableDay {
     }
 
     private void addElement(TimeTableElement tte) {
+        // Ignore elements that are already in the list
+        for (TimeTableElement t : timeTableElements) {
+            if (t.equals(tte)) {
+                return;
+            }
+        }
+
         int index = 0;
         for (int i = 0; i < timeTableElements.size(); i++) {
             if (tte.getHour_I() < timeTableElements.get(i).getHour_I()) {
@@ -111,46 +118,46 @@ public class TimeTableDay {
         timeTableElements.add(index, tte);
     }
 
-    public boolean isInFuture(Date currentDate) {
-        int sixteenHrsInMillis = 16 * 60 * 60 * 1000;
-        return (getDate().getTime() + sixteenHrsInMillis >= currentDate.getTime());
+    public boolean isInFuture(LocalDateTime currentDate) {
+        LocalDateTime dateTime = LocalDateTime.of(getDate(), LocalTime.of(0, 0, 0));
+        return (dateTime.plusHours(16).isAfter(currentDate));
     }
 
     public boolean isInFuture() {
-        return isInFuture(new Date());
+        return isInFuture(LocalDateTime.now());
     }
 
     public Week getWeek() {
         return this.week;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
     private void setDate(String date) {
-        SimpleDateFormat fullDateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());
-        int currentYear = new GregorianCalendar().get(GregorianCalendar.YEAR);
+        DateTimeFormatter fullDateFormat = DateTimeFormatter.ofPattern("d.M.yyyy", Locale.getDefault());
+        int currentYear = LocalDate.now().getYear();
 
         try {
-            if (date.length() == 6)
-                this.date = fullDateFormat.parse(date + currentYear);
-            else {
-                this.date = fullDateFormat.parse(date);
+            if (date.length() == 6) {
+                this.date = LocalDate.parse(date + currentYear, fullDateFormat);
+            } else {
+                this.date = LocalDate.parse(date, fullDateFormat);
             }
-        } catch (ParseException e) {
+        } catch (RuntimeException e) {
             Logger.e(TAG, e.getMessage());
-            this.date = new Date();
+            this.date = LocalDate.now();
         }
     }
 
     public String getDateString() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());
-        return dateFormat.format(date);
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd.MM.yyyy", Locale.getDefault());
+        return date.format(dateFormat);
     }
 
     public String getFullDateString() {
-        SimpleDateFormat fullDateFormat = new SimpleDateFormat("EEEE, dd.MM.yyyy", Locale.getDefault());
+        DateTimeFormatter fullDateFormat = DateTimeFormatter.ofPattern("EEEE, dd.MM.yyyy", Locale.getDefault());
         return fullDateFormat.format(date);
     }
 
@@ -201,7 +208,8 @@ public class TimeTableDay {
 
     /**
      * Calculates the differences between two TimeTableDays
-     * @param ttd The old/saved Timetable to be compared against
+     *
+     * @param ttd       The old/saved Timetable to be compared against
      * @param className The name of the class to search for
      * @return New TimeTableDay containing only the new elements for a certain class
      */
@@ -225,8 +233,8 @@ public class TimeTableDay {
         }
 
         // Remove similar elements, which are contained in both lists
-        for (TimeTableElement tte1: newElements) {
-            for (TimeTableElement tte2: savedElements) {
+        for (TimeTableElement tte1 : newElements) {
+            for (TimeTableElement tte2 : savedElements) {
                 if (tte1.getDiffAmount(tte2) == 1) {
                     // This else part catches elements where only one part (hour, subject, etc.) has changed
                     // Without it, every *change* of an existing element would be counted twice
@@ -237,7 +245,7 @@ public class TimeTableDay {
         }
 
         // Set the elements, which are no longer in the TimeTableDay to inactive, so they can be notified as "removed"
-        for (TimeTableElement tte: savedElements) {
+        for (TimeTableElement tte : savedElements) {
             tte.setActive(false);
         }
 
@@ -249,7 +257,7 @@ public class TimeTableDay {
 
     // Checks if this and the given day are at the same date
     public boolean isSameDay(TimeTableDay ttd) {
-        return date.getTime() == ttd.getDate().getTime();
+        return date.isEqual(ttd.getDate());
     }
 
     // Merges cancellations together (3. & 4. -> 3-4)
@@ -311,6 +319,7 @@ public class TimeTableDay {
 
     /**
      * Formats the TTD in a beautiful way to share the TT via other apps
+     *
      * @return Beautiful formatted string of the TTD's content
      */
     public String toShareString() {

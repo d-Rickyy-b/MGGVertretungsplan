@@ -351,6 +351,7 @@ public class TimeTableElement {
 
     /**
      * Formats the TTD in a beautiful way to share the TT via other apps
+     *
      * @return Beautiful formatted string of the TTD's content
      */
     public String toShareString() {

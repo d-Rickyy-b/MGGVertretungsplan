@@ -2,20 +2,21 @@ package de.aurora.mggvertretungsplan.datamodel;
 
 import junit.framework.TestCase;
 
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.Locale;
 
 /**
  * Created by Rico on 20.11.2017.
  */
 public class TimeTableTest extends TestCase {
-    private TimeTable timeTable;
     private static final String WEEK_A = "A";
     private static final String WEEK_B = "B";
+    private TimeTable timeTable;
 
     public void setUp() throws Exception {
         super.setUp();
@@ -60,58 +61,41 @@ public class TimeTableTest extends TestCase {
     }
 
     public void testGetFutureDaysCount() {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss", Locale.getDefault());
+        DateTimeFormatter sdf = DateTimeFormatter.ofPattern("dd.MM.yyyy", Locale.getDefault());
+
         assertEquals(0, timeTable.getFutureDaysCount());
 
-        Calendar cal = Calendar.getInstance();
-
         // Check if one day in the future is counted towards "future days"
-        cal.set(Calendar.HOUR_OF_DAY,0);
-        cal.set(Calendar.MINUTE,0);
-        cal.set(Calendar.SECOND,0);
-        cal.add(Calendar.DATE, 1);
-        Date tomorrow = cal.getTime();
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime tomorrow = LocalDateTime.of(now.getYear(), now.getMonthValue(), now.getDayOfMonth(), 0, 0, 0).plusDays(1);
         ArrayList<ArrayList<String>> arrayLists = new ArrayList<>();
-        TimeTableDay ttd = new TimeTableDay(sdf.format(tomorrow), WEEK_A, arrayLists);
+        TimeTableDay ttd = new TimeTableDay(tomorrow.format(sdf), WEEK_A, arrayLists);
         timeTable.addDay(ttd);
 
         assertEquals(1, timeTable.getFutureDaysCount());
 
         // Check if 2 days in the future are counted towards "future days"
-
-        cal.add(Calendar.DATE, 1);
-        Date dayAfterTomorrow = cal.getTime();
-        TimeTableDay ttd2 = new TimeTableDay(sdf.format(dayAfterTomorrow), WEEK_A, arrayLists);
+        LocalDateTime dayAfterTomorrow = LocalDateTime.now().plusDays(2);
+        TimeTableDay ttd2 = new TimeTableDay(dayAfterTomorrow.format(sdf), WEEK_A, arrayLists);
         timeTable.addDay(ttd2);
 
         assertEquals(2, timeTable.getFutureDaysCount());
 
         // Check if prior days are counted towards "future days"
-        cal.add(Calendar.DATE, -3);
-        Date yesterday = cal.getTime();
+        LocalDateTime yesterday = LocalDateTime.now().minusDays(3);
         TimeTableDay ttd3 = new TimeTableDay(sdf.format(yesterday), WEEK_A, arrayLists);
         timeTable.addDay(ttd3);
 
+        // If the first assertion is wrong, we got a date parsing issue!
+        LocalDateTime ttd3DateTime = LocalDateTime.of(ttd3.getDate(), LocalTime.of(0, 0, 0));
+        assertTrue(now.isAfter(ttd3DateTime));
         assertEquals(2, timeTable.getFutureDaysCount());
+        LocalDate today = LocalDate.now();
 
         // Check if a TimeTableDay on the same date is considered "future", if it is currently 15:59.
-        Calendar testCal = Calendar.getInstance(Locale.getDefault());
-        testCal.set(Calendar.HOUR_OF_DAY,15);
-        testCal.set(Calendar.MINUTE,59);
-        testCal.set(Calendar.SECOND,0);
-        testCal.set(Calendar.MILLISECOND,0);
-
-        Date today1559 = testCal.getTime();
-
-        testCal.set(Calendar.HOUR_OF_DAY,16);
-        testCal.set(Calendar.MINUTE,1);
-        Date today1601 = testCal.getTime();
-
-        testCal.set(Calendar.HOUR_OF_DAY,0);
-        testCal.set(Calendar.MINUTE,0);
-        testCal.set(Calendar.SECOND,0);
-        testCal.set(Calendar.MILLISECOND,0);
-        Date currentDate = new Date(testCal.getTime().getTime());
+        LocalDateTime today1559 = LocalDateTime.of(today.getYear(), today.getMonthValue(), today.getDayOfMonth(), 15, 59, 0);
+        LocalDateTime today1601 = LocalDateTime.of(today.getYear(), today.getMonthValue(), today.getDayOfMonth(), 16, 1, 0);
+        LocalDateTime currentDate = LocalDateTime.of(today.getYear(), today.getMonthValue(), today.getDayOfMonth(), 0, 0, 0);
 
         TimeTableDay ttd4 = new TimeTableDay(sdf.format(currentDate), WEEK_A, arrayLists);
         timeTable.addDay(ttd4);
@@ -191,6 +175,8 @@ public class TimeTableTest extends TestCase {
     }
 
     public void testGetTotalDifferences() {
+        // Calculate the total differences between two TimeTables
+        // Set up TimeTable 1, Day 1
         ArrayList<ArrayList<String>> dayList = new ArrayList<>();
         dayList.add(new ArrayList<>(Arrays.asList("1", "K1", "D", "---", "H202", "---", "")));
         dayList.add(new ArrayList<>(Arrays.asList("2", "7a", "E", "---", "H105", "---", "")));
@@ -199,9 +185,10 @@ public class TimeTableTest extends TestCase {
         TimeTableDay ttd = new TimeTableDay("31.12.", WEEK_A, dayList);
         timeTable.addDay(ttd);
 
+        // Set up TimeTable 1, Day 2
         ArrayList<ArrayList<String>> dayList2 = new ArrayList<>();
         dayList2.add(new ArrayList<>(Arrays.asList("1", "K2", "D", "---", "H202", "---", "")));
-        //dayList2.add(new ArrayList<>(Arrays.asList("1", "K2", "D", "---", "H202", "---", ""))); //Duplicate - should not count
+        dayList2.add(new ArrayList<>(Arrays.asList("1", "K2", "D", "---", "H202", "---", ""))); //Duplicate - should not count
         dayList2.add(new ArrayList<>(Arrays.asList("2", "5b", "E", "---", "H105", "---", "")));
         dayList2.add(new ArrayList<>(Arrays.asList("3", "7a", "BIO", "---", "S320", "---", "")));
         dayList2.add(new ArrayList<>(Arrays.asList("4", "7a", "BIO", "---", "S320", "---", ""))); // Getting merged with 3. lesson
@@ -211,7 +198,7 @@ public class TimeTableTest extends TestCase {
         TimeTableDay ttd2 = new TimeTableDay("30.12.", WEEK_A, dayList2);
         timeTable.addDay(ttd2);
 
-        // Second tt
+        // Set up TimeTable 2, Day 1
         TimeTable timeTable1 = new TimeTable();
         ArrayList<ArrayList<String>> dayList3 = new ArrayList<>();
         dayList3.add(new ArrayList<>(Arrays.asList("1", "K1", "D", "---", "H202", "---", "")));
@@ -221,25 +208,30 @@ public class TimeTableTest extends TestCase {
         TimeTableDay ttd3 = new TimeTableDay("31.12.", WEEK_A, dayList3);
         timeTable1.addDay(ttd3);
 
+        // Set up TimeTable 2, Day 2
         ArrayList<ArrayList<String>> dayList4 = new ArrayList<>();
         dayList4.add(new ArrayList<>(Arrays.asList("1", "K2", "D", "---", "H202", "---", "")));
         dayList4.add(new ArrayList<>(Arrays.asList("2", "5b", "E", "---", "H105", "---", "")));
         dayList4.add(new ArrayList<>(Arrays.asList("3", "7a", "BIO", "---", "S320", "---", "")));
         dayList4.add(new ArrayList<>(Arrays.asList("4", "7a", "BIO", "---", "S320", "---", ""))); // Getting merged with 3. lesson
+        dayList4.add(new ArrayList<>(Arrays.asList("2", "5a", "D", "---", "H103", "---", ""))); // Added newly
         dayList4.add(new ArrayList<>(Arrays.asList("3-4", "9c", "G", "---", "M315", "---", "Test")));
         dayList4.add(new ArrayList<>(Arrays.asList("5", "9c", "D", "---", "M315", "---", "Test")));
         dayList4.add(new ArrayList<>(Arrays.asList("8-9", "9c", "Sp", "---", "M315", "---", "Test")));
         TimeTableDay ttd4 = new TimeTableDay("30.12.", WEEK_A, dayList4);
         timeTable1.addDay(ttd4);
 
+        // Calculate differences between Day 1 and Day 2 for several examples
         assertEquals(0, timeTable.getTotalDifferences(timeTable1, "7a").getTotalCancellations("7a"));
         assertEquals(0, timeTable.getTotalDifferences(timeTable1, "K2").getTotalCancellations("K2"));
         assertEquals(0, timeTable.getTotalDifferences(timeTable1, "8f").getTotalCancellations("8f"));
+        assertEquals(1, timeTable.getTotalDifferences(timeTable1, "5a").getTotalCancellations("5a"));
 
         // The other way around
         assertEquals(0, timeTable1.getTotalDifferences(timeTable, "7a").getTotalCancellations("7a"));
         assertEquals(0, timeTable1.getTotalDifferences(timeTable, "K2").getTotalCancellations("K2"));
         assertEquals(0, timeTable1.getTotalDifferences(timeTable, "8f").getTotalCancellations("8f"));
+        assertEquals(1, timeTable1.getTotalDifferences(timeTable, "5a").getTotalCancellations("5a"));
 
         // Another check
         assertEquals(timeTable.getTotalDifferences(timeTable1, "7a").getTotalCancellations("7a"), timeTable1.getTotalDifferences(timeTable, "7a").getTotalCancellations("7a"));
@@ -256,6 +248,51 @@ public class TimeTableTest extends TestCase {
         assertEquals(0, timeTable.getTotalDifferences(timeTable2, "7a").getTotalCancellations("7a"));
         assertEquals(0, timeTable.getTotalDifferences(timeTable2, "K2").getTotalCancellations("K2"));
         assertEquals(0, timeTable.getTotalDifferences(timeTable2, "8f").getTotalCancellations("8f"));
+    }
+
+    public void testGetTotalDifferencesForSpecificTime() {
+        // Check if the time is set correctly - First test with 1:00 am
+        // We only want to compare timeTables that are either still considered "today" or are in the future (tomorrow, etc.)
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+        LocalDate date = LocalDate.now();
+        LocalTime time = LocalTime.of(1, 0, 0); // assume it's 1am and the day is yet to come
+        LocalDateTime dateTime = LocalDateTime.of(date, time);
+
+        // Set up test data
+        ArrayList<ArrayList<String>> dayList = new ArrayList<>();
+        dayList.add(new ArrayList<>(Arrays.asList("1", "K1", "D", "---", "H202", "---", "")));
+        TimeTableDay ttd = new TimeTableDay(dtf.format(date), WEEK_A, dayList);
+        timeTable.addDay(ttd);
+
+        TimeTable timeTable1 = new TimeTable();
+        ArrayList<ArrayList<String>> dayList1 = new ArrayList<>();
+        dayList1.add(new ArrayList<>(Arrays.asList("2", "K1", "D", "---", "H202", "---", "")));
+        TimeTableDay ttd1 = new TimeTableDay(dtf.format(date), WEEK_A, dayList1);
+        timeTable1.addDay(ttd1);
+
+        int res = timeTable.getTotalDifferencesForSpecificTime(timeTable1, "K1", dateTime).getTotalCancellations("K1");
+        assertEquals(1, res);
+
+        // Second test with 4:30pm
+        LocalTime time1 = LocalTime.of(16, 30, 0); // assume it's 4:30 pm and the day is coming to an end
+        LocalDateTime dateTime1 = LocalDateTime.of(date, time1);
+
+        // Set up test data
+        TimeTable timeTable2 = new TimeTable();
+        ArrayList<ArrayList<String>> dayList2 = new ArrayList<>();
+        dayList.add(new ArrayList<>(Arrays.asList("1", "K1", "D", "---", "H202", "---", "")));
+        TimeTableDay ttd2 = new TimeTableDay(dtf.format(date), WEEK_A, dayList2);
+        timeTable.addDay(ttd2);
+
+        TimeTable timeTable3 = new TimeTable();
+        ArrayList<ArrayList<String>> dayList3 = new ArrayList<>();
+        dayList1.add(new ArrayList<>(Arrays.asList("2", "K1", "D", "---", "H202", "---", "")));
+        TimeTableDay ttd3 = new TimeTableDay(dtf.format(date), WEEK_A, dayList3);
+        timeTable1.addDay(ttd3);
+
+        int res2 = timeTable2.getTotalDifferencesForSpecificTime(timeTable3, "K1", dateTime1).getTotalCancellations("K1");
+        assertEquals(0, res2);
+
     }
 
     public void testToString() {
